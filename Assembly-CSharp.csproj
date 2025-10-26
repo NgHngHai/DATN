@@ -93,10 +93,10 @@
     <Compile Include="Assets\Scripts\Player\Skills\Skill_DJump.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
+    <Compile Include="Assets\Scripts\Universal\Health.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\Boom.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\EnemyMeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
-    <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\Fly0.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\EnemyAttackBehavior.cs" />
