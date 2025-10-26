@@ -13,6 +13,7 @@ public class SkillDefinition
     public float cooldown;
     public int cost;
     public bool isUnlocked = false;
+    public bool isPassive = false;
 
     public void Activate()
     {
@@ -26,9 +27,13 @@ public class SkillDefinition
 
         var skillImpl = skillPrefab.GetComponentsInChildren<MonoBehaviour>().OfType<ISkill>().FirstOrDefault();
 
-        if (skillImpl != null)
+        if (skillImpl != null && !isPassive)
         {
             skillImpl.Activate();
+        }
+        else if (isPassive)
+        {
+            Debug.Log("this is a passive skill and cannot be activated directly.");
         }
         else
         {
