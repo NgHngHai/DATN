@@ -61,11 +61,54 @@
     <Analyzer Include="D:\Unity\UnityHub\Hub\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0HoverAroundState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\EnemyRangedAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0SleepState.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
+    <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0ChaseState.cs" />
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkill.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherJumpOnTargetState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomPatrolState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyStateMachine.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomTargetDetectedState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherPatrolState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomDashState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\Roak.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0State.cs" />
+    <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdge.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\Snatcher.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherChaseState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherOnWallState.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Blast.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_DJump.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
+    <Compile Include="Assets\Scripts\Universal\Health.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\Boom.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\EnemyMeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\Fly0.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\EnemyAttackBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherCombatState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherAttackState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Roak\RoakState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0AttackState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\PoisonSmoke.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Parry.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
