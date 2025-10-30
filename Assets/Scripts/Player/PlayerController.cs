@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float lastGroundedTime = -1f;
     // Advanced jumping
     public float jumpHoldTimeMax = 0.2f;     // Maximum time jump can be held
-    public float jumpHoldForce = 50f;         // Extra force applied while holding jump
+    public float jumpHoldForce = 50f;        // Extra force applied while holding jump
     public float originalGravityMultiplier = 3f; // Original gravity multiplier
     public float fallGravityMultiplier = 8f; // Gravity multiplier after peak
     public float maxFallSpeed = -50f;        // Maximum downward velocity
