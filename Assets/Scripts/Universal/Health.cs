@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [DisallowMultipleComponent]
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, iDamageable
 {
     [System.Serializable]
     public class HealthChangedEvent : UnityEvent<int, int> { } // (currentHealth, maxHealth)
@@ -47,11 +47,9 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, Mathf.Max(1, maxHealth));
     }
 
-    /// <summary>
     /// Apply damage. Returns true if damage was applied (not invincible and amount > 0).
     /// New parameter: shouldTriggerHitReaction — caller indicates whether presentation systems should treat this as a "hit" reaction.
     /// Defaults to true for backward-compatible behavior.
-    /// </summary>
     public bool TakeDamage(int amount, bool shouldTriggerHitReaction = true)
     {
         if (amount <= 0) return false;
@@ -77,9 +75,13 @@ public class Health : MonoBehaviour
         return false;
     }
 
-    /// <summary>
+    /// Returns whether this component can currently be damaged (not invincible and not already dead).
+    public bool CanBeDamaged()
+    {
+        return !isInvincible && currentHealth > 0;
+    }
+
     /// Heal the entity. Returns true if any healing occurred.
-    /// </summary>
     public bool Heal(int amount)
     {
         if (amount <= 0) return false;
@@ -99,9 +101,7 @@ public class Health : MonoBehaviour
         return false;
     }
 
-    /// <summary>
     /// Sets max health. Optionally adjust current health to stay within new max.
-    /// </summary>
     public void SetMaxHealth(int newMax, bool clampCurrentToMax = true)
     {
         maxHealth = Mathf.Max(1, newMax);
@@ -116,9 +116,7 @@ public class Health : MonoBehaviour
         isInvincible = inv;
     }
 
-    /// <summary>
     /// Fully restore health to max.
-    /// </summary>
     public void RestoreToFull()
     {
         int prev = currentHealth;
@@ -131,8 +129,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Returns whether the entity is dead (health == 0).
-    /// </summary>
     public bool IsDead() => currentHealth <= 0;
 }
