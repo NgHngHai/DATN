@@ -8,7 +8,7 @@
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private LayerMask hitLayer;
-    [SerializeField] private float damage;
+    [SerializeField] private int damage = 5;
     [SerializeField] private GameObject hitEffect;
 
     private Rigidbody2D rb;
@@ -23,6 +23,11 @@ public class Bullet : MonoBehaviour
     {
         if (PhysicsUtils.IsGameObjectInLayer(collision.gameObject, hitLayer))
         {
+            IDamageable damageable = collision.GetComponent<IDamageable>();
+
+            if (damageable != null)
+                damageable.TakeDamage(damage);
+
             if (hitEffect != null)
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
 

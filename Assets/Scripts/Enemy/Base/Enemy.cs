@@ -54,4 +54,9 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public int facingDir => isFacingRight ? 1 : -1;
+
+    public virtual void OnDeath()
+    {
+        Destroy(gameObject);
+    }
 }
