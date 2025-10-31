@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.23</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.25</UnityProjectGeneratorVersion>
     <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0SleepState.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
     <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Universal\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0ChaseState.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0State.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
-    <Compile Include="Assets\Scripts\Universal\iDamageable.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdge.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\Snatcher.cs" />

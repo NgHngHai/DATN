@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     // Movement variables
     [Header("Movement Variables")]
+    [Tooltip("When true, external systems own velocity. Player input should not write velocity.")]
+    public bool movementLocked = false;
     public float moveSpeed = 7f;
     private float moveAmt;
     private bool isFacingRight = true;
@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour
     public float maxFallSpeed = -50f;        // Maximum downward velocity
     private float jumpHoldTimer = 0f;
     private bool isJumping = false;
+
+    // Attacking & skills
+    [Header("Attack & skills Variables")]
+    [Tooltip("When true, cannot input attacks.")]
+    public bool attackLocked = false;
+    public bool skillLocked = false;
 
     // Dashing
     [Header("Dash Variables")]
@@ -111,22 +117,27 @@ public class PlayerController : MonoBehaviour
         // Read movement input
         Vector2 moveVec = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
 
-        if (!isDashing)
+        if (!isDashing && !movementLocked)
         {
             // Get horizontal movement amount
             moveAmt = moveVec.x;
             FlipDirection();
         }
+        else
+        {
+            // Prevent stale input from writing velocities when locked
+            moveAmt = 0f;
+        }
 
         // dash input (uses a simple cooldown + allowAirDash check)
-        bool canDash = !isDashing && (Time.time - lastDashTime >= dashCooldown);
+        bool canDash = !isDashing && !movementLocked && (Time.time - lastDashTime >= dashCooldown);
         if (dashAction != null && dashAction.WasPressedThisFrame() && canDash)
         {
             StartDash();
         }
 
         // Attack input - can be used while running (does not cancel horizontal control)
-        if (attackAction != null && attackAction.WasPressedThisFrame())
+        if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked)
         {
             // Decide attack type by vertical input at the moment of pressing attack.
             // Threshold prevents accidental up/down from small sticks.
@@ -140,18 +151,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // Heavy attack input
-        if (hAttackAction != null && hAttackAction.triggered && isGrounded)
+        if (hAttackAction != null && hAttackAction.triggered && isGrounded && !attackLocked)
         {
             PerformHeavyAttack();
         }
 
         // Heal and skill input
-        if (healAction != null && healAction.WasPressedThisFrame() && isGrounded)
+        if (healAction != null && healAction.WasPressedThisFrame() && isGrounded && !skillLocked)
         {
             skillManager.UseSkillById(0);
         }
 
-        if (skillAction != null && skillAction.WasPressedThisFrame())
+        if (skillAction != null && skillAction.WasPressedThisFrame() && !skillLocked)
         {
             skillManager.UseActiveSkill();
         }
@@ -175,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Handle jump hold for variable height
-        if (isJumping)
+        if (isJumping && !movementLocked)
         {
             if (jumpAction.IsPressed() && jumpHoldTimer < jumpHoldTimeMax && rb.linearVelocityY > 0)
             {
@@ -191,6 +202,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (movementLocked) return;
+
         // If dashing, apply dash movement and manage dash timer; otherwise normal running logic
         if (isDashing)
         {
@@ -227,8 +240,11 @@ public class PlayerController : MonoBehaviour
 
     private void Running()
     {
-        //rb.MovePosition(rb.position + Vector2.right * moveAmt * moveSpeed * Time.fixedDeltaTime);
-        rb.linearVelocityX = moveAmt * moveSpeed;
+        const float deadZone = 0.001f;
+        if (Mathf.Abs(moveAmt) > deadZone)
+        {
+            rb.linearVelocityX = moveAmt * moveSpeed;
+        }
     }
 
     private void Jump()
@@ -242,7 +258,6 @@ public class PlayerController : MonoBehaviour
         dashTimeLeft = dashDuration;
         lastDashTime = Time.time;
         rb.gravityScale = 0f;
-        // cancel any jump hold or vertical momentum
         isJumping = false;
         rb.linearVelocityY = 0f;
     }
@@ -250,9 +265,8 @@ public class PlayerController : MonoBehaviour
     private void EndDash()
     {
         isDashing = false;
-        // restore gravity scale (use originalGravityMultiplier to keep consistent with your gravity logic)
+        // restore gravity scale
         rb.gravityScale = originalGravityMultiplier;
-        // small safety: don't immediately clamp horizontal velocity here; next FixedUpdate will drive movement
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -274,7 +288,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Attack callbacks — wire these to your Animator or hit logic.
+    // Attack callbacks
     private void PerformAttackNormal()
     {
         Debug.Log("Attack: Normal");
