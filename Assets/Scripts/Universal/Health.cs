@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [DisallowMultipleComponent]
-public class Health : MonoBehaviour, iDamageable
+public class Health : MonoBehaviour, IDamageable
 {
     [System.Serializable]
     public class HealthChangedEvent : UnityEvent<int, int> { } // (currentHealth, maxHealth)

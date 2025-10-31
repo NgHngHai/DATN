@@ -9,6 +9,8 @@ public class Roak : GroundEnemy
     [Header("Roak")]
     public float createPoisonDelay;
     [SerializeField] private GameObject poisonSmoke;
+    [SerializeField] private LayerMask whatCanBeDamaged;
+    [SerializeField] private int damageOnContact = 3;
 
     public RoakState mainState;
 
@@ -27,6 +29,18 @@ public class Roak : GroundEnemy
     public void CreatePoison()
     {
         Instantiate(poisonSmoke, transform.position, Quaternion.identity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (PhysicsUtils.IsGameObjectInLayer(collision.gameObject, whatCanBeDamaged))
+        {
+            IDamageable damageable = collision.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damageOnContact);
+            }
+        }
     }
 
 }

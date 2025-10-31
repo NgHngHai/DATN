@@ -10,6 +10,7 @@ public class EnemyMeleeAttack : EnemyAttackBehavior
     [SerializeField] protected LayerMask whatIsTarget;
     [SerializeField] protected float attackRadius = 1f;
     [SerializeField] protected bool drawGizmos = true;
+    [SerializeField] protected int meleeDamage;
 
     public override void TryAttack()
     {
@@ -19,7 +20,10 @@ public class EnemyMeleeAttack : EnemyAttackBehavior
 
         foreach (var hit in hits)
         {
-            Debug.Log($"Deal damage to {hit.name}!");
+            IDamageable damageable = hit.GetComponent<IDamageable>();
+
+            if (damageable != null)
+                damageable.TakeDamage(meleeDamage);
         }
     }
 

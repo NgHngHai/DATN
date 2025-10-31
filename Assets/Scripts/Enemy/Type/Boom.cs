@@ -32,6 +32,13 @@ public class Boom : GroundEnemy
         logicStateMachine.Initialize(patrolState);
     }
 
+    public override void OnDeath()
+    {
+        logicStateMachine.currentState?.Exit();
+        StopVelocity();
+        Invoke(nameof(Explode), 0.5f);
+    }
+
     public void Explode()
     {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
