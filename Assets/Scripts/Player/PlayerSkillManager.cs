@@ -11,7 +11,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     // Skill list
     [Header("Skills")]
-    public List<SkillDefinition> skills = new List<SkillDefinition>();
+    public List<SkillDefinition> skills = new();
 
     // runtime
     private Dictionary<int, SkillDefinition> skillMap;
@@ -57,6 +57,7 @@ public class PlayerSkillManager : MonoBehaviour
     public bool ChangeActiveSkill(int skillId)
     {
         if (skillMap == null) BuildLookup();
+
         if (!skillMap.TryGetValue(skillId, out var s))
             return false;
 
@@ -79,7 +80,7 @@ public class PlayerSkillManager : MonoBehaviour
     // Overload - change by index (useful for UI list)
     public bool ChangeActiveSkillByIndex(int index)
     {
-        if (index < 0 || index >= skills.Count) return false;
+        if (index < 1 || index >= skills.Count) return false;
         var s = skills[index];
         if (s == null) return false;
         return ChangeActiveSkill(s.skillId);

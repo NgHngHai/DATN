@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [DisallowMultipleComponent]
-public class Health : MonoBehaviour, iDamageable
+public class Health : MonoBehaviour, IDamageable
 {
     [System.Serializable]
     public class HealthChangedEvent : UnityEvent<int, int> { } // (currentHealth, maxHealth)
@@ -22,16 +22,16 @@ public class Health : MonoBehaviour, iDamageable
 
     [Header("Events")]
     [Tooltip("Invoked when the component takes damage with reaction info. Parameters: amount applied, shouldTriggerHitReaction.")]
-    public DamagedWithReactionEvent OnDamagedWithReaction = new DamagedWithReactionEvent();
+    public DamagedWithReactionEvent OnDamagedWithReaction = new();
 
     [Tooltip("Invoked when the component is healed. Parameter: amount healed.")]
-    public UnityEvent<int> OnHealed = new UnityEvent<int>();
+    public UnityEvent<int> OnHealed = new();
 
     [Tooltip("Invoked when health changes. Parameters: currentHealth, maxHealth.")]
-    public HealthChangedEvent OnHealthChanged = new HealthChangedEvent();
+    public HealthChangedEvent OnHealthChanged = new();
 
     [Tooltip("Invoked when health reaches zero.")]
-    public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnDeath = new ();
 
     private void Reset()
     {
@@ -49,7 +49,6 @@ public class Health : MonoBehaviour, iDamageable
 
     /// Apply damage. Returns true if damage was applied (not invincible and amount > 0).
     /// New parameter: shouldTriggerHitReaction — caller indicates whether presentation systems should treat this as a "hit" reaction.
-    /// Defaults to true for backward-compatible behavior.
     public bool TakeDamage(int amount, bool shouldTriggerHitReaction = true)
     {
         if (amount <= 0) return false;
@@ -85,7 +84,7 @@ public class Health : MonoBehaviour, iDamageable
     public bool Heal(int amount)
     {
         if (amount <= 0) return false;
-        if (currentHealth <= 0) return false; // optionally prevent healing a dead entity; remove check if desired
+        if (currentHealth <= 0) return false; // Prevent healing a dead entity
 
         int prev = currentHealth;
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
