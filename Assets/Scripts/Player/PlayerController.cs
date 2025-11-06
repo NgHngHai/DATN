@@ -1,20 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     // Component references
-    private Rigidbody2D rb;
-    private Animator animator;
     public PlayerSkillManager skillManager;
 
     // Movement variables
     [Header("Movement Variables")]
     [Tooltip("When true, external systems own velocity. Player input should not write velocity.")]
-    public bool movementLocked = false;
     public float moveSpeed = 7f;
     private float moveAmt;
-    private bool isFacingRight = true;
 
     // Jumping
     [Header("Jump Variables")]
@@ -35,9 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;
 
     // Attacking & skills
-    [Header("Attack & skills Variables")]
-    [Tooltip("When true, cannot input attacks.")]
-    public bool attackLocked = false;
+    [Tooltip("When true, cannot input skills.")]
     public bool skillLocked = false;
 
     // Dashing
@@ -121,7 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             // Get horizontal movement amount
             moveAmt = moveVec.x;
-            FlipDirection();
+            FlipOnVelocityX();
         }
         else
         {
@@ -318,25 +312,5 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Heavy Attack");
         // Ensure animator has a trigger named "HeavyAttack"
         //animator?.SetTrigger("HeavyAttack");
-    }
-
-    // Flip the character to face the direction of movement
-    private void FlipDirection()
-    {
-        if (moveAmt > 0 && !isFacingRight)
-        {
-            Flip();
-        }
-        else if (moveAmt < 0 && isFacingRight)
-        {
-            Flip();
-        }
-    }
-    private void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
     }
 }
