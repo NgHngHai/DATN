@@ -10,7 +10,7 @@ public class EnemyCircleDetector : EnemyTargetDetector
         Collider2D hitTarget = Physics2D.OverlapCircle(
             detectPoint.position,
             detectDistance,
-            whatIsTarget
+            targetMask
         );
 
         if (hitTarget != null) return hitTarget.transform;

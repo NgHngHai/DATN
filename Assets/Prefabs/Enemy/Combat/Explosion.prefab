@@ -4945,8 +4945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c1b9d74d138543ae3d617ca95dc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explosion
-  whatCanBeDamaged:
+  damageMask:
     serializedVersion: 2
     m_Bits: 128
-  enableColTime: 0.1
+  enableColTime: 3
   damage: 10

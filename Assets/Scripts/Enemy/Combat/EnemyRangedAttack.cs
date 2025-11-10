@@ -4,16 +4,17 @@ using UnityEngine;
 /// Handles ranged enemy attacks using bullet projectiles.
 /// Fires bullets from the attack point and checks for line-of-sight to the target.
 /// </summary>
+
+[DisallowMultipleComponent]
 public class EnemyRangedAttack : EnemyAttackBehavior
 {
-    [Header("Ranged Attack")]
-    [SerializeField] protected LayerMask whatIsObstacle;
-    [Header("Bullet")]
+    [Header("Attack: Ranged")]
+    [SerializeField] protected LayerMask obstacleMask;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected bool looksAtFireDirection;
 
-    public override void TryAttack()
+    protected override void Attack()
     {
         Quaternion lookRot = looksAtFireDirection
             ? Quaternion.FromToRotation(Vector3.up, attackPoint.right)
@@ -24,7 +25,7 @@ public class EnemyRangedAttack : EnemyAttackBehavior
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         if (bullet != null)
         {
-            bullet.SetVelocity(attackPoint.right * bulletSpeed);
+            bullet.Initialize(attackPoint.right * bulletSpeed, attackDamage, obstacleMask, damageMask);
         }
     }
 
@@ -34,7 +35,7 @@ public class EnemyRangedAttack : EnemyAttackBehavior
 
         Vector2 dirToTarget = (target.position - attackPoint.position).normalized;
         float distance = Vector2.Distance(attackPoint.position, target.position);
-        RaycastHit2D hit = Physics2D.Raycast(attackPoint.position, dirToTarget, distance, whatIsObstacle);
+        RaycastHit2D hit = Physics2D.Raycast(attackPoint.position, dirToTarget, distance, obstacleMask);
         bool unobstructed = hit.collider == null;
 
         return unobstructed;

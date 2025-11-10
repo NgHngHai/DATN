@@ -8,8 +8,8 @@
 public abstract class EnemyTargetDetector : MonoBehaviour
 {
     [Header("Base Properties")]
-    [SerializeField] protected LayerMask whatIsTarget;
-    [SerializeField] protected LayerMask whatIsObstacle;
+    [SerializeField] protected LayerMask targetMask;
+    [SerializeField] protected LayerMask obstacleMask;
     [SerializeField] protected float detectDistance = 5f;
     [SerializeField] protected Transform detectPoint;
     [SerializeField] protected float detectRate = 0.2f;
@@ -50,7 +50,7 @@ public abstract class EnemyTargetDetector : MonoBehaviour
     protected Vector2 GetFaceDirection()
     {
         if (enemy == null) return Vector2.right;
-        return new Vector2(enemy.facingDir, 0);
+        return new Vector2(enemy.FacingDir, 0);
     }
 
     protected abstract Transform GetFirstDetectedTarget();

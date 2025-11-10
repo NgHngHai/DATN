@@ -9,11 +9,11 @@ public class EnemyLineDetector : EnemyTargetDetector
     protected override Transform GetFirstDetectedTarget()
     {
         Vector2 dir = GetFaceDirection();
-        RaycastHit2D hit = Physics2D.Raycast(detectPoint.position, dir, detectDistance, whatIsTarget | whatIsObstacle);
+        RaycastHit2D hit = Physics2D.Raycast(detectPoint.position, dir, detectDistance, targetMask | obstacleMask);
 
         if (!hit) return null;
-        if(PhysicsUtils.IsGameObjectInLayer(hit.collider.gameObject, whatIsObstacle)) return null;
-        if (PhysicsUtils.IsGameObjectInLayer(hit.collider.gameObject, whatIsTarget)) return hit.collider.transform;
+        if(PhysicsUtils.IsGameObjectInLayer(hit.collider.gameObject, obstacleMask)) return null;
+        if (PhysicsUtils.IsGameObjectInLayer(hit.collider.gameObject, targetMask)) return hit.collider.transform;
 
         return null;
     }

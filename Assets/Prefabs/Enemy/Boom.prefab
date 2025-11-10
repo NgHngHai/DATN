@@ -360,8 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6962a35500c871d4080db8a9c6b88f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boom
-  moveSpeed: 0
-  whatIsGround:
+  groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundCheckLocalPos: {x: 0, y: -0.9}
@@ -440,10 +439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c28658e749031f49b08cafb13e3b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLineDetector
-  whatIsTarget:
+  targetMask:
     serializedVersion: 2
     m_Bits: 128
-  whatIsObstacle:
+  obstacleMask:
     serializedVersion: 2
     m_Bits: 64
   detectDistance: 7.25

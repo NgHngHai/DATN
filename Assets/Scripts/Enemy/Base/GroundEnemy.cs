@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class GroundEnemy : Enemy
 {
     [Header("Ground Enemy")]
-    public LayerMask whatIsGround;
+    public LayerMask groundMask;
     [SerializeField] private Vector2 groundCheckLocalPos;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float groundEdgeCheckOffsetX;
@@ -15,28 +15,28 @@ public abstract class GroundEnemy : Enemy
 
     public bool IsGrounded()
     {
-        return PhysicsUtils.IsRaycastHit(GetGroundCheckPos(), Vector2.down, groundCheckDistance, whatIsGround);
+        return PhysicsUtils.IsRaycastHit(GetGroundCheckPos(), Vector2.down, groundCheckDistance, groundMask);
     }
 
     public bool IsGroundEdgeOrWallDetected()
     {
         Vector2 raycastDir = isFacingRight ? Vector2.right : Vector2.left;
 
-        return PhysicsUtils.IsRaycastHit(transform.position, raycastDir, wallCheckDistance, whatIsGround) ||
-            !PhysicsUtils.IsRaycastHit(GetGroundEdgeCheckPos(), Vector2.down, groundCheckDistance, whatIsGround);
+        return PhysicsUtils.IsRaycastHit(transform.position, raycastDir, wallCheckDistance, groundMask) ||
+            !PhysicsUtils.IsRaycastHit(GetGroundEdgeCheckPos(), Vector2.down, groundCheckDistance, groundMask);
     }
 
     Vector2 GetGroundCheckPos()
     {
         Vector2 normalizedPos = groundCheckLocalPos;
-        normalizedPos.x *= facingDir;
+        normalizedPos.x *= FacingDir;
         return (Vector2)transform.position + normalizedPos;
     }
 
     Vector2 GetGroundEdgeCheckPos()
     {
         Vector2 normalizedPos = GetGroundCheckPos();
-        normalizedPos.x = normalizedPos.x + groundEdgeCheckOffsetX * facingDir;
+        normalizedPos.x = normalizedPos.x + groundEdgeCheckOffsetX * FacingDir;
         return normalizedPos;
     }
 

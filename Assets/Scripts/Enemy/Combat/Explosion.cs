@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private LayerMask whatCanBeDamaged;
+    [SerializeField] private LayerMask damageMask;
     [SerializeField] private float enableColTime = 0.1f;
     [SerializeField] private int damage;
 
@@ -16,7 +16,7 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!PhysicsUtils.IsGameObjectInLayer(collision.gameObject, whatCanBeDamaged)) return;
+        if (!PhysicsUtils.IsGameObjectInLayer(collision.gameObject, damageMask)) return;
 
         IDamageable damageable = collision.GetComponent<IDamageable>();
         if(damageable != null && !alreadyDamagedEntities.Contains(damageable))

@@ -21,13 +21,13 @@ public class EnemyPatrolGroundEdge : EnemyPatrolBehavior
 
         if (groundEnemy.IsGroundEdgeOrWallDetected())
         {
-            patrolDirection.x = groundEnemy.facingDir * -1;
+            patrolDirection.x = groundEnemy.FacingDir * -1;
             groundEnemy.Flip();
         }
         else
         {
             patrolDirection.x = Random.Range(0, 2) == 1 ? 1 : -1;
-            if (patrolDirection.x != groundEnemy.facingDir) groundEnemy.Flip();
+            if (patrolDirection.x != groundEnemy.FacingDir) groundEnemy.Flip();
         }
     }
 

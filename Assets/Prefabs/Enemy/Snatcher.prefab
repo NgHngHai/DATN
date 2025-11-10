@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4796984161389069281}
   - component: {fileID: 1491806078014933930}
   - component: {fileID: 5183984942747050670}
+  - component: {fileID: 678328806624973330}
   m_Layer: 9
   m_Name: Snatcher
   m_TagString: Untagged
@@ -117,8 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faecfadb8b2a97e4b95a701136b557ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Snatcher
-  moveSpeed: 3
-  whatIsGround:
+  groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundCheckLocalPos: {x: 0, y: -0.59}
@@ -126,11 +126,12 @@ MonoBehaviour:
   groundEdgeCheckOffsetX: 0.26
   wallCheckDistance: 0.73
   jumpDamage: 3
+  moveSpeed: 3
   attackCooldown: 1
   jumpTime: 0.8
-  whatIsTarget:
+  targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   landJumpForce: 7
   landJumpAngle: 60
 --- !u!114 &-821001546848225396
@@ -146,12 +147,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMeleeAttack
   attackPoint: {fileID: 5393744880891015955}
-  whatIsTarget:
+  damageMask:
     serializedVersion: 2
     m_Bits: 128
+  attackDamage: 0
+  attackCooldown: 1
   attackRadius: 1
   drawGizmos: 1
-  meleeDamage: 6
 --- !u!114 &2430689805549608269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,10 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89777cdc40e2f1647bfa0f9da945c959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCircleDetector
-  whatIsTarget:
+  targetMask:
     serializedVersion: 2
     m_Bits: 128
-  whatIsObstacle:
+  obstacleMask:
     serializedVersion: 2
     m_Bits: 64
   detectDistance: 8.54
@@ -242,6 +244,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &678328806624973330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098698940443164960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598694127c6911d4b9104fb3ae27efe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackSet
+  attackBehaviors: []
 --- !u!1 &2994367423629495101
 GameObject:
   m_ObjectHideFlags: 0

@@ -204,8 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b861b28b9b39c7479a0e61e7f680c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Roak
-  moveSpeed: 0
-  whatIsGround:
+  groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundCheckLocalPos: {x: 0, y: -0.17}
@@ -214,7 +213,7 @@ MonoBehaviour:
   wallCheckDistance: 0.6
   createPoisonDelay: 5
   poisonSmoke: {fileID: 5467570880889585271, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
-  whatCanBeDamaged:
+  damageMask:
     serializedVersion: 2
     m_Bits: 128
   damageOnContact: 3
@@ -405,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2318335319344658189}
   - component: {fileID: 5047956006610837836}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Ground Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

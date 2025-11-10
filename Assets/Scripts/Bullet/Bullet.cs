@@ -3,14 +3,15 @@
 /// <summary>
 /// Controls bullet behavior — movement, collision, and destruction.
 /// Spawns a hit effect and destroys itself on impact or after a set time.
-/// No damage logic yet.
+/// Supports separate obstacle and damage layers.
 /// </summary>
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private LayerMask hitLayer;
-    [SerializeField] private int damage = 5;
     [SerializeField] private GameObject hitEffect;
 
+    private int damage = 5;
+    private LayerMask obstacleMask;
+    private LayerMask damageMask;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -21,12 +22,19 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (PhysicsUtils.IsGameObjectInLayer(collision.gameObject, hitLayer))
-        {
-            IDamageable damageable = collision.GetComponent<IDamageable>();
+        GameObject target = collision.gameObject;
 
-            if (damageable != null)
-                damageable.TakeDamage(damage);
+        bool hitObstacle = PhysicsUtils.IsGameObjectInLayer(target, obstacleMask);
+        bool hitDamageable = PhysicsUtils.IsGameObjectInLayer(target, damageMask);
+
+        if (hitObstacle || hitDamageable)
+        {
+            if (hitDamageable)
+            {
+                IDamageable damageable = target.GetComponent<IDamageable>();
+                if (damageable != null)
+                    damageable.TakeDamage(damage);
+            }
 
             if (hitEffect != null)
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
@@ -35,8 +43,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SetVelocity(Vector2 vel)
+    public void Initialize(Vector2 velocity, int damage, LayerMask obstacleMask, LayerMask damageMask)
     {
-        rb.linearVelocity = vel;
+        this.damage = damage;
+        this.obstacleMask = obstacleMask;
+        this.damageMask = damageMask;
+        rb.linearVelocity = velocity;
     }
 }

@@ -4,26 +4,26 @@ using UnityEngine;
 /// Handles close-range enemy attacks.
 /// Detects and damages targets within a circular area around the attack point.
 /// </summary>
+
+[DisallowMultipleComponent]
 public class EnemyMeleeAttack : EnemyAttackBehavior
 {
-    [Header("Melee Attack")]
-    [SerializeField] protected LayerMask whatIsTarget;
+    [Header("Attack: Melee")]
     [SerializeField] protected float attackRadius = 1f;
     [SerializeField] protected bool drawGizmos = true;
-    [SerializeField] protected int meleeDamage;
 
-    public override void TryAttack()
+    protected override void Attack()
     {
         Vector2 center = attackPoint.position;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(center, attackRadius, whatIsTarget);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(center, attackRadius, damageMask);
 
         foreach (var hit in hits)
         {
             IDamageable damageable = hit.GetComponent<IDamageable>();
 
             if (damageable != null)
-                damageable.TakeDamage(meleeDamage);
+                damageable.TakeDamage(attackDamage);
         }
     }
 

@@ -6,15 +6,18 @@ using UnityEngine;
 /// </summary>
 public abstract class Enemy : MonoBehaviour
 {
-    public float moveSpeed;
     public EnemyStateMachine logicStateMachine;
 
     protected Rigidbody2D rb;
+    protected EnemyAttackSet attackSet;
+    protected EnemyTargetHandler targetHandler;
     protected bool isFacingRight = true;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        attackSet = GetComponent<EnemyAttackSet>();
+        targetHandler = GetComponent<EnemyTargetHandler>();
         logicStateMachine = new EnemyStateMachine();
     }
 
@@ -24,6 +27,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
+        FlipOnVelocityX();
         logicStateMachine.UpdateCurrentState();
     }
 
@@ -53,10 +57,12 @@ public abstract class Enemy : MonoBehaviour
         transform.localScale = scale;
     }
 
-    public int facingDir => isFacingRight ? 1 : -1;
-
     public virtual void OnDeath()
     {
         Destroy(gameObject);
     }
+
+    public int FacingDir => isFacingRight ? 1 : -1;
+    public EnemyAttackSet AttackSet => attackSet;
+    public EnemyTargetHandler TargetHandler => targetHandler;
 }

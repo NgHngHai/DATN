@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class PoisonousSmoke : MonoBehaviour
 {
-    [SerializeField] private LayerMask whatCanBeDamaged;
+    [SerializeField] private LayerMask damageMask;
     [SerializeField] private int damageFirstContact = 3;
     [SerializeField] private int damagePerTick = 2;
     [SerializeField] private float damageInterval = 1f;
@@ -16,6 +16,8 @@ public class PoisonousSmoke : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!PhysicsUtils.IsGameObjectInLayer(collision.gameObject, damageMask)) return;
+
         IDamageable damageable = collision.GetComponent<IDamageable>();
         if (damageable == null || alreadyDamagedList.Contains(damageable)) return;
 
