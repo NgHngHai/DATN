@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
     <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPoisonHandler.cs" />
+    <Compile Include="Assets\Scripts\Universal\AnimationStateMachine.cs" />
     <Compile Include="Assets\Scripts\Universal\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherState.cs" />

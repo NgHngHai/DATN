@@ -843,10 +843,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5652666909265740743, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7563957037513625506, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -897,8 +893,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
-  - {fileID: 4026492340384712041}
   - {fileID: 275299814}
   - {fileID: 957980127}
   - {fileID: 1175967330}
   - {fileID: 1234417791}
+  - {fileID: 4026492340384712041}

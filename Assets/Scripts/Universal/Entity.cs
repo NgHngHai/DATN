@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
@@ -14,6 +14,26 @@ public class Entity : MonoBehaviour
     [Header("Component References")]
     public Rigidbody2D rb;
     public Animator animator;
+    public AnimationStateMachine animStateMachine;
+
+    private void Awake()
+    {
+        animStateMachine = new AnimationStateMachine(); // Tạo FSM riêng cho entity
+        animator = GetComponent<Animator>();            // Lấy component Animator
+        rb = GetComponent<Rigidbody2D>();               // Lấy component Rigidbody2D
+    }
+
+    private void Update()
+    {
+        animStateMachine.UpdateCurrentState();          // Cập nhật state hiện tại mỗi frame
+    }
+
+    // Gọi từ Animation Event cuối clip (Attack/Hurt)
+    // Mục đích: báo rằng animation này đã chạy xong
+    public void CallCurrentAnimationStateTrigger()
+    {
+        animStateMachine.currentState?.CallAnimationTrigger();
+    }
 
     // Flip the character to face the direction of movement
     public void FlipOnVelocityX()
