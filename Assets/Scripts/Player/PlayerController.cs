@@ -1,3 +1,5 @@
+﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +60,19 @@ public class PlayerController : Entity
     private InputAction healAction;
     private InputAction skillAction;
 
+    // Animation states
+    [Header("Animation States")]
+    public AnimationState idleState;
+    public AnimationState runState;
+    public AnimationState jumpState;
+    public AnimationState doubleJumpState;
+    public AnimationState dashState;
+    public AnimationState fallState;
+    public AnimationState normalAttackState;
+    public AnimationState heavyAttackState;
+    public AnimationState hurtState;
+    public AnimationState deathState;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -70,8 +85,24 @@ public class PlayerController : Entity
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animStateMachine = new AnimationStateMachine(); // Tạo FSM riêng cho entity
+        animator = GetComponent<Animator>();            // Lấy component Animator
+        rb = GetComponent<Rigidbody2D>();               // Lấy component Rigidbody2D
+
+        // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
+        idleState = new AnimationState(this, "idle", true);
+        runState = new AnimationState(this, "run", true);
+        jumpState = new AnimationState(this, "jump", true);
+        doubleJumpState = new AnimationState(this, "doubleJump", true);
+        dashState = new AnimationState(this, "dash", true);
+        fallState = new AnimationState(this, "fall", true);
+        normalAttackState = new AnimationState(this, "nAttack", false);
+        heavyAttackState = new AnimationState(this, "hAttack", false);
+        hurtState = new AnimationState(this, "hurt", true);
+        deathState = new AnimationState(this, "dead", true);
+
+        animStateMachine.Initialize(idleState);         // Bắt đầu ở trạng thái Idle
+
         skillManager = GetComponent<PlayerSkillManager>();
 
         // Prefer actions from the assigned InputActionAsset/Player map (avoid InputSystem.actions global lookup).
@@ -124,11 +155,21 @@ public class PlayerController : Entity
         }
 
         // dash input (uses a simple cooldown + allowAirDash check)
+        if (isDashing)
+        {
+            animStateMachine.ChangeState(dashState);
+            
+        }
+
         bool canDash = !isDashing && !movementLocked && (Time.time - lastDashTime >= dashCooldown);
         if (dashAction != null && dashAction.WasPressedThisFrame() && canDash)
-        {
             StartDash();
+        if (isDashing)
+        {
+            animStateMachine.ChangeState(dashState);
+            return;
         }
+
 
         // Attack input - can be used while running (does not cancel horizontal control)
         if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked)
@@ -137,17 +178,36 @@ public class PlayerController : Entity
             // Threshold prevents accidental up/down from small sticks.
             const float verticalThreshold = 0.5f;
             if (moveVec.y > verticalThreshold)
+            {
                 PerformAttackUp();
+                return;
+            }
             else if (moveVec.y < -verticalThreshold)
+            {
                 PerformAttackDown();
+                return;
+            }
             else
-                PerformAttackNormal();
+            {
+                if (isGrounded)
+                {
+                    bool isFirstAttack;
+                    PerformAttackNormal();
+                    return;
+                }
+                else
+                {
+                    // PerformAirAttack();
+                    // return;
+                }
+            }
         }
 
         // Heavy attack input
         if (hAttackAction != null && hAttackAction.triggered && isGrounded && !attackLocked)
         {
             PerformHeavyAttack();
+            return;
         }
 
         // Heal and skill input
@@ -167,12 +227,14 @@ public class PlayerController : Entity
         // Start jump
         if (jumpAction.WasPressedThisFrame() && canFirstJump)
         {
+            animStateMachine.ChangeState(jumpState);
             Jump();
             isJumping = true;
             jumpHoldTimer = 0f;
         }
         else if (jumpAction.WasPressedThisFrame() && canExtraJump)
         {
+            animStateMachine.ChangeState(doubleJumpState);
             Jump();
             extraJumpCount++;
             isJumping = true;
@@ -191,6 +253,24 @@ public class PlayerController : Entity
             {
                 isJumping = false;
             }
+        }
+
+        // OTHER ANIMATION STATE UPDATES
+        // Fall state
+        if (rb.linearVelocityY < 0 && !isGrounded)
+        {
+            animStateMachine.ChangeState(fallState);
+            return;
+        }
+
+        // Running/Idle state
+        if (MathF.Abs(rb.linearVelocityX) > 0.1f && moveAction.IsPressed())
+        {
+            animStateMachine.ChangeState(runState);
+        }
+        else
+        {
+            animStateMachine.ChangeState(idleState);
         }
     }
 
@@ -234,11 +314,9 @@ public class PlayerController : Entity
 
     private void Running()
     {
-        const float deadZone = 0.001f;
-        if (Mathf.Abs(moveAmt) > deadZone)
-        {
-            rb.linearVelocityX = moveAmt * moveSpeed;
-        }
+
+        rb.linearVelocityX = moveAmt * moveSpeed;
+        
     }
 
     private void Jump()
@@ -285,10 +363,8 @@ public class PlayerController : Entity
     // Attack callbacks
     private void PerformAttackNormal()
     {
-        Debug.Log("Attack: Normal");
-        // Ensure animator has a trigger named "AttackNormal"
-        //animator?.SetTrigger("AttackNormal");
-        // TODO: spawn hitbox or call attack detection here
+
+        animStateMachine.ChangeState(normalAttackState);
     }
 
     private void PerformAttackUp()
