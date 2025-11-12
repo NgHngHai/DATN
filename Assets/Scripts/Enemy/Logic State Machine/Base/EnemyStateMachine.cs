@@ -26,4 +26,9 @@ public class EnemyStateMachine
     {
         currentState?.Update();
     }
+
+    public void FixedUpdateCurrentState()
+    {
+        currentState?.FixedUpdate();
+    }
 }

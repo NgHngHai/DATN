@@ -17,10 +17,9 @@ public class EnemyCircleDetector : EnemyTargetDetector
         return null;
     }
 
-    protected override void OnDrawGizmos()
+    protected override void DrawGizmos()
     {
-        if (!drawGizmos || detectPoint == null) return;
-        base.OnDrawGizmos();
+        base.DrawGizmos();
 
         Gizmos.DrawWireSphere(detectPoint.position, detectDistance);
     }

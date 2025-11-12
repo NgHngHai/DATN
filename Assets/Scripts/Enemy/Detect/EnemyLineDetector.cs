@@ -18,13 +18,17 @@ public class EnemyLineDetector : EnemyTargetDetector
         return null;
     }
 
-    protected override void OnDrawGizmos()
+    protected override void DrawGizmos()
     {
-        if (!drawGizmos || detectPoint == null) return;
-
-        base.OnDrawGizmos();
+        base.DrawGizmos();
 
         Vector2 dir = GetFaceDirection();
         Gizmos.DrawLine(detectPoint.position, detectPoint.position + (Vector3)dir * detectDistance);
+    }
+
+    private Vector2 GetFaceDirection()
+    {
+        if (enemy == null) return Vector2.right;
+        return new Vector2(enemy.FacingDir, 0);
     }
 }

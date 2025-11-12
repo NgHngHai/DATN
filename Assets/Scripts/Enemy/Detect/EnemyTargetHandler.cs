@@ -68,7 +68,7 @@ public class EnemyTargetHandler : MonoBehaviour
 
     public bool IsTargetValid() => CurrentTarget != null;
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Color visionColor = Color.darkCyan;
         visionColor.a = 0.1f;

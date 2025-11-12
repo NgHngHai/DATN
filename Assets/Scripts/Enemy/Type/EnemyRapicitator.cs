@@ -9,6 +9,7 @@ public class EnemyRapicitator : GroundEnemy
     [Tooltip("Movement speed when fleeing after a melee attack.")]
     public float fleeSpeed = 6f;
 
+    [Header("Attack: Laser")]
     [Tooltip("Rest duration after firing a laser before chasing again.")]
     public float shootLaserRestTime = 0.7f;
 

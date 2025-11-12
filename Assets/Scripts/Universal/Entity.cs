@@ -44,11 +44,14 @@ public class Entity : MonoBehaviour
             Flip();
     }
 
-    private void Flip()
+    public void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
     }
+
+    public int FacingDir => isFacingRight ? 1 : -1;
+
 }

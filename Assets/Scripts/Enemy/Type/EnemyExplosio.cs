@@ -15,6 +15,9 @@ public class EnemyExplosio : Enemy
     public float flySpeed = 3f;
 
     [Header("Attack: Stomp")]
+    [Tooltip("This hurt box is only enabled when it's in Stomp State")]
+    public HurtBox stompHurtBox;
+
     [Tooltip("Duration of the stomp attack from start to impact.")]
     public float stompDuration = 1.2f;
 
@@ -66,6 +69,7 @@ public class EnemyExplosio : Enemy
     protected override void Start()
     {
         base.Start();
+        stompHurtBox.ToggleHurtCollider(false);
         logicStateMachine.Initialize(observationState);
     }
 }

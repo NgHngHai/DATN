@@ -100,8 +100,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7836895797588820051}
   - component: {fileID: 536079296151808344}
+  - component: {fileID: 8247320549455742932}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +183,130 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8247320549455742932
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6512796697428704485}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6623517577416321978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7164072382345978815}
+  - component: {fileID: 8552671114809081095}
+  - component: {fileID: 2452550964042800958}
+  m_Layer: 0
+  m_Name: Stomp Hurt Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7164072382345978815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623517577416321978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938153940618048498}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8552671114809081095
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623517577416321978}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.87, y: 1.34}
+  m_EdgeRadius: 0
+--- !u!114 &2452550964042800958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623517577416321978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  damageAmount: 10
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 0
+  applyKnockbackToSelf: 0
+  knockbackForce: 5
+  knockbackForceMode: 1
+  singleHitPerTarget: 1
+  repeatDelay: 0
 --- !u!1 &7105454025736086848
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +526,7 @@ Transform:
   m_Children:
   - {fileID: 7836895797588820051}
   - {fileID: 56634476867230025}
+  - {fileID: 7164072382345978815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5613028824384328084
@@ -529,8 +655,8 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EnemyBeamer, Assembly-CSharp
+      - m_Target: {fileID: 5000448300146637476}
+        m_TargetAssemblyTypeName: EnemyExplosio, Assembly-CSharp
         m_MethodName: OnDeath
         m_Mode: 1
         m_Arguments:
@@ -568,16 +694,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRangedAttack
   attackPoint: {fileID: 56634476867230025}
-  damageMask:
-    serializedVersion: 2
-    m_Bits: 128
-  attackDamage: 1
   attackCooldown: 0
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
-  bulletPrefab: {fileID: 5763945138572097089, guid: 195dafb9404904b41ae49d99352637c6, type: 3}
-  bulletSpeed: 10
+  projectilePrefab: {fileID: 5763945138572097089, guid: 195dafb9404904b41ae49d99352637c6, type: 3}
+  projectileSpeed: 8
   looksAtFireDirection: 1
 --- !u!114 &5000448300146637476
 MonoBehaviour:
@@ -591,8 +713,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df9c6dd95aa1ef4d8ecdf2542129d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyExplosio
-  restTime: 1
+  movementLocked: 0
+  attackLocked: 0
+  isAlive: 1
+  isFacingRight: 1
+  rb: {fileID: 5613028824384328084}
+  animator: {fileID: 8247320549455742932}
+  restTime: 2
   flySpeed: 5
+  stompHurtBox: {fileID: 2452550964042800958}
   stompDuration: 1
   maxStompHeight: 4
   stompHeightCurve:

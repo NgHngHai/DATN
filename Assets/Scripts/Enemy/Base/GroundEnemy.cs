@@ -46,7 +46,7 @@ public abstract class GroundEnemy : Enemy
         base.SetVelocity(velocity);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellowNice;
 

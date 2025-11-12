@@ -60,13 +60,11 @@ public class BoomTargetDetectedState : BoomState
     {
         base.Update();
 
-        if (targetHandler.CurrentTarget == null)
+        if (!IsTargetValid())
         {
             logicStateMachine.ChangeState(boom.patrolState);
-            return;
         }
-
-        if (stateTimer < 0)
+        else if(stateTimer < 0)
         {
             logicStateMachine.ChangeState(boom.dashState);
         }
@@ -98,6 +96,12 @@ public class BoomDashState : BoomState
         {
             boom.Explode();
         }
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        DashInFaceDirection(); 
     }
 
     private void DashInFaceDirection()

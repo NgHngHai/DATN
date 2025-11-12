@@ -13,12 +13,6 @@ public class EnemyRoak : GroundEnemy
     [Tooltip("Prefab of the poison smoke created periodically.")]
     [SerializeField] private GameObject poisonSmoke;
 
-    [Tooltip("Layer mask defining which objects can be damaged by contact.")]
-    [SerializeField] private LayerMask damageMask;
-
-    [Tooltip("Amount of damage applied when touching valid targets.")]
-    [SerializeField] private int damageOnContact = 3;
-
     public RoakState mainState;
 
     protected override void Awake()
@@ -36,18 +30,6 @@ public class EnemyRoak : GroundEnemy
     public void CreatePoison()
     {
         Instantiate(poisonSmoke, transform.position, Quaternion.identity);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (PhysicsUtils.IsGameObjectInLayer(collision.gameObject, damageMask))
-        {
-            IDamageable damageable = collision.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(damageOnContact);
-            }
-        }
     }
 
 }

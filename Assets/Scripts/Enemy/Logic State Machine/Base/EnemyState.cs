@@ -27,6 +27,11 @@ public abstract class EnemyState
         stateTimer -= Time.deltaTime;
     }
 
+    public virtual void FixedUpdate()
+    {
+
+    }
+
     public virtual void Exit() { }
 
     /// <summary>

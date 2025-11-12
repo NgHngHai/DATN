@@ -17,6 +17,9 @@ public class EnemyBeamer : Enemy
     [Tooltip("Time between laser shots")]
     public float attackInterval = 0.3f;
 
+    [Tooltip("Time between laser shots")]
+    public float startAttackDistance = 4f;
+
     [Tooltip("Rest period after the attack.")]
     public float restTime = 5;
 
@@ -35,5 +38,11 @@ public class EnemyBeamer : Enemy
     {
         base.Start();
         logicStateMachine.Initialize(observationState);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, startAttackDistance);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Handles ranged enemy attacks using bullet projectiles.
+/// Handles ranged enemy attacks using projectile projectiles.
 /// Fires bullets from the attack point and checks for line-of-sight to the target.
 /// </summary>
 
@@ -10,8 +10,8 @@ public class EnemyRangedAttack : EnemyAttackBehavior
 {
     [Header("Attack: Ranged")]
     [SerializeField] protected LayerMask obstacleMask;
-    [SerializeField] protected GameObject bulletPrefab;
-    [SerializeField] protected float bulletSpeed;
+    [SerializeField] protected GameObject projectilePrefab;
+    [SerializeField] protected float projectileSpeed;
     [SerializeField] protected bool looksAtFireDirection;
 
     protected override void Attack()
@@ -20,12 +20,12 @@ public class EnemyRangedAttack : EnemyAttackBehavior
             ? Quaternion.FromToRotation(Vector3.up, attackPoint.right)
             : Quaternion.identity;
 
-        GameObject bulletObject = Instantiate(bulletPrefab, attackPoint.position, lookRot);
+        GameObject newProjectileObject = Instantiate(projectilePrefab, attackPoint.position, lookRot);
 
-        Bullet bullet = bulletObject.GetComponent<Bullet>();
-        if (bullet != null)
+        Projectile projectile = newProjectileObject.GetComponent<Projectile>();
+        if (projectile != null)
         {
-            bullet.Initialize(attackPoint.right * bulletSpeed, attackDamage, obstacleMask, damageMask);
+            projectile.SetVelocity(attackPoint.right * projectileSpeed);
         }
     }
 

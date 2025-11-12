@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4458524378900405761}
   - component: {fileID: 6189824164863591481}
   - component: {fileID: -7301570079361322602}
+  - component: {fileID: 7016074753877761137}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -4945,8 +4946,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c1b9d74d138543ae3d617ca95dc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explosion
-  damageMask:
+  activeTime: 0.1
+  destroyDelay: 4
+--- !u!114 &7016074753877761137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3117497875254989329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  targetLayers:
     serializedVersion: 2
     m_Bits: 128
-  enableColTime: 3
-  damage: 10
+  damageAmount: 10
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 0
+  applyKnockbackToSelf: 0
+  knockbackForce: 5
+  knockbackForceMode: 1
+  singleHitPerTarget: 1
+  repeatDelay: 0

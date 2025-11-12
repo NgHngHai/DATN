@@ -32,7 +32,7 @@ public class BeamerObservationState : BeamerState
 
         FlipToTarget();
 
-        if (IsTargetInCurrentAttackArea(targetHandler.CurrentTarget))
+        if (CanAttackTarget())
         {
             logicStateMachine.ChangeState(beamer.attackState);
         }
@@ -42,6 +42,12 @@ public class BeamerObservationState : BeamerState
     {
         base.Exit();
         health.isInvincible = false;
+    }
+
+    private bool CanAttackTarget()
+    {
+        bool isTargetInAttackDistance = targetHandler.GetDistanceToTarget() <= beamer.startAttackDistance;
+        return isTargetInAttackDistance && IsTargetInCurrentAttackArea(targetHandler.CurrentTarget);
     }
 }
 
@@ -80,19 +86,18 @@ public class BeamerAttackState : BeamerState
     {
         if (stateTimer > 0) return;
 
-        bool isConsecutiveAttackFinished = currentConsecutiveAttack >= beamer.consecutiveAttackCount;
-
-        if (!isConsecutiveAttackFinished)
+        if (!IsConsecutiveAttackFinished())
         {
             TryCurrentAttack();
             currentConsecutiveAttack++;
-
-            stateTimer = isConsecutiveAttackFinished ? beamer.restTime : beamer.attackInterval;
+            stateTimer = IsConsecutiveAttackFinished() ? beamer.restTime : beamer.attackInterval;
         }
         else
         {
             logicStateMachine.ChangeState(beamer.observationState);
         }
     }
+
+    private bool IsConsecutiveAttackFinished() => currentConsecutiveAttack >= beamer.consecutiveAttackCount;
 
 }

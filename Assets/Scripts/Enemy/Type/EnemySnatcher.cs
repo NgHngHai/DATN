@@ -14,30 +14,25 @@ public class EnemySnatcher : GroundEnemy
     [Tooltip("Movement speed while chasing the target on the ground.")]
     public float moveSpeed;
 
-    [Tooltip("Cooldown time between consecutive melee attacks.")]
-    public float attackCooldown = 1f;
-
     [Tooltip("Time duration used to calculate jump trajectory toward the target.")]
     public float jumpTime = 0.8f;
 
     [Header("Snatcher: Landing")]
-    [Tooltip("Layer mask used to identify valid jump targets.")]
-    public LayerMask targetMask;
-
     [Tooltip("Force applied when Snatcher rebounds after landing.")]
-    public float landJumpForce = 10f;
+    public float reboundForce = 10f;
 
     [Tooltip("Angle (in degrees) of rebound direction after landing.")]
-    public float landJumpAngle = 60f;
+    public float reboundAngle = 60f;
+
+    [Tooltip("Secondary collider helps snatcher determine when to rebound")]
+    public SnatcherSecondaryCollider secondaryCollider;
 
     public SnatcherOnWallState onWallState;
     public SnatcherJumpOnTargetState jumpTargetState;
+    public SnatcherReboundState reboundState;
     public SnatcherChaseState chaseState;
     public SnatcherPatrolState patrolState;
-    public SnatcherAttackState attackState; 
-
-    public event Action<Collider2D> OnTriggerEntered;
-    public event Action<Collider2D> OnTriggerExited;
+    public SnatcherAttackState attackState;
 
     protected override void Awake()
     {
@@ -45,6 +40,7 @@ public class EnemySnatcher : GroundEnemy
 
         onWallState = new SnatcherOnWallState(this);
         jumpTargetState = new SnatcherJumpOnTargetState(this);
+        reboundState = new SnatcherReboundState(this);
         chaseState = new SnatcherChaseState(this);
         patrolState = new SnatcherPatrolState(this);
         attackState = new SnatcherAttackState(this);
@@ -54,15 +50,5 @@ public class EnemySnatcher : GroundEnemy
     {
         base.Start();
         logicStateMachine.Initialize(onWallState);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        OnTriggerEntered?.Invoke(collision);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        OnTriggerExited?.Invoke(collision);
     }
 }

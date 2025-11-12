@@ -60,15 +60,20 @@ public class ExplosioStompApproachState : ExplosioState
         base.Update();
         if (!ValidTargetOrObservation()) return;
 
-        Vector2 moveDir = targetHandler.GetDirectionToTarget();
-        explosio.SetVelocity(explosio.flySpeed * moveDir);
-
         bool closeEnoughToStomp = targetHandler.GetDistanceToTarget() <= explosio.stompDistance;
         if (closeEnoughToStomp)
-        {
             logicStateMachine.ChangeState(explosio.stompAttackState);
-        }
     }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (!ValidTargetOrObservation()) return;
+
+        Vector2 moveDir = targetHandler.GetDirectionToTarget();
+        explosio.SetVelocity(explosio.flySpeed * moveDir);
+    }
+
 }
 
 public class ExplosioStompAttackState : ExplosioState
@@ -85,7 +90,9 @@ public class ExplosioStompAttackState : ExplosioState
         if (!ValidTargetOrObservation()) return;
 
         explosio.StopVelocity();
+        ToggleStompHurtBox(true);
         FlipToTarget();
+
         startPos = explosio.transform.position;
         targetPos = targetHandler.CurrentTarget.position;
         elapsed = 0f;
@@ -94,6 +101,7 @@ public class ExplosioStompAttackState : ExplosioState
     public override void Update()
     {
         base.Update();
+
         elapsed += Time.deltaTime;
         float t = elapsed / explosio.stompDuration;
 
@@ -113,6 +121,12 @@ public class ExplosioStompAttackState : ExplosioState
     {
         base.Exit();
         explosio.StopVelocity();
+        ToggleStompHurtBox(false);
+    }
+
+    private void ToggleStompHurtBox(bool enable)
+    {
+        explosio.stompHurtBox.ToggleHurtCollider(enable);
     }
 }
 

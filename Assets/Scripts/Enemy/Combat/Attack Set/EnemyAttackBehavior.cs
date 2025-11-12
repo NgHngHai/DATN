@@ -10,8 +10,6 @@ public abstract class EnemyAttackBehavior : MonoBehaviour
 {
     [Header("Base Properties")]
     [SerializeField] protected Transform attackPoint;
-    [SerializeField] protected LayerMask damageMask;
-    [SerializeField] protected int attackDamage;
     [SerializeField] protected float attackCooldown = 1f;
 
     private float lastAttackTime;
@@ -26,8 +24,6 @@ public abstract class EnemyAttackBehavior : MonoBehaviour
         lastAttackTime = Time.time;
         Attack();
     }
-
-
 
     public bool IsReadyToAttack()
     {
