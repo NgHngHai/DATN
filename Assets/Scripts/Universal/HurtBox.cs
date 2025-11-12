@@ -125,4 +125,9 @@ public class HurtBox : MonoBehaviour
         if (dir.sqrMagnitude < 0.0001f) dir = Vector2.right;
         return dir;
     }
+
+    public void ToggleHurtCollider(bool enable)
+    {
+        _col.enabled = enable;
+    }
 }

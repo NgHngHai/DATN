@@ -48,27 +48,27 @@ public class EnemyTargetHandler : MonoBehaviour
         CurrentTarget = null;
     }
 
-    public Vector2 GetDirectionToTarget()
-    {
-        if (CurrentTarget == null) return Vector2.zero;
-        return (CurrentTarget.position - transform.position).normalized;
-    }
 
     public float GetDistanceToTarget()
     {
         if (CurrentTarget == null) return Mathf.Infinity;
         return Vector2.Distance(transform.position, CurrentTarget.position);
     }
-
-    public int GetTargetFacingDir()
+    public Vector2 GetDirectionToTarget()
     {
-        if (CurrentTarget == null) return 0;
-        return (CurrentTarget.position.x - transform.position.x > 0) ? 1 : -1;
+        if (CurrentTarget == null) return Vector2.zero;
+        return (CurrentTarget.position - transform.position).normalized;
     }
 
-    public bool IsCurrentTargetNotNull() => CurrentTarget != null;
+    public int GetHorizontalDirectionToTarget()
+    {
+        if (CurrentTarget == null) return 1;
+        return (int)Mathf.Sign(CurrentTarget.transform.position.x - transform.position.x);
+    }
 
-    private void OnDrawGizmos()
+    public bool IsTargetValid() => CurrentTarget != null;
+
+    private void OnDrawGizmosSelected()
     {
         Color visionColor = Color.darkCyan;
         visionColor.a = 0.1f;

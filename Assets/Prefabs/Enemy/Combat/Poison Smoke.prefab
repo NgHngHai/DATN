@@ -4908,11 +4908,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9a7dc78d9bccc4597c065cd030da64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisonSmoke
-  whatCanBeDamaged:
+  damageMask:
     serializedVersion: 2
     m_Bits: 128
-  dealDamageRate: 0.5
-  damagePerRate: 3
+  damageFirstContact: 3
+  damagePerTick: 2
+  damageInterval: 1
+  totalPoisonTime: 3
 --- !u!58 &1400329178526205746
 CircleCollider2D:
   m_ObjectHideFlags: 0

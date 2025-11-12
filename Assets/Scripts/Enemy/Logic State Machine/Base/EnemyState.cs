@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Base abstract class for all enemy logic states.
@@ -8,6 +8,7 @@ using UnityEngine;
 public abstract class EnemyState
 {
     protected EnemyStateMachine logicStateMachine;
+    protected EnemyTargetHandler targetHandler;
     protected Enemy enemy;
 
     protected float stateTimer;
@@ -16,6 +17,7 @@ public abstract class EnemyState
     {
         this.enemy = enemy;
         logicStateMachine = enemy.logicStateMachine;
+        targetHandler = enemy.TargetHandler;
     }
 
     public virtual void Enter() { }
@@ -25,5 +27,25 @@ public abstract class EnemyState
         stateTimer -= Time.deltaTime;
     }
 
+    public virtual void FixedUpdate()
+    {
+
+    }
+
     public virtual void Exit() { }
+
+    /// <summary>
+    /// Rotates the enemy to face (or face away from) the target horizontally.  
+    /// If <paramref name="flipOpposite"/> is true, flips the enemy to face away from the target instead of toward it.
+    /// </summary>
+    protected void FlipToTarget(bool flipOpposite = false)
+    {
+        int targetDir = targetHandler.GetHorizontalDirectionToTarget() * (flipOpposite ? -1 : 1);
+        if (targetDir != enemy.FacingDir) enemy.Flip();
+    }
+
+    protected bool IsTargetValid()
+    {
+        return targetHandler != null && targetHandler.IsTargetValid();
+    }
 }
