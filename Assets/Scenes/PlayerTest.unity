@@ -786,7 +786,7 @@ MonoBehaviour:
   applyKnockbackToTarget: 1
   applyKnockbackToSelf: 0
   knockbackForce: 100
-  knockbackForceMode: 0
+  knockbackForceMode: 1
   singleHitPerTarget: 1
   repeatDelay: 0
 --- !u!4 &1234417791

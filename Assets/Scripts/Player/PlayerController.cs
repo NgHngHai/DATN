@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,21 +13,22 @@ public class PlayerController : Entity
     [Header("Movement Variables")]
     [Tooltip("When true, external systems own velocity. Player input should not write velocity.")]
     public float moveSpeed = 7f;
+    public float externalVelocityX = 0f;
     private float moveAmt;
 
     // Jumping
     [Header("Jump Variables")]
     public float jumpForce = 5f;
     public int maxExtraJumpCount = 1;
+    public bool isGrounded = false;
     private int extraJumpCount = 0;
-    private bool isGrounded = false;
     // Coyote time
     public float coyoteTime = 0.1f;
     private float lastGroundedTime = -1f;
     // Advanced jumping
     public float jumpHoldTimeMax = 0.2f;     // Maximum time jump can be held
     public float jumpHoldForce = 50f;        // Extra force applied while holding jump
-    public float originalGravityMultiplier = 3f; // Original gravity multiplier
+    public float originalGravityMultiplier = 5f; // Original gravity multiplier
     public float fallGravityMultiplier = 8f; // Gravity multiplier after peak
     public float maxFallSpeed = -50f;        // Maximum downward velocity
     private float jumpHoldTimer = 0f;
@@ -191,7 +193,6 @@ public class PlayerController : Entity
             {
                 if (isGrounded)
                 {
-                    bool isFirstAttack;
                     PerformAttackNormal();
                     return;
                 }
@@ -276,6 +277,9 @@ public class PlayerController : Entity
 
     private void FixedUpdate()
     {
+        // Reduce external velocity over time
+        externalVelocityX = Mathf.MoveTowards(externalVelocityX, 0f, 30 * Time.fixedDeltaTime);
+
         if (movementLocked) return;
 
         // If dashing, apply dash movement and manage dash timer; otherwise normal running logic
@@ -314,9 +318,8 @@ public class PlayerController : Entity
 
     private void Running()
     {
-
-        rb.linearVelocityX = moveAmt * moveSpeed;
-        
+        float internalVelocityX = moveAmt * moveSpeed;
+        rb.linearVelocityX = internalVelocityX + externalVelocityX;
     }
 
     private void Jump()

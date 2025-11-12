@@ -5,7 +5,7 @@ public class Skill_Heal : MonoBehaviour, ISkill
     [SerializeField] private int healAmount = 20;
 
     // References
-    public GameObject player;
+    [SerializeField] private GameObject player;
     private Health healthComponent;
 
     private void Awake()

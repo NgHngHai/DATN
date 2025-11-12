@@ -110,6 +110,7 @@ public class Skill_Hookline : MonoBehaviour, ISkill
         // Restore gravity & controls, keep current velocity so player overshoots
         _rb.gravityScale = _savedGravityScale;
 
+        _playerController.externalVelocityX = _rb.linearVelocity.x;
         _playerController.movementLocked = false;
 
         if (rope != null) rope.enabled = false;
