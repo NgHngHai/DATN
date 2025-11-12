@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8793264266210997085}
   - component: {fileID: 3113371448431453127}
   - component: {fileID: 6137032736807040607}
+  - component: {fileID: 6059747607445572796}
   m_Layer: 9
   m_Name: Fly-0
   m_TagString: Untagged
@@ -116,11 +117,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28d4652bbad53e44b60f9986ee977e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fly_0
-  moveSpeed: 5
+  movementLocked: 0
+  attackLocked: 0
+  isAlive: 1
+  isFacingRight: 1
+  rb: {fileID: 4900039896408457873}
+  animator: {fileID: 8574456163164794623}
   hoverAroundDistance: 5
   hoverRestTime: 1
+  hoverSpeed: 5
   chaseSpeed: 10
-  attackCooldown: 2
 --- !u!114 &5606108111915571458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,11 +140,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRangedAttack
   attackPoint: {fileID: 3090126163630626130}
-  whatIsObstacle:
+  attackCooldown: 2
+  obstacleMask:
     serializedVersion: 2
     m_Bits: 64
-  bulletPrefab: {fileID: 5763945138572097089, guid: 195dafb9404904b41ae49d99352637c6, type: 3}
-  bulletSpeed: 10
+  projectilePrefab: {fileID: 5763945138572097089, guid: 195dafb9404904b41ae49d99352637c6, type: 3}
+  projectileSpeed: 15
   looksAtFireDirection: 1
 --- !u!114 &8793264266210997085
 MonoBehaviour:
@@ -166,10 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89777cdc40e2f1647bfa0f9da945c959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCircleDetector
-  whatIsTarget:
+  targetMask:
     serializedVersion: 2
     m_Bits: 128
-  whatIsObstacle:
+  obstacleMask:
     serializedVersion: 2
     m_Bits: 64
   detectDistance: 5
@@ -215,6 +222,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6059747607445572796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482311895729318908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598694127c6911d4b9104fb3ae27efe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackSet
+  attackBehaviors: []
 --- !u!1 &7243289761960942547
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,8 +276,9 @@ GameObject:
   m_Component:
   - component: {fileID: 598688626774561248}
   - component: {fileID: 8313961073227597200}
+  - component: {fileID: 8574456163164794623}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,3 +357,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8574456163164794623
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257781302391601207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

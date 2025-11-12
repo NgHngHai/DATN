@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3489368766949540386}
   - component: {fileID: 966009691694414451}
   - component: {fileID: 4556523354025381190}
+  - component: {fileID: 7865094343147981727}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -120,11 +121,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e1d145fb22c7848a87915b87a8d70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  rb: {fileID: 3489368766949540386}
-  hitLayer:
+  hitEffect: {fileID: 5314194595387886084, guid: 541d3254672a8af4db1b3167798a5fcd, type: 3}
+--- !u!114 &7865094343147981727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763945138572097089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  targetLayers:
     serializedVersion: 2
     m_Bits: 192
-  hitEffect: {fileID: 5314194595387886084, guid: 541d3254672a8af4db1b3167798a5fcd, type: 3}
+  damageAmount: 1
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 0
+  applyKnockbackToSelf: 0
+  knockbackForce: 5
+  knockbackForceMode: 1
+  singleHitPerTarget: 1
+  repeatDelay: 0
 --- !u!1 &8409505018670597719
 GameObject:
   m_ObjectHideFlags: 0

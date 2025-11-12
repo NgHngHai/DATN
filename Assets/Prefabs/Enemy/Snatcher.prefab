@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4796984161389069281}
   - component: {fileID: 1491806078014933930}
   - component: {fileID: 5183984942747050670}
+  - component: {fileID: 678328806624973330}
   m_Layer: 9
   m_Name: Snatcher
   m_TagString: Untagged
@@ -39,6 +40,7 @@ Transform:
   m_Children:
   - {fileID: 2096567338969530849}
   - {fileID: 5393744880891015955}
+  - {fileID: 2867243377016709916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &3240092251255413123
@@ -117,8 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faecfadb8b2a97e4b95a701136b557ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Snatcher
-  moveSpeed: 3
-  whatIsGround:
+  movementLocked: 0
+  attackLocked: 0
+  isAlive: 1
+  isFacingRight: 1
+  rb: {fileID: 6619483057172209260}
+  animator: {fileID: 2609962632388194643}
+  groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundCheckLocalPos: {x: 0, y: -0.59}
@@ -126,13 +133,11 @@ MonoBehaviour:
   groundEdgeCheckOffsetX: 0.26
   wallCheckDistance: 0.73
   jumpDamage: 3
-  attackCooldown: 1
+  moveSpeed: 3
   jumpTime: 0.8
-  whatIsTarget:
-    serializedVersion: 2
-    m_Bits: 0
-  landJumpForce: 7
-  landJumpAngle: 60
+  reboundForce: 10
+  reboundAngle: 60
+  secondaryCollider: {fileID: 5437759487850318799}
 --- !u!114 &-821001546848225396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,12 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMeleeAttack
   attackPoint: {fileID: 5393744880891015955}
-  whatIsTarget:
-    serializedVersion: 2
-    m_Bits: 128
-  attackRadius: 1
-  drawGizmos: 1
-  meleeDamage: 6
+  attackCooldown: 1
+  hurtBox: {fileID: 2979661515596254249}
+  activeDuration: 0.2
 --- !u!114 &2430689805549608269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,10 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89777cdc40e2f1647bfa0f9da945c959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCircleDetector
-  whatIsTarget:
+  targetMask:
     serializedVersion: 2
     m_Bits: 128
-  whatIsObstacle:
+  obstacleMask:
     serializedVersion: 2
     m_Bits: 64
   detectDistance: 8.54
@@ -231,17 +233,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5720056686484258350}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+        m_TargetAssemblyTypeName: EnemySnatcher, Assembly-CSharp
+        m_MethodName: OnDeath
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &678328806624973330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098698940443164960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598694127c6911d4b9104fb3ae27efe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackSet
+  attackBehaviors:
+  - {fileID: -821001546848225396}
 --- !u!1 &2994367423629495101
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +357,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5393744880891015955}
+  - component: {fileID: 6918797321935901724}
+  - component: {fileID: 2979661515596254249}
   m_Layer: 0
   m_Name: Attack Point
   m_TagString: Untagged
@@ -357,12 +375,71 @@ Transform:
   m_GameObject: {fileID: 3191718693771288665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99, y: 0, z: 0}
+  m_LocalPosition: {x: 0.731, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7056072205156106124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6918797321935901724
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191718693771288665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &2979661515596254249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191718693771288665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  damageAmount: 6
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 0
+  applyKnockbackToSelf: 0
+  knockbackForce: 5
+  knockbackForceMode: 1
+  singleHitPerTarget: 1
+  repeatDelay: 1
 --- !u!1 &4509269215583242741
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,8 +450,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2096567338969530849}
   - component: {fileID: 7016368279789905465}
+  - component: {fileID: 2609962632388194643}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,3 +532,134 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2609962632388194643
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4509269215583242741}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5061972715513236341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2867243377016709916}
+  - component: {fileID: 4666499292279565935}
+  - component: {fileID: 2352133978733549231}
+  - component: {fileID: 5437759487850318799}
+  m_Layer: 0
+  m_Name: Secondary Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2867243377016709916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061972715513236341}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7056072205156106124}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4666499292279565935
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061972715513236341}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.68
+--- !u!114 &2352133978733549231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061972715513236341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  damageAmount: 6
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 0
+  applyKnockbackToSelf: 0
+  knockbackForce: 5
+  knockbackForceMode: 1
+  singleHitPerTarget: 1
+  repeatDelay: 1
+--- !u!114 &5437759487850318799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061972715513236341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464892fe9744644b81fcf9ad83ccea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SnatcherSecondaryCollider
+  hurtBox: {fileID: 2352133978733549231}
+  landMask:
+    serializedVersion: 2
+    m_Bits: 192

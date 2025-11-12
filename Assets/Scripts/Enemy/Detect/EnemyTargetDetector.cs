@@ -8,11 +8,22 @@
 public abstract class EnemyTargetDetector : MonoBehaviour
 {
     [Header("Base Properties")]
-    [SerializeField] protected LayerMask whatIsTarget;
-    [SerializeField] protected LayerMask whatIsObstacle;
+    [Tooltip("Layer(s) that represent potential targets")]
+    [SerializeField] protected LayerMask targetMask;
+
+    [Tooltip("Layer(s) that block the enemy’s line of sight")]
+    [SerializeField] protected LayerMask obstacleMask;
+
+    [Tooltip("Maximum detection distance from the detect point ")]
     [SerializeField] protected float detectDistance = 5f;
+
+    [Tooltip("Transform used as the origin point for detection")]
     [SerializeField] protected Transform detectPoint;
+
+    [Tooltip("Time interval (seconds) between each detection scan.")]
     [SerializeField] protected float detectRate = 0.2f;
+
+    [Tooltip("If true, draws debug Gizmos in the Scene view for visualization.")]
     [SerializeField] protected bool drawGizmos;
 
     protected Enemy enemy;
@@ -47,18 +58,17 @@ public abstract class EnemyTargetDetector : MonoBehaviour
         }
     }
 
-    protected Vector2 GetFaceDirection()
-    {
-        if (enemy == null) return Vector2.right;
-        return new Vector2(enemy.facingDir, 0);
-    }
-
     protected abstract Transform GetFirstDetectedTarget();
 
-    protected virtual void OnDrawGizmos()
+    protected void OnDrawGizmosSelected()
     {
         if (!drawGizmos || detectPoint == null) return;
 
+        DrawGizmos();
+    }
+
+    protected virtual void DrawGizmos()
+    {
         Color visionColor = Color.cyan;
         visionColor.a = 0.3f;
         Gizmos.color = visionColor;

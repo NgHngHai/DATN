@@ -10,17 +10,16 @@ public class EnemyCircleDetector : EnemyTargetDetector
         Collider2D hitTarget = Physics2D.OverlapCircle(
             detectPoint.position,
             detectDistance,
-            whatIsTarget
+            targetMask
         );
 
         if (hitTarget != null) return hitTarget.transform;
         return null;
     }
 
-    protected override void OnDrawGizmos()
+    protected override void DrawGizmos()
     {
-        if (!drawGizmos || detectPoint == null) return;
-        base.OnDrawGizmos();
+        base.DrawGizmos();
 
         Gizmos.DrawWireSphere(detectPoint.position, detectDistance);
     }
