@@ -75,7 +75,6 @@ public class HurtBox : MonoBehaviour
         if (damageable == null || !damageable.CanBeDamaged())
             return;
 
-
         var targetKey = (Object)damageable as Object ?? (Object)other;
 
         // Gate repeated hits
@@ -113,7 +112,6 @@ public class HurtBox : MonoBehaviour
         {
             _selfRb.AddForce(-dir * knockbackForce, knockbackForceMode);
         }
-
     }
 
     private bool IsLayerAllowed(int layer)
