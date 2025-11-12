@@ -155,8 +155,7 @@ public class PlayerSkillManager : MonoBehaviour
     {
         if (!CanUseSkill(activeSkillId)) return false;
 
-        // Call the SkillDefinition's Activate method. SkillDefinition (or its prefab's component)
-        // is responsible for handling spawnPosition/spawnRotation if needed.
+        // Call the SkillDefinition's Activate method
         try
         {
             skills[activeSkillId].Activate();

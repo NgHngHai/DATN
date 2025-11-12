@@ -102,10 +102,11 @@ public class HurtBox : MonoBehaviour
 
         if (applyKnockbackToTarget && knockbackForce > 0f)
         {
+            var targetEntity = other.GetComponent<Entity>();
             var targetRb = other.attachedRigidbody ?? other.GetComponentInParent<Rigidbody2D>();
-            Debug.Log("HurtBox applying knockback to target: " + targetRb);
-            if (targetRb != null)
-                targetRb.AddForce(dir * knockbackForce, knockbackForceMode);
+
+            targetEntity.movementLocked = true;
+            targetRb.AddForce(dir * knockbackForce, knockbackForceMode);
         }
 
         if (applyKnockbackToSelf && knockbackForce > 0f && _selfRb != null)
