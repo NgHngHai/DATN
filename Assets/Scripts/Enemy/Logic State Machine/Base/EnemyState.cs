@@ -8,6 +8,7 @@
 public abstract class EnemyState
 {
     protected EnemyStateMachine logicStateMachine;
+    protected AnimationStateMachine animStateMachine;
     protected EnemyTargetHandler targetHandler;
     protected Enemy enemy;
 
@@ -17,6 +18,7 @@ public abstract class EnemyState
     {
         this.enemy = enemy;
         logicStateMachine = enemy.logicStateMachine;
+        animStateMachine = enemy.animStateMachine;
         targetHandler = enemy.TargetHandler;
     }
 
@@ -40,6 +42,8 @@ public abstract class EnemyState
     /// </summary>
     protected void FlipToTarget(bool flipOpposite = false)
     {
+        if (!IsTargetValid()) return;
+
         int targetDir = targetHandler.GetHorizontalDirectionToTarget() * (flipOpposite ? -1 : 1);
         if (targetDir != enemy.FacingDir) enemy.Flip();
     }

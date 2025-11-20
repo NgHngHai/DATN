@@ -39,7 +39,7 @@ public class AnimationState
     protected string animParamName;                // Tên parameter trong Animator
     protected bool isBool;                         // Kiểu parameter (bool hoặc trigger)
 
-    public AnimationState(Entity entity, string animParamName, bool isBool)
+    public AnimationState(Entity entity, string animParamName, bool isBool = true)
     {
         this.entity = entity;
         this.animParamName = animParamName;
@@ -78,4 +78,6 @@ public class AnimationState
     {
         triggerCalled = true;                      // Đánh dấu rằng animation đã xong
     }
+
+    public bool IsTriggerCalled() => triggerCalled;
 }

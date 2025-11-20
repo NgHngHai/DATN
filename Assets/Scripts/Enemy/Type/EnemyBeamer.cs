@@ -8,23 +8,20 @@ using UnityEngine;
 public class EnemyBeamer : Enemy
 {
     [Header("Enemy: Beamer")]
-    [Tooltip("Number of consecutive laser shots.")]
-    public int consecutiveAttackCount = 3;
-
-    [Tooltip("Initial delay before consecutive laser shots.")]
-    public float firstConsecutiveAttackDelay = 0.5f;
-
-    [Tooltip("Time between laser shots")]
-    public float attackInterval = 0.3f;
-
     [Tooltip("Time between laser shots")]
     public float startAttackDistance = 4f;
 
     [Tooltip("Rest period after the attack.")]
     public float restTime = 5;
 
+    public AnimationState animClosedState;
+    public AnimationState animAttackState;
+    public AnimationState animRestState;
+
+
     public BeamerObservationState observationState;
     public BeamerAttackState attackState;
+    public BeamerRestState restState;
 
     protected override void Awake()
     {
@@ -32,12 +29,18 @@ public class EnemyBeamer : Enemy
 
         observationState = new BeamerObservationState(this);
         attackState = new BeamerAttackState(this);
+        restState = new BeamerRestState(this);
+
+        animClosedState = new AnimationState(this, "closedMode");
+        animAttackState = new AnimationState(this, "attackMode");
+        animRestState = new AnimationState(this, "restMode");
     }
 
     protected override void Start()
     {
         base.Start();
         logicStateMachine.Initialize(observationState);
+        animStateMachine.Initialize(animClosedState);
     }
 
     private void OnDrawGizmosSelected()

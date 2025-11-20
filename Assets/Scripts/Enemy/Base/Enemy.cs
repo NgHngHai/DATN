@@ -10,8 +10,9 @@ public abstract class Enemy : Entity
     protected EnemyAttackSet attackSet;
     protected EnemyTargetHandler targetHandler;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         attackSet = GetComponent<EnemyAttackSet>();
         targetHandler = GetComponent<EnemyTargetHandler>();
         logicStateMachine = new EnemyStateMachine();
@@ -21,11 +22,13 @@ public abstract class Enemy : Entity
     {
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         FlipOnVelocityX();
         logicStateMachine.UpdateCurrentState();
     }
+
 
     protected virtual void FixedUpdate()
     {
