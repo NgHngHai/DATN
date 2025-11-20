@@ -16,14 +16,13 @@ public class Entity : MonoBehaviour
     public Animator animator;
     public AnimationStateMachine animStateMachine;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animStateMachine = new AnimationStateMachine(); // Tạo FSM riêng cho entity
-        animator = GetComponent<Animator>();            // Lấy component Animator
         rb = GetComponent<Rigidbody2D>();               // Lấy component Rigidbody2D
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         animStateMachine.UpdateCurrentState();          // Cập nhật state hiện tại mỗi frame
     }
@@ -50,6 +49,11 @@ public class Entity : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public bool IsCurrentAnimStateTriggerCalled()
+    {
+        return animStateMachine.currentState.IsTriggerCalled();
     }
 
     public int FacingDir => isFacingRight ? 1 : -1;

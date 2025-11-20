@@ -22,13 +22,14 @@ public class BeamerObservationState : BeamerState
     {
         base.Enter();
         health.isInvincible = true;
+        animStateMachine.ChangeState(beamer.animClosedState);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (!IsTargetValid()) return;
+        if (!IsTargetValid() || !beamer.IsCurrentAnimStateTriggerCalled()) return;
 
         FlipToTarget();
 
@@ -53,8 +54,6 @@ public class BeamerObservationState : BeamerState
 
 public class BeamerAttackState : BeamerState
 {
-    private int currentConsecutiveAttack;
-
     public BeamerAttackState(Enemy enemy) : base(enemy)
     {
     }
@@ -62,16 +61,19 @@ public class BeamerAttackState : BeamerState
     public override void Enter()
     {
         base.Enter();
-        stateTimer = beamer.firstConsecutiveAttackDelay;
-        currentConsecutiveAttack = 0;
+        animStateMachine.ChangeState(beamer.animAttackState);
     }
 
     public override void Update()
     {
         base.Update();
 
+        if (beamer.IsCurrentAnimStateTriggerCalled())
+        {
+            logicStateMachine.ChangeState(beamer.restState);
+        }
+
         TrakingTarget();
-        AttackConsecutively();
     }
 
     private void TrakingTarget()
@@ -81,23 +83,25 @@ public class BeamerAttackState : BeamerState
         FlipToTarget();
         attackSet.CurrentAttack.AttackPointLookAt(targetHandler.CurrentTarget);
     }
+}
 
-    private void AttackConsecutively()
+public class BeamerRestState : BeamerState
+{
+    public BeamerRestState(Enemy enemy) : base(enemy)
     {
-        if (stateTimer > 0) return;
-
-        if (!IsConsecutiveAttackFinished())
-        {
-            TryCurrentAttack();
-            currentConsecutiveAttack++;
-            stateTimer = IsConsecutiveAttackFinished() ? beamer.restTime : beamer.attackInterval;
-        }
-        else
-        {
-            logicStateMachine.ChangeState(beamer.observationState);
-        }
     }
 
-    private bool IsConsecutiveAttackFinished() => currentConsecutiveAttack >= beamer.consecutiveAttackCount;
+    public override void Enter()
+    {
+        base.Enter();
+        stateTimer = beamer.restTime;
+        animStateMachine.ChangeState(beamer.animRestState);
+    }
 
+    public override void Update()
+    {
+        base.Update();
+        if (stateTimer < 0)
+            logicStateMachine.ChangeState(beamer.observationState);
+    }
 }

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Deals one-time damage to target layers in radius.
+/// </summary>
 [DisallowMultipleComponent]
 public class Explosion : MonoBehaviour
 {

@@ -85,11 +85,10 @@ public class PlayerController : Entity
         InputActions.FindActionMap("Player").Disable();
     }
 
-    void Awake()
+    protected override void Awake()
     {
-        animStateMachine = new AnimationStateMachine(); // Tạo FSM riêng cho entity
+        base.Awake();
         animator = GetComponent<Animator>();            // Lấy component Animator
-        rb = GetComponent<Rigidbody2D>();               // Lấy component Rigidbody2D
 
         // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
         idleState = new AnimationState(this, "idle", true);
@@ -139,9 +138,9 @@ public class PlayerController : Entity
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        // Read movement input
+        base.Update();
         Vector2 moveVec = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
 
         if (!isDashing && !movementLocked)
@@ -160,7 +159,7 @@ public class PlayerController : Entity
         if (isDashing)
         {
             animStateMachine.ChangeState(dashState);
-            
+
         }
 
         bool canDash = !isDashing && !movementLocked && (Time.time - lastDashTime >= dashCooldown);
