@@ -54,7 +54,6 @@ public class AnimationState
         if (isBool)
             animator.SetBool(animParamName, true);      // Bật parameter bool tương ứng trong Animator
         else
-        
             animator.SetTrigger(animParamName);          // Kích hoạt parameter trigger tương ứng trong Animator
 
         triggerCalled = false;                     // Reset flag trigger

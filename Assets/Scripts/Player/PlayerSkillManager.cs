@@ -69,9 +69,16 @@ public class PlayerSkillManager : MonoBehaviour
 
         if (activeSkillId == s.skillId) return true;
 
+        // Toggle off previous passive (if any)
+        TryTogglePassiveWithId(activeSkillId, false);
+
+        // Switch active
         activeSkillId = s.skillId;
         PlayerPrefs.SetInt(activeSkillPref, skillId);
         PlayerPrefs.Save();
+
+        // Toggle on new passive (if any)
+        TryTogglePassiveWithId(activeSkillId, true);
 
         OnActiveSkillChanged?.Invoke(activeSkillId);
         return true;
@@ -98,6 +105,8 @@ public class PlayerSkillManager : MonoBehaviour
             if (skillMap.TryGetValue(id, out var s) && s.isUnlocked)
             {
                 activeSkillId = s.skillId;
+                // Enable passive for the loaded active skill
+                TryTogglePassiveWithId(activeSkillId, true);
                 OnActiveSkillChanged?.Invoke(activeSkillId);
                 return;
             }
@@ -109,6 +118,7 @@ public class PlayerSkillManager : MonoBehaviour
             if (s != null && s.isUnlocked && s.skillId != 0)
             {
                 activeSkillId = s.skillId;
+                TryTogglePassiveWithId(activeSkillId, true);
                 OnActiveSkillChanged?.Invoke(activeSkillId);
                 return;
             }
@@ -116,8 +126,18 @@ public class PlayerSkillManager : MonoBehaviour
         if (skills.Count > 1)
         {
             activeSkillId = 1;
+            TryTogglePassiveWithId(activeSkillId, true);
             OnActiveSkillChanged?.Invoke(activeSkillId);
         }
+    }
+
+    private void TryTogglePassiveWithId(int skillId, bool active)
+    {
+        if (skillMap == null) return;
+        if (!skillMap.TryGetValue(skillId, out var s) || s == null) return;
+        if (!s.isPassive) return;
+
+        s.TogglePassive(gameObject, active);
     }
 
     // Check if a given skill can be used (unlocked, enough energy, off cooldown)
@@ -198,4 +218,13 @@ public class PlayerSkillManager : MonoBehaviour
         lastUsedTime[skillId] = Time.time;
         return true;
     }
+
+    // Call this method when player performs an attack to regenerate energy
+    public void RestoreEnergyOnAttack(int restoreAmt)
+    {
+        currentEnergy = Mathf.Min(maxEnergy, currentEnergy + restoreAmt);
+    }
+
 }
+
+

@@ -61,59 +61,63 @@
     <Analyzer Include="D:\Unity\UnityHub\Hub\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0HoverAroundState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Combat\EnemyRangedAttack.cs" />
+    <Compile Include="Assets\Scripts\Save System\UniqueID.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0SleepState.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
-    <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPoisonHandler.cs" />
     <Compile Include="Assets\Scripts\Universal\AnimationStateMachine.cs" />
     <Compile Include="Assets\Scripts\Universal\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0ChaseState.cs" />
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyRoak.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkill.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherJumpOnTargetState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomPatrolState.cs" />
+    <Compile Include="Assets\Scripts\Save System\ISaveable.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RapicitatorState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyRangedAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyStateMachine.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomTargetDetectedState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherPatrolState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomDashState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\Roak.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0State.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
+    <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
     <Compile Include="Assets\Scripts\Universal\Entity.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
+    <Compile Include="Assets\Scripts\Save System\FileDateHandler.cs" />
+    <Compile Include="Assets\Scripts\Save System\GameData.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdge.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\Snatcher.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyBeamer.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Other\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\ExplosioState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherChaseState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherOnWallState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BoomState.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Blast.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_DJump.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemySnatcher.cs" />
+    <Compile Include="Assets\Scripts\Bullet\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyExplosio.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyFly0.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackBehavior.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\JanitorRSState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly0State.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Other\SnatcherSecondaryCollider.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
     <Compile Include="Assets\Scripts\Universal\Health.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\Boom.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Combat\EnemyMeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Other\PoisonousSmoke.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\Fly0.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyRapicitator.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Combat\EnemyAttackBehavior.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherCombatState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Snatcher\SnatcherAttackState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Combat\PoisonousSmoke.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Roak\RoakState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyLaserAttack.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Boom\BoomState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly-0\Fly0AttackState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Combat\Explosion.cs" />
-    <Compile Include="Assets\Scripts\Player\Skills\Skill_Parry.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\ISkillPassive.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyOffensiveState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\SnatcherState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -456,6 +460,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">

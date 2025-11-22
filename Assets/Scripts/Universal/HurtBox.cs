@@ -21,12 +21,22 @@ public class HurtBox : MonoBehaviour
     [Tooltip("Apply knockback to the target when damaged.")]
     public bool applyKnockbackToTarget = false;
 
+    [Tooltip("Lock target movement briefly when knockback is applied.")]
+    public bool lockMovementOnTarget = false;
+
+    [Tooltip("Duration to lock target movement, in seconds.")]
+    public float knockbackLockDuration = 0.1f;
+
     [Tooltip("Apply knockback to self (recoil) when damaging a target.")]
     public bool applyKnockbackToSelf = false;
 
-    [Tooltip("Force magnitude for knockback.")]
-    public float knockbackForce = 5f;
-    public ForceMode2D knockbackForceMode = ForceMode2D.Impulse;
+    public float targetKnockbackForce = 5f;
+    public float selfKnockbackForce = 5f;
+
+    // For player only
+    [Header("Player Only")]
+    public bool restoreEnergyOnHit = false;
+    public int energyRestoredPerHit = 3;
 
     // Hitting mode
     [Header("Hit Gating")]
@@ -37,20 +47,29 @@ public class HurtBox : MonoBehaviour
     public float repeatDelay = 0f;
 
     // References
-    private readonly HashSet<Object> _hitOnce = new HashSet<Object>();
-    private readonly Dictionary<Object, float> _lastHitTime = new Dictionary<Object, float>();
+    // private readonly HashSet<Object> _hitOnce = new HashSet<Object>();
+    private readonly Dictionary<Object, float> _lastHitTime = new();
     private Rigidbody2D _selfRb;
     private Collider2D _col;
+    private Entity _selfEntity;
+
+    // For restoring energy on hit
+    PlayerSkillManager _playerSkillManager;
 
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
         _selfRb = GetComponentInParent<Rigidbody2D>();
+        _selfEntity = GetComponent<Entity>() ?? GetComponentInParent<Entity>();
+
+        if (restoreEnergyOnHit)
+        {
+            _playerSkillManager = GetComponentInParent<PlayerSkillManager>();
+        }
     }
 
     private void OnEnable()
     {
-        _hitOnce.Clear();
         _lastHitTime.Clear();
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -78,12 +97,7 @@ public class HurtBox : MonoBehaviour
         var targetKey = (Object)damageable as Object ?? (Object)other;
 
         // Gate repeated hits
-        if (singleHitPerTarget)
-        {
-            if (_hitOnce.Contains(targetKey))
-                return;
-        }
-        else if (repeatDelay > 0f)
+        if (repeatDelay > 0f)
         {
             if (_lastHitTime.TryGetValue(targetKey, out float last) && (Time.time - last) < repeatDelay)
                 return;
@@ -97,21 +111,27 @@ public class HurtBox : MonoBehaviour
         if (repeatDelay > 0f)
             _lastHitTime[targetKey] = Time.time;
 
-        // Knockback direction is the component's positive X (transform.right)
-        Vector2 dir = ComputeKnockbackDirection();
+        // Knockback
+        Vector2 dir = ComputeKnockbackDirection(other);
 
-        if (applyKnockbackToTarget && knockbackForce > 0f)
+        if (applyKnockbackToTarget && targetKnockbackForce > 0f)
         {
-            var targetEntity = other.GetComponent<Entity>();
-            var targetRb = other.attachedRigidbody ?? other.GetComponentInParent<Rigidbody2D>();
 
-            targetEntity.movementLocked = true;
-            targetRb.AddForce(dir * knockbackForce, knockbackForceMode);
+            var targetEntity = other.GetComponent<Entity>();
+
+            targetEntity.ApplyKnockback(-dir, targetKnockbackForce, lockMovementOnTarget, knockbackLockDuration);
         }
 
-        if (applyKnockbackToSelf && knockbackForce > 0f && _selfRb != null)
+        if (applyKnockbackToSelf && targetKnockbackForce > 0f && _selfRb != null)
         {
-            _selfRb.AddForce(-dir * knockbackForce, knockbackForceMode);
+            _selfEntity.ApplyKnockback(dir, selfKnockbackForce, false);
+        }
+
+        // Restore energy on hit if is player
+        if (restoreEnergyOnHit && _playerSkillManager != null)
+        {
+            if (other.GetComponent<Health>() != null || other.GetComponentInParent<Health>() != null) // Only restore if hitting something with Health
+                _playerSkillManager.RestoreEnergyOnAttack(energyRestoredPerHit);
         }
     }
 
@@ -120,9 +140,9 @@ public class HurtBox : MonoBehaviour
         return (targetLayers.value & (1 << layer)) != 0;
     }
 
-    private Vector2 ComputeKnockbackDirection()
+    private Vector2 ComputeKnockbackDirection(Collider2D target)
     {
-        Vector2 dir = transform.right;
+        Vector2 dir = gameObject.transform.position - target.transform.position;
         if (dir.sqrMagnitude < 0.0001f) dir = Vector2.right;
         return dir;
     }

@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public class Skill_DJump : MonoBehaviour, ISkill
+public class Skill_DJump : MonoBehaviour, ISkillPassive
 {
-    // References
-    public GameObject player;
-    private PlayerController playerController;
+    public int extraJumpCount = 1;
 
-    private void Awake()
+    public void SetPassiveActive(bool active, GameObject player)
     {
-        playerController = player.GetComponent<PlayerController>();
-    }
+        var playerController = player.GetComponent<PlayerController>();
 
-    public void Activate()
-    {
-        Debug.Log("Double jump activated.");
-    }
+        if (active)
+            playerController.maxExtraJumpCount = extraJumpCount;
+        else
+            playerController.maxExtraJumpCount = 0;
+    }    
 }

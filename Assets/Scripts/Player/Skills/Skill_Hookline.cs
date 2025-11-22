@@ -52,8 +52,9 @@ public class Skill_Hookline : MonoBehaviour, ISkill
         //_currentTarget = target;
         _anchorWorld = anchorWorld;
 
-        // Prevent player control during pull
+        // Prevent player control & knockback during pull
         _playerController.movementLocked = true;
+        _playerController.canBeKnockedback = false;
 
         if (rope != null)
         {
@@ -112,6 +113,7 @@ public class Skill_Hookline : MonoBehaviour, ISkill
 
         _playerController.externalVelocityX = _rb.linearVelocity.x;
         _playerController.movementLocked = false;
+        _playerController.canBeKnockedback = true;
 
         if (rope != null) rope.enabled = false;
 
@@ -139,7 +141,7 @@ public class Skill_Hookline : MonoBehaviour, ISkill
         foreach (var t in _candidates)
         {
             if (t == null) continue;
-            float d = Vector2.Distance(_rb.position + detectionCenter, t.position);
+            float d = Vector2.Distance(_rb.position + new Vector2(detectionCenter.x * _playerController.FacingDir, detectionCenter.y), t.position);
             if (d < bestDist)
             {
                 best = t;
