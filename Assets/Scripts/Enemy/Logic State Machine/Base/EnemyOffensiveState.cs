@@ -11,16 +11,21 @@ public class EnemyOffensiveState : EnemyState
 
     protected void TryCurrentAttack()
     {
-        attackSet?.TryCurrentAttack();
+        if (!IsCurrentAttackValid()) return;
+        attackSet.CurrentAttack.TryAttack();
     }
 
     protected bool IsCurrentAttackReady()
     {
-        return attackSet != null && attackSet.IsCurrentAttackReady();
+        if (!IsCurrentAttackValid()) return false;
+        return attackSet.CurrentAttack.IsReadyToAttack();
     }
 
     protected bool IsTargetInCurrentAttackArea(Transform target)
     {
-        return attackSet != null && attackSet.IsTargetInCurrentAttackArea(target);
+        if (!IsCurrentAttackValid()) return false;
+        return attackSet.CurrentAttack.IsTargetInAttackArea(target);
     }
+
+    private bool IsCurrentAttackValid() => attackSet != null && attackSet.CurrentAttack != null;
 }

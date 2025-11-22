@@ -2,10 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Handles close-range enemy attacks using a HurtBox.
-/// The HurtBox handles hit detection, damage, and knockback.
+/// An enemy attack deals damage at close range using <see cref="HurtBox"/>.
 /// </summary>
-[DisallowMultipleComponent]
 public class EnemyMeleeAttack : EnemyAttackBehavior
 {
     [Header("Attack: Melee")]
@@ -15,8 +13,9 @@ public class EnemyMeleeAttack : EnemyAttackBehavior
     private Coroutine attackRoutine;
     private float hurtBoxRadius;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         hurtBoxRadius = hurtBox.GetComponent<Collider2D>().bounds.extents.magnitude;
         hurtBox.ToggleHurtCollider(false);
     }

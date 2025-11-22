@@ -95,11 +95,10 @@ public class PlayerController : Entity
         InputActions.FindActionMap("Player").Disable();
     }
 
-    void Awake()
+    protected override void Awake()
     {
-        animStateMachine = new AnimationStateMachine(); // Tạo FSM riêng cho entity
+        base.Awake();
         animator = GetComponent<Animator>();            // Lấy component Animator
-        rb = GetComponent<Rigidbody2D>();               // Lấy component Rigidbody2D
         playerHealth = GetComponent<Health>();          // Lấy component Health
 
         // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
@@ -157,8 +156,9 @@ public class PlayerController : Entity
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (animStateMachine.currentState == deathState)
             return; // Dead - no input
 

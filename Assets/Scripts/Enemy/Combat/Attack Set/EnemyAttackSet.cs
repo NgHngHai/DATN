@@ -30,24 +30,6 @@ public class EnemyAttackSet : MonoBehaviour
             currentAttack = attackBehaviors[0];
     }
 
-    #region Core Functions
-    public void TryCurrentAttack()
-    {
-        currentAttack?.TryAttack();
-    }
-
-    public bool IsCurrentAttackReady()
-    {
-        return currentAttack.IsReadyToAttack();
-    }
-
-    public bool IsTargetInCurrentAttackArea(Transform target)
-    {
-        return currentAttack.IsTargetInAttackArea(target);
-    }
-    #endregion
-
-    #region Change Attack Type
     public void ChangeAttackType(int attackIndex)
     {
         if (attackIndex < 0 || attackIndex >= attackBehaviors.Count) return;
@@ -67,7 +49,14 @@ public class EnemyAttackSet : MonoBehaviour
         Debug.LogError($"[EnemyAttackSet] Cannot find attack behavior of type {targetType.Name}.");
         return false;
     }
-    #endregion
+
+    public void IncreaseAttackSpeed(float percent, float effectTime)
+    {
+        foreach (var atk in attackBehaviors)
+        {
+            atk.IncreaseAttackSpeed(percent, effectTime);
+        }
+    }
 
     public EnemyAttackBehavior CurrentAttack => currentAttack;
 }

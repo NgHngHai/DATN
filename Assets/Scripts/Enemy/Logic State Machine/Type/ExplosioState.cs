@@ -174,7 +174,7 @@ public class ExplosioBrustFireAttackState : ExplosioState
         Vector2 fireDirection = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
 
         attackSet.CurrentAttack.AttackPointLookAtDirection(fireDirection);
-        attackSet.TryCurrentAttack();
+        TryCurrentAttack();
 
         stateTimer = explosio.fireRate;
         fireCount++;

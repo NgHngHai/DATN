@@ -1,11 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Handles ranged enemy attacks using projectile projectiles.
-/// Fires bullets from the attack point and checks for line-of-sight to the target.
+/// An enemy attack that fires a <see cref="Projectile"/> to the right of the attack point.
 /// </summary>
-
-[DisallowMultipleComponent]
 public class EnemyRangedAttack : EnemyAttackBehavior
 {
     [Header("Attack: Ranged")]
