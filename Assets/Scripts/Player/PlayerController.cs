@@ -1,14 +1,17 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
+﻿//using System;
+//using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : Entity
 {
+    // Room spawnpoint ID
+    public int spawnPointID = 0;
+
     // Component references
     public PlayerSkillManager skillManager;
     public Health playerHealth;
+    [SerializeField] private RoomManager currentRoom;
 
     // Movement variables
     [Header("Movement Variables")]
@@ -34,6 +37,24 @@ public class PlayerController : Entity
     public float maxFallSpeed = -50f;        // Maximum downward velocity
     private float jumpHoldTimer = 0f;
     private bool isJumping = false;
+
+    // Ground/Wall detection
+    [Header("Ground Check")]
+    [Tooltip("Minimum upward normal.y to count as ground. Raise if vertical walls sometimes register as ground.")]
+    [SerializeField] private float wallNormalMinX = 0.6f;
+    [Tooltip("Minimum absolute normal.x to count as a wall when not ground.")]
+    [SerializeField] private float groundNormalMinY = 0.7f;
+    [SerializeField] private Vector2 groundCheckOffset = new Vector2(0f, -0.9f);
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.8f, 0.15f);
+    [SerializeField] private LayerMask groundLayers = ~0;
+    private bool isTouchingWall;
+    private bool wallOnLeft;
+    private bool wallOnRight;
+
+    [Header("Air Friction Control")]
+    [Tooltip("Frictionless (or low friction) material applied only while airborne after a jump.")]
+    public PhysicsMaterial2D frictionlessMaterial;
+    private bool lastGroundedState;
 
     // Attacking & skills
     [Tooltip("When true, cannot input skills.")]
@@ -100,6 +121,7 @@ public class PlayerController : Entity
         base.Awake();
         animator = GetComponent<Animator>();            // Lấy component Animator
         playerHealth = GetComponent<Health>();          // Lấy component Health
+        currentRoom = FindFirstObjectByType<RoomManager>(); // Lấy RoomManager trong scene
 
         // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
         idleState = new AnimationState(this, "idle", true);
@@ -121,6 +143,8 @@ public class PlayerController : Entity
         animStateMachine.Initialize(idleState);         // Bắt đầu ở trạng thái Idle
 
         skillManager = GetComponent<PlayerSkillManager>();
+
+        lastGroundedState = isGrounded;
 
         // Prefer actions from the assigned InputActionAsset/Player map (avoid InputSystem.actions global lookup).
         if (InputActions != null)
@@ -164,6 +188,8 @@ public class PlayerController : Entity
 
         // Read movement input
         Vector2 moveVec = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
+
+        PerformGroundProbe();
 
         if (!isDashing && !movementLocked)
         {
@@ -347,12 +373,18 @@ public class PlayerController : Entity
     private void Running()
     {
         float internalVelocityX = moveAmt * moveSpeed;
+
+        if (!isGrounded && isTouchingWall)
+            if ((wallOnLeft && internalVelocityX < 0f) || (wallOnRight && internalVelocityX > 0f))
+                internalVelocityX = 0f;
+
         rb.linearVelocityX = internalVelocityX + externalVelocityX;
     }
 
     private void Jump()
     {
         rb.linearVelocityY = jumpForce;
+        ApplyAirPhysicsMaterial();
     }
 
     private void StartDash()
@@ -367,6 +399,8 @@ public class PlayerController : Entity
         rb.linearVelocityY = 0f;
 
         playerHealth.isInvincible = true;
+
+        if (!isGrounded) ApplyAirPhysicsMaterial();
     }
 
     private void EndDash()
@@ -378,23 +412,78 @@ public class PlayerController : Entity
         playerHealth.isInvincible = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if ((groundLayers.value & (1 << collision.gameObject.layer)) == 0)
+            return;
+
+        ApplyAirPhysicsMaterial();
+
+        wallOnLeft = false;
+        wallOnRight = false;
+        isTouchingWall = false;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if ((groundLayers.value & (1 << collision.gameObject.layer)) == 0)
+            return;
+
+        bool foundWallLeft = false;
+        bool foundWallRight = false;
+
+        for (int i = 0; i < collision.contactCount; i++)
         {
-            isGrounded = true;
-            extraJumpCount = 0;
-            lastGroundedTime = Time.time;
+            var contact = collision.GetContact(i);
+            Vector2 n = contact.normal;
+
+            // Treat near-vertical normals as walls
+            if (Mathf.Abs(n.x) >= wallNormalMinX && n.y < groundNormalMinY)
+            {
+                if (n.x > 0f) foundWallLeft = true;
+                if (n.x < 0f) foundWallRight = true;
+            }
+        }
+
+        wallOnLeft = foundWallLeft;
+        wallOnRight = foundWallRight;
+        isTouchingWall = wallOnLeft || wallOnRight;
+
+        if (isTouchingWall)
+        {
+            ApplyAirPhysicsMaterial();
+        }
+        else {
+            ClearPhysicsMaterial();
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void PerformGroundProbe()
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        bool wasGrounded = isGrounded;
+        Collider2D hit = Physics2D.OverlapBox((Vector2)transform.position + groundCheckOffset, groundCheckSize, 0f, groundLayers);
+        isGrounded = hit != null;
+
+        if (isGrounded && !wasGrounded)
         {
-            isGrounded = false;
-            lastGroundedTime = Time.time;
+            extraJumpCount = 0;
+            lastGroundedTime = Time.time; // landed
         }
+        else if (!isGrounded && wasGrounded)
+        {
+            lastGroundedTime = Time.time; // start coyote
+        }
+    }
+
+    private void ApplyAirPhysicsMaterial()
+    {
+        if (frictionlessMaterial == null) return;
+        rb.sharedMaterial = frictionlessMaterial;
+    }
+
+    private void ClearPhysicsMaterial()
+    {
+        rb.sharedMaterial = null;
     }
 
     // Attack callbacks
@@ -438,5 +527,11 @@ public class PlayerController : Entity
     {
         movementLocked = false;
         isAttacking = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube((Vector2)transform.position + groundCheckOffset, groundCheckSize);
     }
 }

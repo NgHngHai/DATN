@@ -119,7 +119,8 @@ public class HurtBox : MonoBehaviour
 
             var targetEntity = other.GetComponent<Entity>();
 
-            targetEntity.ApplyKnockback(-dir, targetKnockbackForce, lockMovementOnTarget, knockbackLockDuration);
+            if (targetEntity != null)
+                targetEntity.ApplyKnockback(-dir, targetKnockbackForce, lockMovementOnTarget, knockbackLockDuration);
         }
 
         if (applyKnockbackToSelf && targetKnockbackForce > 0f && _selfRb != null)

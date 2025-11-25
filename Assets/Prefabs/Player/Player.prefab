@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   damageAmount: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   damageAmount: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   damageAmount: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
@@ -579,6 +579,37 @@ MonoBehaviour:
   energyRestoredPerHit: 3
   singleHitPerTarget: 1
   repeatDelay: 0
+--- !u!1 &4939495689479911014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370371347258033086}
+  m_Layer: 0
+  m_Name: Counter Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370371347258033086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4939495689479911014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 506739139444539100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5225942079909110734
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   damageAmount: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
@@ -1089,7 +1120,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.18807441}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.45}
@@ -1099,7 +1130,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.3761488}
   m_EdgeRadius: 0
 --- !u!114 &6781548075692095830
 MonoBehaviour:
@@ -1257,7 +1288,15 @@ MonoBehaviour:
   originalGravityMultiplier: 5
   fallGravityMultiplier: 8
   maxFallSpeed: -50
+  wallNormalMinX: 0.6
+  groundNormalMinY: 0.7
+  groundCheckOffset: {x: 0, y: -0.6}
+  groundCheckSize: {x: 0.8, y: 0.15}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1088
   skillLocked: 0
+  isCountering: 0
   dashSpeed: 25
   dashDuration: 0.15
   dashCooldown: 0.5
@@ -1299,7 +1338,7 @@ MonoBehaviour:
     cost: 0
     isUnlocked: 1
     isPassive: 1
-  - skillId: 4
+  - skillId: 3
     skillName: Stomp
     skillPrefab: {fileID: 8792487345317456340}
     cooldown: 0
@@ -1424,6 +1463,7 @@ Transform:
   - {fileID: 417706884321464143}
   - {fileID: 5674515030097575553}
   - {fileID: 7406868998213498192}
+  - {fileID: 370371347258033086}
   m_Father: {fileID: 7563957037513625506}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8792487345317456340
@@ -1475,7 +1515,7 @@ MonoBehaviour:
   stompGravityScale: 50
   canStomp: 0
   player: {fileID: 5652666909265740743}
-  _hurtBox: {fileID: 0}
+  _hurtBox: {fileID: 3863480949795753787}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
