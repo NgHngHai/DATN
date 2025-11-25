@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Universal\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\FalS0State.cs" />
+    <Compile Include="Assets\Scripts\Environment\BreakableWall.cs" />
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRoak.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\BossElite.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />
+    <Compile Include="Assets\Scripts\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkillPassive.cs" />
     <Compile Include="Assets\Scripts\Bullet\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyOffensiveState.cs" />
