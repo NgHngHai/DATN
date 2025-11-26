@@ -4,18 +4,25 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RoomManager : MonoBehaviour
+public class RoomData : MonoBehaviour
 {
+    // Room data
     public string roomID;
-    [SerializeField] private GameObject[] spawnPoints;
-    [SerializeField] private string adjacentRooms;
-    [SerializeField] private List<ISaveable> _saveables = new();
+    public Vector2 roomPos;
+    public CompositeCollider2D roomCameraBoundary;
+    public GameObject spawnPoint;
+    public string[] adjacentRooms;
+    public List<ISaveable> saveables = new();
 
+
+    // Rereferences
+    //private PlayerController _player;
     private Coroutine _scanRoutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //_player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _scanRoutine = StartCoroutine(ScanForSaveables());
     }
 
@@ -25,11 +32,11 @@ public class RoomManager : MonoBehaviour
         yield return null;
 
         // Finds all active MonoBehaviours in the currently loaded scene(s) and filters those implementing ISaveable.
-        _saveables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.InstanceID)
+        saveables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.InstanceID)
             .OfType<ISaveable>()
             .ToList();
 
-        Debug.Log($"Collected {_saveables.Count} ISaveable objects.");
+        Debug.Log($"Collected {saveables.Count} ISaveable objects.");
 
         _scanRoutine = null;
     }
@@ -37,7 +44,7 @@ public class RoomManager : MonoBehaviour
     // Load the saved state for all saveable objects in this room
     private void LoadRoomState()
     {
-        foreach (var saveable in _saveables)
+        foreach (var saveable in saveables)
         {
             // Assuming a SaveSystem class exists to handle loading
             var state = 0; //= SaveSystem.LoadState(saveable.GetUniqueID());

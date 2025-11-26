@@ -5,13 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : Entity
 {
-    // Room spawnpoint ID
-    public int spawnPointID = 0;
+    public static PlayerController Instance { get; private set; }
 
     // Component references
     public PlayerSkillManager skillManager;
     public Health playerHealth;
-    [SerializeField] private RoomManager currentRoom;
+
+    [Header("Spawnpoint")]
+    // Room spawnpoint ID
+    public string currentRoomID = "Room0";
 
     // Movement variables
     [Header("Movement Variables")]
@@ -54,7 +56,6 @@ public class PlayerController : Entity
     [Header("Air Friction Control")]
     [Tooltip("Frictionless (or low friction) material applied only while airborne after a jump.")]
     public PhysicsMaterial2D frictionlessMaterial;
-    private bool lastGroundedState;
 
     // Attacking & skills
     [Tooltip("When true, cannot input skills.")]
@@ -118,10 +119,18 @@ public class PlayerController : Entity
 
     protected override void Awake()
     {
+        // Singleton pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         base.Awake();
         animator = GetComponent<Animator>();            // Lấy component Animator
         playerHealth = GetComponent<Health>();          // Lấy component Health
-        currentRoom = FindFirstObjectByType<RoomManager>(); // Lấy RoomManager trong scene
 
         // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
         idleState = new AnimationState(this, "idle", true);
@@ -143,8 +152,6 @@ public class PlayerController : Entity
         animStateMachine.Initialize(idleState);         // Bắt đầu ở trạng thái Idle
 
         skillManager = GetComponent<PlayerSkillManager>();
-
-        lastGroundedState = isGrounded;
 
         // Prefer actions from the assigned InputActionAsset/Player map (avoid InputSystem.actions global lookup).
         if (InputActions != null)
@@ -449,7 +456,7 @@ public class PlayerController : Entity
         wallOnRight = foundWallRight;
         isTouchingWall = wallOnLeft || wallOnRight;
 
-        if (isTouchingWall)
+        if (!isGrounded)
         {
             ApplyAirPhysicsMaterial();
         }
