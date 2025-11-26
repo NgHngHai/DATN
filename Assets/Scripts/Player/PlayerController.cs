@@ -13,7 +13,7 @@ public class PlayerController : Entity
 
     [Header("Spawnpoint")]
     // Room spawnpoint ID
-    public int spawnPointID = 0;
+    public string currentRoomID = "Room0";
 
     // Movement variables
     [Header("Movement Variables")]
