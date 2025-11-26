@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyDolRE : Enemy
+public class EnemyDolRE : GroundEnemy
 {
     public DolREIdleObservationState idleObservationState;
     public DolREExplosionProjectileState explosionProjectileState;

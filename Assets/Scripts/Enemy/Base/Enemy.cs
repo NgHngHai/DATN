@@ -45,6 +45,8 @@ public abstract class Enemy : Entity
         rb.linearVelocity = Vector2.zero;
     }
 
+    public bool IsIdle() => rb.linearVelocity.magnitude < 0.1f;
+
     public virtual void OnDeath()
     {
         Destroy(gameObject);

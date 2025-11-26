@@ -9,33 +9,41 @@ public class EnemyJanitorRS : Enemy
 {
     [Header("Enemy: Janitor - RS")]
     [Tooltip("Cooldown duration before the enemy can teleport again after being damaged.")]
-    public float teleportCooldown = 3f;
+    public float teleportCooldown = 10f;
 
-    [Tooltip("Delay time before the teleport action is executed.")]
-    public float teleportDelay = 0.3f;
+    //[Tooltip("Vertical offset applied to the teleport position to adjust height.")]
+    //public float teleportOffsetY;
 
-    [Tooltip("Vertical offset applied to the teleport position to adjust height.")]
-    public float teleportOffsetY;
-
-    [Tooltip("Transform reference for teleport base position A.")]
+    [Header("Teleport Bases")]
     public Transform teleportBaseA;
-
-    [Tooltip("Transform reference for teleport base position B.")]
     public Transform teleportBaseB;
 
     public JanitorRSIdleState idleState;
     public JanitorRSTeleportState teleportState;
+
+    public AnimationState animIdleState;
+    public AnimationState animRunState;
+    public AnimationState animSpawnState;
 
     protected override void Awake()
     {
         base.Awake();
         idleState = new JanitorRSIdleState(this);
         teleportState = new JanitorRSTeleportState(this);
+
+        animIdleState = new AnimationState(this, "idle");
+        animRunState = new AnimationState(this, "run");
+        animSpawnState = new AnimationState(this, "spawn");
     }
 
     protected override void Start()
     {
         base.Start();
-        logicStateMachine.Initialize(idleState);
+        animStateMachine.Initialize(animIdleState);
+
+        // First state must be the Teleport state to ensure:
+        // - JanitorRS teleports to first base (base A) and plays the equip anim for that base.
+        logicStateMachine.Initialize(teleportState);
     }
+
 }

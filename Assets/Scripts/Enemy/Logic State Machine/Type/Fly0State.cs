@@ -21,22 +21,58 @@ public class Fly0SleepState : Fly0State
     public override void Enter()
     {
         base.Enter();
-        stateTimer = 1;
     }
 
     public override void Update()
     {
         if (isSleeping)
         {
-            if (IsTargetValid()) isSleeping = false;
+            if (IsTargetValid())
+            {
+                isSleeping = false;
+                animStateMachine.ChangeState(fly0.animAwakeState);
+            }
             return;
         }
 
         base.Update();
-        if (stateTimer < 0)
+
+        if (fly0.IsCurrentAnimStateTriggerCalled())
         {
             logicStateMachine.ChangeState(fly0.chaseState);
         }
+    }
+}
+
+public class Fly0ChaseState : Fly0State
+{
+    Vector2 chaseVel;
+
+    public Fly0ChaseState(Enemy enemy) : base(enemy)
+    {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (targetHandler.GetDistanceToTarget() < fly0.hoverAroundDistance)
+        {
+            logicStateMachine.ChangeState(fly0.hoverAroundState);
+            return;
+        }
+
+        chaseVel = targetHandler.GetDirectionToTarget() * fly0.chaseSpeed;
+    }
+
+    public override void FixedUpdate()
+    {
+        fly0.SetVelocity(chaseVel);
     }
 }
 
@@ -50,6 +86,7 @@ public class Fly0HoverAroundState : Fly0State
     public override void Enter()
     {
         base.Enter();
+        animStateMachine.ChangeState(fly0.animFlyingState);
         stateTimer = fly0.hoverRestTime;
         nextHoverPosition = fly0.transform.position;
         moveDir = Vector2.zero;
@@ -101,32 +138,6 @@ public class Fly0HoverAroundState : Fly0State
     }
 }
 
-public class Fly0ChaseState : Fly0State
-{
-    Vector2 chaseVel;
-
-    public Fly0ChaseState(Enemy enemy) : base(enemy)
-    {
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        if (targetHandler.GetDistanceToTarget() < fly0.hoverAroundDistance)
-        {
-            logicStateMachine.ChangeState(fly0.hoverAroundState);
-            return;
-        }
-
-        chaseVel = targetHandler.GetDirectionToTarget() * fly0.chaseSpeed;
-    }
-
-    public override void FixedUpdate()
-    {
-        fly0.SetVelocity(chaseVel);
-    }
-}
 
 public class Fly0AttackState : Fly0State
 {
@@ -137,9 +148,23 @@ public class Fly0AttackState : Fly0State
     public override void Enter()
     {
         base.Enter();
-        attackSet.CurrentAttack.AttackPointLookAt(targetHandler.CurrentTarget);
-        TryCurrentAttack();
-        logicStateMachine.ChangeState(fly0.hoverAroundState);
+        animStateMachine.ChangeState(fly0.animAttackState);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (IsTargetValid())
+        {
+            attackSet.CurrentAttack.AttackPointLookAt(targetHandler.CurrentTarget);
+            FlipToTarget();
+        }
+
+        if (fly0.IsCurrentAnimStateTriggerCalled())
+        {
+            logicStateMachine.ChangeState(fly0.chaseState);
+        }
     }
 }
 
