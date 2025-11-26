@@ -1134,7 +1134,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   skillManager: {fileID: 0}
   playerHealth: {fileID: 0}
-  currentRoomID: 
+  currentRoomID: Room0
   moveSpeed: 7
   externalVelocityX: 0
   jumpForce: 5
