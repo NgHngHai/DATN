@@ -50,8 +50,7 @@ public class AnimationState
         if (isBool)
             animator.SetBool(animParamName, true);      
         else
-        
-            animator.SetTrigger(animParamName);          
+            animator.SetTrigger(animParamName);          // Kích hoạt parameter trigger tương ứng trong Animator
 
         triggerCalled = false;                     
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,6 +21,12 @@ public class Health : MonoBehaviour, IDamageable
     [Tooltip("When true, incoming damage is ignored.")]
     public bool isInvincible = false;
 
+    public float damageMultiplier = 1f;
+
+    [SerializeField] private float iframeTime = 0.3f;
+    // Timestamp (in Time.time) until which i-frames are active after taking damage.
+    private float _iFrameUntilTime = 0f;
+
     [Header("Events")]
     [Tooltip("Invoked when the component takes damage with reaction info. Parameters: amount applied, shouldTriggerHitReaction.")]
     public DamagedWithReactionEvent OnDamagedWithReaction = new();
@@ -31,7 +38,7 @@ public class Health : MonoBehaviour, IDamageable
     public HealthChangedEvent OnHealthChanged = new();
 
     [Tooltip("Invoked when health reaches zero.")]
-    public UnityEvent OnDeath = new ();
+    public UnityEvent OnDeath = new();
 
     private void Reset()
     {
@@ -45,6 +52,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         // Ensure currentHealth is valid on start
         currentHealth = Mathf.Clamp(currentHealth, 0, Mathf.Max(1, maxHealth));
+        _iFrameUntilTime = 0f;
     }
 
     /// Apply damage. Returns true if damage was applied (not invincible and amount > 0).
@@ -52,15 +60,19 @@ public class Health : MonoBehaviour, IDamageable
     public bool TakeDamage(int amount, bool shouldTriggerHitReaction = true)
     {
         if (amount <= 0) return false;
-        if (isInvincible) return false;
+        if (!CanBeDamaged()) return false;
         if (currentHealth <= 0) return false; // already dead
 
         int prev = currentHealth;
-        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+        currentHealth = (int)Mathf.Clamp(currentHealth - MathF.Round(amount * damageMultiplier), 0, maxHealth);
         int applied = prev - currentHealth;
 
         if (applied > 0)
         {
+            // Start/refresh iframes after applying damage
+            if (iframeTime > 0f)
+                _iFrameUntilTime = Mathf.Max(_iFrameUntilTime, Time.time + iframeTime);
+
             // new event includes the reaction hint
             OnDamagedWithReaction?.Invoke(applied, shouldTriggerHitReaction);
 
@@ -74,13 +86,19 @@ public class Health : MonoBehaviour, IDamageable
         return false;
     }
 
-    /// Returns whether this component can currently be damaged (not invincible and not already dead).
+    // Returns whether this component can currently be damaged (not invincible and not already dead).
     public bool CanBeDamaged()
     {
-        return !isInvincible && currentHealth > 0;
+        return !isInvincible && !IsInIFrame() && currentHealth > 0;
     }
 
-    /// Heal the entity. Returns true if any healing occurred.
+    // True if currently inside the invincibility window granted after taking damage.
+    public bool IsInIFrame()
+    {
+        return Time.time < _iFrameUntilTime;
+    }
+
+    // Heal the entity. Returns true if any healing occurred.
     public bool Heal(int amount)
     {
         if (amount <= 0) return false;
@@ -100,7 +118,7 @@ public class Health : MonoBehaviour, IDamageable
         return false;
     }
 
-    /// Sets max health. Optionally adjust current health to stay within new max.
+    // Sets max health. Optionally adjust current health to stay within new max.
     public void SetMaxHealth(int newMax, bool clampCurrentToMax = true)
     {
         maxHealth = Mathf.Max(1, newMax);
@@ -115,7 +133,7 @@ public class Health : MonoBehaviour, IDamageable
         isInvincible = inv;
     }
 
-    /// Fully restore health to max.
+    // Fully restore health to max.
     public void RestoreToFull()
     {
         int prev = currentHealth;
@@ -128,6 +146,6 @@ public class Health : MonoBehaviour, IDamageable
         }
     }
 
-    /// Returns whether the entity is dead (health == 0).
+    // Returns whether the entity is dead (health == 0).
     public bool IsDead() => currentHealth <= 0;
 }

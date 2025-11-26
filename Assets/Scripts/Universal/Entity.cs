@@ -1,20 +1,24 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Entity : MonoBehaviour
 {
     // Lock states
-    public bool movementLocked = false;
+    public bool movementLocked;
     public bool attackLocked = false;
 
     public bool isAlive = true;
     public bool isFacingRight = true;
-    // Other variables like move speed, jump height, etc.
+
+    public bool canBeKnockedback = true;
 
     // References to components
     [Header("Component References")]
     public Rigidbody2D rb;
     public Animator animator;
     public AnimationStateMachine animStateMachine;
+
+    private Coroutine _movementLockRoutine;
 
     protected virtual void Awake()
     {
@@ -58,4 +62,41 @@ public class Entity : MonoBehaviour
 
     public int FacingDir => isFacingRight ? 1 : -1;
 
+    /// Apply knockback force to this entity. Optionally lock movement for a duration.
+    public virtual void ApplyKnockback(Vector2 direction, float force, bool lockMovement, float lockDuration = 0f)
+    {
+        if (!canBeKnockedback) return;
+
+        if (rb == null) return;
+
+        if (direction.sqrMagnitude < 0.0001f)
+            direction = new Vector2(-FacingDir, 0f);
+        else
+            direction.Normalize();
+
+
+        if (lockMovement && lockDuration > 0f)
+        {
+            LockMovementFor(lockDuration);
+        }
+
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
+    }
+
+    /// Lock movement for a fixed duration (overwrites any previous lock timer).
+    public void LockMovementFor(float duration)
+    {
+        if (_movementLockRoutine != null)
+            StopCoroutine(_movementLockRoutine);
+
+        movementLocked = true;
+        _movementLockRoutine = StartCoroutine(UnlockMovementAfter(duration));
+    }
+
+    private IEnumerator UnlockMovementAfter(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        movementLocked = false;
+        _movementLockRoutine = null;
+    }
 }

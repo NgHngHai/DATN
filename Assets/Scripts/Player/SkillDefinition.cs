@@ -17,15 +17,16 @@ public class SkillDefinition
 
     public void Activate()
     {
-        // Skill activation logic goes here
-
         if (skillPrefab == null)
         {
             Debug.LogWarning($"Skill '{skillName}' has no GameObject assigned.");
             return;
         }
 
-        var skillImpl = skillPrefab.GetComponentsInChildren<MonoBehaviour>().OfType<ISkill>().FirstOrDefault();
+        var skillImpl = skillPrefab
+            .GetComponentsInChildren<MonoBehaviour>()
+            .OfType<ISkill>()
+            .FirstOrDefault();
 
         if (skillImpl != null && !isPassive)
         {
@@ -39,5 +40,18 @@ public class SkillDefinition
         {
             Debug.LogWarning($"GameObject '{skillName}' does not contain a component implementing ISkill.");
         }
+    }
+
+    // Toggle passive effect on/off for the player
+    public void TogglePassive(GameObject owner, bool active)
+    {
+        if (!isPassive || skillPrefab == null || owner == null) return;
+
+        var effect = skillPrefab
+            .GetComponentsInChildren<MonoBehaviour>(true)
+            .OfType<ISkillPassive>()
+            .FirstOrDefault();
+
+        effect?.SetPassiveActive(active, owner);
     }
 }
