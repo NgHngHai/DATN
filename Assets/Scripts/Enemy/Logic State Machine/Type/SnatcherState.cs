@@ -31,7 +31,7 @@ public class SnatcherOnWallState : SnatcherState
 
 public class SnatcherJumpOnTargetState : SnatcherState
 {
-    SnatcherSecondaryCollider secondaryCollider;
+    private SnatcherSecondaryCollider secondaryCollider;
 
     public SnatcherJumpOnTargetState(Enemy enemy) : base(enemy)
     {

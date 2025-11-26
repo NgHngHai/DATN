@@ -4962,7 +4962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
   targetLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   damageAmount: 10
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0

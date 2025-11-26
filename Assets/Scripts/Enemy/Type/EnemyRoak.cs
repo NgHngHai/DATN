@@ -15,16 +15,23 @@ public class EnemyRoak : GroundEnemy
 
     public RoakState mainState;
 
+    public AnimationState animIdleState;
+    public AnimationState animRunState;
+
     protected override void Awake()
     {
         base.Awake();
         mainState = new RoakState(this);
+
+        animIdleState = new AnimationState(this, "idle");
+        animRunState = new AnimationState(this, "run");
     }
 
     protected override void Start()
     {
         base.Start();
         logicStateMachine.Initialize(mainState);
+        animStateMachine.Initialize(animIdleState);
     }
 
     public void CreatePoison()

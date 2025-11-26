@@ -17,7 +17,13 @@ public class RoakState : EnemyState
     public override void Update()
     {
         base.Update();
-        if(stateTimer < 0)
+
+        if (roak.IsIdle())
+            animStateMachine.ChangeState(roak.animIdleState);
+        else
+            animStateMachine.ChangeState(roak.animRunState);
+
+        if (stateTimer < 0)
         {
             stateTimer = roak.createPoisonDelay;
             roak.CreatePoison();
