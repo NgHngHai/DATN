@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
   currentRoom: Room0
+  _playerController: {fileID: 0}
 --- !u!61 &7899094006594394045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -405,7 +406,8 @@ MonoBehaviour:
   roomPos: {x: 0, y: 0}
   roomCameraBoundary: {fileID: 8043057175242776}
   spawnPoint: {fileID: 5247341454488243402}
-  adjacentRooms: []
+  adjacentRooms:
+  - Room1
 --- !u!1 &5247341454488243402
 GameObject:
   m_ObjectHideFlags: 0
