@@ -28,7 +28,7 @@ public class BoomPatrolState : BoomState
         base.Update();
         if (IsTargetValid())
         {
-            logicStateMachine.ChangeState(boom.targetDetectedState);
+            logicStateMachine.ChangeState(boom.chaseState);
         }
     }
 
@@ -39,21 +39,10 @@ public class BoomPatrolState : BoomState
     }
 }
 
-public class BoomTargetDetectedState : BoomState
+public class BoomChaseState : BoomState
 {
-    private float jumpForce = 2f;
-    private float waitTime = 1f;
-
-    public BoomTargetDetectedState(Enemy enemy) : base(enemy)
+    public BoomChaseState(Enemy enemy) : base(enemy)
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-        FlipToTarget();
-        boom.SetVelocity(new Vector2(0, jumpForce));
-        stateTimer = waitTime;
     }
 
     public override void Update()
@@ -63,75 +52,40 @@ public class BoomTargetDetectedState : BoomState
         if (!IsTargetValid())
         {
             logicStateMachine.ChangeState(boom.patrolState);
+            return;
         }
-        else if(stateTimer < 0)
+
+        FlipToTarget();
+
+        Vector2 chaseVel = new Vector2(boom.FacingDir * boom.chaseSpeed, 0);
+        boom.SetVelocity(chaseVel);
+
+        if(targetHandler.GetDistanceToTarget() < boom.explodeDistance)
         {
-            logicStateMachine.ChangeState(boom.dashState);
+            logicStateMachine.ChangeState(boom.explodeState);
         }
     }
 }
-
-public class BoomDashState : BoomState
+public class BoomExplodeState : BoomState
 {
-    private Vector2 dashVel;
-
-    public BoomDashState(Enemy enemy) : base(enemy)
+    public BoomExplodeState(Enemy enemy) : base(enemy)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        stateTimer = boom.dashDuration;
+        boom.StopVelocity();
+        animStateMachine.ChangeState(boom.animExplodeState);
     }
 
     public override void Update()
     {
         base.Update();
 
-        DashInFaceDirection();
-        ChangeStateOnTargetStatus();
-
-        if (targetHandler.GetDistanceToTarget() < boom.explodeDistance)
+        if (boom.IsCurrentAnimStateTriggerCalled())
         {
-            boom.Explode();
+            boom.DestroyItself();
         }
-    }
-
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        DashInFaceDirection(); 
-    }
-
-    private void DashInFaceDirection()
-    {
-        float t = boom.dashCurve.Evaluate(1 - (stateTimer / boom.dashDuration));
-        float dashSpeed = Mathf.Lerp(0, boom.maxDashSpeed, t);
-
-        dashVel.x = dashSpeed * boom.FacingDir;
-
-        boom.SetVelocity(dashVel);
-    }
-
-    private void ChangeStateOnTargetStatus()
-    {
-        if (stateTimer > 0) return;
-
-        if (targetHandler.CurrentTarget == null)
-        {
-            logicStateMachine.ChangeState(boom.targetDetectedState);
-        }
-        else
-        {
-            logicStateMachine.ChangeState(boom.patrolState);
-        }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-        boom.StopVelocity();
     }
 }
-

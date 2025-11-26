@@ -8,49 +8,38 @@ using UnityEngine;
 public class EnemyBoom : GroundEnemy
 {
     [Header("Enemy: Boom")]
-    [Tooltip("Maximum dash speed reached during the dash.")]
-    public float maxDashSpeed;
-
-    [Tooltip("How long the dash lasts before stopping or switching state.")]
-    public float dashDuration;
-
-    [Tooltip("Curve controlling dash speed progression over time.")]
-    public AnimationCurve dashCurve;
-
-    [Tooltip("Distance from target at which the enemy explodes.")]
+    public float chaseSpeed;
     public float explodeDistance;
 
-    [Tooltip("Prefab used to create the explosion effect on death or self-destruct.")]
-    [SerializeField] private GameObject explosionPrefab;
-
     public BoomPatrolState patrolState;
-    public BoomDashState dashState;
-    public BoomTargetDetectedState targetDetectedState;
+    public BoomChaseState chaseState;
+    public BoomExplodeState explodeState;
+
+    public AnimationState animRunState;
+    public AnimationState animExplodeState;
 
     protected override void Awake()
     {
         base.Awake();
         patrolState = new BoomPatrolState(this);
-        dashState = new BoomDashState(this);
-        targetDetectedState = new BoomTargetDetectedState(this);
+        chaseState = new BoomChaseState(this);
+        explodeState = new BoomExplodeState(this);
+
+        animRunState = new AnimationState(this, "run");
+        animExplodeState = new AnimationState(this, "explode");
     }
 
     protected override void Start()
     {
         base.Start();
         logicStateMachine.Initialize(patrolState);
+        animStateMachine.Initialize(animRunState);
     }
 
     public override void OnDeath()
     {
-        logicStateMachine.currentState?.Exit();
-        StopVelocity();
-        Invoke(nameof(Explode), 0.5f);
+        logicStateMachine.ChangeState(explodeState);
     }
 
-    public void Explode()
-    {
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-    }
+    public void DestroyItself() => Destroy(gameObject);
 }
