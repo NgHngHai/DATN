@@ -440,12 +440,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
   currentRoom: Room0
   _adjacentRooms: []
-  roomObjectList:
+  _roomObjectList:
   - {fileID: 4205137446257568731, guid: 7dc9d874cf239a74c957128409e71bd8, type: 3}
   - {fileID: 8944225878746811206, guid: f02a9b610035ce34d872c7063f2f8f43, type: 3}
   - {fileID: 2313115254987736641, guid: 83f00a24c7931c943a7d03573789325b, type: 3}
   - {fileID: 3629752424010758697, guid: 5fd3ea48b3f479f4794df82829eee786, type: 3}
   - {fileID: 8093538473932797090, guid: bdafc53783b15574f9fd4b23905792ab, type: 3}
+  _loadedRoomList: []
   playerController: {fileID: 997348703}
   _cameraConfiner: {fileID: 415828010}
 --- !u!4 &1682794645

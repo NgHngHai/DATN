@@ -148,7 +148,7 @@ MonoBehaviour:
   roomCameraBoundary: {fileID: 5522443833407635314}
   spawnPoint: {fileID: 5533518613700325168}
   adjacentRooms:
-  - Room0
+  - Room1
   - Room3
   - Room4
 --- !u!1 &3484791793272334776
@@ -239,7 +239,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3832569827413074917}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
