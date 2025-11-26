@@ -8,10 +8,12 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject[] _adjacentRooms;
     [SerializeField] private GameObject[] roomObjectList; 
     private Dictionary<string, GameObject> _roomList = new();
+    private string _previousRoom;
 
     // References
     public PlayerController playerController;
     [SerializeField] private CinemachineConfiner2D _cameraConfiner;
+    private GameObject currentRoomObject;
 
     private void Awake()
     {
@@ -29,20 +31,32 @@ public class RoomManager : MonoBehaviour
                 _roomList[roomData.roomID] = room;
             }
         }
+
+        LoadAdjacentRooms();
     }
 
     public void SwitchCurrentRoom(string roomID)
     {
         // Unload adjacent rooms
         // Switch current room
+        _previousRoom = currentRoom;
         currentRoom = roomID;
         SetCameraBoundary();
-        // Preload adjacent rooms
+        LoadAdjacentRooms();
     }
 
     public void LoadAdjacentRooms()
     {
-        // Instantiate room prefabs adjacent to current room
+        currentRoomObject = _roomList[currentRoom];
+        RoomData currentRoomData = currentRoomObject.GetComponent<RoomData>();
+
+        foreach (string adjacentRoomID in currentRoomData.adjacentRooms)
+        {
+            if (adjacentRoomID == _previousRoom)
+                continue; // Skip loading the previous room to avoid duplicates
+            RoomData adjacentRoomData = _roomList[adjacentRoomID].GetComponent<RoomData>();
+            Instantiate(_roomList[adjacentRoomID], adjacentRoomData.roomPos, Quaternion.identity);
+        }
     }
 
     public void UnloadRooms(string roomID)
@@ -53,7 +67,7 @@ public class RoomManager : MonoBehaviour
 
     public void SetCameraBoundary()
     {
-        GameObject currentRoomObject = _roomList[currentRoom];
+        currentRoomObject = _roomList[currentRoom];
         _cameraConfiner.BoundingShape2D = currentRoomObject.GetComponent<RoomData>().roomCameraBoundary;
     }
 }

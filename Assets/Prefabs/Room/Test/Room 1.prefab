@@ -1731,4 +1731,6 @@ MonoBehaviour:
   roomPos: {x: 21, y: 0}
   roomCameraBoundary: {fileID: 1805803989451797364}
   spawnPoint: {fileID: 6184352740977887466}
-  adjacentRooms: []
+  adjacentRooms:
+  - Room0
+  - Room2
