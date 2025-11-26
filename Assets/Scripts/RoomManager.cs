@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
+    // Room data
     public string roomID;
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private string adjacentRooms;
     [SerializeField] private List<ISaveable> _saveables = new();
 
+    // Rereferences
+    private PlayerController _player;
     private Coroutine _scanRoutine;
+
+    private void Awake()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _player.transform.position = spawnPoints[_player.spawnPointID].transform.position;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
