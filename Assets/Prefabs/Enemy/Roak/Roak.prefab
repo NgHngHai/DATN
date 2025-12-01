@@ -88,9 +88,13 @@ MonoBehaviour:
   damageAmount: 3
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0
+  lockMovementOnTarget: 0
+  knockbackLockDuration: 0.1
   applyKnockbackToSelf: 0
-  knockbackForce: 5
-  knockbackForceMode: 1
+  targetKnockbackForce: 5
+  selfKnockbackForce: 5
+  restoreEnergyOnHit: 0
+  energyRestoredPerHit: 3
   singleHitPerTarget: 1
   repeatDelay: 0
 --- !u!1 &3828942458327386514
@@ -107,6 +111,8 @@ GameObject:
   - component: {fileID: 4577663926805039782}
   - component: {fileID: 551779335541370507}
   - component: {fileID: -5244106645412013181}
+  - component: {fileID: 4667849924603745213}
+  - component: {fileID: 3572989021169597212}
   m_Layer: 9
   m_Name: Roak
   m_TagString: Untagged
@@ -211,6 +217,7 @@ MonoBehaviour:
   attackLocked: 0
   isAlive: 1
   isFacingRight: 1
+  canBeKnockedback: 1
   rb: {fileID: 5990577768488721935}
   animator: {fileID: 1564220852725325923}
   groundMask:
@@ -220,8 +227,6 @@ MonoBehaviour:
   groundCheckDistance: 0.15
   groundEdgeCheckOffsetX: 0.78
   wallCheckDistance: 0.97
-  createPoisonDelay: 5
-  poisonSmoke: {fileID: 5467570880889585271, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
 --- !u!114 &551779335541370507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +257,8 @@ MonoBehaviour:
   maxHealth: 6
   currentHealth: 6
   isInvincible: 0
+  damageMultiplier: 1
+  iframeTime: 0.3
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
@@ -276,6 +283,39 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4667849924603745213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828942458327386514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598694127c6911d4b9104fb3ae27efe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackSet
+  attackBehaviors: []
+--- !u!114 &3572989021169597212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828942458327386514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c38748e53294846b6382513e8beb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRangedAttack
+  attackPoint: {fileID: 6395411124961461904}
+  attackCooldown: 5
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  projectilePrefab: {fileID: 5467570880889585271, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+  projectileSpeed: 0
+  looksAtFireDirection: 0
 --- !u!1 &5136332798786812598
 GameObject:
   m_ObjectHideFlags: 0

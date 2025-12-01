@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RoakState : EnemyState
+public class RoakState : EnemyOffensiveState
 {
     protected EnemyRoak roak;
     public RoakState(Enemy enemy) : base(enemy)
@@ -11,7 +11,6 @@ public class RoakState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        stateTimer = roak.createPoisonDelay;
     }
 
     public override void Update()
@@ -23,10 +22,9 @@ public class RoakState : EnemyState
         else
             animStateMachine.ChangeState(roak.animRunState);
 
-        if (stateTimer < 0)
+        if (IsCurrentAttackReady())
         {
-            stateTimer = roak.createPoisonDelay;
-            roak.CreatePoison();
+            TryCurrentAttack();
         }
     }
 }
