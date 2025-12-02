@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 1484345977953654371}
   - component: {fileID: 2432408401623021997}
   - component: {fileID: 8240204760134584171}
+  - component: {fileID: 780285354900931754}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1239,6 +1240,23 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &780285354900931754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50c1ce7cf0272b44938e0c908586cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoneyManager
+  startingMoney: 0
+  currentMoney: 0
+  OnMoneyChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7025280725610454495
