@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         // Fallback to player's starting room if not set in inspector
-        if (string.IsNullOrEmpty(currentRoom) && playerController != null)
+        if (playerController != null)
             currentRoom = playerController.currentRoomID;
     }
 
@@ -38,6 +38,11 @@ public class RoomManager : MonoBehaviour
                 _roomList[roomData.roomID] = room;
             }
         }
+
+        playerController.transform.position = 
+            _roomList.ContainsKey(currentRoom) ?
+            _roomList[currentRoom].GetComponent<RoomData>().spawnPoint.transform.position :
+            Vector2.zero;
 
         // Initial load and camera setup
         LoadAdjacentRooms();

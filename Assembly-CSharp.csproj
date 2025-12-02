@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
     <Compile Include="Assets\Scripts\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPoisonHandler.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMoneyManager.cs" />
     <Compile Include="Assets\Scripts\Universal\AnimationStateMachine.cs" />
     <Compile Include="Assets\Scripts\Universal\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Scripts\Save System\ISaveable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RapicitatorState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
+    <Compile Include="Assets\Scripts\Universal\MoneyOnDeath.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyRangedAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
