@@ -42,10 +42,6 @@ public class PlayerController : Entity
 
     // Ground/Wall detection
     [Header("Ground Check")]
-    [Tooltip("Minimum upward normal.y to count as ground. Raise if vertical walls sometimes register as ground.")]
-    [SerializeField] private float wallNormalMinX = 0.6f;
-    [Tooltip("Minimum absolute normal.x to count as a wall when not ground.")]
-    [SerializeField] private float groundNormalMinY = 0.7f;
     [SerializeField] private Vector2 groundCheckOffset = new Vector2(0f, -0.9f);
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.8f, 0.15f);
     [SerializeField] private LayerMask groundLayers = ~0;
@@ -100,6 +96,8 @@ public class PlayerController : Entity
     public AnimationState ascendState;
 
     public AnimationState normalAttackState;
+    public AnimationState attackUpState;
+    public AnimationState attackDownState;
     public AnimationState heavyAttackState;
     public AnimationState parryState;
     public AnimationState counterState;
@@ -110,11 +108,26 @@ public class PlayerController : Entity
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
+
+        // Subscribe to health events to react to hits/death
+        if (playerHealth == null) playerHealth = GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.OnDamagedWithReaction.AddListener(HandleDamagedWithReaction);
+            playerHealth.OnDeath.AddListener(HandleDeath);
+        }
     }
 
     private void OnDisable()
     {
         InputActions.FindActionMap("Player").Disable();
+
+        // Unsubscribe to avoid duplicate handlers on scene reloads
+        if (playerHealth != null)
+        {
+            playerHealth.OnDamagedWithReaction.RemoveListener(HandleDamagedWithReaction);
+            playerHealth.OnDeath.RemoveListener(HandleDeath);
+        }
     }
 
     protected override void Awake()
@@ -143,6 +156,8 @@ public class PlayerController : Entity
 
         normalAttackState = new AnimationState(this, "nAttack", false);
         heavyAttackState = new AnimationState(this, "hAttack", false);
+        attackUpState = new AnimationState(this, "attackUp", false);
+        attackDownState = new AnimationState(this, "attackDown", false);
         parryState = new AnimationState(this, "parry", true);
         counterState = new AnimationState(this, "counter", false);
 
@@ -193,6 +208,11 @@ public class PlayerController : Entity
         if (animStateMachine.currentState == deathState)
             return; // Dead - no input
 
+        if (animStateMachine.currentState == hurtState && movementLocked)
+        {
+            return;
+        }
+
         // Read movement input
         Vector2 moveVec = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
 
@@ -202,7 +222,7 @@ public class PlayerController : Entity
         {
             // Get horizontal movement amount
             moveAmt = moveVec.x;
-            FlipOnVelocityX();
+            FlipOnMoveInput();
         }
         else
         {
@@ -228,18 +248,17 @@ public class PlayerController : Entity
         // Attack input - can be used while running (does not cancel horizontal control)
         if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked)
         {
+            isAttacking = true;
             // Decide attack type by vertical input at the moment of pressing attack.
             // Threshold prevents accidental up/down from small sticks.
             const float verticalThreshold = 0.5f;
             if (moveVec.y > verticalThreshold)
             {
-                isAttacking = true;
                 PerformAttackUp();
                 return;
             }
             else if (moveVec.y < -verticalThreshold)
             {
-                isAttacking = true;
                 PerformAttackDown();
                 return;
             }
@@ -247,14 +266,13 @@ public class PlayerController : Entity
             {
                 if (isGrounded)
                 {
-                    isAttacking = true;
                     PerformAttackNormal();
                     return;
                 }
                 else
                 {
-                    // PerformAirAttack();
-                    // return;
+                     PerformAirAttack();
+                    return;
                 }
             }
         }
@@ -377,14 +395,17 @@ public class PlayerController : Entity
         }
     }
 
+    private void FlipOnMoveInput()
+    {
+        if (moveAmt < 0 && isFacingRight)
+            Flip();
+        else if (moveAmt > 0 && !isFacingRight)
+            Flip();
+    }
+
     private void Running()
     {
         float internalVelocityX = moveAmt * moveSpeed;
-
-        if (!isGrounded && isTouchingWall)
-            if ((wallOnLeft && internalVelocityX < 0f) || (wallOnRight && internalVelocityX > 0f))
-                internalVelocityX = 0f;
-
         rb.linearVelocityX = internalVelocityX + externalVelocityX;
     }
 
@@ -425,36 +446,12 @@ public class PlayerController : Entity
             return;
 
         ApplyAirPhysicsMaterial();
-
-        wallOnLeft = false;
-        wallOnRight = false;
-        isTouchingWall = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if ((groundLayers.value & (1 << collision.gameObject.layer)) == 0)
             return;
-
-        bool foundWallLeft = false;
-        bool foundWallRight = false;
-
-        for (int i = 0; i < collision.contactCount; i++)
-        {
-            var contact = collision.GetContact(i);
-            Vector2 n = contact.normal;
-
-            // Treat near-vertical normals as walls
-            if (Mathf.Abs(n.x) >= wallNormalMinX && n.y < groundNormalMinY)
-            {
-                if (n.x > 0f) foundWallLeft = true;
-                if (n.x < 0f) foundWallRight = true;
-            }
-        }
-
-        wallOnLeft = foundWallLeft;
-        wallOnRight = foundWallRight;
-        isTouchingWall = wallOnLeft || wallOnRight;
 
         if (!isGrounded)
         {
@@ -502,25 +499,20 @@ public class PlayerController : Entity
 
     private void PerformAttackUp()
     {
-        Debug.Log("Attack: Up");
-        // Ensure animator has a trigger named "AttackUp"
-        //animator?.SetTrigger("AttackUp");
-        // TODO: spawn upward hitbox or call attack detection here
+        movementLocked = true;
+        animStateMachine.ChangeState(attackUpState);
     }
 
     private void PerformAttackDown()
     {
-        Debug.Log("Attack: Down");
-        // Ensure animator has a trigger named "AttackDown"
-        //animator?.SetTrigger("AttackDown");
-        // TODO: spawn downward hitbox or call attack detection here
+        movementLocked = true;
+        animStateMachine.ChangeState(attackDownState);
     }
 
     private void PerformAttackHeavy()
     {
-        Debug.Log("Heavy Attack");
-        // Ensure animator has a trigger named "HeavyAttack"
-        //animator?.SetTrigger("HeavyAttack");
+        movementLocked = true;
+        animStateMachine.ChangeState(heavyAttackState);
     }
 
     private void PerformAirAttack()
@@ -528,6 +520,25 @@ public class PlayerController : Entity
         Debug.Log("Air Attack");
         // Ensure animator has a trigger named "AirAttack"
         //animator?.SetTrigger("AirAttack");
+    }
+
+    // Health event handlers
+    private void HandleDamagedWithReaction(int appliedAmount, bool shouldTriggerHitReaction)
+    {
+        // Only react when damage actually applied and reaction requested
+        if (appliedAmount <= 0 || !shouldTriggerHitReaction)
+            return;
+
+        if (animStateMachine.currentState == deathState)
+            return;
+
+        // Switch to hurt state (knockback is already applied by HurtBox -> Entity.ApplyKnockback)
+        animStateMachine.ChangeState(hurtState);
+    }
+
+    private void HandleDeath()
+    {
+        animStateMachine.ChangeState(deathState);
     }
 
     public void UnlockPostAttack()
