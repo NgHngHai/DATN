@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IDamageable
 {
     /// Apply damage. Returns true if damage was applied.
-    bool TakeDamage(int amount, bool shouldTriggerHitReaction = true);
+    bool TakeDamage(int amount, DamageType type, Vector2 hitDir, bool shouldTriggerHitReaction = true);
 
     /// Returns whether this component can currently be damaged (for example, not invincible or already destroyed).
     bool CanBeDamaged();

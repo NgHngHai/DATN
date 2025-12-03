@@ -31,7 +31,7 @@ public class PlayerPoisonHandler : MonoBehaviour
             if (playerHealth == null || playerHealth.IsDead() || !playerHealth.CanBeDamaged())
                 break;
 
-            playerHealth.TakeDamage(damagePerTick, false);
+            playerHealth.TakeDamage(damagePerTick, DamageType.Poison, Vector2.up, false);
             yield return new WaitForSeconds(damageInterval);
             elapsed += damageInterval;
         }

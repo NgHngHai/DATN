@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyMI12.cs" />
+    <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
     <Compile Include="Assets\Scripts\Universal\Entity.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\Scripts\Projectile\HomingMissile.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Blast.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_DJump.cs" />
+    <Compile Include="Assets\Scripts\Universal\DamageType.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyIncreaseAttackSpeedAura.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemySnatcher.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyExplosio.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\JanitorRSState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly0State.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\SnatcherSecondaryCollider.cs" />
+    <Compile Include="Assets\Scripts\Universal\EffectsDriver.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
     <Compile Include="Assets\Scripts\Universal\Health.cs" />
     <Compile Include="Assets\Scripts\Room\DoorTrigger.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRapicitator.cs" />
     <Compile Include="Assets\Scripts\Room\RoomManager.cs" />
+    <Compile Include="Assets\Scripts\Environment\TrapHurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyDolRE.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />

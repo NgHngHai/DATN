@@ -37,7 +37,7 @@ public class L4SISupportState : L4SIState
         health.OnDamagedWithReaction.RemoveListener(OnDamageReaction);
     }
 
-    private void OnDamageReaction(int appliedAmount, bool shouldTriggerHitReaction)
+    private void OnDamageReaction(int appliedAmount, Vector2 hitDir, bool shouldTriggerHitReaction)
     {
         logicStateMachine.ChangeState(l4si.wingAttackState);
     }
