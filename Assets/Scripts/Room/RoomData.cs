@@ -36,7 +36,7 @@ public class RoomData : MonoBehaviour
             .OfType<ISaveable>()
             .ToList();
 
-        Debug.Log($"Collected {saveables.Count} ISaveable objects.");
+        Debug.Log(this.name + $"Collected {saveables.Count} ISaveable objects.");
 
         _scanRoutine = null;
     }

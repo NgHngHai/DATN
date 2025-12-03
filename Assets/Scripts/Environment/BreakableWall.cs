@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BreakableWall : MonoBehaviour, IDamageable, ISaveable
@@ -7,14 +6,21 @@ public class BreakableWall : MonoBehaviour, IDamageable, ISaveable
     [SerializeField] private string uniqueID;
     private bool isDestroyed = false;
 
-    public bool TakeDamage (int amount, bool trigger = false)
+    public bool TakeDamage (int amount, DamageType type, Vector2 hitDir, bool trigger = false)
     {
         if (isDestroyed) return false;
+
+        if ((type & DamageType.Heavy) == 0)
+        {
+            // Only heavy damage can damage the wall
+            return false;
+        }
 
         health--;
 
         if (health == 0)
         {
+            isDestroyed = true;
             gameObject.SetActive(false);
         }
 
