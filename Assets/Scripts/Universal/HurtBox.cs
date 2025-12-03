@@ -13,6 +13,9 @@ public class HurtBox : MonoBehaviour
     [Tooltip("How much damage to apply on hit.")]
     public int damageAmount = 1;
 
+    [Tooltip("Damage type(s) applied by this hurtbox.")]
+    public DamageType damageType = DamageType.Normal;
+
     [Tooltip("If true, presentation systems may play a hit reaction on targets.")]
     public bool shouldTriggerHitReaction = true;
 
@@ -72,11 +75,11 @@ public class HurtBox : MonoBehaviour
     {
         _lastHitTime.Clear();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         TryHit(other);
     }
-    private void OnTriggerStay2D(Collider2D other)
+    protected void OnTriggerStay2D(Collider2D other)
     {
         if (!singleHitPerTarget && repeatDelay > 0f)
         {
@@ -103,11 +106,6 @@ public class HurtBox : MonoBehaviour
                 return;
         }
 
-        // Apply damage
-        bool applied = damageable.TakeDamage(damageAmount, shouldTriggerHitReaction);
-        if (!applied)
-            return;
-
         if (repeatDelay > 0f)
             _lastHitTime[targetKey] = Time.time;
 
@@ -127,6 +125,11 @@ public class HurtBox : MonoBehaviour
         {
             _selfEntity.ApplyKnockback(dir, selfKnockbackForce, false);
         }
+
+        // Apply damage
+        bool applied = damageable.TakeDamage(damageAmount, damageType, -dir, shouldTriggerHitReaction);
+        if (!applied)
+            return;
 
         // Restore energy on hit if is player
         if (restoreEnergyOnHit && _playerSkillManager != null)

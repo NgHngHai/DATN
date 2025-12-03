@@ -9,7 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     public class HealthChangedEvent : UnityEvent<int, int> { } // (currentHealth, maxHealth)
 
     [System.Serializable]
-    public class DamagedWithReactionEvent : UnityEvent<int, bool> { } // (appliedAmount, shouldTriggerHitReaction)
+    public class DamagedWithReactionEvent : UnityEvent<int, Vector2, bool> { } // (appliedAmount, HitDirection ,shouldTriggerHitReaction)
 
     [Header("Health Settings")]
     [Tooltip("Maximum health value.")]
@@ -56,8 +56,7 @@ public class Health : MonoBehaviour, IDamageable
     }
 
     /// Apply damage. Returns true if damage was applied (not invincible and amount > 0).
-    /// New parameter: shouldTriggerHitReaction — caller indicates whether presentation systems should treat this as a "hit" reaction.
-    public bool TakeDamage(int amount, bool shouldTriggerHitReaction = true)
+    public bool TakeDamage(int amount, DamageType type, Vector2 hitDir, bool shouldTriggerHitReaction = true)
     {
         if (amount <= 0) return false;
         if (!CanBeDamaged()) return false;
@@ -74,8 +73,7 @@ public class Health : MonoBehaviour, IDamageable
                 _iFrameUntilTime = Mathf.Max(_iFrameUntilTime, Time.time + iframeTime);
 
             // new event includes the reaction hint
-            OnDamagedWithReaction?.Invoke(applied, shouldTriggerHitReaction);
-
+            OnDamagedWithReaction?.Invoke(applied, hitDir, shouldTriggerHitReaction);
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
             if (currentHealth == 0)

@@ -10,6 +10,7 @@ public class PlayerController : Entity
     // Component references
     public PlayerSkillManager skillManager;
     public Health playerHealth;
+    public EffectEvents effectEvents;
 
     [Header("Spawnpoint")]
     // Room spawnpoint ID
@@ -144,6 +145,7 @@ public class PlayerController : Entity
         base.Awake();
         animator = GetComponent<Animator>();            // Lấy component Animator
         playerHealth = GetComponent<Health>();          // Lấy component Health
+        effectEvents = GetComponent<EffectEvents>();    // Lấy component EffectEvents
 
         // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
         idleState = new AnimationState(this, "idle", true);
@@ -318,9 +320,9 @@ public class PlayerController : Entity
         }
 
         // Handle jump hold for variable height
-        if (isJumping && !movementLocked)
+        if (isJumping)
         {
-            if (jumpAction.IsPressed() && jumpHoldTimer < jumpHoldTimeMax && rb.linearVelocityY > 0)
+            if (jumpAction.IsPressed() && jumpHoldTimer < jumpHoldTimeMax && rb.linearVelocityY > 0 && !movementLocked)
             {
                 rb.linearVelocityY += jumpHoldForce * Time.deltaTime;
                 jumpHoldTimer += Time.deltaTime;
@@ -413,6 +415,8 @@ public class PlayerController : Entity
     {
         rb.linearVelocityY = jumpForce;
         ApplyAirPhysicsMaterial();
+
+        effectEvents?.InvokeJump();
     }
 
     private void StartDash()
@@ -429,6 +433,8 @@ public class PlayerController : Entity
         playerHealth.isInvincible = true;
 
         if (!isGrounded) ApplyAirPhysicsMaterial();
+
+        effectEvents?.InvokeDashStart();
     }
 
     private void EndDash()
@@ -472,6 +478,8 @@ public class PlayerController : Entity
         {
             extraJumpCount = 0;
             lastGroundedTime = Time.time; // landed
+
+            effectEvents?.InvokeLand();
         }
         else if (!isGrounded && wasGrounded)
         {
@@ -523,7 +531,7 @@ public class PlayerController : Entity
     }
 
     // Health event handlers
-    private void HandleDamagedWithReaction(int appliedAmount, bool shouldTriggerHitReaction)
+    private void HandleDamagedWithReaction(int appliedAmount, Vector2 hitDir, bool shouldTriggerHitReaction)
     {
         // Only react when damage actually applied and reaction requested
         if (appliedAmount <= 0 || !shouldTriggerHitReaction)
@@ -534,11 +542,13 @@ public class PlayerController : Entity
 
         // Switch to hurt state (knockback is already applied by HurtBox -> Entity.ApplyKnockback)
         animStateMachine.ChangeState(hurtState);
+        effectEvents?.InvokeDamagedWithReaction(hitDir);
     }
 
     private void HandleDeath()
     {
         animStateMachine.ChangeState(deathState);
+        effectEvents?.InvokeDeath();
     }
 
     public void UnlockPostAttack()

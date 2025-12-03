@@ -56,7 +56,7 @@ public class JanitorRSIdleState : JanitorRSState
         health.OnDamagedWithReaction.RemoveListener(OnDamageTeleport);
     }
 
-    private void OnDamageTeleport(int appliedAmount, bool shouldTriggerHitReaction)
+    private void OnDamageTeleport(int appliedAmount, Vector2 hitDir, bool shouldTriggerHitReaction)
     {
         if (stateTimer > 0) return;
         isFirstTimeTeleport = false;
