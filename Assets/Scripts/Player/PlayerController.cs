@@ -208,7 +208,9 @@ public class PlayerController : Entity
     {
         base.Update();
         if (animStateMachine.currentState == deathState)
+        {
             return; // Dead - no input
+        }
 
         if (animStateMachine.currentState == hurtState && movementLocked)
         {
@@ -306,6 +308,7 @@ public class PlayerController : Entity
             Jump();
             isJumping = true;
             jumpHoldTimer = 0f;
+            ApplyAirPhysicsMaterial();
             animStateMachine.ChangeState(jumpState);
             return;
         }
@@ -547,6 +550,13 @@ public class PlayerController : Entity
 
     private void HandleDeath()
     {
+        isAlive = false;
+
+        movementLocked = true;
+        isDashing = false;
+        isJumping = false;
+        moveAmt = 0;
+
         animStateMachine.ChangeState(deathState);
         effectEvents?.InvokeDeath();
     }

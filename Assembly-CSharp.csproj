@@ -61,6 +61,7 @@
     <Analyzer Include="D:\Unity\UnityHub\Hub\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Player\PlayerSaveables.cs" />
     <Compile Include="Assets\Scripts\Save System\UniqueID.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyL4SI.cs" />
     <Compile Include="Assets\Scripts\Room\RoomData.cs" />

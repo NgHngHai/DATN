@@ -114,11 +114,14 @@ public class HurtBox : MonoBehaviour
 
         if (applyKnockbackToTarget && targetKnockbackForce > 0f)
         {
-
             var targetEntity = other.GetComponent<Entity>();
+            var targetRb = other.GetComponent<Rigidbody2D>();
 
             if (targetEntity != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
                 targetEntity.ApplyKnockback(-dir, targetKnockbackForce, lockMovementOnTarget, knockbackLockDuration);
+            }
         }
 
         if (applyKnockbackToSelf && targetKnockbackForce > 0f && _selfRb != null)
