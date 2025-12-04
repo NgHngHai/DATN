@@ -58,11 +58,11 @@ public class TrapHurtBox : HurtBox
 
     private void TeleportPlayerToRoomSpawn(PlayerController player)
     {
-        if (player == null || _roomData == null || _roomData.spawnPoint == null)
+        if (player == null || _roomData == null)
             return;
 
-        // Teleport to this room instance's spawn point
-        player.transform.position = _roomData.spawnPoint.transform.position;
+        //// Teleport to this room first spawn position
+        player.transform.position = _roomData.FirstSpawnPosition;
 
         // Optional velocity reset
         if (zeroVelocityOnTeleport && player.TryGetComponent<Rigidbody2D>(out var rb))
