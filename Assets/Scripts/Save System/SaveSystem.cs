@@ -1,27 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+public class SaveSystem : GenericSingleton<SaveSystem>
 {
-    private static SaveSystem _instance;
-    public static SaveSystem Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindFirstObjectByType<SaveSystem>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("SaveSystem");
-                    _instance = go.AddComponent<SaveSystem>();
-                    DontDestroyOnLoad(go);
-                }
-            }
-            return _instance;
-        }
-    }
-
     private FileDataHandler dataHandler;
     private GameData gameData;
     private List<ISaveable> saveables = new List<ISaveable>();
@@ -29,16 +10,9 @@ public class SaveSystem : MonoBehaviour
     [Header("File Settings")]
     [SerializeField] private string fileName = "save.json";
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
 
         string path = Application.persistentDataPath;
         dataHandler = new FileDataHandler(path, fileName);
@@ -56,7 +30,8 @@ public class SaveSystem : MonoBehaviour
             saveables.Remove(saveable);
     }
 
-    public void NewGame()
+    #region Game Data Functions
+    public void CreateNewGameData()
     {
         gameData = new GameData();
     }
@@ -64,46 +39,55 @@ public class SaveSystem : MonoBehaviour
     public void SaveGame()
     {
         if (gameData == null)
-            gameData = new GameData();
+            CreateNewGameData();
 
-        foreach (var saveable in saveables)
-        {
-            string id = saveable.GetUniqueID();
-            object state = saveable.CaptureState();
-            gameData.savedObjects[id] = state;
-        }
-
+        CaptureRegisteredStates();
         dataHandler.Save(gameData);
-        Debug.Log("✅ Game saved!");
+
+        Debug.Log("Game saved!");
     }
 
-    // Problem
     public void LoadGame()
     {
         gameData = dataHandler.Load();
 
         if (gameData == null)
         {
-            Debug.Log("⚠️ No save found, starting new game.");
-            NewGame();
+            Debug.Log("No save found -> creating new");
+            CreateNewGameData();
             return;
         }
 
+        RestoreRegisteredStates();
+        Debug.Log("Game loaded!");
+    }
+
+    public void DeleteSave()
+    {
+        dataHandler.Delete();
+    }
+    #endregion
+
+    #region Capture & Restore States
+    public void CaptureRegisteredStates()
+    {
+        foreach (var saveable in saveables)
+        {
+            string id = saveable.GetUniqueID();
+            object state = saveable.CaptureState();
+            gameData.savedObjects[id] = state;
+        }
+    }
+
+    public void RestoreRegisteredStates()
+    {
         foreach (var saveable in saveables)
         {
             string id = saveable.GetUniqueID();
             if (gameData.savedObjects.TryGetValue(id, out object state))
                 saveable.RestoreState(state);
         }
-
-        Debug.Log("✅ Game loaded!");
     }
-
-    public void DeleteSave()
-    {
-        dataHandler.Delete();
-        Debug.Log("🗑 Save deleted!");
-    }
-
-    public bool SaveExists() => dataHandler.FileExists();
+    #endregion
 }
+
