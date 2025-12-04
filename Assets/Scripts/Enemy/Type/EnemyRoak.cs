@@ -7,11 +7,6 @@ using UnityEngine;
 public class EnemyRoak : GroundEnemy
 {
     [Header("Enemy: Roak")]
-    [Tooltip("Time interval between each poison smoke release.")]
-    public float createPoisonDelay;
-
-    [Tooltip("Prefab of the poison smoke created periodically.")]
-    [SerializeField] private GameObject poisonSmoke;
 
     public RoakState mainState;
 
@@ -33,10 +28,4 @@ public class EnemyRoak : GroundEnemy
         logicStateMachine.Initialize(mainState);
         animStateMachine.Initialize(animIdleState);
     }
-
-    public void CreatePoison()
-    {
-        Instantiate(poisonSmoke, transform.position, Quaternion.identity);
-    }
-
 }
