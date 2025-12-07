@@ -3,6 +3,5 @@
 /.vs
 /.vscode
 .vsconfig
-/Logs
-/Logs
-/Logs
+.log
+
