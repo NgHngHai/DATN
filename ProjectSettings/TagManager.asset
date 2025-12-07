@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Room Manager
+  - World Space Canvas
   layers:
   - Default
   - TransparentFX
@@ -39,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3698966779
+    locked: 0
+  - name: Background Objects
+    uniqueID: 1566338715
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
