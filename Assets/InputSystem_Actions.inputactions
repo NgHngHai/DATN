@@ -86,15 +86,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "[DEBUG]ReloadScene",
-                    "type": "Button",
-                    "id": "77a47a6b-a1b0-470f-b172-59d1578b25eb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -370,17 +361,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Parry",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0056361c-f567-4633-9f4b-531d378c90bf",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "[DEBUG]ReloadScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
