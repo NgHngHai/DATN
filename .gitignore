@@ -1,13 +1,61 @@
-/Library
-/Temp
-/.vs
-/.vscode
-.vsconfig
-/Logs
-/Logs
-/Logs
-Logs/shadercompiler-UnityShaderCompiler.exe-0.log
-/Logs
-UserSettings/Layouts/default-6000.dwlt
-UserSettings/Layouts/default-6000.dwlt
-Logs/shadercompiler-UnityShaderCompiler.exe-0.log
+# =========================================================
+# Unity
+# =========================================================
+
+# Unity generated folders
+Library/
+Temp/
+Obj/
+Logs/
+UserSettings/
+MemoryCaptures/
+Build/
+Builds/
+DerivedDataCache/
+
+# Visual Studio / C# generated files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Rider
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Unity auto-generated files
+obj/
+*.dll
+*.mdb
+*.exe
+*.apk
+*.aab
+*.app
+*.ipa
+
+# Addressables / AssetBundle caches
+Assets/StreamingAssets/aa/*
+!Assets/StreamingAssets/aa/README.md
+
+# Plastic SCM
+.plastic/
+
+# Logs
+*.log
+
+# Crash / error logs
+sysinfo.txt
+
