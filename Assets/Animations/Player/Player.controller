@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_attack_up
+  m_Name: Player_Attack_Up
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -313,7 +313,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6115134661462807511}
-    m_Position: {x: 600, y: 440, z: 0}
+    m_Position: {x: 600, y: 450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3214528586753929956}
     m_Position: {x: 600, y: -110, z: 0}
@@ -325,22 +325,22 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2327324490256883286}
-    m_Position: {x: 600, y: 510, z: 0}
+    m_Position: {x: 600, y: 520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9176795557394149481}
-    m_Position: {x: 600, y: 160, z: 0}
+    m_Position: {x: 600, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8427686056720674647}
-    m_Position: {x: 600, y: 230, z: 0}
+    m_Position: {x: 600, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8746038980771017820}
-    m_Position: {x: 600, y: 300, z: 0}
+    m_Position: {x: 600, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8121072496562221800}
-    m_Position: {x: 600, y: 370, z: 0}
+    m_Position: {x: 600, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1588321693202229030}
-    m_Position: {x: 600, y: 580, z: 0}
+    m_Position: {x: 600, y: 590, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 790555491581737375}
     m_Position: {x: 20, y: -170, z: 0}
@@ -499,9 +499,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.9
+  m_ExitTime: 0.75
   m_HasExitTime: 1
   m_HasFixedDuration: 0
   m_InterruptionSource: 2
@@ -736,8 +736,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 1
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 2
   m_OrderedInterruption: 1
