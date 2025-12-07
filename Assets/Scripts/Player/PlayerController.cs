@@ -1,29 +1,18 @@
 ﻿//using System;
 //using Unity.Mathematics;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Cinemachine;
 
 public class PlayerController : Entity
 {
     public static PlayerController Instance { get; private set; }
-
-    // Cameras
-    [Header("Camera variables")]
-    [SerializeField] private CinemachineCamera mainCamera;
-    [SerializeField] private CinemachineCamera upCamera;
-    [SerializeField] private CinemachineCamera downCamera;
-    [SerializeField] private float durationToSwitchCamera = 0.2f;
-    private float _upHoldTimer = 0f;
-    private float _downHoldTimer = 0f;
 
     // Component references
     public PlayerSkillManager skillManager;
     public Health playerHealth;
     public EffectEvents effectEvents;
 
-    [Header("Current Room")]
+    [Header("Spawnpoint")]
     // Room spawnpoint ID
     public string currentRoomID = "Room0";
 
@@ -86,7 +75,6 @@ public class PlayerController : Entity
     public InputActionAsset InputActions;
 
     private InputAction moveAction;
-    private InputAction lookAction;
     private InputAction jumpAction;
     private InputAction dashAction;
 
@@ -97,9 +85,6 @@ public class PlayerController : Entity
 
     private InputAction healAction;
     private InputAction skillAction;
-
-    private InputAction interactAction;
-    public event Action OnInteractPressed;
 
     // Animation states
     [Header("Animation States")]
@@ -192,7 +177,6 @@ public class PlayerController : Entity
             if (map != null)
             {
                 moveAction = map.FindAction("Move");
-                lookAction = map.FindAction("Look");
                 jumpAction = map.FindAction("Jump");
                 dashAction = map.FindAction("Dash");
 
@@ -202,15 +186,12 @@ public class PlayerController : Entity
 
                 healAction = map.FindAction("Heal");
                 skillAction = map.FindAction("Skill");
-
-                interactAction = map.FindAction("Interact");
                 return;
             }
         }
 
         // Fallback to project-wide actions (only if asset/map not assigned)
         moveAction = InputSystem.actions.FindAction("Move");
-        lookAction = InputSystem.actions.FindAction("Look");
         jumpAction = InputSystem.actions.FindAction("Jump");
         dashAction = InputSystem.actions.FindAction("Dash");
 
@@ -220,8 +201,6 @@ public class PlayerController : Entity
 
         healAction = InputSystem.actions.FindAction("Heal");
         skillAction = InputSystem.actions.FindAction("Skill");
-
-        interactAction = InputSystem.actions.FindAction("Interact");
     }
 
     // Update is called once per frame
@@ -229,9 +208,7 @@ public class PlayerController : Entity
     {
         base.Update();
         if (animStateMachine.currentState == deathState)
-        {
             return; // Dead - no input
-        }
 
         if (animStateMachine.currentState == hurtState && movementLocked)
         {
@@ -239,15 +216,14 @@ public class PlayerController : Entity
         }
 
         // Read movement input
-        float moveX = moveAction != null ? moveAction.ReadValue<float>() : 0f;
-        float lookY = lookAction != null ? lookAction.ReadValue<float>() : 0f;
+        Vector2 moveVec = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
 
         PerformGroundProbe();
 
         if (!isDashing && !movementLocked)
         {
             // Get horizontal movement amount
-            moveAmt = moveX;
+            moveAmt = moveVec.x;
             FlipOnMoveInput();
         }
         else
@@ -271,44 +247,19 @@ public class PlayerController : Entity
             animStateMachine.ChangeState(parryState);
         }
 
-        // Switch cameras based on vertical input
-
-        if (lookY > 0.5f)
-        {
-            _upHoldTimer += Time.deltaTime;
-            _downHoldTimer = 0f;
-
-            if (_upHoldTimer >= durationToSwitchCamera)
-                CameraManager.SwitchCamera(upCamera);
-        }
-        else if (lookY < -0.5f)
-        {
-            _upHoldTimer = 0f;
-            _downHoldTimer += Time.deltaTime;
-
-            if (_downHoldTimer >= durationToSwitchCamera)
-                CameraManager.SwitchCamera(downCamera);
-        }
-        else
-        {
-            _upHoldTimer = 0f;
-            _downHoldTimer = 0f;
-            CameraManager.SwitchCamera(mainCamera);
-        }
-
         // Attack input - can be used while running (does not cancel horizontal control)
-        if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked && !isAttacking)
+        if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked)
         {
             isAttacking = true;
             // Decide attack type by vertical input at the moment of pressing attack.
             // Threshold prevents accidental up/down from small sticks.
             const float verticalThreshold = 0.5f;
-            if (lookY > verticalThreshold)
+            if (moveVec.y > verticalThreshold)
             {
                 PerformAttackUp();
                 return;
             }
-            else if (lookY < -verticalThreshold)
+            else if (moveVec.y < -verticalThreshold)
             {
                 PerformAttackDown();
                 return;
@@ -346,12 +297,6 @@ public class PlayerController : Entity
             skillManager.UseActiveSkill();
         }
 
-        // Interact input
-        if (interactAction != null && interactAction.WasPressedThisFrame())
-        {
-            OnInteractPressed?.Invoke();
-        }
-
         bool canFirstJump = (isGrounded || (Time.time - lastGroundedTime <= coyoteTime)) && !isDashing;
         bool canExtraJump = (!canFirstJump && extraJumpCount < maxExtraJumpCount) && !isDashing;
 
@@ -361,17 +306,16 @@ public class PlayerController : Entity
             Jump();
             isJumping = true;
             jumpHoldTimer = 0f;
-            ApplyAirPhysicsMaterial();
             animStateMachine.ChangeState(jumpState);
             return;
         }
         else if (jumpAction.WasPressedThisFrame() && canExtraJump && !movementLocked)
         {
+            animStateMachine.ChangeState(doubleJumpState);
             Jump();
             extraJumpCount++;
             isJumping = true;
             jumpHoldTimer = 0f;
-            animStateMachine.ChangeState(doubleJumpState);
             return;
         }
 
@@ -581,7 +525,9 @@ public class PlayerController : Entity
 
     private void PerformAirAttack()
     {
-        animStateMachine.ChangeState(normalAttackState);
+        Debug.Log("Air Attack");
+        // Ensure animator has a trigger named "AirAttack"
+        //animator?.SetTrigger("AirAttack");
     }
 
     // Health event handlers
@@ -601,13 +547,6 @@ public class PlayerController : Entity
 
     private void HandleDeath()
     {
-        isAlive = false;
-
-        movementLocked = true;
-        isDashing = false;
-        isJumping = false;
-        moveAmt = 0;
-
         animStateMachine.ChangeState(deathState);
         effectEvents?.InvokeDeath();
     }
