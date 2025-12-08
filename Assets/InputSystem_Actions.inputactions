@@ -738,7 +738,7 @@
                 {
                     "name": "",
                     "id": "a801591b-4e5c-461d-871a-8ce1e9143865",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
