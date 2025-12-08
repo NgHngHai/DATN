@@ -1136,6 +1136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Roak
       objectReference: {fileID: 0}
+    - target: {fileID: 3828942458327386514, guid: 316f6872ecbd19f4ab8086859f7741af, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6395411124961461904, guid: 316f6872ecbd19f4ab8086859f7741af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.74
@@ -1352,6 +1356,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   damageAmount: 10
+  damageType: 0
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0
   lockMovementOnTarget: 0
