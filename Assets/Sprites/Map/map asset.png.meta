@@ -363,7 +363,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -767,7 +767,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map asset_18
+      name: platform_0
       rect:
         serializedVersion: 2
         x: 2804
@@ -1452,10 +1452,10 @@ TextureImporter:
       name: map asset_51
       rect:
         serializedVersion: 2
-        x: 1253
-        y: 1042
-        width: 426
-        height: 100
+        x: 1256
+        y: 1045
+        width: 418
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1562,10 +1562,10 @@ TextureImporter:
       name: wall_0
       rect:
         serializedVersion: 2
-        x: 3651
-        y: 1122
-        width: 82
-        height: 89
+        x: 3655
+        y: 1125
+        width: 74
+        height: 83
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2131,13 +2131,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_1
+      name: ground_0
       rect:
         serializedVersion: 2
-        x: 3683
-        y: 491
-        width: 64
-        height: 48
+        x: 3687
+        y: 494
+        width: 56
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2175,13 +2175,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_0
+      name: ground_1
       rect:
         serializedVersion: 2
-        x: 3605
-        y: 399
-        width: 221
-        height: 57
+        x: 3608
+        y: 402
+        width: 214
+        height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2505,13 +2505,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: platform
+      name: ground_2
       rect:
         serializedVersion: 2
-        x: 3494
-        y: 79
-        width: 474
-        height: 72
+        x: 3498
+        y: 82
+        width: 435
+        height: 66
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2577,8 +2577,9 @@ TextureImporter:
       ceiling_light: -5059696664692064012
       chest_0: -1169459465364007332
       chest_1: 7898127866240159089
-      ground_0: 7888320185573425256
-      ground_1: 6152233468385090284
+      ground_0: 6152233468385090284
+      ground_1: 7888320185573425256
+      ground_2: 8032010239575781071
       ground_to_trap: -7338731944493960180
       light_0: 1693427431168739686
       light_1: 515620922425401170
@@ -2595,7 +2596,6 @@ TextureImporter:
       map asset_14: 2861422667055642662
       map asset_16: 5349828484639716915
       map asset_17: -7310875312545219394
-      map asset_18: 8854204064209769647
       map asset_19: 9059090540604942899
       map asset_21: 3850600260232616984
       map asset_23: -9042618182868090334
@@ -2663,7 +2663,7 @@ TextureImporter:
       map asset_97: 1718918221363780628
       map asset_98: -4874048622058454562
       map asset_99: 9197123737232181246
-      platform: 8032010239575781071
+      platform_0: 8854204064209769647
       trap: 6829887617697113746
       wall_0: 5107721909581562614
       wall_1: -744308910711259887

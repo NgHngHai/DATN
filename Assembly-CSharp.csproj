@@ -61,11 +61,16 @@
     <Analyzer Include="D:\Unity\UnityHub\Hub\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerSaveables.cs" />
     <Compile Include="Assets\Scripts\Save System\UniqueID.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyL4SI.cs" />
+    <Compile Include="Assets\Scripts\Universal\SlowmoManager.cs" />
     <Compile Include="Assets\Scripts\Room\RoomData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
+    <Compile Include="Assets\Scripts\UI\OscillateAnim.cs" />
+    <Compile Include="Assets\Scripts\Save System\TestSaveableBox.cs" />
     <Compile Include="Assets\Scripts\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPoisonHandler.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoneyManager.cs" />
@@ -75,6 +80,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\FalS0State.cs" />
     <Compile Include="Assets\Scripts\Environment\BreakableWall.cs" />
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
+    <Compile Include="Assets\Scripts\Room\BootstrapObject.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRoak.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\BossElite.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetHandler.cs" />
@@ -82,6 +88,8 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\MI12State.cs" />
     <Compile Include="Assets\Scripts\Save System\ISaveable.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RapicitatorState.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
     <Compile Include="Assets\Scripts\Universal\MoneyOnDeath.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyRangedAttack.cs" />
@@ -89,6 +97,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyMI12.cs" />
+    <Compile Include="Assets\Scripts\Environment\Interactables.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
@@ -122,23 +131,25 @@
     <Compile Include="Assets\Scripts\Universal\EffectsDriver.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
     <Compile Include="Assets\Scripts\Universal\Health.cs" />
-    <Compile Include="Assets\Scripts\Room\DoorTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\PoisonousSmoke.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\EliteState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\L4SIState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRapicitator.cs" />
-    <Compile Include="Assets\Scripts\Room\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Environment\TrapHurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyDolRE.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraRegister.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
+    <Compile Include="Assets\Scripts\Save System\SaveableObject.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyLaserAttack.cs" />
     <Compile Include="Assets\Scripts\Projectile\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\Universal\GenericSingleton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />
+    <Compile Include="Assets\Scripts\Room\Door.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkillPassive.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyOffensiveState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\SnatcherState.cs" />

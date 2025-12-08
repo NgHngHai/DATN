@@ -50,11 +50,12 @@ public class HurtBox : MonoBehaviour
     public float repeatDelay = 0f;
 
     // References
-    // private readonly HashSet<Object> _hitOnce = new HashSet<Object>();
     private readonly Dictionary<Object, float> _lastHitTime = new();
     private Rigidbody2D _selfRb;
     private Collider2D _col;
     private Entity _selfEntity;
+    private PlayerController _playerController;
+    private SlowMoManager _slowMoManager;
 
     // For restoring energy on hit
     PlayerSkillManager _playerSkillManager;
@@ -64,6 +65,8 @@ public class HurtBox : MonoBehaviour
         _col = GetComponent<Collider2D>();
         _selfRb = GetComponentInParent<Rigidbody2D>();
         _selfEntity = GetComponent<Entity>() ?? GetComponentInParent<Entity>();
+        _playerController = GetComponentInParent<PlayerController>();
+        _slowMoManager = SlowMoManager.Instance;
 
         if (restoreEnergyOnHit)
         {
@@ -75,6 +78,7 @@ public class HurtBox : MonoBehaviour
     {
         _lastHitTime.Clear();
     }
+
     protected void OnTriggerEnter2D(Collider2D other)
     {
         TryHit(other);
@@ -114,11 +118,14 @@ public class HurtBox : MonoBehaviour
 
         if (applyKnockbackToTarget && targetKnockbackForce > 0f)
         {
-
             var targetEntity = other.GetComponent<Entity>();
+            var targetRb = other.GetComponent<Rigidbody2D>();
 
             if (targetEntity != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
                 targetEntity.ApplyKnockback(-dir, targetKnockbackForce, lockMovementOnTarget, knockbackLockDuration);
+            }
         }
 
         if (applyKnockbackToSelf && targetKnockbackForce > 0f && _selfRb != null)
@@ -136,6 +143,12 @@ public class HurtBox : MonoBehaviour
         {
             if (other.GetComponent<Health>() != null || other.GetComponentInParent<Health>() != null) // Only restore if hitting something with Health
                 _playerSkillManager.RestoreEnergyOnAttack(energyRestoredPerHit);
+        }
+
+        // Heavy hit slow-mo (only for player-owned hurtboxes)
+        if (_playerController != null && damageType.HasFlag(DamageType.Heavy))
+        {
+            _slowMoManager.Request();
         }
     }
 
