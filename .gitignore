@@ -36,6 +36,9 @@ DerivedDataCache/
 # VS Code
 .vscode/
 
+# VS
+.vs/
+
 # Unity auto-generated files
 obj/
 *.dll
