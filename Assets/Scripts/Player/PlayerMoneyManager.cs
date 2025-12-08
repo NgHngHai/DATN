@@ -20,7 +20,18 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
     [Tooltip("Invoked whenever the player's money changes. Parameter: current money.")]
     public MoneyChangedEvent OnMoneyChanged = new();
 
-    public int CurrentMoney => currentMoney;
+    public int CurrentMoney
+    {
+        get
+        {
+            return currentMoney;
+        }
+        set
+        {
+            currentMoney = Mathf.Max(0, value);
+            OnMoneyChanged?.Invoke(currentMoney);
+        }
+    }
 
     private bool _restoredFromSave = false;
 

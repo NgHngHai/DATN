@@ -1015,6 +1015,7 @@ GameObject:
   - component: {fileID: 7563957037513625506}
   - component: {fileID: 4686633180691814929}
   - component: {fileID: 3168934384855836754}
+  - component: {fileID: 7931451234586946125}
   - component: {fileID: 6781548075692095830}
   - component: {fileID: 3518307170249669275}
   - component: {fileID: 1484345977953654371}
@@ -1024,7 +1025,7 @@ GameObject:
   - component: {fileID: 2287647269058867019}
   - component: {fileID: 9209295225654319950}
   - component: {fileID: 1190804931672900395}
-  - component: {fileID: 7931451234586946125}
+  - component: {fileID: 2753912382881145763}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1137,6 +1138,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!70 &7931451234586946125
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.051466703, y: 0.18137741}
+  m_Size: {x: 0.8826566, y: 1.3630133}
+  m_Direction: 0
 --- !u!114 &6781548075692095830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,44 +1511,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5cbe20e1c97a14e99869797580ee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveables
-  uniqueID: player
---- !u!70 &7931451234586946125
-CapsuleCollider2D:
+--- !u!114 &2753912382881145763
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5652666909265740743}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.051466703, y: 0.18137741}
-  m_Size: {x: 0.8826566, y: 1.3630133}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UniqueID
+  uniqueID: 02abf456-f837-405d-8cc4-8fe47058a183
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSaveables : MonoBehaviour, ISaveable
+public class PlayerSaveables : SaveableObject
 {
-    [SerializeField] private string uniqueID;
-
     // Component references
     private Health playerHealth;
     private PlayerMoneyManager playerMoney;
     private PlayerSkillManager playerSkill;
     private PlayerController playerController;
+
+    // Position params
+    private string playerRoomID;
+    private string playerLinkDoorID;
 
     private void Start()
     {
@@ -19,8 +21,7 @@ public class PlayerSaveables : MonoBehaviour, ISaveable
         playerController = GetComponent<PlayerController>();
     }
 
-    public string GetUniqueID() => uniqueID;
-    public object CaptureState()
+    public override object CaptureState()
     {
         return new PlayerState
         {
@@ -34,14 +35,27 @@ public class PlayerSaveables : MonoBehaviour, ISaveable
 
             money = playerMoney.CurrentMoney,
 
-            currentRoomID = playerController.currentRoomID,
+            currentRoomID = playerRoomID,
+            linkDoorID = playerLinkDoorID,
             position = transform.position
         };
     }
 
-    public void RestoreState(object state)
+    public override void RestoreState(object state)
     {
-            
+        playerHealth.maxHealth = ((PlayerState)state).maxHealth;
+        playerHealth.currentHealth = ((PlayerState)state).currentHealth;
+
+        playerSkill.maxEnergy = ((PlayerState)state).maxEnergy;
+        playerSkill.currentEnergy = ((PlayerState)state).currentEnergy;
+
+        playerSkill.skills = ((PlayerState)state).skills;
+
+        playerMoney.CurrentMoney = ((PlayerState)state).money;
+
+        playerRoomID = ((PlayerState)state).currentRoomID;
+        playerLinkDoorID = ((PlayerState)state).linkDoorID;
+        transform.position = ((PlayerState)state).position;
     }
 
     [System.Serializable]
@@ -63,6 +77,7 @@ public class PlayerSaveables : MonoBehaviour, ISaveable
 
         // Current room & position
         public string currentRoomID;
+        public string linkDoorID;
         public Vector3 position;
     }
 }
