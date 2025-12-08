@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BreakableWall : MonoBehaviour, IDamageable, ISaveable
+public class BreakableWall : SaveableObject, IDamageable
 {
     public int health = 5;
     [SerializeField] private string uniqueID;
@@ -31,9 +31,7 @@ public class BreakableWall : MonoBehaviour, IDamageable, ISaveable
     public bool IsDead() => isDestroyed;
 
     // -----SAVE SYSTEM-----
-    public string GetUniqueID() => uniqueID;
-
-    public object CaptureState()
+    public override object CaptureState()
     {
         return new WallState
         {
@@ -42,7 +40,7 @@ public class BreakableWall : MonoBehaviour, IDamageable, ISaveable
         };
     }
 
-    public void RestoreState(object state)
+    public override void RestoreState(object state)
     {
         var s = (WallState)state;
         isDestroyed = s.destroyed;

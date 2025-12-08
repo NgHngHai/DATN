@@ -48,8 +48,11 @@
     <Analyzer Include="D:\Unity\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerSaveables.cs" />
     <Compile Include="Assets\Scripts\Save System\UniqueID.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyL4SI.cs" />
+    <Compile Include="Assets\Scripts\Universal\SlowmoManager.cs" />
     <Compile Include="Assets\Scripts\Room\RoomData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
     <Compile Include="Assets\Scripts\UI\WipeButtonController.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyMI12.cs" />
+    <Compile Include="Assets\Scripts\Environment\Interactables.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
@@ -125,6 +129,7 @@
     <Compile Include="Assets\Scripts\Environment\TrapHurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyDolRE.cs" />
     <Compile Include="Assets\Scripts\UI\MenuButton.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraRegister.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveableObject.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />

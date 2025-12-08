@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 44bc0e41-1eed-46ed-8fc4-9dade34c6083
+  uniqueID: fbfa37f7-6848-447e-83a5-ed8e743bd8fc
 --- !u!61 &1151037032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: ec19a63d-cede-478e-902b-232a4216018b
+  uniqueID: 826ce32e-3526-4e7e-941e-43f789ba0df2
 --- !u!61 &1471869451
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 00d5eb16-d8f5-40af-a342-4910d2ed4910
+  uniqueID: 8c13e97a-21ed-4549-b607-8b7275fc3d32
 --- !u!61 &1803550806
 BoxCollider2D:
   m_ObjectHideFlags: 0
