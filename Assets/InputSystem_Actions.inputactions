@@ -86,15 +86,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "[DEBUG]ReloadScene",
-                    "type": "Button",
-                    "id": "77a47a6b-a1b0-470f-b172-59d1578b25eb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -372,17 +363,6 @@
                     "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0056361c-f567-4633-9f4b-531d378c90bf",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "[DEBUG]ReloadScene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -390,6 +370,15 @@
             "name": "UI",
             "id": "272f6d14-89ba-496f-b7ff-215263d3219f",
             "actions": [
+                {
+                    "name": "[DEBUG]ReloadScene",
+                    "type": "Button",
+                    "id": "8e2e11ef-dea8-46fc-aacb-f4be2ba062f0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
                 {
                     "name": "Navigate",
                     "type": "PassThrough",
@@ -745,6 +734,17 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a801591b-4e5c-461d-871a-8ce1e9143865",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "[DEBUG]ReloadScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

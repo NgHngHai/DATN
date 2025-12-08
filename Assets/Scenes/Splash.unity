@@ -309,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 712194180}
-  - component: {fileID: 712194179}
+  - component: {fileID: 712194181}
   m_Layer: 0
   m_Name: DEBUG
   m_TagString: Untagged
@@ -317,19 +317,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &712194179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712194178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7110a359792c4e4ba49654679f45468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugSceneReloader
-  sceneIndex: 0
 --- !u!4 &712194180
 Transform:
   m_ObjectHideFlags: 0
@@ -339,12 +326,25 @@ Transform:
   m_GameObject: {fileID: 712194178}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.72726, y: 0.13897, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &712194181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712194178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5107f8ae731c848a1d42134b92c221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugSceneReloader
+  sceneIndex: 0
 --- !u!1 &982389467
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 982389470}
   - component: {fileID: 982389469}
-  - component: {fileID: 982389468}
+  - component: {fileID: 982389471}
   m_Layer: 0
   m_Name: Splash Logo
   m_TagString: Untagged
@@ -363,27 +363,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &982389468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982389467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57fd6169562943640ac4edeedcaeed56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SplashSceneController
-  presentsText: {fileID: 1228878144}
-  normalMaterial: {fileID: 2100000, guid: aa5dfcadb0af8754aafda23d88433799, type: 2}
-  alternativeMaterial: {fileID: 2100000, guid: 4aaa35fca73cd4940a88d4b4607d1a40, type: 2}
-  firstEffectDuration: 0.4
-  firstEffectDelay: 0.06
-  transitionDelay: 0.5
-  secondEffectDuration: 0.4
-  secondEffectHoldTime: 2
-  secondEffectDelay: 0.05
 --- !u!212 &982389469
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -457,6 +436,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &982389471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982389467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98436322c5268f54f935a3f2253f451f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SplashSceneController
+  presentsText: {fileID: 1228878144}
+  normalMaterial: {fileID: 2100000, guid: aa5dfcadb0af8754aafda23d88433799, type: 2}
+  alternativeMaterial: {fileID: 2100000, guid: 4aaa35fca73cd4940a88d4b4607d1a40, type: 2}
+  firstEffectDuration: 0.5
+  firstEffectDelay: 0.08
+  transitionDelay: 0.5
+  secondEffectDuration: 0.4
+  secondEffectHoldTime: 2
+  secondEffectDelay: 0.03
 --- !u!1 &1228878144
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1228878145
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,9 +1,8 @@
-Shader "Custom/LogoDistortion"
+Shader "Custom/GlitchEffect"
 {
     Properties
     {
         [PerRendererData] _MainTex("Main Texture", 2D) = "white" {}
-        _DistortionMap("Distortion Map", 2D) = "white" {}
     }
 
     SubShader
@@ -41,12 +40,11 @@ Shader "Custom/LogoDistortion"
 
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
-            TEXTURE2D(_DistortionMap);
-            SAMPLER(sampler_DistortionMap);
 
             CBUFFER_START(UnityPerMaterial)
-                float4 _DistortionMapST;
-                half _MainTexUVRatio;
+                float _RandomOffsetU;
+                float _RandomOffsetV;
+                float _AlphaValue;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
@@ -59,12 +57,17 @@ Shader "Custom/LogoDistortion"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                half4 distortionColor = SAMPLE_TEXTURE2D(_DistortionMap, sampler_DistortionMap, IN.uv * _DistortionMapST.xy + _DistortionMapST.zw);
-                float2 uv = 0.5 + (IN.uv - 0.5) * _MainTexUVRatio;
-                uv.x += lerp(-distortionColor.r, distortionColor.r, step(0.5, uv.x)) * _MainTexUVRatio * 0.2;
-                // uv.y += lerp(-distortionColor.g, distortionColor.g, step(0.5, uv.y));
-                half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
-                color.a = distortionColor.a;
+                float2 uvFirstPass = float2(IN.uv.x + _RandomOffsetU, IN.uv.y + _RandomOffsetV);
+                float2 uvSecondPass = float2(uvFirstPass.x - _RandomOffsetU * 0.7, uvFirstPass.y - _RandomOffsetV * 1.2);
+                float2 uvThirdPass = float2(uvFirstPass.x + _RandomOffsetU + _RandomOffsetV, uvFirstPass.y + _RandomOffsetU - _RandomOffsetV);
+                
+                half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uvSecondPass);
+                half4 tmpColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uvThirdPass);
+                color = lerp(half4(color.r, 0, 0, 1), half4(0, tmpColor.g, 0, 1), tmpColor.a * 0.8);
+                color.a = 1.0;
+                tmpColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uvFirstPass);;
+                color = lerp(color, tmpColor, tmpColor.a);
+                color.a = _AlphaValue;
 
                 return color;
             }

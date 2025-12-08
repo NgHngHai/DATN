@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146106111}
   - component: {fileID: 146106110}
-  - component: {fileID: 146106109}
+  - component: {fileID: 146106112}
   m_Layer: 0
   m_Name: menu_bg
   m_TagString: Untagged
@@ -137,20 +137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &146106109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146106108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 811b62a25d407424eb450799b495fb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GlitchController
-  glitchSpeed: 20
-  ScreenCanvas: {fileID: 903850100}
 --- !u!212 &146106110
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -224,6 +210,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146106112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146106108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c661b6a72279bac41919ce8c8745d741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchController
+  glitchSpeed: 20
+  ScreenCanvas: {fileID: 903850100}
 --- !u!1 &162649140
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,10 +311,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 162649140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84908dcd318e9e04ab518b9bf61ae42f, type: 3}
+  m_Script: {fileID: 11500000, guid: e85fd3b252e7af241bf487c819ed73a0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WipeButtonController
-  wipeSpeed: 1.5
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  glitchController: {fileID: 146106112}
 --- !u!114 &162649146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,10 +324,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 162649140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c376303ad0e0b40bbcd81b1e488fc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 98d80d44abf550d4ca66d32f69aeb753, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyCustomButton
-  glitchController: {fileID: 146106109}
+  m_EditorClassIdentifier: Assembly-CSharp::WipeButtonController
+  wipeSpeed: 2
 --- !u!1 &232636901
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1117014008}
-  - component: {fileID: 1117014007}
+  - component: {fileID: 1117014009}
   m_Layer: 0
   m_Name: DEBUG
   m_TagString: Untagged
@@ -905,19 +905,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1117014007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117014006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7110a359792c4e4ba49654679f45468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugSceneReloader
-  sceneIndex: 0
 --- !u!4 &1117014008
 Transform:
   m_ObjectHideFlags: 0
@@ -927,12 +914,25 @@ Transform:
   m_GameObject: {fileID: 1117014006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.72726, y: 0.13897, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117014009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117014006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5107f8ae731c848a1d42134b92c221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugSceneReloader
+  sceneIndex: 0
 --- !u!1 &1141360374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ GameObject:
   - component: {fileID: 2144918189}
   - component: {fileID: 2144918188}
   - component: {fileID: 2144918191}
-  - component: {fileID: 2144918192}
+  - component: {fileID: 2144918190}
   m_Layer: 5
   m_Name: btn_start_game
   m_TagString: Untagged
@@ -1593,6 +1593,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144918185}
   m_CullTransparentMesh: 1
+--- !u!114 &2144918190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144918185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85fd3b252e7af241bf487c819ed73a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  glitchController: {fileID: 146106112}
 --- !u!114 &2144918191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1602,23 +1615,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2144918185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c376303ad0e0b40bbcd81b1e488fc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyCustomButton
-  glitchController: {fileID: 146106109}
---- !u!114 &2144918192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144918185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84908dcd318e9e04ab518b9bf61ae42f, type: 3}
+  m_Script: {fileID: 11500000, guid: 98d80d44abf550d4ca66d32f69aeb753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WipeButtonController
-  wipeSpeed: 1.5
+  wipeSpeed: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
