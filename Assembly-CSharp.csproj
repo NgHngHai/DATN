@@ -137,6 +137,7 @@
     <Compile Include="Assets\Scripts\Projectile\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
+    <Compile Include="Assets\Scripts\Environment\Chest.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Universal\GenericSingleton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />

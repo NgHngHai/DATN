@@ -23,10 +23,6 @@ public class PlayerController : Entity
     public Health playerHealth;
     public EffectEvents effectEvents;
 
-    [Header("Current Room")]
-    // Room spawnpoint ID
-    public string currentRoomID = "Room0";
-
     // Movement variables
     [Header("Movement Variables")]
     [Tooltip("When true, external systems own velocity. Player input should not write velocity.")]

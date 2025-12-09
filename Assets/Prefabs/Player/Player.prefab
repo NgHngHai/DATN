@@ -436,7 +436,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.14681834}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -446,7 +446,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 1}
+  m_Size: {x: 4, y: 1.2936366}
   m_EdgeRadius: 0
 --- !u!114 &7513521700256991583
 MonoBehaviour:
@@ -1333,7 +1333,6 @@ MonoBehaviour:
   skillManager: {fileID: 0}
   playerHealth: {fileID: 0}
   effectEvents: {fileID: 0}
-  currentRoomID: Room0
   moveSpeed: 7
   externalVelocityX: 0
   jumpForce: 10
@@ -1408,7 +1407,7 @@ MonoBehaviour:
     cost: 0
     isUnlocked: 1
     isPassive: 0
-  activeSkillId: 5
+  activeSkillId: 3
 --- !u!114 &8240204760134584171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,6 +1510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5cbe20e1c97a14e99869797580ee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveables
+  playerRoomID: 
+  playerLinkDoorID: 
 --- !u!114 &2753912382881145763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,7 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 02abf456-f837-405d-8cc4-8fe47058a183
+  uniqueID: 0c7697e0-04ef-4bfa-a67e-12f93efbc686
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] private Transform playerTranform;
-    [SerializeField] private CinemachineConfiner2D cinemachineConfiner;
 
     private string currentRoomName;
     private string pendingDoorLinkID;
@@ -57,7 +56,12 @@ public class RoomManager : MonoBehaviour
         RoomData roomData = FindAnyObjectByType<RoomData>();
         if (roomData == null) return;
 
-        cinemachineConfiner.BoundingShape2D = roomData.CameraBoundary;
+        foreach (CinemachineCamera cam in CameraManager.cameras)
+        {
+            CinemachineConfiner2D camConfiner = cam.GetComponent<CinemachineConfiner2D>();
+
+            camConfiner.BoundingShape2D = roomData.CameraBoundary;
+        }
 
         if (string.IsNullOrEmpty(pendingDoorLinkID)) return;
 

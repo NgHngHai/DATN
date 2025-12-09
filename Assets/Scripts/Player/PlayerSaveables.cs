@@ -10,12 +10,14 @@ public class PlayerSaveables : SaveableObject
     private PlayerController playerController;
 
     // Position params
-    private string playerRoomID;
-    private string playerLinkDoorID;
+    public string playerRoomID;
+    public string playerLinkDoorID;
 
-    private void Start()
+    protected override void Awake()
     {
-        playerHealth = GetComponent<Health>();
+        base.Awake();
+
+        playerHealth = GetComponent<Health>();  
         playerMoney = GetComponent<PlayerMoneyManager>();
         playerSkill = GetComponent<PlayerSkillManager>();
         playerController = GetComponent<PlayerController>();
@@ -59,7 +61,7 @@ public class PlayerSaveables : SaveableObject
     }
 
     [System.Serializable]
-    private struct PlayerState
+    public struct PlayerState
     {
         // Health
         public int maxHealth;

@@ -14,7 +14,7 @@ using TMPro;
 /// </summary>
 
 [RequireComponent(typeof(Collider2D))]
-public class Interactables : MonoBehaviour
+public class Interactables : SaveableObject
 {
     [Header("Detection")]
     [Tooltip("Layers considered as player for proximity detection.")]
@@ -30,65 +30,37 @@ public class Interactables : MonoBehaviour
     [Tooltip("Optional cooldown after interaction in seconds.")]
     [SerializeField] private float interactCooldown = 0f;
 
-    [Header("Outline")]
-    [Tooltip("SpriteRenderer to outline. If null, will try to GetComponent<SpriteRenderer>().")]
-    [SerializeField] private SpriteRenderer targetSprite;
-    [Tooltip("Material that provides outline effect compatible with SpriteRenderer.")]
-    [SerializeField] private Material outlineMaterial;
-    [Tooltip("Outline width/intensity property name in the outline material (optional).")]
-    [SerializeField] private string outlineWidthProperty = "_OutlineWidth";
-    [Tooltip("Outline color property name in the outline material (optional).")]
-    [SerializeField] private string outlineColorProperty = "_OutlineColor";
-    [Tooltip("Outline width to apply when player is in range.")]
-    [SerializeField] private float outlineWidth = 1.5f;
-    [Tooltip("Outline color to apply when player is in range.")]
-    [SerializeField] private Color outlineColor = Color.white;
+    [Header("Save options")]
+    [Tooltip("Whether to load in after interacted.")]
+    [SerializeField] protected bool isOneTimeUse = false;
+    [Tooltip("Whether the player has interacted with this object.")]
+    [SerializeField] protected bool playerInteracted = false;
 
     private bool _playerInRange;
     private float _cooldownUntil;
-    // Cache original material to restore on exit
-    private Material _originalMaterial;
-    private bool _outlineApplied;
 
     // References
+    [Header("References (Auto)")]
     [SerializeField] private Canvas _sharedCanvas;
     [SerializeField] private TMP_Text _sharedText;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
         // Ensure proximity collider is a trigger
         var col = GetComponent<Collider2D>();
         col.isTrigger = true;
-
-        targetSprite = GetComponent<SpriteRenderer>();
-        _originalMaterial = targetSprite.sharedMaterial;
 
         // Cache shared canvas/text once
         CacheSharedPrompt();
         HideSharedPrompt(); // hidden by default
     }
 
-    private void OnEnable()
-    {
-        // Subscribe to player interact input
-        if (PlayerController.Instance != null)
-        {
-            PlayerController.Instance.OnInteractPressed += HandlePlayerInteractPressed;
-        }
-    }
-
     private void OnDisable()
     {
-        if (PlayerController.Instance != null)
-        {
-            PlayerController.Instance.OnInteractPressed -= HandlePlayerInteractPressed;
-        }
-
         // If this was showing the prompt, hide it when disabled
         if (_playerInRange)
         {
             HideSharedPrompt();
-            RemoveOutline();
             _playerInRange = false;
         }
     }
@@ -96,12 +68,14 @@ public class Interactables : MonoBehaviour
     private void HandlePlayerInteractPressed()
     {
         if (!_playerInRange)
+        { 
             return;
+        }
 
         if (Time.time < _cooldownUntil)
             return;
 
-        var player = FindPlayerComponent();
+        var player = GameObject.FindGameObjectWithTag("Player");
         OnInteract(player);
 
         if (interactCooldown > 0f)
@@ -112,26 +86,31 @@ public class Interactables : MonoBehaviour
     {
         if (!IsInPlayerMask(other.gameObject.layer))
             return;
+        // Subscribe to player interact input on enter to avoid conflicts
+        if (PlayerController.Instance != null)
+        {
+            PlayerController.Instance.OnInteractPressed += HandlePlayerInteractPressed;
+        }
+
 
         _playerInRange = true;
 
         ShowSharedPromptAtThis();
-        ApplyOutline();
-
-        OnPlayerEnterRange(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!IsInPlayerMask(other.gameObject.layer))
             return;
+        if (PlayerController.Instance != null)
+        {
+            PlayerController.Instance.OnInteractPressed -= HandlePlayerInteractPressed;
+        }
+
 
         _playerInRange = false;
 
         HideSharedPrompt();
-        RemoveOutline();
-
-        OnPlayerExitRange(other);
     }
 
     private bool IsInPlayerMask(int layer)
@@ -197,58 +176,32 @@ public class Interactables : MonoBehaviour
         if (_sharedCanvas != null) _sharedCanvas.enabled = false;
     }
 
-    // Outline control
-    private void ApplyOutline()
+    protected virtual void OnInteract(GameObject player) { }
+    //protected virtual void OnPlayerEnterRange(Collider2D playerCollider) { }
+    //protected virtual void OnPlayerExitRange(Collider2D playerCollider) { }
+
+    // Save system
+    public override object CaptureState()
     {
-        if (targetSprite == null || outlineMaterial == null)
-            return;
-
-        if (_outlineApplied)
-            return;
-
-        // Use instantiated material per renderer to avoid affecting shared material globally
-        var instancedMat = new Material(outlineMaterial);
-
-        // Set optional properties if present
-        if (!string.IsNullOrEmpty(outlineWidthProperty) && instancedMat.HasProperty(outlineWidthProperty))
-            instancedMat.SetFloat(outlineWidthProperty, outlineWidth);
-        if (!string.IsNullOrEmpty(outlineColorProperty) && instancedMat.HasProperty(outlineColorProperty))
-            instancedMat.SetColor(outlineColorProperty, outlineColor);
-
-        targetSprite.material = instancedMat;
-        _outlineApplied = true;
-    }
-
-    private void RemoveOutline()
-    {
-        if (targetSprite == null || !_outlineApplied)
-            return;
-
-        // Restore original material
-        targetSprite.sharedMaterial = _originalMaterial;
-        _outlineApplied = false;
-    }
-
-    // Attempts to find any component on an object that matches the player layer mask (override for a specific type).
-    protected virtual Component FindPlayerComponent()
-    {
-        var allRoots = gameObject.scene.GetRootGameObjects();
-        foreach (var root in allRoots)
+        return new InteractableData
         {
-            var transforms = root.GetComponentsInChildren<Transform>(true);
-            foreach (var t in transforms)
-            {
-                if (IsInPlayerMask(t.gameObject.layer))
-                    return t.GetComponent<Component>();
-            }
-        }
-        return null;
+            spawnOnLoad = (isOneTimeUse && !playerInteracted),
+            playerInteracted = playerInteracted
+        };
     }
 
-    protected virtual void OnInteract(Component player) { }
-    protected virtual void OnPlayerEnterRange(Collider2D playerCollider) { }
-    protected virtual void OnPlayerExitRange(Collider2D playerCollider) { }
+    public override void RestoreState(object state)
+    {
+        var saveData = (InteractableData)state;
+        
+        playerInteracted = saveData.playerInteracted;
+    }
 
+    [System.Serializable] private struct InteractableData
+    {
+        public bool spawnOnLoad;
+        public bool playerInteracted;
+    }
 
 #if UNITY_EDITOR
         private void OnValidate()
