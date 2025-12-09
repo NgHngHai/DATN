@@ -4,7 +4,7 @@ using System;
 [DisallowMultipleComponent]
 public class UniqueID : MonoBehaviour
 {
-    [SerializeField, HideInInspector] private string uniqueID;
+    [SerializeField] private string uniqueID;
 
     public string ID => uniqueID;
 

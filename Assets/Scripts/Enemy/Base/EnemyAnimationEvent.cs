@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAnimationEvent : MonoBehaviour
 {
-    private Enemy enemy;
+    protected Enemy enemy;
 
     private void Awake()
     {
