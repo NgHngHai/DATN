@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Enemy : Entity
 {
+    [SerializeField] protected bool flipOnVelX = true;
     public EnemyStateMachine logicStateMachine;
     protected EnemyAttackSet attackSet;
     protected EnemyTargetHandler targetHandler;
@@ -25,7 +26,11 @@ public abstract class Enemy : Entity
     protected override void Update()
     {
         base.Update();
-        FlipOnVelocityX();
+
+        if (flipOnVelX)
+        {
+            FlipOnVelocityX();
+        }
         logicStateMachine.UpdateCurrentState();
     }
 

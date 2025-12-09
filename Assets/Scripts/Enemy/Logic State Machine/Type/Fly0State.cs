@@ -133,8 +133,8 @@ public class Fly0HoverAroundState : Fly0State
     void ChooseNextHoverPoint()
     {
         stateTimer = fly0.hoverRestTime;
-        Vector3 randomLocalPos = (Vector3)(Random.insideUnitCircle * fly0.hoverAroundDistance);
-        nextHoverPosition = targetHandler.CurrentTarget.position + randomLocalPos;
+        Vector2 randomLocalPos = (Random.insideUnitCircle * fly0.hoverAroundDistance);
+        nextHoverPosition = targetHandler.GetTargetPosition() + randomLocalPos;
     }
 }
 

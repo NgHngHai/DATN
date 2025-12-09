@@ -13,9 +13,8 @@ public class EnemyMeleeAttack : EnemyAttackBehavior
     private Coroutine attackRoutine;
     private float hurtBoxRadius;
 
-    protected override void Awake()
+    protected void Start()
     {
-        base.Awake();
         hurtBoxRadius = hurtBox.GetComponent<Collider2D>().bounds.extents.magnitude;
         hurtBox.ToggleHurtCollider(false);
     }
@@ -24,6 +23,7 @@ public class EnemyMeleeAttack : EnemyAttackBehavior
     {
         if (attackRoutine != null)
             StopCoroutine(attackRoutine);
+
         attackRoutine = StartCoroutine(DoAttack());
     }
 

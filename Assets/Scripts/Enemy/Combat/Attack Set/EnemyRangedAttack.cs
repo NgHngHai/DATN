@@ -9,6 +9,7 @@ public class EnemyRangedAttack : EnemyAttackBehavior
     [SerializeField] protected LayerMask obstacleMask;
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected float projectileSpeed;
+    [SerializeField] protected float canAttackDistance = 5;
     [SerializeField] protected bool looksAtFireDirection;
 
     protected override void Attack()
@@ -35,6 +36,6 @@ public class EnemyRangedAttack : EnemyAttackBehavior
         RaycastHit2D hit = Physics2D.Raycast(attackPoint.position, dirToTarget, distance, obstacleMask);
         bool unobstructed = hit.collider == null;
 
-        return unobstructed;
+        return unobstructed && distance < canAttackDistance;
     }
 }

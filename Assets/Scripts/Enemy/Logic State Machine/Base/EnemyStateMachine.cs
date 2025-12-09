@@ -1,3 +1,4 @@
+using UnityEngine;
 
 /// <summary>
 /// Controls the logical state transitions of the enemy.
@@ -16,6 +17,7 @@ public class EnemyStateMachine
     public void ChangeState(EnemyState newState)
     {
         if (newState == null) return;
+        //Debug.Log($"[Logic] {currentState.GetType().Name} -> {newState.GetType().Name}");
 
         currentState?.Exit();
         currentState = newState;
