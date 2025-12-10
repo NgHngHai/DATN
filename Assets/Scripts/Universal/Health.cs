@@ -18,6 +18,11 @@ public class Health : MonoBehaviour, IDamageable
     [Tooltip("Current health. Clamped to [0, maxHealth].")]
     public int currentHealth = 100;
 
+    [Header("Damage Handling")]
+    [Tooltip("Which damage types this entity can receive")]
+    public DamageType acceptedDamageTypes = DamageType.Normal;
+
+
     [Tooltip("When true, incoming damage is ignored.")]
     public bool isInvincible = false;
 
@@ -59,12 +64,18 @@ public class Health : MonoBehaviour, IDamageable
         _iFrameUntilTime = 0f;
     }
 
+    public bool AcceptDamageType(DamageType incoming)
+    {
+        return (acceptedDamageTypes & incoming) != 0;
+    }
+
     /// Apply damage. Returns true if damage was applied (not invincible and amount > 0).
     public bool TakeDamage(int amount, DamageType type, Vector2 hitDir, bool shouldTriggerHitReaction = true)
     {
         if (amount <= 0) return false;
         if (!CanBeDamaged() && !DamageTypeIgnoresIFrames(type)) return false;
         if (currentHealth <= 0) return false; // already dead
+        if (!AcceptDamageType(type)) return false;
 
         int prev = currentHealth;
         currentHealth = (int)Mathf.Clamp(currentHealth - MathF.Round(amount * damageMultiplier), 0, maxHealth);
@@ -73,7 +84,7 @@ public class Health : MonoBehaviour, IDamageable
         if (applied > 0)
         {
             // Start/refresh iframes after applying damage
-            if (iframeTime > 0f)
+            if (iframeTime > 0f) // (iframeTime > 0f && type != DamageType.Poison)
                 _iFrameUntilTime = Mathf.Max(_iFrameUntilTime, Time.time + iframeTime);
 
             // new event includes the reaction hint
@@ -91,6 +102,7 @@ public class Health : MonoBehaviour, IDamageable
     // Returns whether this component can currently be damaged (not invincible and not already dead).
     public bool CanBeDamaged()
     {
+        print(!IsInIFrame());
         return !isInvincible && !IsInIFrame() && currentHealth > 0;
     }
 

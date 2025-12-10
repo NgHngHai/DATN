@@ -661,6 +661,10 @@ PrefabInstance:
       propertyPath: skillManager
       value: 
       objectReference: {fileID: 914394370}
+    - target: {fileID: 2753912382881145763, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
+      propertyPath: uniqueID
+      value: 85b9e3bf-403b-4ac1-80dc-0a299628e509
+      objectReference: {fileID: 0}
     - target: {fileID: 5652666909265740743, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
       propertyPath: m_Name
       value: Player
@@ -766,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ceaec8200dce9f4283a2dd443d6497a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
+  poisonColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &914394370 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2432408401623021997, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
