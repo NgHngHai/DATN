@@ -71,6 +71,9 @@ public class SaveSystem : GenericSingleton<SaveSystem>
     #region Capture & Restore States
     public void CaptureRegisteredStates()
     {
+        if(gameData == null)
+            CreateNewGameData();
+
         foreach (var saveable in saveables)
         {
             string id = saveable.GetUniqueID();
@@ -81,6 +84,9 @@ public class SaveSystem : GenericSingleton<SaveSystem>
 
     public void RestoreRegisteredStates()
     {
+        if (gameData == null)
+            CreateNewGameData();
+
         foreach (var saveable in saveables)
         {
             string id = saveable.GetUniqueID();
@@ -88,6 +94,7 @@ public class SaveSystem : GenericSingleton<SaveSystem>
                 saveable.RestoreState(state);
         }
     }
+
     #endregion
 }
 

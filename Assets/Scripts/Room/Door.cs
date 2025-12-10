@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private string linkID = "1-2-L";
     [SerializeField] private string nextRoomName;
+    public EnterDirection enterDirection;
 
     private RoomManager roomManager;
 
@@ -16,10 +17,17 @@ public class Door : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            roomManager.LoadRoomScene(nextRoomName, linkID);
+            roomManager.LoadRoomWithTransition(nextRoomName, this);
         }
     }
 
     public string LinkID => linkID;
 }
 
+public enum EnterDirection
+{
+    Top,
+    Bottom,
+    Left,
+    Right
+}
