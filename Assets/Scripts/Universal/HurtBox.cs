@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class HurtBox : MonoBehaviour
 {
+    [SerializeField] private bool enableColliderAtAwake = true;
+
     // Target layer for detecting collisions
     [Header("Targeting")]
     [Tooltip("Layers this hurtbox can affect.")]
@@ -72,6 +74,8 @@ public class HurtBox : MonoBehaviour
         {
             _playerSkillManager = GetComponentInParent<PlayerSkillManager>();
         }
+
+        _col.enabled = enableColliderAtAwake;
     }
 
     private void OnEnable()

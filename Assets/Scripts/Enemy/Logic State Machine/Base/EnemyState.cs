@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 /// <summary>
 /// Base abstract class for all enemy logic states.

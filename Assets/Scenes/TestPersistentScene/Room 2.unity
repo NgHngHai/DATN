@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 0554e4fb-e13b-44f4-b9f9-964316143cd5
+  uniqueID: f1c7eec5-6b43-4570-89c4-a593cd80e3df
 --- !u!61 &84792970
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: d8825e82-d0c7-4987-8e5b-dcd4518c4483
+  uniqueID: 96708d65-77c8-4e6b-b21c-b200b4657693
 --- !u!61 &821879066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 8319aecc-73a4-4188-abef-9d2171520e13
+  uniqueID: 5139cb89-d8ff-46fe-89df-d61c535dec71
 --- !u!61 &841512262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 300b06ef-b28d-45d6-9bd5-f9191f08b03c
+  uniqueID: fdf04cb7-fb57-4a17-b828-fbbf58b6c5f7
 --- !u!1 &927499440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 36f40888-2f29-449e-8cec-fb632993f39f
+  uniqueID: a35fb377-edea-4581-9329-78beac2d89cc
 --- !u!61 &1239679337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1326,6 +1326,10 @@ PrefabInstance:
       propertyPath: nextRoomName
       value: Room 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3077718900367001735, guid: c755e53d3a4fde145a78da459c96fb9f, type: 3}
+      propertyPath: enterDirection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4550565213012977284, guid: c755e53d3a4fde145a78da459c96fb9f, type: 3}
       propertyPath: m_Icon
       value: 
@@ -1451,7 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: a8b0af58-6ee5-4d09-b25d-b521d5d8c825
+  uniqueID: 43451d5f-af91-4f5b-b464-80cafebb1b3c
 --- !u!61 &1501176946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1643,7 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 2c6de82f-fa9b-4069-b55b-94cb881a6756
+  uniqueID: 5f2fbb92-a6da-419b-8c5e-d817faa321eb
 --- !u!61 &1732564807
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1835,7 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: ada9ee3a-c8a0-41fb-bf2c-fdd60c767982
+  uniqueID: 631bfaee-a318-441b-bfb4-6435f1f0eabf
 --- !u!61 &1939305093
 BoxCollider2D:
   m_ObjectHideFlags: 0

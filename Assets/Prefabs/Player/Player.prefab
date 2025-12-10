@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 1536
@@ -460,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 1536
@@ -607,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 1536
@@ -745,6 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 1536
@@ -1423,6 +1427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 50
   currentHealth: 50
+  acceptedDamageTypes: 0
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.75

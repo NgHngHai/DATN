@@ -10,7 +10,7 @@ public class EnemyTargetHandler : MonoBehaviour
 
     [Header("Target Settings")]
     [SerializeField] private float lostVisionOfTargetDistance = 5f;
-    [SerializeField] private float forgetTargetDelay = 2f; 
+    [SerializeField] private float forgetTargetDelay = 2f;
 
     private float forgetTimer;
 
@@ -48,6 +48,11 @@ public class EnemyTargetHandler : MonoBehaviour
         CurrentTarget = null;
     }
 
+    public Vector2 GetTargetPosition()
+    {
+        if (CurrentTarget == null) return Vector2.zero;
+        return CurrentTarget.position;
+    }
 
     public float GetDistanceToTarget()
     {
@@ -62,8 +67,7 @@ public class EnemyTargetHandler : MonoBehaviour
 
     public int GetHorizontalDirectionToTarget()
     {
-        if (CurrentTarget == null) return 1;
-        return (int)Mathf.Sign(CurrentTarget.transform.position.x - transform.position.x);
+        return GetDirectionToTarget().x > 0 ? 1 : -1;
     }
 
     public bool IsTargetValid() => CurrentTarget != null;

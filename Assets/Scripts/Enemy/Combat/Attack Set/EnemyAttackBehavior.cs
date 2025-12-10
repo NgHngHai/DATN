@@ -5,7 +5,6 @@ using UnityEngine;
 /// Base class for enemy attack behaviors.
 /// Defines common attack logic and target checking.
 /// </summary>
-[RequireComponent(typeof(EnemyAttackSet))]
 public abstract class EnemyAttackBehavior : MonoBehaviour
 {
     [Header("Base Properties")]
