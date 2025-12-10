@@ -1,30 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
+    [SerializeField] private RoomTransitioner roomTransitioner;
     [SerializeField] private Transform playerTranform;
 
     private string currentRoomName;
+    private string pendingNextRoomName;
     private string pendingDoorLinkID;
 
-    private void Start()
+    private void Awake()
     {
-        SaveSystem.Instance.CreateNewGameData();
+        roomTransitioner.Initialize(this);
+    }
+
+    public void LoadRoomWithTransition(string nextRoomName, Door doorEntered)
+    {
+        pendingNextRoomName = nextRoomName;
+        pendingDoorLinkID = doorEntered.LinkID;
+        roomTransitioner.PlayTransitionAnim(doorEntered.enterDirection);
+    }
+
+    public void LoadRoomWithNoTransition(string roomName)
+    {
+        StartCoroutine(LoadRoomRoutine(roomName));
     }
 
     /// <summary>
     /// Loads a new room additively, saves the current room state, restores the new room state,
     /// switches the active scene, unloads the previous room, and applies room data.
     /// </summary>
-    public void LoadRoomScene(string nextRoomName, string doorLinkID = null)
+    public void StartLoadRoomRoutine()
     {
-        pendingDoorLinkID = doorLinkID;
-        StartCoroutine(LoadRoomRoutine(nextRoomName));
+        StartCoroutine(LoadRoomRoutine(pendingNextRoomName));
     }
-
     private IEnumerator LoadRoomRoutine(string nextRoomName)
     {
         SaveSystem.Instance.CaptureRegisteredStates();
@@ -32,6 +45,8 @@ public class RoomManager : MonoBehaviour
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(nextRoomName, LoadSceneMode.Additive);
         loadOp.allowSceneActivation = true;
         yield return loadOp;
+
+        yield return null;
 
         SaveSystem.Instance.RestoreRegisteredStates();
 
@@ -44,6 +59,8 @@ public class RoomManager : MonoBehaviour
         }
 
         currentRoomName = nextRoomName;
+        pendingNextRoomName = null;
+        roomTransitioner.UnfreezeAnim();
 
         ApplyCurrentRoomData();
     }

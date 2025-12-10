@@ -189,6 +189,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8376430591650297363, guid: 26764d84cfdf7ec4c8a9ac4d55e0762a, type: 3}
   m_PrefabInstance: {fileID: 2373978008996312636}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &548748146
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.3551815
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.40280867
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580692840177188062, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467570880889585271, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
+      propertyPath: m_Name
+      value: Poison Smoke
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
 --- !u!1 &593213386
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +718,10 @@ PrefabInstance:
       propertyPath: skillManager
       value: 
       objectReference: {fileID: 914394370}
+    - target: {fileID: 2753912382881145763, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
+      propertyPath: uniqueID
+      value: 85b9e3bf-403b-4ac1-80dc-0a299628e509
+      objectReference: {fileID: 0}
     - target: {fileID: 5652666909265740743, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
       propertyPath: m_Name
       value: Player
@@ -766,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ceaec8200dce9f4283a2dd443d6497a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
+  poisonColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &914394370 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2432408401623021997, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
@@ -2097,3 +2159,4 @@ SceneRoots:
   - {fileID: 593213389}
   - {fileID: 1289359310}
   - {fileID: 159281551}
+  - {fileID: 548748146}

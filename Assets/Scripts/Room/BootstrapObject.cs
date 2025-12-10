@@ -21,7 +21,7 @@ public class BootstrapObject : MonoBehaviour
         SceneManager.SetActiveScene(persistent);
 
         RoomManager roomManager = FindFirstObjectByType<RoomManager>();
-        roomManager.LoadRoomScene(firstRoomName);
+        roomManager.LoadRoomWithNoTransition(firstRoomName);
 
         Scene bootScene = gameObject.scene;
         SceneManager.UnloadSceneAsync(bootScene);
