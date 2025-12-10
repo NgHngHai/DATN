@@ -27,6 +27,10 @@ public class Health : MonoBehaviour, IDamageable
     // Timestamp (in Time.time) until which i-frames are active after taking damage.
     private float _iFrameUntilTime = 0f;
 
+    [Header("Damage Types")]
+    [Tooltip("Damage of these types will ignore i-frames.")]
+    [SerializeField] private DamageType damageTypesIgnoreIFrames = DamageType.Poison;
+
     [Header("Events")]
     [Tooltip("Invoked when the component takes damage with reaction info. Parameters: amount applied, shouldTriggerHitReaction.")]
     public DamagedWithReactionEvent OnDamagedWithReaction = new();
@@ -59,7 +63,7 @@ public class Health : MonoBehaviour, IDamageable
     public bool TakeDamage(int amount, DamageType type, Vector2 hitDir, bool shouldTriggerHitReaction = true)
     {
         if (amount <= 0) return false;
-        if (!CanBeDamaged()) return false;
+        if (!CanBeDamaged() && !DamageTypeIgnoresIFrames(type)) return false;
         if (currentHealth <= 0) return false; // already dead
 
         int prev = currentHealth;
@@ -88,6 +92,11 @@ public class Health : MonoBehaviour, IDamageable
     public bool CanBeDamaged()
     {
         return !isInvincible && !IsInIFrame() && currentHealth > 0;
+    }
+
+    private bool DamageTypeIgnoresIFrames(DamageType type)
+    {
+        return (type & damageTypesIgnoreIFrames) != 0;
     }
 
     // True if currently inside the invincibility window granted after taking damage.
