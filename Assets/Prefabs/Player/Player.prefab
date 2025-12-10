@@ -1026,6 +1026,7 @@ GameObject:
   - component: {fileID: 9209295225654319950}
   - component: {fileID: 1190804931672900395}
   - component: {fileID: 2753912382881145763}
+  - component: {fileID: 1292387543960183970}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1425,6 +1426,7 @@ MonoBehaviour:
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.75
+  damageTypesIgnoreIFrames: 2
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
@@ -1524,7 +1526,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 0c7697e0-04ef-4bfa-a67e-12f93efbc686
+  uniqueID: 98c3dd09-ad16-4f70-9e68-902ae0c098be
+--- !u!114 &1292387543960183970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceaec8200dce9f4283a2dd443d6497a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0
