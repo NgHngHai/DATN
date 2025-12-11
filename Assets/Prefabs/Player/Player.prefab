@@ -100,9 +100,9 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   damageAmount: 3
-  damageType: 0
+  damageType: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 1
@@ -217,11 +217,11 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 3.25, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
+  Damping: {x: 2, y: 1, z: 1}
   Lookahead:
     Enabled: 1
     Time: 0.6
-    Smoothing: 1
+    Smoothing: 2
     IgnoreY: 1
 --- !u!114 &3638562878358397536
 MonoBehaviour:
@@ -466,7 +466,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   damageAmount: 1
-  damageType: 1
+  damageType: 3
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 0
@@ -612,9 +612,9 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   damageAmount: 3
-  damageType: 0
+  damageType: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 1
@@ -1426,11 +1426,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 50
   currentHealth: 50
-  acceptedDamageTypes: 0
+  acceptedDamageTypes: -1
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.75
-  damageTypesIgnoreIFrames: 2
+  damageTypesIgnoreIFrames: 4
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
@@ -1530,7 +1530,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: e0f4e60b-6fc1-4379-9c91-790a774d054e
+  uniqueID: 015e489a-82b1-4055-9e89-31e25693a78c
+--- !u!114 &1292387543960183970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceaec8200dce9f4283a2dd443d6497a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
+  poisonColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,11 +1818,11 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 6, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
+  Damping: {x: 2, y: 1, z: 1}
   Lookahead:
     Enabled: 1
     Time: 0.3
-    Smoothing: 1
+    Smoothing: 2
     IgnoreY: 1
 --- !u!114 &5343875231404780412
 MonoBehaviour:
@@ -1895,7 +1908,7 @@ MonoBehaviour:
   _hurtBox: {fileID: 3863480949795753787}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
 --- !u!70 &2432802983016396581
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2082,11 +2095,11 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: -1, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
+  Damping: {x: 2, y: 1, z: 1}
   Lookahead:
     Enabled: 1
     Time: 0.3
-    Smoothing: 1
+    Smoothing: 2
     IgnoreY: 1
 --- !u!114 &4708522654257520674
 MonoBehaviour:

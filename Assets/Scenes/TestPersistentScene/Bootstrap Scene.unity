@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestPersistentScene.BootstrapPersistentScene
   persistentSceneName: Persistent Scene
-  firstRoomName: Room 1
+  firstRoomName: Room1
 --- !u!4 &646179992
 Transform:
   m_ObjectHideFlags: 0

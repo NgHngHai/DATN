@@ -297,8 +297,10 @@ MonoBehaviour:
   attackLocked: 0
   isAlive: 1
   isFacingRight: 1
+  canBeKnockedback: 1
   rb: {fileID: 6097769737595429619}
   animator: {fileID: 6470204882921335074}
+  flipOnVelX: 1
   teleportCooldown: 1
   teleportBaseA: {fileID: 0}
   teleportBaseB: {fileID: 0}
@@ -316,7 +318,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 30
   currentHealth: 30
+  acceptedDamageTypes: -1
   isInvincible: 0
+  damageMultiplier: 1
+  iframeTime: 0.3
+  damageTypesIgnoreIFrames: 4
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []

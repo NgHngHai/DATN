@@ -1389,9 +1389,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 1000
   currentHealth: 1000
+  acceptedDamageTypes: -1
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.3
+  damageTypesIgnoreIFrames: 4
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
