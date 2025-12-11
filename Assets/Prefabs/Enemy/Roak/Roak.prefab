@@ -82,10 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 128
   damageAmount: 3
+  damageType: 0
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0
   lockMovementOnTarget: 0
@@ -220,6 +222,7 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 5990577768488721935}
   animator: {fileID: 1564220852725325923}
+  flipOnVelX: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -240,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolGroundEdge
   patrolSpeed: 7
-  restTime: 1
+  restTime: 0
   patrolAtAwake: 1
 --- !u!114 &-5244106645412013181
 MonoBehaviour:
@@ -256,9 +259,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 6
   currentHealth: 6
+  acceptedDamageTypes: 0
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.3
+  damageTypesIgnoreIFrames: 2
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
@@ -315,6 +320,7 @@ MonoBehaviour:
     m_Bits: 0
   projectilePrefab: {fileID: 5467570880889585271, guid: aeb3657153a4bd1488f35830d6b40a9a, type: 3}
   projectileSpeed: 0
+  canAttackDistance: 5
   looksAtFireDirection: 0
 --- !u!1 &5136332798786812598
 GameObject:

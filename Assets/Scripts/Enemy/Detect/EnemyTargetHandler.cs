@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Manages the enemy's current target.
+/// Manages the entity's current target.
 /// Handles target assignment, loss of vision, and forgetting logic over time.
 /// </summary>
 public class EnemyTargetHandler : MonoBehaviour

@@ -2,9 +2,9 @@
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 /// <summary>
-/// Base abstract class for all enemy logic states.
+/// Base abstract class for all entity logic states.
 /// Defines shared behavior for entering, updating, and exiting a state.
-/// Each specific enemy behavior (e.g., Patrol, Chase, Attack) should inherit from this class.
+/// Each specific entity behavior (e.g., Patrol, Chase, Attack) should inherit from this class.
 /// </summary>
 public abstract class EnemyState
 {
@@ -38,8 +38,8 @@ public abstract class EnemyState
     public virtual void Exit() { }
 
     /// <summary>
-    /// Rotates the enemy to face (or face away from) the target horizontally.  
-    /// If <paramref name="flipOpposite"/> is true, flips the enemy to face away from the target instead of toward it.
+    /// Rotates the entity to face (or face away from) the target horizontally.  
+    /// If <paramref name="flipOpposite"/> is true, flips the entity to face away from the target instead of toward it.
     /// </summary>
     protected void FlipToTarget(bool flipOpposite = false)
     {

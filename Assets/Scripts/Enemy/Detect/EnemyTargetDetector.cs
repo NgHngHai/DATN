@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Base class for enemy target detection logic.
+/// Base class for entity target detection logic.
 /// Periodically scans for visible targets and assigns them to the <see cref="EnemyTargetHandler"/>.
 /// </summary>
 [RequireComponent(typeof(EnemyTargetHandler))]

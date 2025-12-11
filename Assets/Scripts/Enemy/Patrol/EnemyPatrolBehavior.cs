@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Defines the general structure and flow of an enemy’s patrol behavior.
+/// Defines the general structure and flow of an entity’s patrol behavior.
 /// Handles transitions between patrol and rest phases, and provides hooks for custom patrol logic.
 /// </summary>
 public abstract class EnemyPatrolBehavior : MonoBehaviour

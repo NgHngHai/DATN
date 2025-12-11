@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Ground enemy that only patrols and releases poisonous smoke after a delay.
+/// Ground entity that only patrols and releases poisonous smoke after a delay.
 /// Poison smoke deals damage over time.
 /// </summary>
 public class EnemyRoak : GroundEnemy

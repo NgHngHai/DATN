@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// Extends <see cref="EnemyPatrolBehavior"/> with ground patrol logic.
-/// Allows the enemy to patrol left and right, turning around when reaching an edge or wall.
+/// Allows the entity to patrol left and right, turning around when reaching an edge or wall.
 /// </summary>
 public class EnemyPatrolGroundEdge : EnemyPatrolBehavior
 {
