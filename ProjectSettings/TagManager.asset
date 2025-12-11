@@ -52,5 +52,11 @@ TagManager:
   - name: Ground
     uniqueID: 361287697
     locked: 0
+  - name: Secret Room Cover
+    uniqueID: 2583057097
+    locked: 0
+  - name: Breakables
+    uniqueID: 1469871917
+    locked: 0
   m_RenderingLayers:
   - Default

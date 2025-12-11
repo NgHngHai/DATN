@@ -17,7 +17,15 @@ public class Door : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            roomManager.LoadRoomWithTransition(nextRoomName, this);
+            // Change player's current room & linked door ID
+            var playerSaveables = collision.GetComponent<PlayerSaveables>();
+            playerSaveables.playerRoomID = nextRoomName;
+            playerSaveables.playerLinkDoorID = linkID;
+
+            // Trigger room switch overlay
+
+            // Load next room
+            roomManager.LoadRoomScene(nextRoomName, linkID);
         }
     }
 

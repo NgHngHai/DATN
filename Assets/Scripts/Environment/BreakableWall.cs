@@ -3,7 +3,6 @@ using UnityEngine;
 public class BreakableWall : SaveableObject, IDamageable
 {
     public int health = 5;
-    [SerializeField] private string uniqueID;
     private bool isDestroyed = false;
 
     public bool TakeDamage (int amount, DamageType type, Vector2 hitDir, bool trigger = false)
