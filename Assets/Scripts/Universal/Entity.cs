@@ -22,17 +22,13 @@ public class Entity : MonoBehaviour
 
     protected virtual void Awake()
     {
-        animStateMachine = new AnimationStateMachine(); // Tạo FSM riêng cho entity
-        rb = GetComponent<Rigidbody2D>();               // Lấy component Rigidbody2D
+        animStateMachine = new AnimationStateMachine(); 
+        rb = GetComponent<Rigidbody2D>();               
     }
 
     protected virtual void Update()
     {
-        animStateMachine.UpdateCurrentState();          // Cập nhật state hiện tại mỗi frame
     }
-
-    // Gọi từ Animation Event cuối clip (Attack/Hurt)
-    // Mục đích: báo rằng animation này đã chạy xong
     public void CallCurrentAnimationStateTrigger()
     {
         animStateMachine.currentState?.CallAnimationTrigger();

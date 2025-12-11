@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Ground-based enemy that patrols and dashes toward targets if detected.
+/// Ground-based entity that patrols and dashes toward targets if detected.
 /// If the target is close enough, it will explode (dash state only).
 /// If it loses sight of target, it will go back to patrol.
 /// </summary>

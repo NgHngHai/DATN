@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Base class for enemy attack behaviors.
+/// Base class for entity attack behaviors.
 /// Defines common attack logic and target checking.
 /// </summary>
 public abstract class EnemyAttackBehavior : MonoBehaviour

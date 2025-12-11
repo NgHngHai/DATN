@@ -1,8 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Controls the logical state transitions of the enemy.
-/// Manages entering, updating, and exiting states within the enemy’s finite state machine (FSM).
+/// Controls the logical state transitions of the entity.
+/// Manages entering, updating, and exiting states within the entity’s finite state machine (FSM).
 /// </summary>
 public class EnemyStateMachine
 {

@@ -1,17 +1,12 @@
 using UnityEngine;
 
-public class EnemyAnimationEvent : MonoBehaviour
+public class EnemyAnimationEvent : EntityAnimationEvent
 {
     protected Enemy enemy;
 
-    private void Awake()
+    private void Start()
     {
-        enemy = GetComponentInParent<Enemy>();
-    }
-
-    public void CallCurrentAnimationTrigger()
-    {
-        enemy.CallCurrentAnimationStateTrigger();
+        enemy = entity as Enemy;
     }
 
     public void TryCurrentAttack()

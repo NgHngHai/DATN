@@ -61,3 +61,8 @@ Assets/StreamingAssets/aa/*
 
 # Crash / error logs
 sysinfo.txt
+Logs
+UserSettings
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+Assets/_Recovery

@@ -18,11 +18,6 @@ public class AnimationStateMachine
         currentState = newState;                   
         currentState.Enter();                      
     }
-
-    public void UpdateCurrentState()
-    {
-        currentState?.Update();
-    }
 }
 
 public class AnimationState
@@ -50,14 +45,9 @@ public class AnimationState
         if (isBool)
             animator.SetBool(animParamName, true);      
         else
-            animator.SetTrigger(animParamName);          // Kích hoạt parameter trigger tương ứng trong Animator
+            animator.SetTrigger(animParamName);         
 
         triggerCalled = false;                     
-    }
-
-    public virtual void Update()
-    {
-        stateTimer -= Time.deltaTime;              
     }
 
     public virtual void Exit()

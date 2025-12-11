@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// An enemy attack deals damage at close range using <see cref="HurtBox"/>.
+/// An entity attack deals damage at close range using <see cref="HurtBox"/>.
 /// </summary>
 public class EnemyMeleeAttack : EnemyAttackBehavior
 {
