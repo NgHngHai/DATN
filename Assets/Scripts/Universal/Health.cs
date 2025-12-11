@@ -102,7 +102,6 @@ public class Health : MonoBehaviour, IDamageable
     // Returns whether this component can currently be damaged (not invincible and not already dead).
     public bool CanBeDamaged()
     {
-        print(!IsInIFrame());
         return !isInvincible && !IsInIFrame() && currentHealth > 0;
     }
 
