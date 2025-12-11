@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// An enemy attack that fires a <see cref="Projectile"/> to the right of the attack point.
+/// An entity attack that fires a <see cref="Projectile"/> to the right of the attack point.
 /// </summary>
 public class EnemyRangedAttack : EnemyAttackBehavior
 {

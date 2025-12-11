@@ -1,8 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// A stationary enemy in the air. It has 2 states: Observation and Attack.
-/// The enemy is invincible during the Observation state.
+/// A stationary entity in the air. It has 2 states: Observation and Attack.
+/// The entity is invincible during the Observation state.
 /// After attacking, it enters a rest period before observing again.
 /// </summary>
 public class EnemyBeamer : Enemy

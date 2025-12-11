@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Detects targets in a straight line based on the enemy's facing direction.
+/// Detects targets in a straight line based on the entity's facing direction.
 /// Stops detection if an obstacle blocks the line of sight.
 /// </summary>
 public class EnemyLineDetector : EnemyTargetDetector

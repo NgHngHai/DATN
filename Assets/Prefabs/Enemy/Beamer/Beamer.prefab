@@ -464,9 +464,11 @@ GameObject:
   - component: {fileID: 4061291065671034572}
   - component: {fileID: 4484961102500953}
   - component: {fileID: 4435249571756676807}
-  - component: {fileID: 41609939960798846}
   - component: {fileID: 1984190519937374628}
   - component: {fileID: 439666064929023679}
+  - component: {fileID: 8165246702261846883}
+  - component: {fileID: 407961128697380951}
+  - component: {fileID: 41609939960798846}
   m_Layer: 9
   m_Name: Beamer
   m_TagString: Untagged
@@ -569,8 +571,10 @@ MonoBehaviour:
   attackLocked: 0
   isAlive: 1
   isFacingRight: 1
+  canBeKnockedback: 1
   rb: {fileID: 4961034247301547796}
   animator: {fileID: 137499590974421123}
+  flipOnVelX: 1
   startAttackDistance: 7
   restTime: 5
 --- !u!114 &4484961102500953
@@ -609,45 +613,6 @@ MonoBehaviour:
   detectPoint: {fileID: 2474632925367273347}
   detectRate: 0.2
   drawGizmos: 1
---- !u!114 &41609939960798846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8218093431332806827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b7fc1f2e05f174390a672974e2178f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 15
-  currentHealth: 15
-  isInvincible: 0
-  OnDamagedWithReaction:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4061291065671034572}
-        m_TargetAssemblyTypeName: EnemyBeamer, Assembly-CSharp
-        m_MethodName: OnDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1984190519937374628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,4 +646,92 @@ MonoBehaviour:
     m_Bits: 64
   projectilePrefab: {fileID: 686141493360801190, guid: 596abaa73decbf0408086322ec10716b, type: 3}
   projectileSpeed: 0
+  canAttackDistance: 5
   looksAtFireDirection: 1
+--- !u!114 &8165246702261846883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218093431332806827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a02ed0e5f25d74babb66f6db325950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectEvents
+  OnJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDashStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLand:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamagedWithReaction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &407961128697380951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218093431332806827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db49c5591a62f4046831ab2e00ed955f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsDriver
+  jumpDust: {fileID: 0}
+  dashTrail: {fileID: 0}
+  landPoof: {fileID: 0}
+  hitSpark: {fileID: 0}
+  deathBurst: {fileID: 0}
+--- !u!114 &41609939960798846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218093431332806827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b7fc1f2e05f174390a672974e2178f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 15
+  currentHealth: 15
+  acceptedDamageTypes: 0
+  isInvincible: 0
+  damageMultiplier: 1
+  iframeTime: 0.3
+  damageTypesIgnoreIFrames: 2
+  OnDamagedWithReaction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4061291065671034572}
+        m_TargetAssemblyTypeName: EnemyBeamer, Assembly-CSharp
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
