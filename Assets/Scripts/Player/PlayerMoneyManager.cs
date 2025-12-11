@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class PlayerMoneyManager : MonoBehaviour, ISaveable
 {
     [Serializable]
-    public class MoneyChangedEvent : UnityEvent<int> { } // current money
+    public class MoneyChangedEvent : UnityEvent<int, int> { } // current money, amount changed
 
     [Header("Money Settings")]
     [Tooltip("Starting money if no saved data is restored.")]
@@ -29,7 +29,7 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
         set
         {
             currentMoney = Mathf.Max(0, value);
-            OnMoneyChanged?.Invoke(currentMoney);
+            OnMoneyChanged?.Invoke(currentMoney, 0);
         }
     }
 
@@ -40,7 +40,7 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
         if (!_restoredFromSave)
         {
             currentMoney = Mathf.Max(0, startingMoney);
-            OnMoneyChanged?.Invoke(currentMoney);
+            OnMoneyChanged?.Invoke(currentMoney, 0);
         }
     }
 
@@ -53,7 +53,7 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
         long sum = (long)currentMoney + amount;
         currentMoney = (int)Mathf.Clamp(sum, 0, int.MaxValue);
 
-        OnMoneyChanged?.Invoke(currentMoney);
+        OnMoneyChanged?.Invoke(currentMoney, amount);
     }
 
     // Increase money after a delay (in seconds). If delay <= 0, adds immediately.
@@ -83,7 +83,7 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
         if (currentMoney < amount) return false;
 
         currentMoney -= amount;
-        OnMoneyChanged?.Invoke(currentMoney);
+        OnMoneyChanged?.Invoke(currentMoney, amount);
         return true;
     }
 
@@ -93,7 +93,7 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
         if (amount <= 0) return;
 
         currentMoney = Mathf.Max(0, currentMoney - amount);
-        OnMoneyChanged?.Invoke(currentMoney);
+        OnMoneyChanged?.Invoke(currentMoney, amount);
     }
 
     // ISaveable implementation (so it participates in your room/scene save pass)
@@ -110,7 +110,7 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
         {
             _restoredFromSave = true;
             currentMoney = Mathf.Max(0, saved);
-            OnMoneyChanged?.Invoke(currentMoney);
+            OnMoneyChanged?.Invoke(currentMoney, 0);
         }
     }
 }
