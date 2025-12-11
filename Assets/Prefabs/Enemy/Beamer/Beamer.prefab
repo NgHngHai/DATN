@@ -569,8 +569,10 @@ MonoBehaviour:
   attackLocked: 0
   isAlive: 1
   isFacingRight: 1
+  canBeKnockedback: 1
   rb: {fileID: 4961034247301547796}
   animator: {fileID: 137499590974421123}
+  flipOnVelX: 1
   startAttackDistance: 7
   restTime: 5
 --- !u!114 &4484961102500953
@@ -623,7 +625,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 15
   currentHealth: 15
+  acceptedDamageTypes: -1
   isInvincible: 0
+  damageMultiplier: 1
+  iframeTime: 0.3
+  damageTypesIgnoreIFrames: 4
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
@@ -681,4 +687,5 @@ MonoBehaviour:
     m_Bits: 64
   projectilePrefab: {fileID: 686141493360801190, guid: 596abaa73decbf0408086322ec10716b, type: 3}
   projectileSpeed: 0
+  canAttackDistance: 5
   looksAtFireDirection: 1

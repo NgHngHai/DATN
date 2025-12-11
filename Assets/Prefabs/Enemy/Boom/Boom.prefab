@@ -278,8 +278,10 @@ MonoBehaviour:
   attackLocked: 0
   isAlive: 1
   isFacingRight: 1
+  canBeKnockedback: 1
   rb: {fileID: 5792668283161696349}
   animator: {fileID: 7973528354994851098}
+  flipOnVelX: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -354,7 +356,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 1
   currentHealth: 1
+  acceptedDamageTypes: -1
   isInvincible: 0
+  damageMultiplier: 1
+  iframeTime: 0.3
+  damageTypesIgnoreIFrames: 4
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
@@ -460,14 +466,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 128
   damageAmount: 10
+  damageType: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0
+  lockMovementOnTarget: 0
+  knockbackLockDuration: 0.1
   applyKnockbackToSelf: 0
-  knockbackForce: 5
-  knockbackForceMode: 1
+  targetKnockbackForce: 5
+  selfKnockbackForce: 5
+  restoreEnergyOnHit: 0
+  energyRestoredPerHit: 3
   singleHitPerTarget: 1
   repeatDelay: 0
