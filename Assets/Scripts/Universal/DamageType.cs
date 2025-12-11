@@ -3,9 +3,10 @@ using System;
 [Flags]
 public enum DamageType
 {
-    Normal = 0,
-    Heavy  = 1 << 0,
-    Poison = 1 << 1,
-    Counter = 1 << 2
+    None = 0,
+    Normal = 1 << 0,
+    Heavy  = 1 << 1,
+    Poison = 1 << 2,
+    Counter = 1 << 3,
     // Add more as needed
 }
