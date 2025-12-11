@@ -22,10 +22,8 @@ public class Door : MonoBehaviour
             playerSaveables.playerRoomID = nextRoomName;
             playerSaveables.playerLinkDoorID = linkID;
 
-            // Trigger room switch overlay
-
             // Load next room
-            roomManager.LoadRoomScene(nextRoomName, linkID);
+            roomManager.LoadRoomWithTransition(nextRoomName, this);
         }
     }
 
