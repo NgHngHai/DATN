@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 6
   currentHealth: 6
-  acceptedDamageTypes: 1
+  acceptedDamageTypes: -1
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.3

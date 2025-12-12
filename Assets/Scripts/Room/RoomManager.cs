@@ -62,6 +62,16 @@ public class RoomManager : MonoBehaviour
         pendingNextRoomName = null;
         roomTransitioner.UnfreezeAnim();
 
+        // Set camera boundary
+        RoomData roomData = FindAnyObjectByType<RoomData>();
+
+        foreach (CinemachineCamera cam in CameraManager.cameras)
+        {
+            CinemachineConfiner2D camConfiner = cam.GetComponent<CinemachineConfiner2D>();
+
+            camConfiner.BoundingShape2D = roomData.CameraBoundary;
+        }
+
         ApplyCurrentRoomData();
     }
 
