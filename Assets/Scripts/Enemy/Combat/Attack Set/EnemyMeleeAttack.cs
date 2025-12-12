@@ -16,7 +16,6 @@ public class EnemyMeleeAttack : EnemyAttackBehavior
     protected void Start()
     {
         hurtBoxRadius = hurtBox.GetComponent<Collider2D>().bounds.extents.magnitude;
-        hurtBox.ToggleHurtCollider(false);
     }
 
     protected override void Attack()

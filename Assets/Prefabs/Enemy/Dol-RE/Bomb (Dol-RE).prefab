@@ -120,7 +120,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.820833, y: 1.855252, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.61109, y: 0.61109, z: 0.61109}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8061328663693445728}
@@ -201,15 +201,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 704
   damageAmount: 1
+  damageType: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0
+  lockMovementOnTarget: 0
+  knockbackLockDuration: 0.1
   applyKnockbackToSelf: 0
-  knockbackForce: 5
-  knockbackForceMode: 1
+  targetKnockbackForce: 5
+  selfKnockbackForce: 5
+  restoreEnergyOnHit: 0
+  energyRestoredPerHit: 3
   singleHitPerTarget: 1
   repeatDelay: 0
 --- !u!114 &7685032998421562721

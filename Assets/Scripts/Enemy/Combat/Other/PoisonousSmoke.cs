@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -6,35 +7,44 @@ using UnityEngine;
 /// </summary>
 public class PoisonousSmoke : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer poisonSpriteRenderer;
+    [SerializeField] private Animator animator;
+
+    [SerializeField] private float lifeSpan = 5;
     [SerializeField] private int damagePerTick = 2;
     [SerializeField] private float damageInterval = 1f;
     [SerializeField] private float totalPoisonTime = 3f;
-    [SerializeField] private float lifeSpan = 5;
 
-    private float timer;
+    private PlayerPoisonHandler poisonHandler;
 
     private void Awake()
     {
-        Destroy(gameObject, lifeSpan);
-    }
-
-    private void Update()
-    {
-        timer += Time.deltaTime;
-        float alpha = Mathf.Lerp(1, 0, timer / lifeSpan);
-
-        Color fadeColor = poisonSpriteRenderer.color;
-        fadeColor.a = alpha;
-
-        poisonSpriteRenderer.color = fadeColor;
+        StartCoroutine(WaitThenDisappear());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerPoisonHandler poisonHandler = collision.GetComponent<PlayerPoisonHandler>();
+        poisonHandler = collision.GetComponent<PlayerPoisonHandler>();
         if (poisonHandler == null) return;
 
         poisonHandler.ApplyPoisonEffect(damagePerTick, damageInterval, totalPoisonTime);
+    }
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (poisonHandler == null) return;
+
+        poisonHandler.ApplyPoisonEffect(damagePerTick, damageInterval, totalPoisonTime);
+    }
+
+    private IEnumerator WaitThenDisappear()
+    {
+        yield return new WaitForSeconds(lifeSpan);
+
+        animator.SetBool("disappear", true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(gameObject);
     }
 }

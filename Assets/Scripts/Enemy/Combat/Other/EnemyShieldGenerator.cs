@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JanitorShieldManager : MonoBehaviour
+public class EnemyShieldGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private LayerMask enemyMask;

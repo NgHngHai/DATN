@@ -67,7 +67,7 @@ public class Fly0ChaseState : Fly0State
             return;
         }
 
-        chaseVel = targetHandler.GetDirectionToTarget() * fly0.chaseSpeed;
+        chaseVel = targetHandler.GetDirectionToTarget() * fly0.moveSpeed;
     }
 
     public override void FixedUpdate()
@@ -119,7 +119,7 @@ public class Fly0HoverAroundState : Fly0State
     public override void FixedUpdate()
     {
         if (moveDir != Vector2.zero)
-            fly0.SetVelocity(moveDir * fly0.hoverSpeed);
+            fly0.SetVelocity(moveDir * fly0.moveSpeed);
     }
 
     private void HoverOrAttack()
@@ -163,8 +163,31 @@ public class Fly0AttackState : Fly0State
 
         if (fly0.IsCurrentAnimStateTriggerCalled())
         {
+            logicStateMachine.ChangeState(fly0.restState);
+        }
+    }
+
+}
+
+public class Fly0RestState : Fly0State
+{
+    public Fly0RestState(Enemy enemy) : base(enemy)
+    {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        animStateMachine.ChangeState(fly0.animFlyingState);
+        stateTimer = fly0.attackRestTime;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if(stateTimer < 0)
+        {
             logicStateMachine.ChangeState(fly0.chaseState);
         }
     }
 }
-

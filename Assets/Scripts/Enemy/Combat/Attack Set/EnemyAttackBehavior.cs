@@ -18,6 +18,7 @@ public abstract class EnemyAttackBehavior : MonoBehaviour
     protected virtual void Awake()
     {
         baseAttackCooldown = attackCooldown;
+        lastAttackTime = -attackCooldown; // First attack has no cooldown
     }
 
     protected abstract void Attack();

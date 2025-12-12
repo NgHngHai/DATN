@@ -13,6 +13,7 @@ public class Boss : Enemy
     [SerializeField] private SpriteRenderer headSpriteRenderer;
     [SerializeField] private Sprite brokenHeadSprite;
     [SerializeField] private GameObject headPrefab;
+    [SerializeField] private GameObject headBrokenEffect;
     public Transform frontHandImpactPoint;
 
     [Header("BOSS: Movement Curve")]
@@ -39,7 +40,6 @@ public class Boss : Enemy
     private BossBrain brain;
     private BossBowstring bowstring;
     private BossHead head;
-    private Health health;
 
     private int currentPhase = 1;
 
@@ -48,7 +48,6 @@ public class Boss : Enemy
         base.Awake();
 
         brain = GetComponent<BossBrain>();
-        health = GetComponent<Health>();
 
         animIdleState = new AnimationState(this, "idle");
         animHandAttack = new AnimationState(this, "handAttack");
@@ -74,18 +73,11 @@ public class Boss : Enemy
         brain.Initialize(this);
     }
 
-    private void OnEnable()
-    {
-        health.OnDamagedWithReaction.AddListener(OnDamageTaken);
-    }
 
-    private void OnDisable()
+    protected override void OnDamageTaken(int appliedAmount, Vector2 hitDir, bool shouldTriggerHitReaction)
     {
-        health.OnDamagedWithReaction.RemoveListener(OnDamageTaken);
-    }
+        base.OnDamageTaken(appliedAmount, hitDir, shouldTriggerHitReaction);
 
-    public void OnDamageTaken(int appliedAmount, Vector2 hitDir, bool shouldTriggerHitReaction)
-    {
         if (currentPhase == 3) return;
 
         float hp = (float)health.currentHealth / health.maxHealth;
@@ -100,7 +92,10 @@ public class Boss : Enemy
     public void ToPhaseTwo()
     {
         currentPhase = 2;
+
         headSpriteRenderer.sprite = brokenHeadSprite;
+        Instantiate(headBrokenEffect, headSpriteRenderer.transform.position, Quaternion.identity);
+
         foreach (var handBreakAnimation in handBreakAnimationList)
         {
             handBreakAnimation.StartAnimation();

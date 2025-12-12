@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossHandBreakAnimation : MonoBehaviour
 {
-    [SerializeField] private GameObject brokenExplosion;
+    [SerializeField] private ParticleSystem brokenExplosionPS;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D col;
     [SerializeField] private SpriteRenderer sr;
@@ -17,7 +17,7 @@ public class BossHandBreakAnimation : MonoBehaviour
 
     public void StartAnimation()
     {
-        Instantiate(brokenExplosion, transform.position, Quaternion.identity);
+        brokenExplosionPS.Play();
         transform.SetParent(null);
 
         rb.bodyType = RigidbodyType2D.Dynamic;
