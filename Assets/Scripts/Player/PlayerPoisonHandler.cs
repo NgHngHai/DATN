@@ -6,10 +6,12 @@ public class PlayerPoisonHandler : MonoBehaviour
 {
     [SerializeField] private Color poisonColor = Color.green;
 
+    private int firstDamageContact = 3;
     private SpriteRenderer playerSR;
     private Health playerHealth;
-    private Coroutine poisonCoroutine;
     private Color baseColor;
+
+    private bool isStillPoisoned;
 
     private void Awake()
     {
@@ -20,31 +22,36 @@ public class PlayerPoisonHandler : MonoBehaviour
 
     public void ApplyPoisonEffect(int damagePerTick, float damageInterval, float totalPoisonTime)
     {
-        if (playerHealth == null || playerHealth.IsDead() || !playerHealth.CanBeDamaged())
+        if (isStillPoisoned || playerHealth == null || playerHealth.IsDead() || !playerHealth.CanBeDamaged())
             return;
 
-        if (poisonCoroutine != null)
-            StopCoroutine(poisonCoroutine);
-
-        poisonCoroutine = StartCoroutine(DoPoisonDamage(damagePerTick, damageInterval, totalPoisonTime));
+        StartCoroutine(DoPoisonDamage(damagePerTick, damageInterval, totalPoisonTime));
     }
 
     private IEnumerator DoPoisonDamage(int damagePerTick, float damageInterval, float totalPoisonTime)
     {
-        float elapsed = 0f;
+        isStillPoisoned = true;
         playerSR.color = poisonColor;
+        DealDamageToPlayer(firstDamageContact);
 
+        float elapsed = 0f;
         while (elapsed < totalPoisonTime)
         {
             if (playerHealth == null || playerHealth.IsDead())
                 break;
 
-            playerHealth.TakeDamage(damagePerTick, DamageType.Normal, Vector2.up, false);
+            DealDamageToPlayer(damagePerTick);
+
             yield return new WaitForSeconds(damageInterval);
             elapsed += damageInterval;
         }
 
+        isStillPoisoned = false;
         playerSR.color = baseColor;
-        poisonCoroutine = null;
+    }
+
+    private void DealDamageToPlayer(int dmg)
+    {
+        playerHealth.TakeDamage(dmg, DamageType.Poison, Vector2.up, false);
     }
 }

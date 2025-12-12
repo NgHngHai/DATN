@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossHead : GroundEnemy
 {
     [Header("Boss: Head")]
     public float moveSpeed = 7f;
     public GameObject appearEffect;
+    public ParticleSystem runningDustPS;
+    public ParticleSystem blowingUpSmokePS;
 
     public AnimationState animInactiveState;
     public AnimationState animReviveState;
@@ -19,6 +22,7 @@ public class BossHead : GroundEnemy
     protected override void Awake()
     {
         base.Awake();
+        StartCoroutine(WaitThenDisableBlowingSmoke());
 
         animInactiveState = new AnimationState(this, "inactive");
         animReviveState = new AnimationState(this, "revive");
@@ -52,5 +56,18 @@ public class BossHead : GroundEnemy
         Vector2 breakDir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
 
         rb.AddForce(breakDir * 15f, ForceMode2D.Impulse);
+    }
+
+    IEnumerator WaitThenDisableBlowingSmoke()
+    {
+        var emission = blowingUpSmokePS.emission;
+        yield return new WaitForSeconds(1);
+        emission.rateOverTime = 20;
+        yield return new WaitForSeconds(1);
+        emission.rateOverTime = 10;
+        yield return new WaitForSeconds(1);
+        emission.rateOverTime = 5;
+        yield return new WaitForSeconds(1);
+        blowingUpSmokePS.Stop();
     }
 }

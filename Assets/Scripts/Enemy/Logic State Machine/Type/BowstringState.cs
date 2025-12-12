@@ -118,6 +118,7 @@ public class BowstringChaseState : BowstringState
         base.Enter();
         animStateMachine.ChangeState(bowstring.animMoveState);
         hasDecideNextCloseAttack = false;
+        bowstring.flipOnVelX = true;
     }
 
     public override void FixedUpdate()
@@ -136,15 +137,22 @@ public class BowstringChaseState : BowstringState
         }
         else
         {
-            Vector2 moveDir = (attackPosition - GetItselfPos()).normalized;
-            bowstring.SetVelocity(moveDir * bowstring.chaseSpeed);
+            GoToAttackPosition();
+        }
+    }
 
-            if (Vector2.Distance(GetItselfPos(), attackPosition) < 1f)
-            {
-                EnemyState nextCloseAttackState = nextCloseAttackIsPoke ?
-                    bowstring.pokeAttackState : bowstring.doubleSlashAttackState;
-                logicStateMachine.ChangeState(nextCloseAttackState);
-            }
+    private void GoToAttackPosition()
+    {
+        bowstring.flipOnVelX = false;
+
+        Vector2 moveDir = (attackPosition - GetItselfPos()).normalized;
+        bowstring.SetVelocity(moveDir * bowstring.chaseSpeed);
+
+        if (Vector2.Distance(GetItselfPos(), attackPosition) < 1f)
+        {
+            EnemyState nextCloseAttackState = nextCloseAttackIsPoke ?
+                bowstring.pokeAttackState : bowstring.doubleSlashAttackState;
+            logicStateMachine.ChangeState(nextCloseAttackState);
         }
     }
 
@@ -182,7 +190,6 @@ public class BowstringAttackState : BowstringState
     public override void Enter()
     {
         base.Enter();
-        FlipToTarget();
         bowstring.StopVelocity();
         attackSet.ChangeAttackType(attackIndex);
         animStateMachine.ChangeState(animAttackState);

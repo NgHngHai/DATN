@@ -1530,20 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 015e489a-82b1-4055-9e89-31e25693a78c
---- !u!114 &1292387543960183970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652666909265740743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceaec8200dce9f4283a2dd443d6497a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
-  poisonColor: {r: 0, g: 1, b: 0, a: 1}
+  uniqueID: 1bb7b97c-d277-47ad-b3eb-cc55a403568f
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +9,7 @@ using UnityEngine;
 public class EnemyBoom : GroundEnemy
 {
     [Header("Enemy: Boom")]
+    public ParticleSystem runningDustPS;
     public float chaseSpeed;
     public float explodeDistance;
 
@@ -21,6 +23,7 @@ public class EnemyBoom : GroundEnemy
     protected override void Awake()
     {
         base.Awake();
+
         patrolState = new BoomPatrolState(this);
         chaseState = new BoomChaseState(this);
         explodeState = new BoomExplodeState(this);
@@ -40,6 +43,8 @@ public class EnemyBoom : GroundEnemy
     {
         logicStateMachine.ChangeState(explodeState);
     }
+
+
 
     public void DestroyItself() => Destroy(gameObject);
 }
