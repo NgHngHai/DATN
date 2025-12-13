@@ -1,12 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
+    private static bool isQuitting;
+
     public static T Instance
     {
         get
         {
+            if (isQuitting)
+                return null;
+
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<T>();
@@ -32,5 +37,16 @@ public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviou
 
         _instance = (T)(object)this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    protected virtual void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (_instance == this)
+            isQuitting = true;
     }
 }
