@@ -600,6 +600,7 @@ public class PlayerController : Entity
 
         // Switch to hurt state (knockback is already applied by HurtBox -> Entity.ApplyKnockback)
         animStateMachine.ChangeState(hurtState);
+        movementLocked = true;
         effectEvents?.InvokeDamagedWithReaction(hitDir);
     }
 
