@@ -11,9 +11,9 @@ public class PlayerController : Entity
 
     // Cameras
     [Header("Camera variables")]
-    [SerializeField] private CinemachineCamera mainCamera;
-    [SerializeField] private CinemachineCamera upCamera;
-    [SerializeField] private CinemachineCamera downCamera;
+    public CinemachineCamera mainCamera;
+    public CinemachineCamera upCamera;
+    public CinemachineCamera downCamera;
     [SerializeField] private float durationToSwitchCamera = 0.2f;
     private float _upHoldTimer = 0f;
     private float _downHoldTimer = 0f;
@@ -53,9 +53,6 @@ public class PlayerController : Entity
     [SerializeField] private Vector2 groundCheckOffset = new Vector2(0f, -0.9f);
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.8f, 0.15f);
     [SerializeField] private LayerMask groundLayers = ~0;
-    private bool isTouchingWall;
-    private bool wallOnLeft;
-    private bool wallOnRight;
 
     [Header("Air Friction Control")]
     [Tooltip("Frictionless (or low friction) material applied only while airborne after a jump.")]
@@ -96,6 +93,11 @@ public class PlayerController : Entity
 
     private InputAction interactAction;
     public event Action OnInteractPressed;
+
+    // State change ownership
+    [Header("State Ownership")]
+    [Tooltip("When true, PlayerController will not auto change state.")]
+    [NonSerialized] public bool animStateLocked = false;
 
     // Animation states
     [Header("Animation States")]
@@ -157,6 +159,8 @@ public class PlayerController : Entity
         animator = GetComponent<Animator>();            // Lấy component Animator
         playerHealth = GetComponent<Health>();          // Lấy component Health
         effectEvents = GetComponent<EffectEvents>();    // Lấy component EffectEvents
+
+        animStateLocked = false;
 
         // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
         idleState = new AnimationState(this, "idle", true);
@@ -386,25 +390,29 @@ public class PlayerController : Entity
         }
 
         // OTHER ANIMATION STATE UPDATES
-        // Fall state
-        if (rb.linearVelocityY < 0 && !isGrounded)
+        if (!animStateLocked)
         {
-            animStateMachine.ChangeState(fallState);
-            return;
-        } else if (rb.linearVelocityY > 0 && !isGrounded)
-        {
-            animStateMachine.ChangeState(ascendState);
-            return;
-        }
+            // Fall state
+            if (rb.linearVelocityY < 0 && !isGrounded)
+            {
+                animStateMachine.ChangeState(fallState);
+                return;
+            }
+            else if (rb.linearVelocityY > 0 && !isGrounded)
+            {
+                animStateMachine.ChangeState(ascendState);
+                return;
+            }
 
-        // Running/Idle state
-        if (moveAction.inProgress && moveAmt != 0)
-        {
-            animStateMachine.ChangeState(runState);
-        }
-        else
-        {
-            animStateMachine.ChangeState(idleState);
+            // Running/Idle state
+            if (moveAction.inProgress && moveAmt != 0)
+            {
+                animStateMachine.ChangeState(runState);
+            }
+            else
+            {
+                animStateMachine.ChangeState(idleState);
+            }
         }
     }
 

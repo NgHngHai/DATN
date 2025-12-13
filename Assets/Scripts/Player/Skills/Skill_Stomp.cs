@@ -21,13 +21,17 @@ public class Skill_Stomp : MonoBehaviour, ISkill
     [Header("Ground Detection")]
     [SerializeField] private LayerMask groundLayer;
 
+    // Animation State
+    public AnimationState stompState;
 
-    private void Awake()
+
+    private void Start()
     {
         rb = player.GetComponent<Rigidbody2D>();
         playerController = player.GetComponent<PlayerController>();
         originalGravityScale = playerController.originalGravityMultiplier;
         heightDetection = gameObject.GetComponent<CapsuleCollider2D>();
+        stompState = new AnimationState(playerController, "stomp", true);
     }
 
     public void Activate()
@@ -40,7 +44,10 @@ public class Skill_Stomp : MonoBehaviour, ISkill
 
         // Lock movement, change gravity multiplier to avoid overwrite
         playerController.movementLocked = true;
-        playerController.fallGravityMultiplier = stompGravityScale;
+        playerController.animStateLocked = true; playerController.fallGravityMultiplier = stompGravityScale;
+
+        // Change anims
+        playerController.animStateMachine.ChangeState(stompState);
 
         // Increase gravity scale for stomp effect, set horizontal velocity to 0
         rb.gravityScale = stompGravityScale;
@@ -68,6 +75,7 @@ public class Skill_Stomp : MonoBehaviour, ISkill
 
         // Restore movement and gravity settings
         playerController.movementLocked = false;
+        playerController.animStateLocked = false; 
         playerController.fallGravityMultiplier = originalGravityScale;
 
         // Hit around the player
