@@ -155,7 +155,6 @@ public class BossNukeAttackState : BossState
         {
             animStateMachine.ChangeState(boss.animHandNuke);
         }
-
         attackSet.ChangeAttackType(nukeAttackIndex);
         ToggleSafePlatforms(true);
     }

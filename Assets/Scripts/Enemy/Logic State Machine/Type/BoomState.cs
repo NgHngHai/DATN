@@ -3,9 +3,22 @@ using UnityEngine;
 public class BoomState : EnemyState
 {
     protected EnemyBoom boom;
+    private ParticleSystem.EmissionModule runningDustEmission;
+
     public BoomState(Enemy enemy) : base(enemy)
     {
         boom = enemy as EnemyBoom;
+        runningDustEmission = boom.runningDustPS.emission;
+    }
+
+    protected void SetRunningDustRateOverTime(float rate)
+    {
+        runningDustEmission.rateOverTime = rate;
+    }
+
+    protected void SetAnimatorSpeed(float speed)
+    {
+        boom.animator.speed = speed;
     }
 }
 
@@ -21,6 +34,8 @@ public class BoomPatrolState : BoomState
     {
         base.Enter();
         patrolBehavior.StartPatrolProcess();
+        SetRunningDustRateOverTime(4f);
+        SetAnimatorSpeed(1f);
     }
 
     public override void Update()
@@ -43,6 +58,13 @@ public class BoomChaseState : BoomState
 {
     public BoomChaseState(Enemy enemy) : base(enemy)
     {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        SetRunningDustRateOverTime(20f);
+        SetAnimatorSpeed(2f);
     }
 
     public override void Update()
@@ -76,6 +98,8 @@ public class BoomExplodeState : BoomState
     {
         base.Enter();
         boom.StopVelocity();
+        SetRunningDustRateOverTime(0f);
+        SetAnimatorSpeed(1f);
         animStateMachine.ChangeState(boom.animExplodeState);
     }
 

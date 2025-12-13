@@ -88,16 +88,18 @@ public class HeadReviveState : HeadState
 public class HeadMoveState : HeadState
 {
     private int moveDir = 1;
-
+    private ParticleSystem.EmissionModule runningDustEmission;
 
     public HeadMoveState(Enemy enemy) : base(enemy)
     {
+        runningDustEmission = head.runningDustPS.emission;
     }
 
     public override void Enter()
     {
         base.Enter();
 
+        runningDustEmission.rateOverTime = 10f;
         animStateMachine.ChangeState(head.animMoveState);
         moveDir = Random.Range(0, 2) == 0 ? 1 : -1;
     }
@@ -118,6 +120,12 @@ public class HeadMoveState : HeadState
         {
             logicStateMachine.ChangeState(head.attackState);
         }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        runningDustEmission.rateOverTime = 0f;
     }
 }
 

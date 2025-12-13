@@ -74,15 +74,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 512
-  damageAmount: 5
+  damageAmount: 1
+  damageType: -1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 0
+  lockMovementOnTarget: 0
+  knockbackLockDuration: 0.1
   applyKnockbackToSelf: 0
-  knockbackForce: 5
-  knockbackForceMode: 1
+  targetKnockbackForce: 5
+  selfKnockbackForce: 5
+  restoreEnergyOnHit: 0
+  energyRestoredPerHit: 3
   singleHitPerTarget: 1
   repeatDelay: 0
 --- !u!58 &8954299290437704425
