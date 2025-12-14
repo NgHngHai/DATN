@@ -1530,7 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 1bb7b97c-d277-47ad-b3eb-cc55a403568f
+  uniqueID: c9c2eb1b-93bf-4296-b066-4df810d19dc0
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0

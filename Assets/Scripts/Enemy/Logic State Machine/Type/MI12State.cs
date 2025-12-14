@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class MI12State : EnemyOffensiveState
@@ -9,27 +10,37 @@ public class MI12State : EnemyOffensiveState
     }
 }
 
-public class MI12RestState : MI12State
+public class MI12ObservationState : MI12State
 {
-    public MI12RestState(Enemy enemy) : base(enemy)
+    private float flipInterval = 2;
+
+    public MI12ObservationState(Enemy enemy) : base(enemy)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        stateTimer = mi12.chargeRestTime;
+
+        stateTimer = flipInterval;
+        mi12.StopVelocity();
+        animStateMachine.ChangeState(mi12.animIdleState);
     }
 
     public override void Update()
     {
         base.Update();
+        if (stateTimer < 0)
+        {
+            mi12.Flip();
+            stateTimer = flipInterval;
+        }
 
-        if (stateTimer > 0 || !IsTargetValid()) return;
+        if (!IsTargetValid()) return;
 
-        float toTargetDistance = targetHandler.GetDistanceToTarget();
+        float targetDistance = targetHandler.GetDistanceToTarget();
 
-        if(toTargetDistance > mi12.decideToChargeDistance)
+        if (targetDistance > mi12.minChargeDistance)
         {
             logicStateMachine.ChangeState(mi12.chargeState);
         }
@@ -37,40 +48,64 @@ public class MI12RestState : MI12State
         {
             logicStateMachine.ChangeState(mi12.blastLaserAttackState);
         }
-
     }
 }
 
 public class MI12ChargeState : MI12State
 {
-    private float reachMaxSpeedTime;
+    private float chargeDuration;
+    private float pushBackForce = 10;
+    private bool hasTouchedWallOrEdge;
+
     public MI12ChargeState(Enemy enemy) : base(enemy)
     {
-        reachMaxSpeedTime = mi12.reachMaxSpeedTime;
+        chargeDuration = mi12.chargeDuration;
     }
 
     public override void Enter()
     {
         base.Enter();
-        stateTimer = reachMaxSpeedTime;
-        FlipToTarget();
+        stateTimer = chargeDuration;
+        animStateMachine.ChangeState(mi12.animChargeState);
+        hasTouchedWallOrEdge = false;
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (mi12.IsGroundEdgeOrWallDetected())
+        if (!hasTouchedWallOrEdge)
         {
-            logicStateMachine.ChangeState(mi12.restState);
+            if (mi12.IsGroundEdgeOrWallDetected())
+            {
+                hasTouchedWallOrEdge = true;
+                mi12.StopVelocity();
+                mi12.rb.AddForceX(-mi12.FacingDir * pushBackForce, ForceMode2D.Impulse);
+            }
+        }
+        else if (mi12.IsIdle())
+        {
+            logicStateMachine.ChangeState(mi12.observationState);
         }
 
-        float t = mi12.chargeSpeedCurve.Evaluate((reachMaxSpeedTime - stateTimer) / reachMaxSpeedTime);
+        Charging();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        mi12.Flip();
+    }
+
+    private void Charging()
+    {
+        if (hasTouchedWallOrEdge) return;
+
+        float t = mi12.chargeSpeedCurve.Evaluate((chargeDuration - stateTimer) / chargeDuration);
         float speed = Mathf.Lerp(0, mi12.maxChargeSpeed, t);
 
-        Vector2 chargeVel = new Vector2(speed * mi12.FacingDir, 0);
-        
-        mi12.SetVelocity(chargeVel);
+        mi12.SetVelocityX(speed * mi12.FacingDir);
     }
 }
 
@@ -78,5 +113,23 @@ public class MI12BlastLaserAttack : MI12State
 {
     public MI12BlastLaserAttack(Enemy enemy) : base(enemy)
     {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        mi12.StopVelocity();
+        animStateMachine.ChangeState(mi12.animLaserBlastState);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (mi12.IsCurrentAnimStateTriggerCalled())
+        {
+            logicStateMachine.ChangeState(mi12.observationState);
+        }
     }
 }

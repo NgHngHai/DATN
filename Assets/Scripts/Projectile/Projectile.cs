@@ -7,9 +7,9 @@ public class Projectile : MonoBehaviour
 
     [Header("Hit Effect")]
     [SerializeField] private GameObject hitEffect;
-    [SerializeField] private float hitEffectLifeSpan = 0.5f;
     
     protected Rigidbody2D rb;
+    protected bool alreadyHit;
     private HurtBox hurtBox;
 
     private void Awake()
@@ -24,18 +24,21 @@ public class Projectile : MonoBehaviour
         if (!PhysicsUtils.IsGameObjectInLayer(collision.gameObject, hurtBox.targetLayers))
             return;
 
+        alreadyHit = true;
         Vector2 hitPoint = collision.ClosestPoint(transform.position);
-
-        if (hitEffect != null)
-        {
-            GameObject newHitEffect = Instantiate(hitEffect, hitPoint, transform.rotation);
-            Destroy(newHitEffect, hitEffectLifeSpan);
-        }
+        CreateHitEffect(hitPoint);
 
         if (!dontDestroyOnHit)
             Destroy(gameObject);
     }
 
+    protected void CreateHitEffect(Vector2 hitPoint)
+    {
+        if (hitEffect != null)
+        {
+            GameObject newHitEffect = Instantiate(hitEffect, hitPoint, transform.rotation);
+        }
+    }
 
     public void SetVelocity(Vector2 velocity)
     {

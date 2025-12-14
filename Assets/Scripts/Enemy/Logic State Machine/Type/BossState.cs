@@ -4,9 +4,7 @@ using UnityEngine;
 public class BossState : EnemyOffensiveState
 {
     protected Boss boss;
-    protected int handAttackIndex = 0;
-    protected int dashAttackIndex = 1;
-    protected int nukeAttackIndex = 2;
+
 
     public BossState(Enemy enemy) : base(enemy)
     {
@@ -72,6 +70,8 @@ public class BossMoveState : BossState
 
 public class BossHandAttackState : BossState
 {
+    protected int handAttackIndex = 0;
+
     public BossHandAttackState(Enemy enemy) : base(enemy)
     {
     }
@@ -104,6 +104,8 @@ public class BossHandAttackState : BossState
 
 public class BossDashAttackState : BossState
 {
+    protected int dashAttackIndex = 1;
+
     public BossDashAttackState(Enemy enemy) : base(enemy)
     {
     }
@@ -137,6 +139,7 @@ public class BossDashAttackState : BossState
 
 public class BossNukeAttackState : BossState
 {
+    protected int nukeAttackIndex = 2;
     private List<GameObject> currentSafePlatformObjects = new List<GameObject>();
 
     public BossNukeAttackState(Enemy enemy) : base(enemy)

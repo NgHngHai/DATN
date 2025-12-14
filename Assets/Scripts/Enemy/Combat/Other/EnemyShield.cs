@@ -4,13 +4,22 @@ public class EnemyShield : MonoBehaviour
 {
     [SerializeField] private GameObject animObject;
     [SerializeField] private float shieldCooldown;
+    [SerializeField] private Health enemyHealth;
 
     public bool CanRegenerate;
 
     private bool isActive;
     private DamageType baseDamageType;
-    private Health health;
     private float cooldownTimer;
+
+    private void Awake()
+    {
+        if(enemyHealth == null) 
+            enemyHealth = GetComponentInParent<Health>();
+
+        baseDamageType = enemyHealth.acceptedDamageTypes;
+        TryActivate();
+    }
 
     private void Update()
     {
@@ -21,14 +30,14 @@ public class EnemyShield : MonoBehaviour
 
     private void OnEnable()
     {
-        if (health != null)
-            health.OnDamagedWithReaction.AddListener(OnOwnerDamaged);
+        if (enemyHealth != null)
+            enemyHealth.OnDamagedWithReaction.AddListener(OnOwnerDamaged);
     }
 
     private void OnDisable()
     {
-        if (health != null)
-            health.OnDamagedWithReaction.RemoveListener(OnOwnerDamaged);
+        if (enemyHealth != null)
+            enemyHealth.OnDamagedWithReaction.RemoveListener(OnOwnerDamaged);
     }
 
     private void OnOwnerDamaged(int damage, Vector2 hitDir, bool shouldTriggerHitReaction)
@@ -38,17 +47,9 @@ public class EnemyShield : MonoBehaviour
 
     public void TryActivate()
     {
-        if(health == null)
-        {
-            health = GetComponentInParent<Health>();
-            baseDamageType = health.acceptedDamageTypes;
-            health.OnDamagedWithReaction.AddListener(OnOwnerDamaged);
-        }
-
         if (cooldownTimer > 0) return;
 
-        health.acceptedDamageTypes = DamageType.Counter;
-
+        enemyHealth.acceptedDamageTypes = DamageType.Counter;
         animObject.SetActive(true);
         isActive = true;
     }
@@ -58,7 +59,8 @@ public class EnemyShield : MonoBehaviour
         if (!isActive) return;
 
         cooldownTimer = shieldCooldown;
-        health.acceptedDamageTypes = baseDamageType;
+
+        enemyHealth.acceptedDamageTypes = baseDamageType;
         animObject.SetActive(false);
         isActive = false;
     }

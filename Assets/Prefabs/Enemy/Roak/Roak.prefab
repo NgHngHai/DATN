@@ -110,13 +110,13 @@ GameObject:
   - component: {fileID: 6395411124961461904}
   - component: {fileID: 860412544374262547}
   - component: {fileID: 5990577768488721935}
-  - component: {fileID: 4577663926805039782}
-  - component: {fileID: 551779335541370507}
-  - component: {fileID: -5244106645412013181}
+  - component: {fileID: 5537260388043156383}
   - component: {fileID: 4667849924603745213}
   - component: {fileID: 3572989021169597212}
   - component: {fileID: 6236937867152454781}
   - component: {fileID: 8726370632279902394}
+  - component: {fileID: -5244106645412013181}
+  - component: {fileID: 4577663926805039782}
   m_Layer: 9
   m_Name: Roak
   m_TagString: Untagged
@@ -206,7 +206,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4577663926805039782
+--- !u!114 &5537260388043156383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,82 +215,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3828942458327386514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b861b28b9b39c7479a0e61e7f680c66, type: 3}
+  m_Script: {fileID: 11500000, guid: a6af478c1088f9241a31445d950c0485, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Roak
-  movementLocked: 0
-  attackLocked: 0
-  isAlive: 1
-  isFacingRight: 1
-  canBeKnockedback: 1
-  rb: {fileID: 5990577768488721935}
-  animator: {fileID: 1564220852725325923}
-  flipOnVelX: 1
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckLocalPos: {x: 0, y: -0.31}
-  groundCheckDistance: 0.15
-  groundEdgeCheckOffsetX: 0.78
-  wallCheckDistance: 0.97
---- !u!114 &551779335541370507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828942458327386514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7067b79c71d2a146bc7ee3bf7a956b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolGroundEdge
-  patrolSpeed: 7
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolGroundEdgeWall
+  patrolSpeed: 6
   restTime: 0
-  patrolAtAwake: 1
---- !u!114 &-5244106645412013181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828942458327386514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b7fc1f2e05f174390a672974e2178f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 6
-  currentHealth: 6
-  acceptedDamageTypes: -1
-  isInvincible: 0
-  damageMultiplier: 1
-  iframeTime: 0.3
-  damageTypesIgnoreIFrames: 0
-  OnDamagedWithReaction:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4577663926805039782}
-        m_TargetAssemblyTypeName: Roak, Assembly-CSharp
-        m_MethodName: OnDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  patrolAtAwake: 0
 --- !u!114 &4667849924603745213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +300,76 @@ MonoBehaviour:
   landPoof: {fileID: 0}
   hitSpark: {fileID: 6812672052895366818}
   deathBurst: {fileID: 0}
+--- !u!114 &-5244106645412013181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828942458327386514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b7fc1f2e05f174390a672974e2178f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 6
+  currentHealth: 6
+  acceptedDamageTypes: -1
+  isInvincible: 0
+  damageMultiplier: 1
+  iframeTime: 0.3
+  damageTypesIgnoreIFrames: 0
+  OnDamagedWithReaction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4577663926805039782}
+        m_TargetAssemblyTypeName: Roak, Assembly-CSharp
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4577663926805039782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828942458327386514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b861b28b9b39c7479a0e61e7f680c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Roak
+  movementLocked: 0
+  attackLocked: 0
+  isAlive: 1
+  isFacingRight: 1
+  canBeKnockedback: 1
+  rb: {fileID: 5990577768488721935}
+  animator: {fileID: 1564220852725325923}
+  flipOnVelX: 1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckLocalPos: {x: 0, y: -0.31}
+  groundCheckDistance: 0.15
+  groundEdgeCheckOffsetX: 0.78
+  wallCheckDistance: 0.97
 --- !u!1 &3834453050571805308
 GameObject:
   m_ObjectHideFlags: 0

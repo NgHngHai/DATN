@@ -46,6 +46,12 @@ public abstract class GroundEnemy : Enemy
         base.SetVelocity(velocity);
     }
 
+    public void SetVelocityX(float velX)
+    {
+        if (!IsGrounded()) return;
+        rb.linearVelocityX = velX;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellowNice;
