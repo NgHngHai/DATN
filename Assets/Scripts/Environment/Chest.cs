@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chest : Interactables
 {
     [SerializeField] private int goldAmount = 50;
+    [SerializeField] private float moneyDelaySeconds = 0.5f;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem moneyParticle;
@@ -32,7 +33,7 @@ public class Chest : Interactables
             return;
 
         PlayerMoneyManager playerMoney = player.GetComponent<PlayerMoneyManager>();
-        playerMoney.AddMoney(goldAmount);
+        playerMoney.AddMoneyDelayed(goldAmount, moneyDelaySeconds);
 
         playerInteracted = true;
 

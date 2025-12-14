@@ -8,6 +8,8 @@ public class RoomData : MonoBehaviour
     public Vector2 FirstSpawnPosition { get; set; }
     private Dictionary<string, Door> doorDict;
 
+    [SerializeField] private Checkpoint roomCheckpoint;
+
     private void Awake()
     {
         doorDict = new Dictionary<string, Door>();
@@ -17,6 +19,9 @@ public class RoomData : MonoBehaviour
             if (!doorDict.ContainsKey(door.LinkID))
                 doorDict.Add(door.LinkID, door);
         }
+
+        roomCheckpoint = FindFirstObjectByType<Checkpoint>();
+
     }
 
     public Vector2 GetDoorLinkPosition(string linkID)
@@ -29,5 +34,13 @@ public class RoomData : MonoBehaviour
 
         FirstSpawnPosition = Vector2.zero;
         return Vector2.zero;
+    }
+
+    public Vector2 GetRoomCheckpointPosition()
+    {
+        if (roomCheckpoint != null)
+            return (Vector2)roomCheckpoint.transform.position;
+
+        return FirstSpawnPosition;
     }
 }

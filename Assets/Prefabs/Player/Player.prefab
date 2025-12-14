@@ -100,7 +100,7 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   damageAmount: 3
   damageType: 1
   shouldTriggerHitReaction: 1
@@ -110,6 +110,120 @@ MonoBehaviour:
   applyKnockbackToSelf: 1
   targetKnockbackForce: 5
   selfKnockbackForce: 5
+  restoreEnergyOnHit: 1
+  energyRestoredPerHit: 3
+  singleHitPerTarget: 1
+  repeatDelay: 0
+--- !u!1 &1515224784818350266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 992939462896187972}
+  - component: {fileID: 7892790213887296786}
+  - component: {fileID: 689206602774933612}
+  m_Layer: 0
+  m_Name: Downwards Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &992939462896187972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515224784818350266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 506739139444539100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &7892790213887296786
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515224784818350266}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.065938, y: 0.27432275}
+      - {x: -0.9540565, y: -0.8080472}
+      - {x: 0.08094154, y: -1.5033653}
+      - {x: 1.0178258, y: -0.9754849}
+      - {x: 1.0153022, y: 0.7426761}
+  m_UseDelaunayMesh: 0
+--- !u!114 &689206602774933612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515224784818350266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 2560
+  damageAmount: 3
+  damageType: 1
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 1
+  lockMovementOnTarget: 1
+  knockbackLockDuration: 0.1
+  applyKnockbackToSelf: 1
+  targetKnockbackForce: 5
+  selfKnockbackForce: 15
   restoreEnergyOnHit: 1
   energyRestoredPerHit: 3
   singleHitPerTarget: 1
@@ -387,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8106834576833190130
 Transform:
   m_ObjectHideFlags: 0
@@ -410,7 +524,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3863480949795753787}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -437,7 +551,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.14681834}
+  m_Offset: {x: 0.091632366, y: 0.1985665}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -447,7 +561,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 1.2936366}
+  m_Size: {x: 4.7753534, y: 1.9844064}
   m_EdgeRadius: 0
 --- !u!114 &7513521700256991583
 MonoBehaviour:
@@ -466,7 +580,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   damageAmount: 1
-  damageType: 3
+  damageType: 2
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 0
@@ -612,7 +726,7 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   damageAmount: 3
   damageType: 1
   shouldTriggerHitReaction: 1
@@ -657,7 +771,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 506739139444539100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5225942079909110734
+--- !u!1 &4968641092007195430
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -665,39 +779,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4879547556702711729}
-  - component: {fileID: 2858099084422506257}
-  - component: {fileID: 937691409025048872}
+  - component: {fileID: 327655858469556777}
+  - component: {fileID: 716985841563961993}
+  - component: {fileID: 2271400327677054291}
   m_Layer: 0
-  m_Name: Blast Hurtbox
+  m_Name: Upwards Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4879547556702711729
+  m_IsActive: 1
+--- !u!4 &327655858469556777
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5225942079909110734}
+  m_GameObject: {fileID: 4968641092007195430}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 265223407549141465}
+  m_Father: {fileID: 506739139444539100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2858099084422506257
-BoxCollider2D:
+--- !u!60 &716985841563961993
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5225942079909110734}
-  m_Enabled: 1
+  m_GameObject: {fileID: 4968641092007195430}
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -724,7 +838,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -734,7 +848,121 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5877852, y: -0.80901706}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.9510565, y: 0.30901712}
+  m_UseDelaunayMesh: 0
+--- !u!114 &2271400327677054291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968641092007195430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e627a653f4081f41aea122e5055cf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  enableColliderAtAwake: 1
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 2560
+  damageAmount: 3
+  damageType: 1
+  shouldTriggerHitReaction: 1
+  applyKnockbackToTarget: 1
+  lockMovementOnTarget: 1
+  knockbackLockDuration: 0.1
+  applyKnockbackToSelf: 0
+  targetKnockbackForce: 5
+  selfKnockbackForce: 5
+  restoreEnergyOnHit: 1
+  energyRestoredPerHit: 3
+  singleHitPerTarget: 1
+  repeatDelay: 0
+--- !u!1 &5225942079909110734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4879547556702711729}
+  - component: {fileID: 2858099084422506257}
+  - component: {fileID: 937691409025048872}
+  m_Layer: 0
+  m_Name: Blast Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4879547556702711729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225942079909110734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 265223407549141465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2858099084422506257
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225942079909110734}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.1365659, y: 1.0062885}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.6864285, y: 3.012577}
   m_EdgeRadius: 0
 --- !u!114 &937691409025048872
 MonoBehaviour:
@@ -751,15 +979,15 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 1536
-  damageAmount: 1
-  damageType: 0
+    m_Bits: 512
+  damageAmount: 9
+  damageType: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 1
-  knockbackLockDuration: 0.1
+  knockbackLockDuration: 0.2
   applyKnockbackToSelf: 0
-  targetKnockbackForce: 5
+  targetKnockbackForce: 15
   selfKnockbackForce: 5
   restoreEnergyOnHit: 0
   energyRestoredPerHit: 3
@@ -1026,10 +1254,12 @@ GameObject:
   - component: {fileID: 2432408401623021997}
   - component: {fileID: 8240204760134584171}
   - component: {fileID: 780285354900931754}
+  - component: {fileID: 2623773582521933837}
   - component: {fileID: 2287647269058867019}
   - component: {fileID: 9209295225654319950}
   - component: {fileID: 1190804931672900395}
   - component: {fileID: 2753912382881145763}
+  - component: {fileID: 1292387543960183970}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1104,12 +1334,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3448396b507286d4899d5aba9a377a19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d864db7056f72441ac665829782c311, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.23, y: 3.02}
+  m_Size: {x: 3.96, y: 5.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1356,9 +1586,9 @@ MonoBehaviour:
   frictionlessMaterial: {fileID: 6200000, guid: 18f554135bb615b4d9d35d8fac99f1f5, type: 2}
   skillLocked: 0
   isCountering: 0
-  dashSpeed: 25
-  dashDuration: 0.15
-  dashCooldown: 0.5
+  dashSpeed: 27
+  dashDuration: 0.2
+  dashCooldown: 0.75
   isDashing: 0
   InputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!114 &2432408401623021997
@@ -1460,6 +1690,22 @@ MonoBehaviour:
   OnMoneyChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2623773582521933837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8147090675ec83842b19a171fe96dde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawnController
+  respawnDelaySeconds: 1.5
+  OnRespawnOverlayRequested:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2287647269058867019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,6 +1750,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1190804931672900395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,6 +1767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveables
   playerRoomID: 
   playerLinkDoorID: 
+  lastCheckpointRoomName: 
 --- !u!114 &2753912382881145763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,7 +1780,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: c9c2eb1b-93bf-4296-b066-4df810d19dc0
+  uniqueID: f7027905-098f-4663-ac46-f83984c5d486
+--- !u!114 &1292387543960183970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceaec8200dce9f4283a2dd443d6497a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
+  poisonColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &7025280725610454495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,7 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4861485f3ca1434eb4d57cf0ebd3dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Blast
-  blastSpeed: 20
+  blastSpeed: 30
   blastDuration: 0.25
   _hurtBox: {fileID: 5225942079909110734}
 --- !u!1 &7545919649483524671
@@ -1610,6 +1873,8 @@ Transform:
   m_Children:
   - {fileID: 1803086299127610339}
   - {fileID: 417706884321464143}
+  - {fileID: 327655858469556777}
+  - {fileID: 992939462896187972}
   - {fileID: 5674515030097575553}
   - {fileID: 370371347258033086}
   m_Father: {fileID: 7563957037513625506}

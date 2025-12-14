@@ -1,8 +1,13 @@
 using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class BreakableWall : SaveableObject, IDamageable
 {
     public int health = 5;
+    [SerializeField] private float destroyAnimationDuration = 0.5f;
+    [SerializeField] private GameObject wallComponents;
+    [SerializeField] private ParticleSystem destroyParticles;
     private bool isDestroyed = false;
 
     public bool TakeDamage (int amount, DamageType type, Vector2 hitDir, bool trigger = false)
@@ -20,10 +25,23 @@ public class BreakableWall : SaveableObject, IDamageable
         if (health == 0)
         {
             isDestroyed = true;
-            gameObject.SetActive(false);
+            StartCoroutine(DestroyCoroutine());
         }
 
         return true;
+    }
+
+    private IEnumerator DestroyCoroutine()
+    {
+        wallComponents.SetActive(false);
+        destroyParticles.Play();
+
+        while (destroyParticles.isPlaying)
+        {
+            yield return null;
+        }
+
+        gameObject.SetActive(false);
     }
 
     public bool CanBeDamaged() => !isDestroyed;

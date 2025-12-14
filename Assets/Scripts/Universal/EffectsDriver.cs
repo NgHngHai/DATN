@@ -26,6 +26,7 @@ public class EffectsDriver : MonoBehaviour
         events.OnLand.AddListener(PlayLandPoof);
         events.OnDamagedWithReaction.AddListener(PlayHitSpark);
         events.OnDeath.AddListener(PlayDeathBurst);
+        events.OnRespawn.AddListener(StopDeathBurst);
     }
 
     private void OnDisable()
@@ -37,12 +38,15 @@ public class EffectsDriver : MonoBehaviour
         events.OnLand.RemoveListener(PlayLandPoof);
         events.OnDamagedWithReaction.RemoveListener(PlayHitSpark);
         events.OnDeath.RemoveListener(PlayDeathBurst);
+        events.OnRespawn.RemoveListener(StopDeathBurst);
     }
 
     private void PlayJumpDust() { if (jumpDust != null) jumpDust.Play(); }
     private void PlayDashTrail() { if (dashTrail != null) dashTrail.Play(); }
     private void PlayLandPoof() { if (landPoof != null) landPoof.Play(); }
     private void PlayDeathBurst() { if (deathBurst != null) deathBurst.Play(); }
+    private void StopDeathBurst() { if (deathBurst != null) deathBurst.Stop(); }
+
     private void PlayHitSpark(Vector2 dir) 
     { 
         if (hitSpark == null) return;

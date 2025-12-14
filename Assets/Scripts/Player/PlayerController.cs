@@ -1,6 +1,4 @@
-﻿//using System;
-//using Unity.Mathematics;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
@@ -11,9 +9,9 @@ public class PlayerController : Entity
 
     // Cameras
     [Header("Camera variables")]
-    [SerializeField] private CinemachineCamera mainCamera;
-    [SerializeField] private CinemachineCamera upCamera;
-    [SerializeField] private CinemachineCamera downCamera;
+    public CinemachineCamera mainCamera;
+    public CinemachineCamera upCamera;
+    public CinemachineCamera downCamera;
     [SerializeField] private float durationToSwitchCamera = 0.2f;
     private float _upHoldTimer = 0f;
     private float _downHoldTimer = 0f;
@@ -53,9 +51,6 @@ public class PlayerController : Entity
     [SerializeField] private Vector2 groundCheckOffset = new Vector2(0f, -0.9f);
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.8f, 0.15f);
     [SerializeField] private LayerMask groundLayers = ~0;
-    private bool isTouchingWall;
-    private bool wallOnLeft;
-    private bool wallOnRight;
 
     [Header("Air Friction Control")]
     [Tooltip("Frictionless (or low friction) material applied only while airborne after a jump.")]
@@ -97,6 +92,14 @@ public class PlayerController : Entity
     private InputAction interactAction;
     public event Action OnInteractPressed;
 
+    // State change ownership
+    [Header("State Ownership")]
+    [Tooltip("When true, PlayerController will not auto change state.")]
+    [NonSerialized] public bool animStateLocked = false;
+
+    // Revive flag
+    private bool _playedInitialRevive = false;
+
     // Animation states
     [Header("Animation States")]
     public AnimationState idleState;
@@ -117,6 +120,8 @@ public class PlayerController : Entity
     public AnimationState hurtState;
     public AnimationState deathState;
 
+    public AnimationState reviveState;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -127,6 +132,14 @@ public class PlayerController : Entity
         {
             playerHealth.OnDamagedWithReaction.AddListener(HandleDamagedWithReaction);
             playerHealth.OnDeath.AddListener(HandleDeath);
+        }
+
+        // Play revive animation when first loading in
+        if (!_playedInitialRevive)
+        {
+            //TrySnapToLinkedDoor();
+            PlayReviveState();
+            _playedInitialRevive = true;
         }
     }
 
@@ -154,11 +167,13 @@ public class PlayerController : Entity
         DontDestroyOnLoad(gameObject);
 
         base.Awake();
-        animator = GetComponent<Animator>();            // Lấy component Animator
-        playerHealth = GetComponent<Health>();          // Lấy component Health
-        effectEvents = GetComponent<EffectEvents>();    // Lấy component EffectEvents
+        animator = GetComponent<Animator>();
+        playerHealth = GetComponent<Health>();
+        effectEvents = GetComponent<EffectEvents>();
 
-        // Gán từng state, tên animBoolName phải trùng với parameter trong Animator
+        animStateLocked = false;
+
+        // Init states
         idleState = new AnimationState(this, "idle", true);
         runState = new AnimationState(this, "run", true);
         jumpState = new AnimationState(this, "jump", true);
@@ -176,6 +191,8 @@ public class PlayerController : Entity
 
         hurtState = new AnimationState(this, "hurt", true);
         deathState = new AnimationState(this, "dead", true);
+
+        reviveState = new AnimationState(this, "revive", true);
 
         animStateMachine.Initialize(idleState);         // Bắt đầu ở trạng thái Idle
 
@@ -229,6 +246,13 @@ public class PlayerController : Entity
             return; // Dead - no input
         }
 
+        // Block input while in revive state
+        if (animStateMachine.currentState == reviveState && animStateLocked)
+        {
+            return;
+        }
+
+        // Block input while in hurt state if movement is locked
         if (animStateMachine.currentState == hurtState && movementLocked)
         {
             return;
@@ -386,25 +410,29 @@ public class PlayerController : Entity
         }
 
         // OTHER ANIMATION STATE UPDATES
-        // Fall state
-        if (rb.linearVelocityY < 0 && !isGrounded)
+        if (!animStateLocked)
         {
-            animStateMachine.ChangeState(fallState);
-            return;
-        } else if (rb.linearVelocityY > 0 && !isGrounded)
-        {
-            animStateMachine.ChangeState(ascendState);
-            return;
-        }
+            // Fall state
+            if (rb.linearVelocityY < 0 && !isGrounded)
+            {
+                animStateMachine.ChangeState(fallState);
+                return;
+            }
+            else if (rb.linearVelocityY > 0 && !isGrounded)
+            {
+                animStateMachine.ChangeState(ascendState);
+                return;
+            }
 
-        // Running/Idle state
-        if (moveAction.inProgress && moveAmt != 0)
-        {
-            animStateMachine.ChangeState(runState);
-        }
-        else
-        {
-            animStateMachine.ChangeState(idleState);
+            // Running/Idle state
+            if (moveAction.inProgress && moveAmt != 0)
+            {
+                animStateMachine.ChangeState(runState);
+            }
+            else
+            {
+                animStateMachine.ChangeState(idleState);
+            }
         }
     }
 
@@ -447,6 +475,48 @@ public class PlayerController : Entity
                 rb.linearVelocityY = maxFallSpeed;
             }
         }
+    }
+
+    // Revive
+    public void PlayReviveState()
+    {
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = originalGravityMultiplier;
+        externalVelocityX = 0f;
+
+        movementLocked = true;
+
+        animStateMachine.ChangeState(reviveState);
+        animStateLocked = true;
+    }
+
+    //private void TrySnapToLinkedDoor()
+    //{
+    //    var roomData = FindFirstObjectByType<RoomData>();
+    //    var saveData = GetComponent<PlayerSaveables>();
+
+    //    if (roomData == null || saveData == null) return;
+
+    //    Vector2 spawnPos = roomData.GetDoorLinkPosition(saveData.playerLinkDoorID);
+    //    if (spawnPos != Vector2.zero)
+    //    {
+    //        transform.position = spawnPos;
+    //        rb.linearVelocity = Vector2.zero;
+    //    }
+    //}
+
+    // Animation event callback
+    private void UnlockMovementAfterRevive()
+    {
+        if (animStateMachine.currentState == deathState) return;
+        animStateLocked = false;
+        movementLocked = false;
+    }
+
+    public void UnlockPostAttack()
+    {
+        movementLocked = false;
+        isAttacking = false;
     }
 
     private void FlipOnMoveInput()
@@ -592,6 +662,7 @@ public class PlayerController : Entity
 
         // Switch to hurt state (knockback is already applied by HurtBox -> Entity.ApplyKnockback)
         animStateMachine.ChangeState(hurtState);
+        movementLocked = true;
         effectEvents?.InvokeDamagedWithReaction(hitDir);
     }
 
@@ -606,12 +677,6 @@ public class PlayerController : Entity
 
         animStateMachine.ChangeState(deathState);
         effectEvents?.InvokeDeath();
-    }
-
-    public void UnlockPostAttack()
-    {
-        movementLocked = false;
-        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()
