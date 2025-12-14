@@ -44,7 +44,8 @@ public class Skill_Stomp : MonoBehaviour, ISkill
 
         // Lock movement, change gravity multiplier to avoid overwrite
         playerController.movementLocked = true;
-        playerController.animStateLocked = true; playerController.fallGravityMultiplier = stompGravityScale;
+        playerController.animStateLocked = true; 
+        playerController.fallGravityMultiplier = stompGravityScale;
 
         // Change anims
         playerController.animStateMachine.ChangeState(stompState);
@@ -77,15 +78,5 @@ public class Skill_Stomp : MonoBehaviour, ISkill
         playerController.movementLocked = false;
         playerController.animStateLocked = false; 
         playerController.fallGravityMultiplier = originalGravityScale;
-
-        // Hit around the player
-        StartCoroutine(ToggleStompHurtBoxRoutine());
-    }
-
-    private IEnumerator ToggleStompHurtBoxRoutine()
-    {
-        _hurtBox.SetActive(true);
-        yield return null; // Wait one frame
-        _hurtBox.SetActive(false);
     }
 }

@@ -9,17 +9,21 @@ public class Skill_Blast: MonoBehaviour, ISkill
     private float blastTimeLeft = 0f;
     private bool isBlasting = false;
 
+    // Animation State
+    public AnimationState blastState;
+
     // References
     private PlayerController _playerController;
     private Rigidbody2D _rb;
     private Health _playerHealth;
     [SerializeField] private GameObject _hurtBox;
 
-    private void Awake()
+    private void Start()
     {
         _playerController = GetComponentInParent<PlayerController>();
         _rb = GetComponentInParent<Rigidbody2D>();
         _playerHealth = GetComponentInParent<Health>();
+        blastState = new AnimationState(_playerController, "blast", true);
     }
 
     private void FixedUpdate()
@@ -46,8 +50,12 @@ public class Skill_Blast: MonoBehaviour, ISkill
 
     private void StartBlast()
     {
-        _playerController.movementLocked = true; // Lock movement during dash
-        _playerController.isDashing = true;
+        //_playerController.isDashing = true;
+        _playerController.movementLocked = true;
+        _playerController.animStateLocked = true;
+
+        _playerController.animStateMachine.ChangeState(blastState);
+
         isBlasting = true;
 
         blastTimeLeft = blastDuration;
@@ -62,8 +70,9 @@ public class Skill_Blast: MonoBehaviour, ISkill
     
     private void EndBlast()
     {
-        _playerController.isDashing = false;
+        //_playerController.isDashing = false;
         _playerController.movementLocked = false; // Unlock movement
+        _playerController.animStateLocked = false; // Unlock anim state
         isBlasting = false;
 
         _rb.gravityScale = _playerController.originalGravityMultiplier; // Restore gravity
