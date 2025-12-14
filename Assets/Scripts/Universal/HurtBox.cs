@@ -101,7 +101,6 @@ public class HurtBox : MonoBehaviour
             return;
 
         var damageable = other.GetComponent<IDamageable>();
-        Entity entity = other.GetComponent<Entity>();
         if (damageable == null || !damageable.CanBeDamaged())
             return;
 
