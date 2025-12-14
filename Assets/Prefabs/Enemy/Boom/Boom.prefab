@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2376226257194741658}
   - component: {fileID: 4283542562062430067}
   - component: {fileID: 4394619364343355828}
-  - component: {fileID: 2053601895726427136}
+  - component: {fileID: 1138078639315664282}
   - component: {fileID: -303687343232373601}
   - component: {fileID: 7583331168323306519}
   - component: {fileID: 7074851440236102054}
@@ -364,7 +364,7 @@ MonoBehaviour:
   detectPoint: {fileID: 6213538815819185610}
   detectRate: 0.2
   drawGizmos: 1
---- !u!114 &2053601895726427136
+--- !u!114 &1138078639315664282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,12 +373,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7773938101289360061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7067b79c71d2a146bc7ee3bf7a956b8, type: 3}
+  m_Script: {fileID: 11500000, guid: a6af478c1088f9241a31445d950c0485, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolGroundEdge
-  patrolSpeed: 3
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolGroundEdgeWall
+  patrolSpeed: 5
   restTime: 0
-  patrolAtAwake: 1
+  patrolAtAwake: 0
 --- !u!114 &-303687343232373601
 MonoBehaviour:
   m_ObjectHideFlags: 0

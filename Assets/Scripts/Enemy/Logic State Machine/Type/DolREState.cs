@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -84,9 +85,8 @@ public class DolREPrepareToAttackState : DolREState
 
 public class DolREShootExplosiveState : DolREState
 {
-    protected int explosiveIndex = 0;
+    private int explosiveIndex = 0;
     private Vector3 baseDirection;
-    private bool lookRight;
     private float halfAngle = 60f;
 
     public DolREShootExplosiveState(Enemy enemy) : base(enemy)
@@ -110,7 +110,7 @@ public class DolREShootExplosiveState : DolREState
     {
         base.Update();
 
-        //AttackPointLookAtRandomAngle();
+        AttackPointLookAtRandomSide();
 
         if (dolre.IsCurrentAnimStateTriggerCalled())
         {
@@ -118,14 +118,14 @@ public class DolREShootExplosiveState : DolREState
         }
     }
 
-    private void AttackPointLookAtRandomAngle()
+    private void AttackPointLookAtRandomSide()
     {
-        baseDirection.x = lookRight ? 1 : -1;
-        lookRight = !lookRight;
+        int side = Random.value < 0.5f ? -1 : 1;
+        Vector3 baseDir = new Vector3(side, 0f, 0f);
 
-        float angle = Random.Range(-halfAngle, halfAngle);
+        float angle = Random.Range(0f, halfAngle) * side;
 
-        Vector3 randomDir = Quaternion.Euler(0f, 0f, angle) * baseDirection;
+        Vector3 randomDir = Quaternion.Euler(0f, 0f, angle) * baseDir;
 
         attackSet.CurrentAttack.AttackPointLookAtDirection(randomDir);
     }
@@ -135,7 +135,7 @@ public class DolREShootHomingMissileState : DolREState
 {
     private int homingIndex = 1;
     private Vector3 baseDirection;
-    private float randomAngle = 60f;
+    private float halfAngle = 60f;
 
     public DolREShootHomingMissileState(Enemy enemy) : base(enemy)
     {
@@ -165,7 +165,7 @@ public class DolREShootHomingMissileState : DolREState
 
     private void AttackPointLookAtRandomAngle()
     {
-        float angle = Random.Range(-randomAngle, randomAngle);
+        float angle = Random.Range(-halfAngle, halfAngle);
 
         Vector3 randomDir = Quaternion.Euler(0f, 0f, angle) * baseDirection;
 

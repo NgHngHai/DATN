@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e1d145fb22c7848a87915b87a8d70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  projectileLifeSpan: 6
+  projectileLifeSpan: 3
   dontDestroyOnHit: 0
   hitEffect: {fileID: 4868853994873149025, guid: a7980f7435c1c6247a4c9df4a154d78c, type: 3}
 --- !u!58 &1404893156461912456
@@ -130,7 +130,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 1
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
