@@ -100,7 +100,7 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   damageAmount: 3
   damageType: 1
   shouldTriggerHitReaction: 1
@@ -193,10 +193,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.86731774, y: 0.23708153}
-      - {x: -0.5816434, y: -0.5101166}
-      - {x: 0.14301041, y: -1.242676}
-      - {x: 0.8688606, y: -0.9134162}
+    - - {x: -1.065938, y: 0.27432275}
+      - {x: -0.9540565, y: -0.8080472}
+      - {x: 0.08094154, y: -1.5033653}
+      - {x: 1.0178258, y: -0.9754849}
       - {x: 1.0153022, y: 0.7426761}
   m_UseDelaunayMesh: 0
 --- !u!114 &689206602774933612
@@ -214,7 +214,7 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   damageAmount: 3
   damageType: 1
   shouldTriggerHitReaction: 1
@@ -223,7 +223,7 @@ MonoBehaviour:
   knockbackLockDuration: 0.1
   applyKnockbackToSelf: 1
   targetKnockbackForce: 5
-  selfKnockbackForce: 10
+  selfKnockbackForce: 15
   restoreEnergyOnHit: 1
   energyRestoredPerHit: 3
   singleHitPerTarget: 1
@@ -501,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8106834576833190130
 Transform:
   m_ObjectHideFlags: 0
@@ -524,7 +524,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3863480949795753787}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -580,7 +580,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   damageAmount: 1
-  damageType: 3
+  damageType: 2
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   damageAmount: 3
   damageType: 1
   shouldTriggerHitReaction: 1
@@ -871,7 +871,7 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   damageAmount: 3
   damageType: 1
   shouldTriggerHitReaction: 1
@@ -902,7 +902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4879547556702711729
 Transform:
   m_ObjectHideFlags: 0
@@ -925,7 +925,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5225942079909110734}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -952,7 +952,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 1.1365659, y: 1.0062885}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -962,7 +962,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 4.6864285, y: 3.012577}
   m_EdgeRadius: 0
 --- !u!114 &937691409025048872
 MonoBehaviour:
@@ -979,15 +979,15 @@ MonoBehaviour:
   enableColliderAtAwake: 1
   targetLayers:
     serializedVersion: 2
-    m_Bits: 1536
-  damageAmount: 1
-  damageType: 0
+    m_Bits: 512
+  damageAmount: 9
+  damageType: 1
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 1
-  knockbackLockDuration: 0.1
+  knockbackLockDuration: 0.2
   applyKnockbackToSelf: 0
-  targetKnockbackForce: 5
+  targetKnockbackForce: 15
   selfKnockbackForce: 5
   restoreEnergyOnHit: 0
   energyRestoredPerHit: 3
@@ -1254,6 +1254,7 @@ GameObject:
   - component: {fileID: 2432408401623021997}
   - component: {fileID: 8240204760134584171}
   - component: {fileID: 780285354900931754}
+  - component: {fileID: 2623773582521933837}
   - component: {fileID: 2287647269058867019}
   - component: {fileID: 9209295225654319950}
   - component: {fileID: 1190804931672900395}
@@ -1585,7 +1586,7 @@ MonoBehaviour:
   frictionlessMaterial: {fileID: 6200000, guid: 18f554135bb615b4d9d35d8fac99f1f5, type: 2}
   skillLocked: 0
   isCountering: 0
-  dashSpeed: 25
+  dashSpeed: 27
   dashDuration: 0.2
   dashCooldown: 0.75
   isDashing: 0
@@ -1689,6 +1690,22 @@ MonoBehaviour:
   OnMoneyChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2623773582521933837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8147090675ec83842b19a171fe96dde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawnController
+  respawnDelaySeconds: 1.5
+  OnRespawnOverlayRequested:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2287647269058867019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1733,6 +1750,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1190804931672900395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,6 +1767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveables
   playerRoomID: 
   playerLinkDoorID: 
+  lastCheckpointRoomName: 
 --- !u!114 &2753912382881145763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,7 +1780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 0e911cc1-5281-4d1b-8616-297abc944b2c
+  uniqueID: f7027905-098f-4663-ac46-f83984c5d486
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,7 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4861485f3ca1434eb4d57cf0ebd3dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Blast
-  blastSpeed: 20
+  blastSpeed: 30
   blastDuration: 0.25
   _hurtBox: {fileID: 5225942079909110734}
 --- !u!1 &7545919649483524671
