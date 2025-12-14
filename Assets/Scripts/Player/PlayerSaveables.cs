@@ -13,6 +13,11 @@ public class PlayerSaveables : SaveableObject
     public string playerRoomID;
     public string playerLinkDoorID;
 
+    // Checkpoint
+    [Header("Checkpoint Save")]
+    [Tooltip("Room name containing the last checkpoint used.")]
+    public string lastCheckpointRoomName;
+
     protected override void Awake()
     {
         base.Awake();
@@ -38,6 +43,7 @@ public class PlayerSaveables : SaveableObject
             money = playerMoney.CurrentMoney,
 
             currentRoomID = playerRoomID,
+            lastCheckpointRoomName = lastCheckpointRoomName,
             linkDoorID = playerLinkDoorID,
             position = transform.position
         };
@@ -56,6 +62,7 @@ public class PlayerSaveables : SaveableObject
         playerMoney.CurrentMoney = ((PlayerState)state).money;
 
         playerRoomID = ((PlayerState)state).currentRoomID;
+        lastCheckpointRoomName = ((PlayerState)state).lastCheckpointRoomName;
         playerLinkDoorID = ((PlayerState)state).linkDoorID;
         transform.position = ((PlayerState)state).position;
     }
@@ -77,8 +84,9 @@ public class PlayerSaveables : SaveableObject
         // Money
         public int money;
 
-        // Current room & position
+        // Current room, position, checkpoint
         public string currentRoomID;
+        public string lastCheckpointRoomName;
         public string linkDoorID;
         public Vector3 position;
     }
