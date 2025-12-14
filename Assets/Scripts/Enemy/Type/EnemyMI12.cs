@@ -3,13 +3,16 @@ using UnityEngine;
 public class EnemyMI12 : GroundEnemy
 {
     [Header("Enemy: MI-12")]
-    public float decideToChargeDistance = 3;
-    public float chargeRestTime = 1f;
+    public float minChargeDistance = 3;
     public AnimationCurve chargeSpeedCurve;
-    public float reachMaxSpeedTime = 1f;
+    public float chargeDuration = 1f;
     public float maxChargeSpeed = 10f;
 
-    public MI12RestState restState;
+    public AnimationState animIdleState;
+    public AnimationState animLaserBlastState;
+    public AnimationState animChargeState;
+
+    public MI12ObservationState observationState;
     public MI12ChargeState chargeState;
     public MI12BlastLaserAttack blastLaserAttackState;
 
@@ -17,7 +20,11 @@ public class EnemyMI12 : GroundEnemy
     {
         base.Awake();
 
-        restState = new MI12RestState(this);
+        animIdleState = new AnimationState(this, "idle");
+        animLaserBlastState = new AnimationState(this, "laserBlast");
+        animChargeState = new AnimationState(this, "charge");
+
+        observationState = new MI12ObservationState(this);
         chargeState = new MI12ChargeState(this);
         blastLaserAttackState = new MI12BlastLaserAttack(this);
     }
@@ -25,7 +32,9 @@ public class EnemyMI12 : GroundEnemy
     protected override void Start()
     {
         base.Start();
-        logicStateMachine.Initialize(restState);
+
+        animStateMachine.Initialize(animIdleState);
+        logicStateMachine.Initialize(observationState);
     }
 }
 

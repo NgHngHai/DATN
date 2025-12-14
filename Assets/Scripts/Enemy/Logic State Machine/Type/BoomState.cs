@@ -79,8 +79,7 @@ public class BoomChaseState : BoomState
 
         FlipToTarget();
 
-        Vector2 chaseVel = new Vector2(boom.FacingDir * boom.chaseSpeed, 0);
-        boom.SetVelocity(chaseVel);
+        boom.SetVelocityX(boom.FacingDir * boom.chaseSpeed);
 
         if(targetHandler.GetDistanceToTarget() < boom.explodeDistance)
         {
