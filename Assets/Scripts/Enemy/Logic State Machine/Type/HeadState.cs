@@ -114,7 +114,7 @@ public class HeadMoveState : HeadState
             moveDir *= -1;
         }
 
-        head.SetVelocity(new Vector2(moveDir * head.moveSpeed, 0));
+        head.SetVelocityX(moveDir * head.moveSpeed);
 
         if (IsTargetValid() && IsCurrentAttackReady())
         {

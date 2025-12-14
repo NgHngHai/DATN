@@ -8,12 +8,14 @@ public abstract class SaveableObject : MonoBehaviour, ISaveable
     protected virtual void Awake()
     {
         uniqueID = GetComponent<UniqueID>();
-        SaveSystem.Instance.Register(this);   
+        if (SaveSystem.Instance != null)
+            SaveSystem.Instance.Register(this);
     }
 
     protected virtual void OnDestroy()
     {
-        SaveSystem.Instance.Unregister(this);
+        if (SaveSystem.Instance != null)
+            SaveSystem.Instance.Unregister(this);
     }
 
     public string GetUniqueID() => uniqueID.ID;
