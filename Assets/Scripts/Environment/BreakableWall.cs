@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class BreakableWall : SaveableObject, IDamageable
 {
@@ -53,7 +52,6 @@ public class BreakableWall : SaveableObject, IDamageable
         return new WallState
         {
             destroyed = isDestroyed,
-            position = transform.position
         };
     }
 
@@ -61,7 +59,6 @@ public class BreakableWall : SaveableObject, IDamageable
     {
         var s = (WallState)state;
         isDestroyed = s.destroyed;
-        transform.position = s.position;
 
         // Unload if destroyed
         gameObject.SetActive(!isDestroyed);
@@ -71,6 +68,5 @@ public class BreakableWall : SaveableObject, IDamageable
     private struct WallState
     {
         public bool destroyed;
-        public Vector3 position;
     }
 }
