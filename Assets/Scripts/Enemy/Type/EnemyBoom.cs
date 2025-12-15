@@ -9,6 +9,7 @@ using UnityEngine;
 public class EnemyBoom : GroundEnemy
 {
     [Header("Enemy: Boom")]
+    public AudioSource runningSource;
     public ParticleSystem runningDustPS;
     public float chaseSpeed;
     public float explodeDistance;
@@ -43,8 +44,6 @@ public class EnemyBoom : GroundEnemy
     {
         logicStateMachine.ChangeState(explodeState);
     }
-
-
 
     public void DestroyItself() => Destroy(gameObject);
 }

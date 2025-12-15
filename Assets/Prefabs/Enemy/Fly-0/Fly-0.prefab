@@ -272,6 +272,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7001348281399851201
 MonoBehaviour:
   m_ObjectHideFlags: 0

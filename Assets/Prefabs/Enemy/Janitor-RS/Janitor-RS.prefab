@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 1575289767488753308}
   - component: {fileID: 925893943154755385}
   m_Layer: 9
-  m_Name: Hovering Body
+  m_Name: Animator Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,6 +493,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &526291993414367312

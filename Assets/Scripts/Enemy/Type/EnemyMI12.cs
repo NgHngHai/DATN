@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyMI12 : GroundEnemy
 {
     [Header("Enemy: MI-12")]
+    public AudioClip chargeSound;
     public float minChargeDistance = 3;
     public AnimationCurve chargeSpeedCurve;
     public float chargeDuration = 1f;
