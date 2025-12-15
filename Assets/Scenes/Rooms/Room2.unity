@@ -83708,7 +83708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   linkID: 2-5-B
   nextRoomName: Room5
-  enterDirection: 1
+  enterDirection: 0
 --- !u!61 &2071784137
 BoxCollider2D:
   m_ObjectHideFlags: 0
