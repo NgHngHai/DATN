@@ -12,8 +12,36 @@ public class SkillDefinition
     public GameObject skillPrefab; 
     public float cooldown;
     public int cost;
-    public bool isUnlocked = false;
     public bool isPassive = false;
+
+    [SerializeField] private bool _isUnlocked = false;
+    public bool isUnlocked
+    {
+        get => _isUnlocked;
+        set
+        {
+            if (_isUnlocked == value) return;
+            _isUnlocked = value;
+
+            if (isPassive)
+            {
+                var player = _player != null ? _player : GameObject.FindWithTag("Player");
+                EnablePassive(player, _isUnlocked);
+            }
+        }
+    }
+
+    // Reference
+    [NonSerialized] private GameObject _player;
+
+    public void Initialize(GameObject player)
+    {
+        _player = player;
+        if (isPassive && isUnlocked)
+        {
+            EnablePassive(_player, true);
+        }
+    }
 
     public void Activate()
     {
@@ -43,7 +71,7 @@ public class SkillDefinition
     }
 
     // Toggle passive effect on/off for the player
-    public void TogglePassive(GameObject owner, bool active)
+    public void EnablePassive(GameObject owner, bool active)
     {
         if (!isPassive || skillPrefab == null || owner == null) return;
 

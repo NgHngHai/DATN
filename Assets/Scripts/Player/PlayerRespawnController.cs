@@ -61,6 +61,8 @@ public class PlayerRespawnController : MonoBehaviour
         if (_roomManager == null || _player == null || _save == null) yield break;
 
         string targetRoom = _save.lastCheckpointRoomName;
+        if (targetRoom == null)
+            targetRoom = "Room1";
 
         if (!string.IsNullOrEmpty(targetRoom) && SceneManager.GetActiveScene().name != targetRoom)
         {

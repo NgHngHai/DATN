@@ -38,6 +38,8 @@ public class HurtBox : MonoBehaviour
     public float targetKnockbackForce = 5f;
     public float selfKnockbackForce = 5f;
 
+    private bool _appliedKnockbackToSelf = false;
+
     // For player only
     [Header("Player Only")]
     public bool restoreEnergyOnHit = false;
@@ -81,6 +83,13 @@ public class HurtBox : MonoBehaviour
     private void OnEnable()
     {
         _lastHitTime.Clear();
+    }
+
+    private void Update()
+    {
+        if (applyKnockbackToSelf)
+            if (_col.enabled == false)
+                _appliedKnockbackToSelf = false;
     }
 
     protected void OnTriggerEnter2D(Collider2D other)
@@ -131,10 +140,11 @@ public class HurtBox : MonoBehaviour
             }
         }
 
-        if (applyKnockbackToSelf && selfKnockbackForce > 0f && _selfRb != null)
+        if (applyKnockbackToSelf && selfKnockbackForce > 0f && _selfRb != null && !_appliedKnockbackToSelf)
         {
             _selfRb.linearVelocity = Vector2.zero;
             _selfEntity.ApplyKnockback(dir, selfKnockbackForce, false);
+            _appliedKnockbackToSelf = true;
         }
 
         // Apply damage
