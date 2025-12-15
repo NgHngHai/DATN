@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BreakableWall : SaveableObject, IDamageable
 {
-    public int health = 5;
+    public int health = 1;
     [SerializeField] private float destroyAnimationDuration = 0.5f;
     [SerializeField] private GameObject wallComponents;
     [SerializeField] private ParticleSystem destroyParticles;
@@ -32,6 +32,8 @@ public class BreakableWall : SaveableObject, IDamageable
 
     private IEnumerator DestroyCoroutine()
     {
+        var _col = GetComponent<Collider2D>();
+        _col.enabled = false;
         wallComponents.SetActive(false);
         destroyParticles.Play();
 
