@@ -1610,14 +1610,14 @@ MonoBehaviour:
   - skillId: 0
     skillName: Heal
     skillPrefab: {fileID: 8842345333750631371}
-    cooldown: 0
+    cooldown: 5
     cost: 3
     isPassive: 0
-    _isUnlocked: 0
+    _isUnlocked: 1
   - skillId: 1
-    skillName: Blast
+    skillName: Charge Dash
     skillPrefab: {fileID: 7025280725610454495}
-    cooldown: 0
+    cooldown: 1
     cost: 3
     isPassive: 0
     _isUnlocked: 0
@@ -1625,7 +1625,7 @@ MonoBehaviour:
     skillName: Double Jump
     skillPrefab: {fileID: 2320717386118876908}
     cooldown: 0
-    cost: 3
+    cost: 0
     isPassive: 1
     _isUnlocked: 0
   - skillId: 3
@@ -1642,7 +1642,7 @@ MonoBehaviour:
     cost: 3
     isPassive: 0
     _isUnlocked: 0
-  activeSkillId: 3
+  activeSkillId: 1
 --- !u!114 &8240204760134584171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 73fd7333-9304-4337-b10e-c2a7478425f2
+  uniqueID: 2f6c1e70-b06c-4f97-acfe-2d47ad570b59
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
