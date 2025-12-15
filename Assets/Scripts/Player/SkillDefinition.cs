@@ -1,10 +1,12 @@
 using System.Linq;
 using System;
 using UnityEngine;
+using Unity.VisualScripting;
 
 [Serializable]
 public class SkillDefinition
 {
+    // Skill properties
     [Tooltip("Unique id used for persistence/lookup")]
     public int skillId;
 
@@ -12,8 +14,43 @@ public class SkillDefinition
     public GameObject skillPrefab; 
     public float cooldown;
     public int cost;
-    public bool isUnlocked = false;
     public bool isPassive = false;
+    public int unlockCost = 50;
+
+    [SerializeField] private bool _isUnlocked = false;
+    public bool isUnlocked
+    {
+        get => _isUnlocked;
+        set
+        {
+            if (_isUnlocked == value) return;
+            _isUnlocked = value;
+
+            if (isPassive)
+            {
+                var player = _player != null ? _player : GameObject.FindWithTag("Player");
+                EnablePassive(player, _isUnlocked);
+            }
+        }
+    }
+
+    // Reference
+    [NonSerialized] private GameObject _player;
+    private PlayerMoneyManager _moneyManager;
+
+    private void Start()
+    {
+        _moneyManager = _player.GetComponent<PlayerMoneyManager>();
+    }
+
+    public void Initialize(GameObject player)
+    {
+        _player = player;
+        if (isPassive && isUnlocked)
+        {
+            EnablePassive(_player, true);
+        }
+    }
 
     public void Activate()
     {
@@ -43,7 +80,7 @@ public class SkillDefinition
     }
 
     // Toggle passive effect on/off for the player
-    public void TogglePassive(GameObject owner, bool active)
+    public void EnablePassive(GameObject owner, bool active)
     {
         if (!isPassive || skillPrefab == null || owner == null) return;
 
@@ -53,5 +90,30 @@ public class SkillDefinition
             .FirstOrDefault();
 
         effect?.SetPassiveActive(active, owner);
+    }
+
+    /// <summary>
+    /// Spend unlock cost to unlock this skill.
+    /// </summary>
+    /// 
+    public bool UnlockSkill(int cost)
+    {
+        if (isUnlocked) return true;
+        if (_moneyManager == null)
+        {
+            Debug.LogWarning("PlayerMoneyManager reference is missing.");
+            return false;
+        }
+        if (_moneyManager.TrySpend(cost))
+        {
+            isUnlocked = true;
+            Debug.Log($"Skill '{skillName}' unlocked.");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning($"Not enough money to unlock skill '{skillName}'.");
+            return false;
+        }
     }
 }

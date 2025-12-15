@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
@@ -23,7 +23,8 @@ public class Interactables : SaveableObject
 
     [Header("Prompt")]
     [Tooltip("Text to show when the player is in range.")]
-    [SerializeField] private string inRangePrompt = "Press [Interact]";
+    [SerializeField] private string inRangePromptVN = "Nhấn []";
+    [SerializeField] private string inRangePromptEN = "Press [Interact]";
     [Tooltip("Offset (world units) applied to the prompt position relative to this object.")]
     [SerializeField] private Vector2 promptOffset = new Vector2(0f, 1.75f);
 
@@ -161,7 +162,7 @@ public class Interactables : SaveableObject
         }
 
         // Set text content
-        _sharedText.text = "[ " + inRangePrompt + " ]";
+        _sharedText.text = "[ " + inRangePromptEN + " ]";
 
         // Move the text to this object's position + offset
         var worldPos = transform.position + new Vector3(promptOffset.x, promptOffset.y, 0f);

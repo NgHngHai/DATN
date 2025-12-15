@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: ac5c900f-add2-4a93-9341-c3830ca1cb37
+  uniqueID: 06a3082c-8e52-40d0-a15c-54b3aadf919d
 --- !u!114 &8086262300415397397
 MonoBehaviour:
   m_ObjectHideFlags: 0

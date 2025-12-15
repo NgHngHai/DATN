@@ -10,7 +10,5 @@ public class Skill_DJump : MonoBehaviour, ISkillPassive
 
         if (active)
             playerController.maxExtraJumpCount = extraJumpCount;
-        else
-            playerController.maxExtraJumpCount = 0;
     }    
 }

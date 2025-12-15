@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 1c3c5122-695e-488a-9b2d-0154ee1e1428
+  uniqueID: c2cd19cc-cb0a-486b-ac80-1071ba564b60
 --- !u!114 &3616227369456967503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +250,8 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  inRangePrompt: Open
+  inRangePromptVN: "Nh\u1EA5n []"
+  inRangePromptEN: 'Press [Interact]'
   promptOffset: {x: 0, y: 1.75}
   interactCooldown: 0
   isOneTimeUse: 1

@@ -18,6 +18,21 @@ public class RoomManager : MonoBehaviour
         roomTransitioner.Initialize(this);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        MapRoomManager.instance.RevealRoom(scene.name);
+    }
+
     public void LoadRoomWithTransition(string nextRoomName, Door doorEntered)
     {
         pendingNextRoomName = nextRoomName;

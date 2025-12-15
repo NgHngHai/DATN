@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSaveables : SaveableObject
@@ -38,7 +37,8 @@ public class PlayerSaveables : SaveableObject
 
         foreach (var skill in playerSkill.skills)
         {
-            _unlockedSkillsID += skill.skillId + "-";
+            if (skill.isUnlocked && skill != null)
+                _unlockedSkillsID += skill.skillId + "-";
         }
         return new PlayerState
         {
@@ -55,7 +55,8 @@ public class PlayerSaveables : SaveableObject
             currentRoomID = playerRoomID,
             lastCheckpointRoomName = lastCheckpointRoomName,
             linkDoorID = playerLinkDoorID,
-            position = transform.position
+            x = transform.position.x,
+            y = transform.position.y
         };
     }
 
@@ -74,7 +75,7 @@ public class PlayerSaveables : SaveableObject
         playerRoomID = playerState.currentRoomID;
         lastCheckpointRoomName = playerState.lastCheckpointRoomName;
         playerLinkDoorID = playerState.linkDoorID;
-        transform.position = playerState.position;
+        transform.position = new Vector2(playerState.x,playerState.y);
 
         // Restore skills
         var savedSkills = playerState.skills ?? string.Empty;
@@ -130,6 +131,7 @@ public class PlayerSaveables : SaveableObject
         public string currentRoomID;
         public string lastCheckpointRoomName;
         public string linkDoorID;
-        public Vector3 position;
+        public float x;
+        public float y;
     }
 }
