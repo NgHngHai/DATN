@@ -103,6 +103,7 @@ public class BoomExplodeState : BoomState
     public override void Enter()
     {
         base.Enter();
+        boom.GetHealth().TakeDamage(999, DamageType.Normal, Vector2.zero);
         boom.StopVelocity();
         SetRunningDustRateOverTime(0f);
         SetAnimatorSpeed(1f);

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6059747607445572796}
   - component: {fileID: 7293727937674485679}
   - component: {fileID: 7001348281399851201}
+  - component: {fileID: 5186307995415614261}
   m_Layer: 9
   m_Name: Fly-0
   m_TagString: Untagged
@@ -292,6 +293,20 @@ MonoBehaviour:
   landPoof: {fileID: 0}
   hitSpark: {fileID: 2105464487554538163}
   deathBurst: {fileID: 0}
+--- !u!114 &5186307995415614261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482311895729318908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9fa0250ade72847a83d366d9a40e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyOnDeath
+  moneyReward: 10
+  rewardDelay: 0.25
 --- !u!1 &7243289761960942547
 GameObject:
   m_ObjectHideFlags: 0
