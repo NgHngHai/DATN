@@ -33,6 +33,8 @@ public class BowstringAppearState : BowstringState
 
 public class BowstringThinkState : BowstringState
 {
+    private float willBurrowAttackDistance = 10;
+
     public BowstringThinkState(Enemy enemy) : base(enemy) { }
 
     public override void Enter()
@@ -58,14 +60,26 @@ public class BowstringThinkState : BowstringState
 
         EnemyState nextState = bowstring.approachState;
 
-        if (Random.value < bowstring.AggresiveRate)
-            nextState = bowstring.chaseState;
-
-        if (bowstring.canBurrowAttack && Random.value > 0.8f)
+        // Only approach
+        if (Random.value > bowstring.AggresiveRate)
         {
-            bowstring.transform.position = targetHandler.GetTargetPosition();
-            nextState = bowstring.burrowAttackState;
+            logicStateMachine.ChangeState(nextState);
+            return;
         }
+
+        if (bowstring.canBurrowAttack)
+        {
+            float targetDistance = targetHandler.GetDistanceToTarget();
+
+            if (targetDistance > willBurrowAttackDistance) 
+                nextState = bowstring.burrowAttackState;
+            else
+                nextState = Random.value < 0.8f ? bowstring.chaseState : bowstring.burrowAttackState;
+        }
+        else nextState = bowstring.chaseState;
+
+        if (nextState == bowstring.burrowAttackState)
+            bowstring.transform.position = targetHandler.GetTargetPosition();
 
         logicStateMachine.ChangeState(nextState);
     }

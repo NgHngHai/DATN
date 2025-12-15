@@ -25,6 +25,18 @@ public class RoomManager : MonoBehaviour
         roomTransitioner.PlayTransitionAnim(doorEntered.enterDirection);
     }
 
+    /// <summary>
+    /// For loading a room in a specific direction without a door reference.
+    /// </summary>
+    public void LoadRoomWithTransitionDirection(string nextRoomName, EnterDirection enterDirection)
+    {
+        pendingNextRoomName = nextRoomName;
+        Debug.Log("Loading room: " + nextRoomName + " with direction: " + enterDirection);
+        pendingDoorLinkID = null;
+        roomTransitioner.PlayTransitionAnim(enterDirection);
+        //StartLoadRoomRoutine();
+    }
+
     public void LoadRoomWithNoTransition(string roomName)
     {
         StartCoroutine(LoadRoomRoutine(roomName));

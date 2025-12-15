@@ -1,13 +1,19 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TrapHurtBox : HurtBox
 {
     [Header("Trap Settings")]
     [Tooltip("If true, player velocity is zeroed on teleport.")]
     public bool zeroVelocityOnTeleport = true;
+
     [Header("Enemy Filter")]
     [Tooltip("Any collider on these layers will be instantly killed on contact.")]
     [SerializeField] private LayerMask enemyLayers;
+
+    [Header("Trap Events")]
+    [Tooltip("Invoked when the player is hit by the trap.")]
+    public UnityEvent OnTrapOverlayRequested;
 
     private RoomData _roomData;
 
@@ -61,15 +67,11 @@ public class TrapHurtBox : HurtBox
         if (player == null || _roomData == null)
             return;
 
-        //// Teleport to this room first spawn position
-        player.transform.position = _roomData.FirstSpawnPosition;
+        // Teleport to this room first spawn position
+        OnTrapOverlayRequested?.Invoke();
 
-        // Optional velocity reset
-        if (zeroVelocityOnTeleport && player.TryGetComponent<Rigidbody2D>(out var rb))
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-        }
+        player.transform.position = _roomData.FirstSpawnPosition;
+        player.PlayReviveState();
     }
 
     private bool IsEnemyCollider(Collider2D other)

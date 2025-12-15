@@ -35,7 +35,7 @@ public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviou
             return;
         }
 
-        _instance = (T)(object)this;
+        _instance = this as T;
         DontDestroyOnLoad(gameObject);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(PlayerController))]
-public class PlayerMoneyManager : MonoBehaviour, ISaveable
+public class PlayerMoneyManager : MonoBehaviour
 {
     [Serializable]
     public class MoneyChangedEvent : UnityEvent<int, int> { } // current money, amount changed
@@ -94,23 +94,5 @@ public class PlayerMoneyManager : MonoBehaviour, ISaveable
 
         currentMoney = Mathf.Max(0, currentMoney - amount);
         OnMoneyChanged?.Invoke(currentMoney, amount);
-    }
-
-    // ISaveable implementation (so it participates in your room/scene save pass)
-    public string GetUniqueID() => "Player-Money";
-
-    public object CaptureState()
-    {
-        return currentMoney;
-    }
-
-    public void RestoreState(object state)
-    {
-        if (state is int saved)
-        {
-            _restoredFromSave = true;
-            currentMoney = Mathf.Max(0, saved);
-            OnMoneyChanged?.Invoke(currentMoney, 0);
-        }
     }
 }

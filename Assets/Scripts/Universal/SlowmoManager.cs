@@ -30,7 +30,6 @@ public sealed class SlowMoManager : MonoBehaviour
     [SerializeField] private float heavyHitDuration = 0.3f;
     private bool _initialized;
     private float _baseFixedDeltaTime;
-    private int _activeRequests;
     private float _currentTargetScale = 1f;
     private float _endRealtime;
     private Coroutine _routine;
@@ -108,7 +107,6 @@ public sealed class SlowMoManager : MonoBehaviour
             while (Time.realtimeSinceStartup < _endRealtime)
                 yield return null;
 
-            _activeRequests = 0;
             _currentTargetScale = 1f;
             Time.timeScale = 1f;
             Time.fixedDeltaTime = _baseFixedDeltaTime;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Base interactable component.
@@ -35,6 +36,7 @@ public class Interactables : SaveableObject
     [SerializeField] protected bool isOneTimeUse = false;
     [Tooltip("Whether the player has interacted with this object.")]
     [SerializeField] protected bool playerInteracted = false;
+    private bool spawnOnLoad = true;
 
     private bool _playerInRange;
     private float _cooldownUntil;
@@ -183,9 +185,12 @@ public class Interactables : SaveableObject
     // Save system
     public override object CaptureState()
     {
+        if (isOneTimeUse)
+            spawnOnLoad = !playerInteracted;
+
         return new InteractableData
         {
-            spawnOnLoad = (isOneTimeUse && !playerInteracted),
+            spawnOnLoad = this.spawnOnLoad,
             playerInteracted = playerInteracted
         };
     }
@@ -193,8 +198,15 @@ public class Interactables : SaveableObject
     public override void RestoreState(object state)
     {
         var saveData = (InteractableData)state;
-        
+
+        Debug.Log(saveData.spawnOnLoad);
+
         playerInteracted = saveData.playerInteracted;
+
+        if (!saveData.spawnOnLoad)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     [System.Serializable] private struct InteractableData

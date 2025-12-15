@@ -101,7 +101,6 @@ public class HurtBox : MonoBehaviour
             return;
 
         var damageable = other.GetComponent<IDamageable>();
-        Entity entity = other.GetComponent<Entity>();
         if (damageable == null || !damageable.CanBeDamaged())
             return;
 
@@ -132,8 +131,9 @@ public class HurtBox : MonoBehaviour
             }
         }
 
-        if (applyKnockbackToSelf && targetKnockbackForce > 0f && _selfRb != null)
+        if (applyKnockbackToSelf && selfKnockbackForce > 0f && _selfRb != null)
         {
+            _selfRb.linearVelocity = Vector2.zero;
             _selfEntity.ApplyKnockback(dir, selfKnockbackForce, false);
         }
 
@@ -163,9 +163,29 @@ public class HurtBox : MonoBehaviour
 
     private Vector2 ComputeKnockbackDirection(Collider2D target)
     {
-        Vector2 dir = gameObject.transform.position - target.transform.position;
-        if (dir.sqrMagnitude < 0.0001f) dir = Vector2.right;
-        return dir;
+        //Vector2 dir = gameObject.transform.position - target.transform.position;
+        //if (dir.sqrMagnitude < 0.0001f) dir = Vector2.right;
+        //return dir;
+        Vector2 selfPos = transform.position;
+        Vector2 targetPos = target.transform.position;
+
+        Vector2 delta = selfPos - targetPos;
+
+        if (delta.sqrMagnitude < 0.0001f)
+            return Vector2.right;
+
+        float absX = Mathf.Abs(delta.x);
+        float absY = Mathf.Abs(delta.y);
+
+        // Favor vertical knockback for pogo scenarios.
+        const float verticalBiasFactor = 0.5f; // smaller -> easier to be considered vertical
+        if (absY > absX * verticalBiasFactor)
+        {
+            return Vector2.up;
+        }
+
+        // Otherwise use horizontal
+        return delta.x >= 0f ? Vector2.right : Vector2.left;
     }
 
     public void ToggleHurtCollider(bool enable)
