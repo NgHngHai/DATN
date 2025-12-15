@@ -131,7 +131,7 @@ AnimationClip:
   - time: 0
     functionName: PlaySFXAtHere
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 4ca64dda512727441a70dbad969023ab, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: f61cc1213b5914644ac71489cab5fce6, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -142,10 +142,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.1875
+    functionName: PlaySFXAtHere
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: f61cc1213b5914644ac71489cab5fce6, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.25
     functionName: PlaySFXAtHere
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 4ca64dda512727441a70dbad969023ab, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -156,10 +163,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.4375
+    functionName: PlaySFXAtHere
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: f61cc1213b5914644ac71489cab5fce6, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.5
     functionName: PlaySFXAtHere
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 4ca64dda512727441a70dbad969023ab, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

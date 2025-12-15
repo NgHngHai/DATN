@@ -65,6 +65,8 @@ public class MI12ChargeState : MI12State
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlaySFXAt(mi12.chargeSound, mi12.transform.position);
+
         stateTimer = chargeDuration;
         animStateMachine.ChangeState(mi12.animChargeState);
         hasTouchedWallOrEdge = false;

@@ -20,6 +20,11 @@ public class BoomState : EnemyState
     {
         boom.animator.speed = speed;
     }
+
+    protected void SetRunningSource(float pitch)
+    {
+        boom.runningSource.pitch = pitch;
+    }
 }
 
 public class BoomPatrolState : BoomState
@@ -36,6 +41,7 @@ public class BoomPatrolState : BoomState
         patrolBehavior.StartPatrolProcess();
         SetRunningDustRateOverTime(4f);
         SetAnimatorSpeed(1f);
+        SetRunningSource(2f);
     }
 
     public override void Update()
@@ -65,6 +71,7 @@ public class BoomChaseState : BoomState
         base.Enter();
         SetRunningDustRateOverTime(20f);
         SetAnimatorSpeed(2f);
+        SetRunningSource(3f);
     }
 
     public override void Update()
@@ -96,6 +103,7 @@ public class BoomExplodeState : BoomState
     public override void Enter()
     {
         base.Enter();
+        boom.GetHealth().TakeDamage(999, DamageType.Normal, Vector2.zero);
         boom.StopVelocity();
         SetRunningDustRateOverTime(0f);
         SetAnimatorSpeed(1f);
