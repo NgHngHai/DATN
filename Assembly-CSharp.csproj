@@ -46,41 +46,46 @@
     <Analyzer Include="D:\Unity\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="D:\Unity\Editor\6000.2.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
+    <Analyzer Include="D:\Unity\Projects\Iron Heart\DATN\Library\PackageCache\com.unity.ai.inference@587873fd5e1b\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
+    <Analyzer Include="D:\Unity\Projects\Iron Heart\DATN\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSaveables.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossHandBreakAnimation.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioSlider.cs" />
     <Compile Include="Assets\Scripts\Save System\UniqueID.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\EnemyL4SI.cs" />
     <Compile Include="Assets\Scripts\Universal\SlowmoManager.cs" />
     <Compile Include="Assets\Scripts\Room\RoomData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
     <Compile Include="Assets\Scripts\UI\WipeButtonController.cs" />
     <Compile Include="Assets\Scripts\UI\DebugSceneReloader.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
+    <Compile Include="Assets\Scripts\UI\OscillateAnim.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyShield.cs" />
     <Compile Include="Assets\Scripts\Save System\TestSaveableBox.cs" />
     <Compile Include="Assets\Scripts\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPoisonHandler.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoneyManager.cs" />
     <Compile Include="Assets\Scripts\Universal\AnimationStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\FalS0State.cs" />
+    <Compile Include="Assets\Scripts\Universal\EntityAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Environment\BreakableWall.cs" />
+    <Compile Include="Assets\Scripts\Room\RoomTransitioner.cs" />
+    <Compile Include="Assets\Scripts\Universal\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BossState.cs" />
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
     <Compile Include="Assets\Scripts\Room\BootstrapObject.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRoak.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\BossElite.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\MI12State.cs" />
     <Compile Include="Assets\Scripts\Save System\ISaveable.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RapicitatorState.cs" />
-    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Manager\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
     <Compile Include="Assets\Scripts\Universal\MoneyOnDeath.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyRangedAttack.cs" />
     <Compile Include="Assets\Scripts\UI\GlitchController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossBowstring.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
@@ -89,18 +94,17 @@
     <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
-    <Compile Include="Assets\Scripts\Universal\Entity.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
+    <Compile Include="Assets\Scripts\Universal\Entity.cs" />
     <Compile Include="Assets\Scripts\Save System\FileDateHandler.cs" />
     <Compile Include="Assets\Scripts\Universal\iDamageable.cs" />
     <Compile Include="Assets\Scripts\Save System\GameData.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BowstringState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossBrain.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdge.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\TheComposerState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBeamer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\Explosion.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\EnemyFalS0.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\ExplosioState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\DolREState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BoomState.cs" />
@@ -109,8 +113,6 @@
     <Compile Include="Assets\Scripts\Player\Skills\Skill_DJump.cs" />
     <Compile Include="Assets\Scripts\Universal\DamageType.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyIncreaseAttackSpeedAura.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\EnemySnatcher.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\EnemyExplosio.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyFly0.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackBehavior.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
@@ -122,20 +124,25 @@
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
     <Compile Include="Assets\Scripts\Universal\Health.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\PoisonousSmoke.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\EliteState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\L4SIState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\EnemyRapicitator.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyShieldGenerator.cs" />
+    <Compile Include="Assets\Scripts\Room\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Environment\TrapHurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyDolRE.cs" />
-    <Compile Include="Assets\Scripts\UI\MenuButton.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossBehavior.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraRegister.cs" />
-    <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuButton.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveableObject.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossAnimationEvent.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\SafePlatform.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossHead.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyLaserAttack.cs" />
     <Compile Include="Assets\Scripts\Projectile\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\Boss.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
     <Compile Include="Assets\Scripts\Environment\Chest.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
@@ -143,9 +150,8 @@
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />
     <Compile Include="Assets\Scripts\Room\Door.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkillPassive.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\HeadState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyOffensiveState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\SnatcherState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Type\BossTheComposer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
   </ItemGroup>
@@ -167,12 +173,10 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\Shader\GlitchEffect.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Shader\NoEffectUnlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\Shader\Distortion.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -684,16 +688,16 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Library\PackageCache\com.unity.collections@d49facba0036\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@d49facba0036\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1184,6 +1188,10 @@
       <HintPath>D:\Unity\Editor\6000.2.6f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.InferenceEngine.ONNX.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.ONNX.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1224,6 +1232,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.2D.Enhancers.Editor.AIBridge">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Enhancers.Editor.AIBridge.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
       <Private>False</Private>
@@ -1236,16 +1248,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PPv2URPConverters">
       <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
@@ -1300,8 +1312,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.InferenceEngine.MacBLAS">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.MacBLAS.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Assistant.Bridge.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.Bridge.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
@@ -1312,8 +1332,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    <Reference Include="Unity.InferenceEngine.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
@@ -1326,10 +1346,6 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
@@ -1352,6 +1368,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1368,12 +1388,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AI.Assistant.Agent.Dynamic.Extension.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.Agent.Dynamic.Extension.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
@@ -1384,20 +1412,28 @@
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    <Reference Include="Unity.Serialization">
+      <HintPath>Library\ScriptAssemblies\Unity.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Multiplayer.Center.Common">
       <HintPath>Library\ScriptAssemblies\Unity.Multiplayer.Center.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
@@ -1408,8 +1444,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.Multiplayer.Center.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.InferenceEngine.Tokenization">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.Tokenization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Assistant.AvatarHelper.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.AvatarHelper.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Rendering.LightTransport.Runtime">
@@ -1424,12 +1468,24 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AppUI">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Navigation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Navigation.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Collections.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Serialization.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
@@ -1448,8 +1504,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.InferenceEngine.iOSBLAS">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.iOSBLAS.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.InputSystem">
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Enhancers.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Enhancers.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Settings.Editor">
@@ -1462,6 +1526,14 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AppUI.Redux">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.Redux.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InferenceEngine">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
