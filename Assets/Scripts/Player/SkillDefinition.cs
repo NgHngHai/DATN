@@ -1,10 +1,12 @@
 using System.Linq;
 using System;
 using UnityEngine;
+using Unity.VisualScripting;
 
 [Serializable]
 public class SkillDefinition
 {
+    // Skill properties
     [Tooltip("Unique id used for persistence/lookup")]
     public int skillId;
 
@@ -13,6 +15,7 @@ public class SkillDefinition
     public float cooldown;
     public int cost;
     public bool isPassive = false;
+    public int unlockCost = 50;
 
     [SerializeField] private bool _isUnlocked = false;
     public bool isUnlocked
@@ -33,6 +36,12 @@ public class SkillDefinition
 
     // Reference
     [NonSerialized] private GameObject _player;
+    private PlayerMoneyManager _moneyManager;
+
+    private void Start()
+    {
+        _moneyManager = _player.GetComponent<PlayerMoneyManager>();
+    }
 
     public void Initialize(GameObject player)
     {
@@ -81,5 +90,30 @@ public class SkillDefinition
             .FirstOrDefault();
 
         effect?.SetPassiveActive(active, owner);
+    }
+
+    /// <summary>
+    /// Spend unlock cost to unlock this skill.
+    /// </summary>
+    /// 
+    public bool UnlockSkill(int cost)
+    {
+        if (isUnlocked) return true;
+        if (_moneyManager == null)
+        {
+            Debug.LogWarning("PlayerMoneyManager reference is missing.");
+            return false;
+        }
+        if (_moneyManager.TrySpend(cost))
+        {
+            isUnlocked = true;
+            Debug.Log($"Skill '{skillName}' unlocked.");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning($"Not enough money to unlock skill '{skillName}'.");
+            return false;
+        }
     }
 }
