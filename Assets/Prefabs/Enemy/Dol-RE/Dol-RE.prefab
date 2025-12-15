@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 6008223061658556299}
   - component: {fileID: 3368575490239964170}
   - component: {fileID: 2117286108569127528}
+  - component: {fileID: 703491271451695760}
   m_Layer: 9
   m_Name: Dol-RE
   m_TagString: Untagged
@@ -363,6 +364,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7068591799069057527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolGroundNormal
   patrolSpeed: 5
   restTime: 5
-  patrolAtAwake: 0
+  patrolAtAwake: 1
   stopDistanceLimit: {x: 3, y: 5}
 --- !u!114 &6008223061658556299
 MonoBehaviour:
@@ -482,6 +486,20 @@ MonoBehaviour:
   attackBehaviors:
   - {fileID: 5910607026126382480}
   - {fileID: 146591337129808804}
+--- !u!114 &703491271451695760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703031116837124442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9fa0250ade72847a83d366d9a40e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyOnDeath
+  moneyReward: 30
+  rewardDelay: 0.25
 --- !u!1 &7817202898060191083
 GameObject:
   m_ObjectHideFlags: 0
