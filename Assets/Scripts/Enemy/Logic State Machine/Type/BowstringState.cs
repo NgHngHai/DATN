@@ -102,6 +102,7 @@ public class BowstringApproachState : BowstringState
             float posX = Mathf.Lerp(GetItselfPos().x, targetPos.x, Random.Range(0.1f, 0.9f));
             approachPosition = new Vector2(posX, targetPos.y + bowstring.approachHeightOffset);
         }
+        bowstring.flipOnVelX = true;
     }
 
     public override void FixedUpdate()

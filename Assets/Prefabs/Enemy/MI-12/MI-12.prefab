@@ -611,6 +611,7 @@ MonoBehaviour:
   groundCheckDistance: 1.2
   groundEdgeCheckOffsetX: 1.32
   wallCheckDistance: 1.47
+  chargeSound: {fileID: 8300000, guid: f8bba90a86816fd4889ba963e8677de2, type: 3}
   minChargeDistance: 3
   chargeSpeedCurve:
     serializedVersion: 2
@@ -713,6 +714,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8493101210342136501
