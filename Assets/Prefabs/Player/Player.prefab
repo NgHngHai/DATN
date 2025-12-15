@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871f0def5dba09b4e97d18e259651291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillManager
-  maxEnergy: 20
+  maxEnergy: 9
   currentEnergy: 0
   skills:
   - skillId: 0
@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 2f6c1e70-b06c-4f97-acfe-2d47ad570b59
+  uniqueID: aad26e99-3b0b-46b3-92ee-b47e04264633
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
