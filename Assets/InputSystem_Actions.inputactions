@@ -34,15 +34,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Heavy Attack",
-                    "type": "Button",
-                    "id": "80591265-85af-4bee-863a-60a628fa7922",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
@@ -82,15 +73,6 @@
                     "name": "Skill",
                     "type": "Button",
                     "id": "f1cef06b-4505-4e33-85db-014b3fee164f",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Parry",
-                    "type": "Button",
-                    "id": "22081353-356f-45ac-8456-6c62b494b288",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -353,34 +335,12 @@
                 },
                 {
                     "name": "",
-                    "id": "935702f5-f287-45c8-a4c4-866688baf9a0",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heavy Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "811d23c4-1422-42e2-89c1-73e9a30a2621",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f30c9d4f-05b3-49bc-bbb9-7dbafdbae1e9",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

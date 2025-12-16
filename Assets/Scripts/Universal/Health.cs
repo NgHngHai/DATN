@@ -37,7 +37,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private DamageType damageTypesIgnoreIFrames = DamageType.Poison;
 
     [Header("Events")]
-    [Tooltip("Invoked when the component takes damage with reaction info. Parameters: amount applied, shouldTriggerHitReaction.")]
+    [Tooltip("Invoked when the component takes damage with reaction info. Parameters: amount applied, hit direction, shouldTriggerHitReaction.")]
     public DamagedWithReactionEvent OnDamagedWithReaction = new();
 
     [Tooltip("Invoked when the component is healed. Parameter: amount healed.")]
