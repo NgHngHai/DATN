@@ -1573,6 +1573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871f0def5dba09b4e97d18e259651291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillManager
+  OnEnergyChanged:
+    m_PersistentCalls:
+      m_Calls: []
   maxEnergy: 9
   currentEnergy: 0
   skills:
@@ -1755,7 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: edcec16b-1e87-4256-8606-d8f1bccbfe5e
+  uniqueID: 8edc91c5-5ab7-4297-96d1-f2ff62132347
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0

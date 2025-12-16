@@ -388,7 +388,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de3fad07050b6854b9b7f5940061874f, type: 2}
+  - {fileID: 2100000, guid: 404da9571118827498251f38f4fe5e1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SplashSceneController
   presentsText: {fileID: 1228878144}
   normalMaterial: {fileID: 2100000, guid: aa5dfcadb0af8754aafda23d88433799, type: 2}
-  alternativeMaterial: {fileID: 2100000, guid: 4aaa35fca73cd4940a88d4b4607d1a40, type: 2}
+  alternativeMaterial: {fileID: 2100000, guid: ae9078e1aa7fe6d4d97b141253c7bb4b, type: 2}
   firstEffectDuration: 0.5
   firstEffectDelay: 0.08
   transitionDelay: 0.5
