@@ -18,7 +18,7 @@ public class PlayerSaveables : SaveableObject
     // Checkpoint
     [Header("Checkpoint Save")]
     [Tooltip("Room name containing the last checkpoint used.")]
-    public string lastCheckpointRoomName;
+    public string lastCheckpointRoomName = null;
 
     protected override void Awake()
     {

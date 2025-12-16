@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakableWall
   health: 1
-  destroyAnimationDuration: 0.5
   wallComponents: {fileID: 4274280478129662186}
   destroyParticles: {fileID: 4604956304955303828}
 --- !u!50 &387649820858502749
