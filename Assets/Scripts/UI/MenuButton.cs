@@ -1,37 +1,38 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(WipeButtonController))]
-
-
+[RequireComponent(typeof(MenuButtonController))]
 public class MenuButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public GlitchController glitchController;
-    WipeButtonController wipeButtonController;
+    MenuButtonController menuButtonController;
+    public MenuManager menuManager;
+    int btnId;
 
     public void Start()
     {
-        wipeButtonController = GetComponent<WipeButtonController>();
+        menuButtonController = GetComponent<MenuButtonController>();
+        btnId = transform.GetSiblingIndex();
     }
     
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (btnId == 0)
         {
-            glitchController.StartSceneTransition();
+            menuManager.OpenFileSelectionUI();
         }
     }
 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        wipeButtonController.StartWipeEffect();
+        menuButtonController.StartWipeEffect();
     }
 
     
     public void OnPointerExit(PointerEventData eventData)
     {
-        wipeButtonController.StopWipeEffect();
+        menuButtonController.StopWipeEffect();
     }
 }

@@ -4,6 +4,27 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Splash.unity
+    guid: 1881b63c04e06d748a13f8fac47e8ff1
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 62117d85726cc3d4192063ab106b001d
+  - enabled: 1
+    path: Assets/Scenes/TestPersistentScene/Bootstrap Scene.unity
+    guid: 914da3fd4f843fe4f9df6a6e96c2ceb9
+  - enabled: 1
+    path: Assets/Scenes/TestPersistentScene/Persistent Scene.unity
+    guid: ba6903b5c938f5f4a99d42649bb107f6
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Room1.unity
+    guid: 29fc00030fa047340b49936f9d83a54f
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Room2.unity
+    guid: df8625170ffe89c40b5189e7c7dbf0ea
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Room3.unity
+    guid: 5146442887c92704ebcea6c09bdc976d
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

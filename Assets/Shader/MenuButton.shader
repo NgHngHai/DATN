@@ -1,4 +1,4 @@
-Shader "Custom/WipeButton"
+Shader "Custom/MenuButton"
 {
     Properties
     {
@@ -45,7 +45,7 @@ Shader "Custom/WipeButton"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _TextColor;
-                float _WipeProgress;
+                float _Progress;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
@@ -60,12 +60,12 @@ Shader "Custom/WipeButton"
             {
                 half wipeAlpha = SAMPLE_TEXTURE2D(_WipeMap, sampler_WipeMap, IN.uv).a;
                 if (wipeAlpha < 0.01) discard;
-                if (wipeAlpha > _WipeProgress) discard;
+                if (wipeAlpha > _Progress) discard;
 
                 float2 screenUV = IN.positionHCS.xy / _ScreenParams.xy;
-                half textMapAlpha = SAMPLE_TEXTURE2D(_TextMap, sampler_TextMap, screenUV).a;
+                half4 textMapColor = SAMPLE_TEXTURE2D(_TextMap, sampler_TextMap, screenUV);
                 half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
-                color = color * (1 - textMapAlpha) + _TextColor * textMapAlpha;
+                color = color * (1 - textMapColor.a) + textMapColor;
                 return color;
             }
             ENDHLSL

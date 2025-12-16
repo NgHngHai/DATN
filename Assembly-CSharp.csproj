@@ -58,7 +58,7 @@
     <Compile Include="Assets\Scripts\Universal\SlowmoManager.cs" />
     <Compile Include="Assets\Scripts\Room\RoomData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
-    <Compile Include="Assets\Scripts\UI\WipeButtonController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGround.cs" />
     <Compile Include="Assets\Scripts\UI\DebugSceneReloader.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
     <Compile Include="Assets\Scripts\UI\OscillateAnim.cs" />
@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Universal\AnimationStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetDetector.cs" />
     <Compile Include="Assets\Scripts\Universal\EntityAnimationEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\FileSelection.cs" />
     <Compile Include="Assets\Scripts\Environment\BreakableWall.cs" />
     <Compile Include="Assets\Scripts\Room\RoomTransitioner.cs" />
     <Compile Include="Assets\Scripts\Universal\GameManager.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
     <Compile Include="Assets\Scripts\Room\BootstrapObject.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRoak.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundNormal.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\MI12State.cs" />
@@ -90,19 +92,21 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyMI12.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Environment\Interactables.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuButtonController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
     <Compile Include="Assets\Scripts\Universal\Entity.cs" />
     <Compile Include="Assets\Scripts\Save System\FileDateHandler.cs" />
     <Compile Include="Assets\Scripts\Universal\iDamageable.cs" />
+    <Compile Include="Assets\Scripts\UI\FileFunction.cs" />
     <Compile Include="Assets\Scripts\Save System\GameData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BowstringState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossBrain.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdge.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBeamer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\Explosion.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="Assets\Scripts\Environment\TrapHurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyDolRE.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Environment\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossBehavior.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraRegister.cs" />
     <Compile Include="Assets\Scripts\UI\MenuButton.cs" />
@@ -140,9 +145,11 @@
     <Compile Include="Assets\Scripts\Enemy\Boss\SafePlatform.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossHead.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyLaserAttack.cs" />
+    <Compile Include="Assets\Scripts\Save System\JsonObjectBugTest.cs" />
     <Compile Include="Assets\Scripts\Projectile\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\Boss.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerRespawnController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
     <Compile Include="Assets\Scripts\Environment\Chest.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
@@ -151,7 +158,9 @@
     <Compile Include="Assets\Scripts\Room\Door.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkillPassive.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\HeadState.cs" />
+    <Compile Include="Assets\Scripts\UI\FileButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyOffensiveState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdgeWall.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
   </ItemGroup>
@@ -165,7 +174,7 @@
     <None Include="Assets\Shader\Glitch.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
-    <None Include="Assets\Shader\WipeButton.shader" />
+    <None Include="Assets\Shader\MenuButton.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -1320,10 +1329,6 @@
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.Bridge.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.Bridge.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1388,10 +1393,6 @@
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.Agent.Dynamic.Extension.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.Agent.Dynamic.Extension.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -1410,10 +1411,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Serialization">
-      <HintPath>Library\ScriptAssemblies\Unity.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
@@ -1452,10 +1449,6 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.AvatarHelper.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.AvatarHelper.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Rendering.LightTransport.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.Rendering.LightTransport.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -1482,10 +1475,6 @@
     </Reference>
     <Reference Include="Unity.Collections.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Serialization.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
