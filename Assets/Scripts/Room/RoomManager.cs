@@ -18,6 +18,21 @@ public class RoomManager : MonoBehaviour
         roomTransitioner.Initialize(this);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        MapRoomManager.instance.RevealRoom(scene.name);
+    }
+
     public void LoadRoomWithTransition(string nextRoomName, Door doorEntered)
     {
         pendingNextRoomName = nextRoomName;
@@ -73,16 +88,6 @@ public class RoomManager : MonoBehaviour
         currentRoomName = nextRoomName;
         pendingNextRoomName = null;
         roomTransitioner.UnfreezeAnim();
-
-        // Set camera boundary
-        RoomData roomData = FindAnyObjectByType<RoomData>();
-
-        foreach (CinemachineCamera cam in CameraManager.cameras)
-        {
-            CinemachineConfiner2D camConfiner = cam.GetComponent<CinemachineConfiner2D>();
-
-            camConfiner.BoundingShape2D = roomData.CameraBoundary;
-        }
 
         ApplyCurrentRoomData();
     }

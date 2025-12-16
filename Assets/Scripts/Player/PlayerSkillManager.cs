@@ -6,7 +6,7 @@ public class PlayerSkillManager : MonoBehaviour
 {
     // Energy variables
     [Header("Energy Settings")]
-    public int maxEnergy = 20;
+    public int maxEnergy = 9;
     public int currentEnergy = 0;
 
     // Skill list
@@ -50,6 +50,8 @@ public class PlayerSkillManager : MonoBehaviour
 
             skillMap.Add(id, s);
             lastUsedTime[id] = -Mathf.Infinity;
+
+            s.Initialize(this.gameObject);
         }
     }
 
@@ -70,7 +72,7 @@ public class PlayerSkillManager : MonoBehaviour
         if (activeSkillId == s.skillId) return true;
 
         // Toggle off previous passive (if any)
-        TryTogglePassiveWithId(activeSkillId, false);
+        TryEnablePassiveWithId(activeSkillId, false);
 
         // Switch active
         activeSkillId = s.skillId;
@@ -78,7 +80,7 @@ public class PlayerSkillManager : MonoBehaviour
         PlayerPrefs.Save();
 
         // Toggle on new passive (if any)
-        TryTogglePassiveWithId(activeSkillId, true);
+        TryEnablePassiveWithId(activeSkillId, true);
 
         OnActiveSkillChanged?.Invoke(activeSkillId);
         return true;
@@ -106,7 +108,7 @@ public class PlayerSkillManager : MonoBehaviour
             {
                 activeSkillId = s.skillId;
                 // Enable passive for the loaded active skill
-                TryTogglePassiveWithId(activeSkillId, true);
+                TryEnablePassiveWithId(activeSkillId, true);
                 OnActiveSkillChanged?.Invoke(activeSkillId);
                 return;
             }
@@ -118,7 +120,7 @@ public class PlayerSkillManager : MonoBehaviour
             if (s != null && s.isUnlocked && s.skillId != 0)
             {
                 activeSkillId = s.skillId;
-                TryTogglePassiveWithId(activeSkillId, true);
+                TryEnablePassiveWithId(activeSkillId, true);
                 OnActiveSkillChanged?.Invoke(activeSkillId);
                 return;
             }
@@ -126,18 +128,18 @@ public class PlayerSkillManager : MonoBehaviour
         if (skills.Count > 1)
         {
             activeSkillId = 1;
-            TryTogglePassiveWithId(activeSkillId, true);
+            TryEnablePassiveWithId(activeSkillId, true);
             OnActiveSkillChanged?.Invoke(activeSkillId);
         }
     }
 
-    private void TryTogglePassiveWithId(int skillId, bool active)
+    private void TryEnablePassiveWithId(int skillId, bool active)
     {
         if (skillMap == null) return;
         if (!skillMap.TryGetValue(skillId, out var s) || s == null) return;
         if (!s.isPassive) return;
 
-        s.TogglePassive(gameObject, active);
+        s.EnablePassive(gameObject, active);
     }
 
     // Check if a given skill can be used (unlocked, enough energy, off cooldown)
@@ -170,7 +172,7 @@ public class PlayerSkillManager : MonoBehaviour
         return true;
     }
 
-    // Use the active skill by delegating to the SkillDefinition.Activate() method
+    // Use the active skill by using the SkillDefinition.Activate() method
     public bool UseActiveSkill()
     {
         if (!CanUseSkill(activeSkillId)) return false;

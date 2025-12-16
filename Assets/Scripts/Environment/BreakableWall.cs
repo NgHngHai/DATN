@@ -1,10 +1,9 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class BreakableWall : SaveableObject, IDamageable
 {
-    public int health = 5;
+    public int health = 1;
     [SerializeField] private float destroyAnimationDuration = 0.5f;
     [SerializeField] private GameObject wallComponents;
     [SerializeField] private ParticleSystem destroyParticles;
@@ -33,6 +32,8 @@ public class BreakableWall : SaveableObject, IDamageable
 
     private IEnumerator DestroyCoroutine()
     {
+        var _col = GetComponent<Collider2D>();
+        _col.enabled = false;
         wallComponents.SetActive(false);
         destroyParticles.Play();
 
@@ -53,7 +54,6 @@ public class BreakableWall : SaveableObject, IDamageable
         return new WallState
         {
             destroyed = isDestroyed,
-            position = transform.position
         };
     }
 
@@ -61,7 +61,6 @@ public class BreakableWall : SaveableObject, IDamageable
     {
         var s = (WallState)state;
         isDestroyed = s.destroyed;
-        transform.position = s.position;
 
         // Unload if destroyed
         gameObject.SetActive(!isDestroyed);
@@ -71,6 +70,5 @@ public class BreakableWall : SaveableObject, IDamageable
     private struct WallState
     {
         public bool destroyed;
-        public Vector3 position;
     }
 }
