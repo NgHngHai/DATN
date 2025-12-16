@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerSkillManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class EnergyChangedEvent : UnityEngine.Events.UnityEvent<int, int> { } // (currentEnergy, maxEnergy)
+
+    [Tooltip("Event fired when energy changes")]
+    public EnergyChangedEvent OnEnergyChanged = new();
+
     // Energy variables
     [Header("Energy Settings")]
     public int maxEnergy = 9;
@@ -189,6 +195,7 @@ public class PlayerSkillManager : MonoBehaviour
         }
 
         currentEnergy = Mathf.Max(0, currentEnergy - skills[activeSkillId].cost);
+        OnEnergyChanged?.Invoke(currentEnergy, maxEnergy);
         lastUsedTime[activeSkillId] = Time.time;
         return true;
     }
@@ -225,6 +232,7 @@ public class PlayerSkillManager : MonoBehaviour
     public void RestoreEnergyOnAttack(int restoreAmt)
     {
         currentEnergy = Mathf.Min(maxEnergy, currentEnergy + restoreAmt);
+        OnEnergyChanged?.Invoke(currentEnergy, maxEnergy);
     }
 
 }

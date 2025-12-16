@@ -321,7 +321,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -348,7 +348,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -381,7 +381,7 @@ TextureImporter:
         width: 454
         height: 676
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -403,7 +403,7 @@ TextureImporter:
         width: 411
         height: 502
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -417,7 +417,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_2
+      name: ceilling_2
       rect:
         serializedVersion: 2
         x: 1369
@@ -425,7 +425,7 @@ TextureImporter:
         width: 213
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -439,7 +439,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_3
+      name: ceilling_1
       rect:
         serializedVersion: 2
         x: 1654
@@ -447,7 +447,7 @@ TextureImporter:
         width: 395
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -469,7 +469,7 @@ TextureImporter:
         width: 197
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -491,7 +491,7 @@ TextureImporter:
         width: 160
         height: 211
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -505,15 +505,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_6
+      name: ceilling
       rect:
         serializedVersion: 2
-        x: 2655
-        y: 2138
-        width: 448
-        height: 99
+        x: 2700
+        y: 2139
+        width: 403
+        height: 98
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -535,7 +535,7 @@ TextureImporter:
         width: 146
         height: 218
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -553,11 +553,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3400
-        y: 1538
-        width: 735
-        height: 700
+        y: 1540
+        width: 601
+        height: 698
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -571,15 +571,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_9
+      name: platform
       rect:
         serializedVersion: 2
-        x: 1379
-        y: 1995
-        width: 439
+        x: 1395
+        y: 1993
+        width: 411
         height: 115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -593,50 +593,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_10
-      rect:
-        serializedVersion: 2
-        x: 1384
-        y: 2075
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7add45844e455270800000000000000
-      internalID: 8238577149545405055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_11
-      rect:
-        serializedVersion: 2
-        x: 1806
-        y: 2075
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f3cd592e94b0acc30800000000000000
-      internalID: 4380325999533218879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_12
       rect:
         serializedVersion: 2
@@ -645,7 +601,7 @@ TextureImporter:
         width: 247
         height: 119
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -659,29 +615,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_13
-      rect:
-        serializedVersion: 2
-        x: 4129
-        y: 2080
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4108d77df33140580800000000000000
-      internalID: -8861937001839099884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_14
+      name: platform_2
       rect:
         serializedVersion: 2
         x: 1400
@@ -689,7 +623,7 @@ TextureImporter:
         width: 397
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -703,7 +637,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_15
+      name: trap
       rect:
         serializedVersion: 2
         x: 2000
@@ -711,7 +645,7 @@ TextureImporter:
         width: 401
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,7 +667,7 @@ TextureImporter:
         width: 249
         height: 188
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -755,7 +689,7 @@ TextureImporter:
         width: 87
         height: 403
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -777,7 +711,7 @@ TextureImporter:
         width: 326
         height: 164
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -791,7 +725,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_19
+      name: breakable_wall_2
       rect:
         serializedVersion: 2
         x: 4087
@@ -799,7 +733,7 @@ TextureImporter:
         width: 112
         height: 299
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -813,7 +747,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_20
+      name: breakable_wall_1
       rect:
         serializedVersion: 2
         x: 1231
@@ -821,7 +755,7 @@ TextureImporter:
         width: 111
         height: 299
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -843,7 +777,7 @@ TextureImporter:
         width: 199
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -865,7 +799,7 @@ TextureImporter:
         width: 602
         height: 231
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -879,7 +813,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_23
+      name: debris_1
       rect:
         serializedVersion: 2
         x: 3016
@@ -887,7 +821,7 @@ TextureImporter:
         width: 68
         height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -901,7 +835,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_24
+      name: debris_2
       rect:
         serializedVersion: 2
         x: 3118
@@ -909,7 +843,7 @@ TextureImporter:
         width: 186
         height: 191
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -931,7 +865,7 @@ TextureImporter:
         width: 273
         height: 462
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -945,7 +879,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_26
+      name: debris_4
       rect:
         serializedVersion: 2
         x: 1072
@@ -953,7 +887,7 @@ TextureImporter:
         width: 68
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -975,7 +909,7 @@ TextureImporter:
         width: 605
         height: 232
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -989,7 +923,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_28
+      name: floor_1
       rect:
         serializedVersion: 2
         x: 2600
@@ -997,7 +931,7 @@ TextureImporter:
         width: 603
         height: 195
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1019,7 +953,7 @@ TextureImporter:
         width: 38
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1041,7 +975,7 @@ TextureImporter:
         width: 144
         height: 252
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1063,7 +997,7 @@ TextureImporter:
         width: 173
         height: 198
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1077,7 +1011,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_32
+      name: debris_3
       rect:
         serializedVersion: 2
         x: 3300
@@ -1085,7 +1019,7 @@ TextureImporter:
         width: 119
         height: 69
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1107,7 +1041,7 @@ TextureImporter:
         width: 651
         height: 126
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1129,7 +1063,7 @@ TextureImporter:
         width: 615
         height: 108
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1143,37 +1077,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_35
-      rect:
-        serializedVersion: 2
-        x: 1025
-        y: 1235
-        width: 120
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ea0bec29fc025860800000000000000
-      internalID: 7517084992374770404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_36
       rect:
         serializedVersion: 2
-        x: 1026
-        y: 1304
-        width: 120
-        height: 89
+        x: 1019
+        y: 1136
+        width: 133
+        height: 257
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1187,7 +1099,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_37
+      name: floor_3
       rect:
         serializedVersion: 2
         x: 3400
@@ -1195,7 +1107,7 @@ TextureImporter:
         width: 601
         height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1209,72 +1121,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_38
-      rect:
-        serializedVersion: 2
-        x: 1020
-        y: 1163
-        width: 34
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c4dca90d2d34d1a0800000000000000
-      internalID: -6785731474895350588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_39
-      rect:
-        serializedVersion: 2
-        x: 1078
-        y: 1208
-        width: 23
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ad414693a396ea00800000000000000
-      internalID: 785477515832544678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_40
-      rect:
-        serializedVersion: 2
-        x: 1118
-        y: 1161
-        width: 34
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12105e8f0b6ce72a0800000000000000
-      internalID: -6737729529107381983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_41
       rect:
         serializedVersion: 2
@@ -1283,7 +1129,7 @@ TextureImporter:
         width: 353
         height: 286
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1305,7 +1151,7 @@ TextureImporter:
         width: 403
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1327,7 +1173,7 @@ TextureImporter:
         width: 100
         height: 364
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1341,72 +1187,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_44
-      rect:
-        serializedVersion: 2
-        x: 372
-        y: 1088
-        width: 30
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae89455cbae55f730800000000000000
-      internalID: 4032233133223221482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_45
-      rect:
-        serializedVersion: 2
-        x: 451
-        y: 1088
-        width: 30
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c866f5cd9dfc8a9a0800000000000000
-      internalID: -6221494350600247668
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_46
-      rect:
-        serializedVersion: 2
-        x: 1074
-        y: 1138
-        width: 29
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15acf9eba731c69f0800000000000000
-      internalID: -473982442875663791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_47
       rect:
         serializedVersion: 2
@@ -1415,7 +1195,7 @@ TextureImporter:
         width: 475
         height: 239
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1437,7 +1217,7 @@ TextureImporter:
         width: 429
         height: 103
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1459,7 +1239,7 @@ TextureImporter:
         width: 287
         height: 269
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1473,72 +1253,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_50
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 1056
-        width: 66
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3f98a7931148a5f0800000000000000
-      internalID: -745274185925222596
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_51
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 1087
-        width: 20
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f0f60a424638eca0800000000000000
-      internalID: -5987476046251364104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_52
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 1056
-        width: 66
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15734b97d7fa1e1d0800000000000000
-      internalID: -3323182096575088815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_53
       rect:
         serializedVersion: 2
@@ -1547,7 +1261,7 @@ TextureImporter:
         width: 204
         height: 588
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1561,37 +1275,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_54
-      rect:
-        serializedVersion: 2
-        x: 387
-        y: 1033
-        width: 20
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c0e5e1cd7c366530800000000000000
-      internalID: 3847829442456314053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_55
       rect:
         serializedVersion: 2
-        x: 405
+        x: 338
         y: 780
-        width: 43
-        height: 301
+        width: 179
+        height: 359
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1605,28 +1297,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_56
-      rect:
-        serializedVersion: 2
-        x: 446
-        y: 1033
-        width: 20
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d769d103cf2a7e520800000000000000
-      internalID: 2731330903046198909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: map2_57
       rect:
         serializedVersion: 2
@@ -1635,7 +1305,7 @@ TextureImporter:
         width: 271
         height: 283
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1657,7 +1327,7 @@ TextureImporter:
         width: 409
         height: 876
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1671,7 +1341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_59
+      name: chest_1
       rect:
         serializedVersion: 2
         x: 1419
@@ -1679,7 +1349,7 @@ TextureImporter:
         width: 223
         height: 136
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1696,12 +1366,12 @@ TextureImporter:
       name: map2_60
       rect:
         serializedVersion: 2
-        x: 1861
-        y: 777
-        width: 114
-        height: 127
+        x: 1865
+        y: 781
+        width: 104
+        height: 118
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1723,7 +1393,7 @@ TextureImporter:
         width: 149
         height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1745,7 +1415,7 @@ TextureImporter:
         width: 434
         height: 173
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1759,15 +1429,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_63
+      name: floor_2
       rect:
         serializedVersion: 2
-        x: 3499
-        y: 837
-        width: 403
-        height: 102
+        x: 3501
+        y: 839
+        width: 399
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1781,7 +1451,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_64
+      name: platform_
       rect:
         serializedVersion: 2
         x: 67
@@ -1789,7 +1459,7 @@ TextureImporter:
         width: 504
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1811,7 +1481,7 @@ TextureImporter:
         width: 210
         height: 223
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1825,7 +1495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_66
+      name: chest_2
       rect:
         serializedVersion: 2
         x: 1394
@@ -1833,7 +1503,7 @@ TextureImporter:
         width: 273
         height: 163
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1855,7 +1525,7 @@ TextureImporter:
         width: 174
         height: 695
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1877,7 +1547,7 @@ TextureImporter:
         width: 203
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1891,7 +1561,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_69
+      name: banner'
       rect:
         serializedVersion: 2
         x: 2410
@@ -1899,7 +1569,7 @@ TextureImporter:
         width: 191
         height: 270
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1921,7 +1591,7 @@ TextureImporter:
         width: 204
         height: 201
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1943,7 +1613,7 @@ TextureImporter:
         width: 204
         height: 201
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1957,7 +1627,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_72
+      name: breakable_floor
       rect:
         serializedVersion: 2
         x: 111
@@ -1965,7 +1635,7 @@ TextureImporter:
         width: 399
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1987,7 +1657,7 @@ TextureImporter:
         width: 95
         height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2009,7 +1679,7 @@ TextureImporter:
         width: 378
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2031,7 +1701,7 @@ TextureImporter:
         width: 204
         height: 228
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2053,7 +1723,7 @@ TextureImporter:
         width: 407
         height: 102
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2067,7 +1737,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_77
+      name: floor
       rect:
         serializedVersion: 2
         x: 3196
@@ -2075,7 +1745,7 @@ TextureImporter:
         width: 202
         height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2097,7 +1767,7 @@ TextureImporter:
         width: 93
         height: 502
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2119,7 +1789,7 @@ TextureImporter:
         width: 94
         height: 203
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2136,12 +1806,12 @@ TextureImporter:
       name: map2_80
       rect:
         serializedVersion: 2
-        x: 280
+        x: 254
         y: 70
-        width: 107
-        height: 118
+        width: 133
+        height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2163,7 +1833,7 @@ TextureImporter:
         width: 77
         height: 177
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2185,7 +1855,7 @@ TextureImporter:
         width: 138
         height: 186
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2207,7 +1877,7 @@ TextureImporter:
         width: 221
         height: 207
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2229,7 +1899,7 @@ TextureImporter:
         width: 485
         height: 261
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2251,7 +1921,7 @@ TextureImporter:
         width: 160
         height: 187
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2265,15 +1935,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: map2_86
+      name: wall
       rect:
         serializedVersion: 2
-        x: 3024
-        y: 30
-        width: 125
-        height: 299
+        x: 3027
+        y: 34
+        width: 120
+        height: 291
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2291,11 +1961,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3211
-        y: 97
-        width: 179
-        height: 139
+        y: 77
+        width: 184
+        height: 159
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2317,7 +1987,7 @@ TextureImporter:
         width: 303
         height: 299
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2339,7 +2009,7 @@ TextureImporter:
         width: 191
         height: 188
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2352,55 +2022,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: map2_90
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 67
-        width: 24
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bb0a009f542ba6740800000000000000
-      internalID: 5146121537824268475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: map2_91
-      rect:
-        serializedVersion: 2
-        x: 3291
-        y: 72
-        width: 19
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cdb89f420eac26650800000000000000
-      internalID: 6224760699021265884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 71541d8c27217ec4192a3e6541d1a475
     internalID: 0
     vertices: []
     indices: 
@@ -2410,38 +2036,43 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      banner': 6739616399293769946
+      breakable_floor: 8364531409038098050
+      breakable_wall_1: 6860377412912977043
+      breakable_wall_2: -2188875986333847980
+      ceilling: -4634688712491683783
+      ceilling_1: 3926147504890547233
+      ceilling_2: -2806435088360547321
+      chest_1: 4979467628849102893
+      chest_2: 9054951114163679231
+      debris_1: 1069911723699641886
+      debris_2: 4972686738268036986
+      debris_3: -675117415861896236
+      debris_4: 2340296694054320601
+      floor: -5413649325118061897
+      floor_1: -2279027703404830501
+      floor_2: -1326247519102007577
+      floor_3: -3708568917881475163
       map2_0: -1046444227985733684
       map2_1: -9072651186510017257
       map2_10: 8238577149545405055
       map2_11: 4380325999533218879
       map2_12: -4601994791519089383
       map2_13: -8861937001839099884
-      map2_14: 8331783750938553626
-      map2_15: 393097394566433690
       map2_16: -1854864334186636813
       map2_17: -8088929938396653633
       map2_18: -3352395752795761617
-      map2_19: -2188875986333847980
-      map2_2: -2806435088360547321
-      map2_20: 6860377412912977043
       map2_21: 4128359818375190564
       map2_22: -2233105735332355699
-      map2_23: 1069911723699641886
-      map2_24: 4972686738268036986
       map2_25: 2319601798856627561
-      map2_26: 2340296694054320601
       map2_27: -545402740952221843
-      map2_28: -2279027703404830501
       map2_29: -3452110335140563248
-      map2_3: 3926147504890547233
       map2_30: -1367685314256900607
       map2_31: 5934367269587188052
-      map2_32: -675117415861896236
       map2_33: 3433366897259747285
       map2_34: -5942223663748466575
       map2_35: 7517084992374770404
       map2_36: -9205189720533611087
-      map2_37: -3708568917881475163
       map2_38: -6785731474895350588
       map2_39: 785477515832544678
       map2_4: -4180376041652523451
@@ -2465,27 +2096,19 @@ TextureImporter:
       map2_56: 2731330903046198909
       map2_57: 504217893497237011
       map2_58: -4089083440700858681
-      map2_59: 4979467628849102893
-      map2_6: -4634688712491683783
       map2_60: 4268479118618740068
       map2_61: -5683474334786084785
       map2_62: -8435015272025557305
-      map2_63: -1326247519102007577
-      map2_64: -4523764475042909266
       map2_65: 1048336061862618402
-      map2_66: 9054951114163679231
       map2_67: -1995677047127987664
       map2_68: -1395504821970645696
-      map2_69: 6739616399293769946
       map2_7: 1596749008245605003
       map2_70: -3623693311928215565
       map2_71: -1751340343263416231
-      map2_72: 8364531409038098050
       map2_73: -8298691224740455643
       map2_74: 739634050821958243
       map2_75: -655922010805660371
       map2_76: -6542843221928047008
-      map2_77: -5413649325118061897
       map2_78: -1665861533020179057
       map2_79: 4443593710559243471
       map2_8: -2691305911881301889
@@ -2495,13 +2118,16 @@ TextureImporter:
       map2_83: -8559462779724009222
       map2_84: -7435666067850308921
       map2_85: -8877902225778563056
-      map2_86: 3936030906957679202
       map2_87: -7783429717900413465
       map2_88: 2080579421132183754
       map2_89: 6530389401372201418
-      map2_9: 3827434012875057256
       map2_90: 5146121537824268475
       map2_91: 6224760699021265884
+      platform: 3827434012875057256
+      platform_: -4523764475042909266
+      platform_2: 8331783750938553626
+      trap: 393097394566433690
+      wall: 3936030906957679202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
