@@ -58,5 +58,8 @@ TagManager:
   - name: Breakables
     uniqueID: 1469871917
     locked: 0
+  - name: UI
+    uniqueID: 527532083
+    locked: 0
   m_RenderingLayers:
   - Default
