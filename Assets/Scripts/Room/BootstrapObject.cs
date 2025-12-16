@@ -18,11 +18,11 @@ public class BootstrapObject : MonoBehaviour
         yield return op;
 
         Scene persistent = SceneManager.GetSceneByName(persistentSceneName);
-        SceneManager.SetActiveScene(persistent);
 
         RoomManager roomManager = FindFirstObjectByType<RoomManager>();
         roomManager.LoadRoomWithNoTransition(firstRoomName);
 
+        SceneManager.SetActiveScene(persistent);
         Scene bootScene = gameObject.scene;
         SceneManager.UnloadSceneAsync(bootScene);
     }
