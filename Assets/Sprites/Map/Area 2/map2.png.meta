@@ -552,10 +552,10 @@ TextureImporter:
       name: map2_8
       rect:
         serializedVersion: 2
-        x: 3400
-        y: 1540
-        width: 601
-        height: 698
+        x: 3406
+        y: 1542
+        width: 591
+        height: 692
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
