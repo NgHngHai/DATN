@@ -53,6 +53,7 @@ public class Skill_Blast: MonoBehaviour, ISkill
         //_playerController.isDashing = true;
         _playerController.movementLocked = true;
         _playerController.animStateLocked = true;
+        _playerController.canBeKnockedback = false; // Disable knockback during dash
 
         _playerController.animStateMachine.ChangeState(blastState);
 
@@ -73,6 +74,7 @@ public class Skill_Blast: MonoBehaviour, ISkill
         //_playerController.isDashing = false;
         _playerController.movementLocked = false; // Unlock movement
         _playerController.animStateLocked = false; // Unlock anim state
+        _playerController.canBeKnockedback = true; // Re-enable knockback
         isBlasting = false;
 
         _rb.gravityScale = _playerController.originalGravityMultiplier; // Restore gravity

@@ -21,9 +21,6 @@ public class PlayerRespawnController : MonoBehaviour
     private PlayerSaveables _save;
     private Health _health;
 
-    // Respawn event
-
-
     private void Awake()
     {
         _roomManager = FindAnyObjectByType<RoomManager>();
@@ -60,9 +57,8 @@ public class PlayerRespawnController : MonoBehaviour
 
         if (_roomManager == null || _player == null || _save == null) yield break;
 
-        string targetRoom = _save.lastCheckpointRoomName;
-        if (targetRoom == null)
-            targetRoom = "Room1";
+        bool hasCheckpoit = !string.IsNullOrEmpty(_save.lastCheckpointRoomName);
+        string targetRoom = hasCheckpoit ? _save.lastCheckpointRoomName : "Room1";
 
         if (!string.IsNullOrEmpty(targetRoom) && SceneManager.GetActiveScene().name != targetRoom)
         {
@@ -75,10 +71,19 @@ public class PlayerRespawnController : MonoBehaviour
 
         // Resolve the room’s single checkpoint position (fallback to FirstSpawnPosition)
         var roomData = FindAnyObjectByType<RoomData>();
-        Vector2 spawnPos = roomData != null ? roomData.GetRoomCheckpointPosition() : _player.transform.position;
+        Vector2 spawnPos;
 
-        // Move player and restore
-        _player.transform.position = spawnPos;
+        if (hasCheckpoit)
+        {
+            spawnPos = roomData.GetRoomCheckpointPosition();
+        } 
+        else
+        {
+            spawnPos = roomData.FirstSpawnPosition;
+        }
+
+            // Move player and restore
+            _player.transform.position = spawnPos;
 
         if (_player.TryGetComponent<Rigidbody2D>(out var rb))
         {

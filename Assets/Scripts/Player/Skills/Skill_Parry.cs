@@ -4,7 +4,6 @@ using System.Collections;
 public class Skill_Parry: MonoBehaviour, ISkill
 {
     public class CounterChangedEvent : UnityEngine.Events.UnityEvent<int, int> { } // (currentCounter, maxCounter)
-
     public CounterChangedEvent OnCounterChanged = new();
 
     // Parry params
@@ -14,6 +13,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
     [SerializeField] private float increaseDamageDuration = 2f;
     [Tooltip("The amount of increased damage taken after missing parry.")]
     [SerializeField] private float increasedDamageTaken = 1.5f;
+    [SerializeField] private ParticleSystem parryEffect;
 
     // Counter params
     [Tooltip("The amount of time the player can use counter attack.")]
@@ -36,6 +36,8 @@ public class Skill_Parry: MonoBehaviour, ISkill
         _playerHealth = GetComponentInParent<Health>();
 
         parryState = new AnimationState(_playerController, "parry", true);
+
+        if (_col) _col.enabled = false;
     }
 
     public void Activate()
@@ -56,6 +58,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
     public void StartParry()
     {
         _missedParry = false;
+        _counterGranted = false;
 
         _playerController.movementLocked = true;
         _playerController.animStateLocked = true;
@@ -63,6 +66,30 @@ public class Skill_Parry: MonoBehaviour, ISkill
         _playerController.animStateMachine.ChangeState(parryState);
 
         _playerHealth.isInvincible = true; // Invincible during parry
+
+        if (_col) _col.enabled = true;
+
+        // Wait for whatever clip is currently playing on layer 0, then end parry.
+        StartCoroutine(EndParryAfterCurrentStateLength());
+    }
+
+    private IEnumerator EndParryAfterCurrentStateLength()
+    {
+        var animator = _playerController.animator;
+        const int layer = 0;
+
+        // Let the state apply (trigger/boolean change takes a frame)
+        yield return null;
+
+        // Read the active state's effective duration (accounts for Animator/state speed)
+        var info = animator.GetCurrentAnimatorStateInfo(layer);
+        float effectiveSpeed = Mathf.Max(0.0001f, animator.speed * info.speed);
+        float duration = info.length / effectiveSpeed;
+
+        yield return new WaitForSeconds(duration);
+
+        EndParry();
+        parryState.Exit(); // clear the "parry" bool
     }
 
     public void EndParry()
@@ -78,6 +105,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
         _playerController.animStateLocked = false; // Unlock anim state
 
         _playerHealth.isInvincible = false; // Disable invincibility
+        if (_col) _col.enabled = false;
 
         if (_missedParry)
         {
@@ -95,14 +123,14 @@ public class Skill_Parry: MonoBehaviour, ISkill
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<HurtBox>())
+        if (_col != null && _col.enabled && other.GetComponent<HurtBox>())
         {
             if (counterAmount < maxCounterAmount && !_counterGranted)
             {
                 counterAmount++;
                 _counterGranted = true;
+                parryEffect?.Play();
                 OnCounterChanged?.Invoke(counterAmount, maxCounterAmount);
-
             }
         }
     }

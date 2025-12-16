@@ -20,6 +20,7 @@ public class PlayerController : Entity
     public PlayerSkillManager skillManager;
     public Health playerHealth;
     public EffectEvents effectEvents;
+    private Skill_Parry _parrySkill;
 
     // Movement variables
     [Header("Movement Variables")]
@@ -60,8 +61,8 @@ public class PlayerController : Entity
     [Tooltip("When true, cannot input skills.")]
     public bool skillLocked = false;
     private bool isAttacking;
-    [SerializeField] private bool isCountering = false;
     [Tooltip("When true, can perform counter attack.")]
+    [SerializeField] private bool isCountering = false;
 
     // Dashing
     [Header("Dash Variables")]
@@ -82,9 +83,6 @@ public class PlayerController : Entity
     private InputAction dashAction;
 
     private InputAction attackAction;
-    private InputAction hAttackAction;
-    private InputAction parryAction;
-    private InputAction counterAction;
 
     private InputAction healAction;
     private InputAction skillAction;
@@ -113,14 +111,13 @@ public class PlayerController : Entity
     public AnimationState normalAttackState;
     public AnimationState attackUpState;
     public AnimationState attackDownState;
-    public AnimationState heavyAttackState;
-    public AnimationState parryState;
-    public AnimationState counterState;
 
     public AnimationState hurtState;
     public AnimationState deathState;
 
     public AnimationState reviveState;
+
+    public AnimationState counterState;
 
     private void OnEnable()
     {
@@ -183,10 +180,8 @@ public class PlayerController : Entity
         ascendState = new AnimationState(this, "ascend", true);
 
         normalAttackState = new AnimationState(this, "nAttack", false);
-        heavyAttackState = new AnimationState(this, "hAttack", false);
         attackUpState = new AnimationState(this, "attackUp", false);
         attackDownState = new AnimationState(this, "attackDown", false);
-        parryState = new AnimationState(this, "parry", true);
         counterState = new AnimationState(this, "counter", false);
 
         hurtState = new AnimationState(this, "hurt", true);
@@ -194,9 +189,13 @@ public class PlayerController : Entity
 
         reviveState = new AnimationState(this, "revive", true);
 
+        counterState = new AnimationState(this, "counter", false);
+
         animStateMachine.Initialize(idleState);         // Bắt đầu ở trạng thái Idle
 
         skillManager = GetComponent<PlayerSkillManager>();
+
+        _parrySkill = GetComponentInChildren<Skill_Parry>();
 
         // Prefer actions from the assigned InputActionAsset/Player map (avoid InputSystem.actions global lookup).
         if (InputActions != null)
@@ -210,8 +209,6 @@ public class PlayerController : Entity
                 dashAction = map.FindAction("Dash");
 
                 attackAction = map.FindAction("Attack");
-                hAttackAction = map.FindAction("Heavy Attack");
-                parryAction = map.FindAction("Parry");
 
                 healAction = map.FindAction("Heal");
                 skillAction = map.FindAction("Skill");
@@ -228,8 +225,6 @@ public class PlayerController : Entity
         dashAction = InputSystem.actions.FindAction("Dash");
 
         attackAction = InputSystem.actions.FindAction("Attack");
-        hAttackAction = InputSystem.actions.FindAction("Heavy Attack");
-        parryAction = InputSystem.actions.FindAction("Parry");
 
         healAction = InputSystem.actions.FindAction("Heal");
         skillAction = InputSystem.actions.FindAction("Skill");
@@ -286,11 +281,6 @@ public class PlayerController : Entity
             return;
         }
 
-        if (parryAction != null && parryAction.WasPressedThisFrame())
-        {
-            animStateMachine.ChangeState(parryState);
-        }
-
         // Switch cameras based on vertical input
 
         if (lookY > 0.5f)
@@ -316,8 +306,20 @@ public class PlayerController : Entity
             CameraManager.SwitchCamera(mainCamera);
         }
 
-        // Attack input - can be used while running (does not cancel horizontal control)
         if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked && !isAttacking)
+        {
+            if (!isCountering && _parrySkill != null && _parrySkill.HasCounter)
+            {
+                if (_parrySkill.TryUseCounter())
+                {
+                    StartCounterAttack();
+                    return;
+                }
+            }
+        }
+
+        // Attack input - can be used while running (does not cancel horizontal control)
+        if (attackAction != null && attackAction.WasPressedThisFrame() && !attackLocked && !isAttacking && !isCountering)
         {
             isAttacking = true;
             // Decide attack type by vertical input at the moment of pressing attack.
@@ -346,13 +348,6 @@ public class PlayerController : Entity
                     return;
                 }
             }
-        }
-
-        // Heavy attack input
-        if (hAttackAction != null && hAttackAction.triggered && isGrounded && !attackLocked)
-        {
-            PerformAttackHeavy();
-            return;
         }
 
         // Heal and skill input
@@ -519,6 +514,22 @@ public class PlayerController : Entity
         isAttacking = false;
     }
 
+    public void StartCounterAttack()
+    {
+        isCountering = true;
+        movementLocked = true;
+        rb.gravityScale = 0;
+        rb.linearVelocity = Vector2.zero;
+        animStateMachine.ChangeState(counterState);
+    }
+
+    public void EndCounterAttack()
+    {
+        isCountering = false;
+        movementLocked = false;
+        rb.gravityScale = originalGravityMultiplier;
+    }
+
     private void FlipOnMoveInput()
     {
         if (moveAmt < 0 && isFacingRight)
@@ -639,12 +650,6 @@ public class PlayerController : Entity
         animStateMachine.ChangeState(attackDownState);
     }
 
-    private void PerformAttackHeavy()
-    {
-        movementLocked = true;
-        animStateMachine.ChangeState(heavyAttackState);
-    }
-
     private void PerformAirAttack()
     {
         animStateMachine.ChangeState(normalAttackState);
@@ -674,6 +679,8 @@ public class PlayerController : Entity
         isDashing = false;
         isJumping = false;
         moveAmt = 0;
+
+        rb.linearVelocity = Vector2.zero;
 
         animStateMachine.ChangeState(deathState);
         effectEvents?.InvokeDeath();
