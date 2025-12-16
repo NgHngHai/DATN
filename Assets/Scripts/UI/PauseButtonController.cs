@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -20,9 +19,8 @@ public class PauseButtonController : MonoBehaviour, IPointerClickHandler, IPoint
     {
         if (buttonIndex == 0)
         {
+            UIManager.Instance.ResumePlaying();
             animator.SetEffectFactor(0);
-            // UIManager.Instance.ResumePlaying();
-            Time.timeScale = 1;
             transform.parent.parent.gameObject.SetActive(false);
         }
     }
@@ -58,7 +56,7 @@ public class PauseButtonController : MonoBehaviour, IPointerClickHandler, IPoint
     {
         while (animator.effectFactor < 1f)
         {
-            float f = animator.effectFactor + effectSpeed * Time.deltaTime;
+            float f = animator.effectFactor + effectSpeed * Time.unscaledDeltaTime;
             if (f > 1f) f = 1f;
             animator.SetEffectFactor(f);
             yield return null;
@@ -71,7 +69,7 @@ public class PauseButtonController : MonoBehaviour, IPointerClickHandler, IPoint
     {
         while (animator.effectFactor > 0f)
         {
-            float f = animator.effectFactor - effectSpeed * Time.deltaTime;
+            float f = animator.effectFactor - effectSpeed * Time.unscaledDeltaTime;
             if (f < 0f) f = 0f;
             animator.SetEffectFactor(f);
             yield return null;

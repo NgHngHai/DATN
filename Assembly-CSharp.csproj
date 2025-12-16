@@ -51,10 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\UI\DatabaseSlot.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSaveables.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossHandBreakAnimation.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioSlider.cs" />
     <Compile Include="Assets\Scripts\Save System\UniqueID.cs" />
+    <Compile Include="Assets\Scripts\Map\MapContainerData.cs" />
     <Compile Include="Assets\Scripts\Universal\SlowmoManager.cs" />
     <Compile Include="Assets\Scripts\Room\RoomData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\GroundEnemy.cs" />
@@ -91,15 +93,17 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BeamerState.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\Map\MapRoomManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyMI12.cs" />
+    <Compile Include="Assets\Scripts\UI\DatabaseController.cs" />
     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Environment\Interactables.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\UI\MenuButtonController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />
-    <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
     <Compile Include="Assets\Scripts\Universal\Entity.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Heal.cs" />
     <Compile Include="Assets\Scripts\Save System\FileDateHandler.cs" />
     <Compile Include="Assets\Scripts\Universal\iDamageable.cs" />
     <Compile Include="Assets\Scripts\UI\FileFunction.cs" />
@@ -158,6 +162,7 @@
     <Compile Include="Assets\Scripts\Universal\GenericSingleton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />
     <Compile Include="Assets\Scripts\Room\Door.cs" />
+    <Compile Include="Assets\Scripts\Environment\BackgroundHittables.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkillPassive.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\HeadState.cs" />
     <Compile Include="Assets\Scripts\UI\FileButton.cs" />
@@ -165,6 +170,7 @@
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdgeWall.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
+    <Compile Include="Assets\Scripts\Player\Skills\Skill_Parry.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,11 +188,13 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Shader\LogoDistortion.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Shader\LogoGlitch.shader" />
     <None Include="Assets\Shader\NoEffectUnlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Shader\PauseButton.shader" />
@@ -701,16 +709,16 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Library\PackageCache\com.unity.collections@d49facba0036\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Library\PackageCache\com.unity.collections@d49facba0036\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1353,6 +1361,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1375,10 +1387,6 @@
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
