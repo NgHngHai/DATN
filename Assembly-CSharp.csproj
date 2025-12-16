@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\Universal\DamageType.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyIncreaseAttackSpeedAura.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyFly0.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseButtonAnimating.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackBehavior.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\JanitorRSState.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Assets\Scripts\Universal\Health.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\PoisonousSmoke.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyState.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseButtonController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyShieldGenerator.cs" />
     <Compile Include="Assets\Scripts\Room\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Environment\TrapHurtBox.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Assets\Scripts\UI\FileButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Base\EnemyOffensiveState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdgeWall.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
   </ItemGroup>
@@ -186,6 +189,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Shader\NoEffectUnlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Shader\PauseButton.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
