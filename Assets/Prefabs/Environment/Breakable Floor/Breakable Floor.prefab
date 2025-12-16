@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 06a3082c-8e52-40d0-a15c-54b3aadf919d
+  uniqueID: 36a4e2e5-567b-4020-bedd-849bc214302c
 --- !u!114 &8086262300415397397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakableWall
   health: 1
-  destroyAnimationDuration: 0.5
   wallComponents: {fileID: 4274280478129662186}
   destroyParticles: {fileID: 4604956304955303828}
 --- !u!50 &387649820858502749

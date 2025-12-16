@@ -4,7 +4,6 @@ using System.Collections;
 public class BreakableWall : SaveableObject, IDamageable
 {
     public int health = 1;
-    [SerializeField] private float destroyAnimationDuration = 0.5f;
     [SerializeField] private GameObject wallComponents;
     [SerializeField] private ParticleSystem destroyParticles;
     private bool isDestroyed = false;

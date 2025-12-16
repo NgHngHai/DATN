@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3327275979798720512, guid: 10b6edfd04927d14d8962204e00673af, type: 3}
       propertyPath: uniqueID
-      value: a17cf39e-6018-4bdb-8f0e-19a50d498114
+      value: e6e3e4de-d6a3-4e6c-81fd-52270049c8dc
       objectReference: {fileID: 0}
     - target: {fileID: 3819305004198470078, guid: 10b6edfd04927d14d8962204e00673af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: -2188875986333847980, guid: 4c370199a470c3349ba6172a7d1833ce, type: 3}
     - target: {fileID: 7558941761639085708, guid: 10b6edfd04927d14d8962204e00673af, type: 3}
       propertyPath: m_Name
-      value: Breakable Wall Variant
+      value: Breakable Wall2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
