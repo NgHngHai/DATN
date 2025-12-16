@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 9121692548148729082}
   - component: {fileID: 5365780597198974355}
   - component: {fileID: 7997404288279001525}
+  - component: {fileID: 7472822572084080143}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -145,3 +146,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7472822572084080143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551155259243857931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c086720a7f9df324b92d69c791c6aea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OneTimeAnimation
