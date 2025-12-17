@@ -96,26 +96,32 @@ public class AudioManager : GenericSingleton<AudioManager>
     //      ===========================================
     //      ==================  SFX  ==================
     //      ===========================================
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip, float volume = 1, float pitchMin = 0, float pitchMax = 0)
     {
         if (clip == null) return;
 
         AudioSource src = GetFreeSFXSource();
 
-        src.spatialBlend = 0f;
         src.clip = clip;
+        src.volume = volume;
+        src.pitch = Random.Range(pitchMin, pitchMax);
+
+        src.spatialBlend = 0f;
         src.Play();
     }
 
-    public void PlaySFXAt(AudioClip clip, Vector3 position)
+    public void PlaySFXAt(AudioClip clip, Vector3 position, float volume = 1, float pitchMin = 0, float pitchMax = 0)
     {
         if (clip == null) return;
 
         AudioSource src = GetFreeSFXSource();
 
-        src.transform.position = position;
-        src.spatialBlend = 1f;
         src.clip = clip;
+        src.transform.position = position;
+        src.volume = volume;
+        src.pitch = Random.Range(pitchMin, pitchMax);
+
+        src.spatialBlend = 1f;
         src.Play();
     }
 

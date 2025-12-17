@@ -234,6 +234,7 @@ MonoBehaviour:
   canBeKnockedback: 0
   rb: {fileID: 2790500412612849952}
   animator: {fileID: 7794094094458242140}
+  deathExplosion: {fileID: 0}
   flipOnVelX: 1
   aggressiveRate: 1
   maxThinkTimeRange: {x: 2, y: 3}
@@ -307,6 +308,7 @@ GameObject:
   - component: {fileID: 8518313993817132116}
   - component: {fileID: 7794094094458242140}
   - component: {fileID: 276973021577614699}
+  - component: {fileID: 8457689462483615067}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -364,6 +366,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1bb76b925744d418af92d9ac229a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationEvent
+--- !u!114 &8457689462483615067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5599569144967193802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: d2fe015acfb07fb4197765328adbaac1, type: 3}
+  - {fileID: 8300000, guid: a8cfbadfeead9de4795752c321d2f3f0, type: 3}
+  - {fileID: 8300000, guid: 2f906fb38e11855478cf269569fd116b, type: 3}
+  volume: 1
+  pitchMin: 0.9
+  pitchMax: 1.1
 --- !u!1 &6695823896797250452
 GameObject:
   m_ObjectHideFlags: 0

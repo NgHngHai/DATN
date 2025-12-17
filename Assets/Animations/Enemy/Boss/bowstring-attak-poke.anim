@@ -195,9 +195,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.1
-    functionName: PlaySFXAtHere
+    functionName: ChangeAndPlaySFXAtHere
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: d2fe015acfb07fb4197765328adbaac1, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

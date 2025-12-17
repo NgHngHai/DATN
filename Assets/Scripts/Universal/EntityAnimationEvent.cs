@@ -4,7 +4,7 @@ public class EntityAnimationEvent : MonoBehaviour
 {
     protected Entity entity;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         entity = GetComponentInParent<Entity>();
     }
@@ -12,15 +12,5 @@ public class EntityAnimationEvent : MonoBehaviour
     public void CallCurrentAnimationTrigger()
     {
         entity.CallCurrentAnimationStateTrigger();
-    }
-
-    public void PlaySFX(AudioClip clip)
-    {
-        AudioManager.Instance.PlaySFX(clip);
-    }
-
-    public void PlaySFXAtHere(AudioClip clip)
-    {
-        AudioManager.Instance.PlaySFXAt(clip, transform.position);
     }
 }
