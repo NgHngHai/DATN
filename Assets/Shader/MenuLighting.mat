@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glitch
+  m_Name: MenuLighting
   m_Shader: {fileID: 4800000, guid: c4590d209306a6042aba5b7a93eb337d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
