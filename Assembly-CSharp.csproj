@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\Save System\GameData.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BowstringState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillTreeController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossBrain.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBeamer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\Explosion.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\JanitorRSState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly0State.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\SnatcherSecondaryCollider.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillButton.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectsDriver.cs" />
     <Compile Include="Assets\Scripts\UI\SplashSceneController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolBehavior.cs" />
