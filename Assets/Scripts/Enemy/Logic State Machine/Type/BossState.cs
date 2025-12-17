@@ -86,7 +86,7 @@ public class BossHandAttackState : BossState
             return;
         }
 
-        animStateMachine.ChangeState(boss.animHandAttack);
+        animStateMachine.ChangeState(boss.animHandAttackState);
 
         attackSet.ChangeAttackType(handAttackIndex);
     }
@@ -116,11 +116,11 @@ public class BossDashAttackState : BossState
 
         if (boss.IsPhaseTwoOrAbove())
         {
-            animStateMachine.ChangeState(boss.animBodyDash);
+            animStateMachine.ChangeState(boss.animBodyDashState);
         }
         else
         {
-            animStateMachine.ChangeState(boss.animHandDash);
+            animStateMachine.ChangeState(boss.animHandDashState);
         }
 
         attackSet.ChangeAttackType(dashAttackIndex);
@@ -152,11 +152,11 @@ public class BossNukeAttackState : BossState
 
         if (boss.IsPhaseTwoOrAbove())
         {
-            animStateMachine.ChangeState(boss.animBodyNuke);
+            animStateMachine.ChangeState(boss.animBodyNukeState);
         }
         else
         {
-            animStateMachine.ChangeState(boss.animHandNuke);
+            animStateMachine.ChangeState(boss.animHandNukeState);
         }
         attackSet.ChangeAttackType(nukeAttackIndex);
         ToggleSafePlatforms(true);

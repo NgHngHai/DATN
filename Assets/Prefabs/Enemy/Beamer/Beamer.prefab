@@ -576,6 +576,7 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 4961034247301547796}
   animator: {fileID: 137499590974421123}
+  deathExplosion: {fileID: 3239040489668653231, guid: e74df832a2128344793982be2a7e695e, type: 3}
   flipOnVelX: 1
   startAttackDistance: 7
   restTime: 5

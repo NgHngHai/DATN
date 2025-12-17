@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BossHandBreakAnimation : MonoBehaviour
 {
+    [SerializeField] private AudioSource explosionSource;
     [SerializeField] private ParticleSystem brokenExplosionPS;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D col;
@@ -19,6 +20,7 @@ public class BossHandBreakAnimation : MonoBehaviour
     {
         brokenExplosionPS.Play();
         transform.SetParent(null);
+        explosionSource.Play();
 
         rb.bodyType = RigidbodyType2D.Dynamic;
         Vector2 breakDir = GetRandomDirection(minForceAngle, maxForceAngle);
