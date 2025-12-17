@@ -7,6 +7,8 @@ using UnityEngine.Rendering;
 /// </summary>
 public abstract class Enemy : Entity
 {
+    [Header("Enemy")]
+    [SerializeField] protected GameObject deathExplosion;
     public bool flipOnVelX = true;
     public EnemyStateMachine logicStateMachine;
     protected EnemyAttackSet attackSet;
@@ -34,12 +36,14 @@ public abstract class Enemy : Entity
     {
         if (health == null) return;
         health.OnDamagedWithReaction.AddListener(OnDamageTaken);
+        health.OnDeath.AddListener(OnDeath);
     }
 
     private void OnDisable()
     {
         if (health == null) return;
         health.OnDamagedWithReaction.RemoveListener(OnDamageTaken);
+        health.OnDeath.RemoveListener(OnDeath);
     }
 
     protected override void Update()
@@ -77,7 +81,14 @@ public abstract class Enemy : Entity
 
     public virtual void OnDeath()
     {
+        CreateDeathExplosionAt(transform.position);
         Destroy(gameObject);
+    }
+
+    protected void CreateDeathExplosionAt(Vector2 position)
+    {
+        if (deathExplosion != null)
+            Instantiate(deathExplosion, position, transform.rotation);
     }
 
     public Health GetHealth() => health;

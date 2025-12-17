@@ -480,6 +480,7 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 2025601186254988290}
   animator: {fileID: 3537193772697204025}
+  deathExplosion: {fileID: 9144365132016487521, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
   flipOnVelX: 1
   groundMask:
     serializedVersion: 2
@@ -583,6 +584,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &3097908562298254564
