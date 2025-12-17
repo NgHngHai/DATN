@@ -4,7 +4,7 @@ public class EnemyAnimationEvent : EntityAnimationEvent
 {
     protected Enemy enemy;
 
-    private void Start()
+    protected virtual void Start()
     {
         enemy = entity as Enemy;
     }

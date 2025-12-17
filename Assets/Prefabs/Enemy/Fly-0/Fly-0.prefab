@@ -128,6 +128,7 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 4900039896408457873}
   animator: {fileID: 8574456163164794623}
+  deathExplosion: {fileID: 2068416083874969521, guid: df8ebc5020aca904395af974c0d7a0a2, type: 3}
   flipOnVelX: 1
   hoverAroundDistance: 5
   hoverRestTime: 1

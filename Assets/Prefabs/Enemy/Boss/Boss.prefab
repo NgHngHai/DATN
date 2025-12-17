@@ -1321,9 +1321,10 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 7041069750422339350}
   animator: {fileID: 5857256646369590085}
+  deathExplosion: {fileID: 0}
   flipOnVelX: 0
   bowstringPrefab: {fileID: 4773892740739535897, guid: dcc7f1dde9c19c647bc509f38ebe9da3, type: 3}
-  bowstringSpawnPos: {fileID: 0}
+  bowstringSpawnPos: {fileID: 7555284822918398664}
   handBreakAnimationList:
   - {fileID: 1427937452831115422}
   - {fileID: 4411496464008952665}
@@ -1359,7 +1360,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   safePlatformPrefab: {fileID: 5112337367222200992, guid: 1b801a191277c274babd4e9891bf7966, type: 3}
   safePlatformSpawnPointArray:
-  - {fileID: 0}
+  - {fileID: 7555284822918398664}
 --- !u!114 &2604140133465772855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,6 +1483,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8585060877264526100
@@ -1643,6 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a500e3f3edc403479c63316cc4e6f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHandBreakAnimation
+  explosionSource: {fileID: 3729565139571892590}
   brokenExplosionPS: {fileID: 9123594534504902853}
   rb: {fileID: 3746117442194920843}
   col: {fileID: 3368475506319903081}
@@ -2012,6 +2017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a500e3f3edc403479c63316cc4e6f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHandBreakAnimation
+  explosionSource: {fileID: 8433469938118082668}
   brokenExplosionPS: {fileID: 4059471017741259207}
   rb: {fileID: 6097517877656740673}
   col: {fileID: 7628576184979711266}
@@ -2119,6 +2125,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8949669990363658231}
     m_Modifications:
+    - target: {fileID: -889474375460976115, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 150944193721265947, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
       propertyPath: m_SortingOrder
       value: 3
@@ -2189,6 +2199,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4537487248921648038, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
   m_PrefabInstance: {fileID: 481401363346016865}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &8433469938118082668 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -889474375460976115, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
+  m_PrefabInstance: {fileID: 481401363346016865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8830292874823629901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8945775488528725548, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
@@ -2202,6 +2217,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1288179243754130179}
     m_Modifications:
+    - target: {fileID: -889474375460976115, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 150944193721265947, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
       propertyPath: m_SortingOrder
       value: 6
@@ -2271,6 +2290,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
+--- !u!82 &3729565139571892590 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -889474375460976115, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}
+  m_PrefabInstance: {fileID: 4640361828668074851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4341513023226928463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8945775488528725548, guid: 0250e5da0822d6340af16d8ed78bc483, type: 3}

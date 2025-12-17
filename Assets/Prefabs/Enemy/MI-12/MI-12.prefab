@@ -604,6 +604,7 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 7004434841005520159}
   animator: {fileID: 4134954235425329788}
+  deathExplosion: {fileID: 7006442077658515694, guid: 18294811e22dec44383a7e4c045b17d5, type: 3}
   flipOnVelX: 0
   groundMask:
     serializedVersion: 2
@@ -768,9 +769,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2644415413201013333}
         m_TargetAssemblyTypeName: EnemyBeamer, Assembly-CSharp
-        m_MethodName: OnDeath
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

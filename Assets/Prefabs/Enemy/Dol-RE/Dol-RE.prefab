@@ -419,6 +419,7 @@ MonoBehaviour:
   canBeKnockedback: 1
   rb: {fileID: 6528892835667088984}
   animator: {fileID: 8211766356660994733}
+  deathExplosion: {fileID: 7006442077658515694, guid: 18294811e22dec44383a7e4c045b17d5, type: 3}
   flipOnVelX: 1
   groundMask:
     serializedVersion: 2

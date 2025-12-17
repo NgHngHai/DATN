@@ -25,11 +25,12 @@ public class Boss : Enemy
     [SerializeField] private Transform[] safePlatformSpawnPointArray;
 
     public AnimationState animIdleState;
-    public AnimationState animHandAttack;
-    public AnimationState animHandDash;
-    public AnimationState animHandNuke;
-    public AnimationState animBodyDash;
-    public AnimationState animBodyNuke;
+    public AnimationState animHandAttackState;
+    public AnimationState animHandDashState;
+    public AnimationState animHandNukeState;
+    public AnimationState animBodyDashState;
+    public AnimationState animBodyNukeState;
+    public AnimationState animDeathState;
 
     public BossRestState restState;
     public BossMoveState moveState;
@@ -50,11 +51,12 @@ public class Boss : Enemy
         brain = GetComponent<BossBrain>();
 
         animIdleState = new AnimationState(this, "idle");
-        animHandAttack = new AnimationState(this, "handAttack");
-        animHandDash = new AnimationState(this, "handDash");
-        animHandNuke = new AnimationState(this, "handNuke");
-        animBodyDash = new AnimationState(this, "bodyDash");
-        animBodyNuke = new AnimationState(this, "bodyNuke");
+        animHandAttackState = new AnimationState(this, "handAttack");
+        animHandDashState = new AnimationState(this, "handDash");
+        animHandNukeState = new AnimationState(this, "handNuke");
+        animBodyDashState = new AnimationState(this, "bodyDash");
+        animBodyNukeState = new AnimationState(this, "bodyNuke");
+        animDeathState = new AnimationState(this, "death");
 
         restState = new BossRestState(this);
         moveState = new BossMoveState(this);
@@ -137,6 +139,19 @@ public class Boss : Enemy
         }
 
         return res;
+    }
+
+    public override void OnDeath()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        brain.enabled = false;
+        animStateMachine.ChangeState(animDeathState);
+    }
+
+    public void CreateDeathExplosionInRadius()
+    {
+        Vector2 randomPos = (Vector2) transform.position+ Random.insideUnitCircle * 5;
+        CreateDeathExplosionAt(randomPos);
     }
 
     public bool IsPhaseTwoOrAbove() => currentPhase == 2 || currentPhase == 3;
