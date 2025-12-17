@@ -4,8 +4,9 @@ public class EnemyAnimationEvent : EntityAnimationEvent
 {
     protected Enemy enemy;
 
-    protected virtual void Start()
+    protected override void Awake()
     {
+        base.Awake();
         enemy = entity as Enemy;
     }
 

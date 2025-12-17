@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 2456742179785046487}
   - component: {fileID: 4134954235425329788}
   - component: {fileID: 9165713383192983858}
+  - component: {fileID: 1843318452949313667}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -476,6 +477,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1bb76b925744d418af92d9ac229a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationEvent
+--- !u!114 &1843318452949313667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679740885209023411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: f8bba90a86816fd4889ba963e8677de2, type: 3}
+  - {fileID: 8300000, guid: c9180f355279e794a91541af60a5e38b, type: 3}
+  volume: 1
+  pitchMin: 0.9
+  pitchMax: 1.1
 --- !u!1 &3812209302881796803
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +633,7 @@ MonoBehaviour:
   groundEdgeCheckOffsetX: 1.32
   wallCheckDistance: 1.47
   chargeSound: {fileID: 8300000, guid: f8bba90a86816fd4889ba963e8677de2, type: 3}
-  minChargeDistance: 3
+  minChargeDistance: 4
   chargeSpeedCurve:
     serializedVersion: 2
     m_Curve:

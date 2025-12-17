@@ -4,9 +4,9 @@ public class BossAnimationEvent : EnemyAnimationEvent
 {
     private Boss boss;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         boss = enemy as Boss;
     }
 
