@@ -3406,6 +3406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
   fileSelectionUI: {fileID: 491954131}
+  screenCanvas: {fileID: 903850104}
 --- !u!4 &1025230249
 Transform:
   m_ObjectHideFlags: 0

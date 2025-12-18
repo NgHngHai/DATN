@@ -22,7 +22,7 @@ public class SkillTreeController : MonoBehaviour
         else
         {
             txtSkillName.text = "skill " + id;
-            txtSkillDescription.text = "An important skill!!!";
+            txtSkillDescription.text = "An important skill !!!";
         }
 
         transform.GetChild(0).GetChild(selectingSkill).GetChild(0).gameObject.SetActive(false);
