@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7636179563798910861}
   - component: {fileID: 6470204882921335074}
   - component: {fileID: 4408353860486427062}
+  - component: {fileID: 8571079326678812724}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -126,6 +127,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1bb76b925744d418af92d9ac229a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationEvent
+--- !u!114 &8571079326678812724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830248095600089899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: e474fb06b01f6ec44a2667c723f6f275, type: 3}
+  - {fileID: 8300000, guid: 9743be9312aea0c4f9537f892b8c61d1, type: 3}
+  volume: 1
+  pitchMin: 0.9
+  pitchMax: 1.1
 --- !u!1 &4788228380451119627
 GameObject:
   m_ObjectHideFlags: 0

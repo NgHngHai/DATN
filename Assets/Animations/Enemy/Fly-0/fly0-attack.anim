@@ -86,7 +86,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: PlaySFX
+    functionName: PlaySFXAtHere
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: aef1c298b20bb1544a2cbfa5401aab80, type: 3}
     floatParameter: 0

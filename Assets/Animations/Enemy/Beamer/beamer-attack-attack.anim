@@ -129,23 +129,16 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: PlaySFXAtHere
+    functionName: ChangeAndPlaySFXAtHere
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: f61cc1213b5914644ac71489cab5fce6, type: 3}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0.0625
     functionName: TryCurrentAttack
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.1875
-    functionName: PlaySFXAtHere
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f61cc1213b5914644ac71489cab5fce6, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -160,13 +153,6 @@ AnimationClip:
     functionName: TryCurrentAttack
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.4375
-    functionName: PlaySFXAtHere
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f61cc1213b5914644ac71489cab5fce6, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

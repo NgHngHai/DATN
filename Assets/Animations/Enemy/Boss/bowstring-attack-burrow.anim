@@ -472,11 +472,11 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.4
-    functionName: PlaySFXAtHere
+    functionName: ChangeAndPlaySFXAtHere
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 2f906fb38e11855478cf269569fd116b, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 2
     messageOptions: 0
   - time: 0.6
     functionName: TryCurrentAttack

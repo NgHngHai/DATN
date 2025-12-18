@@ -6,9 +6,9 @@ using System.Collections;
 public class UIManager : GenericSingleton<UIManager>
 {
     public Image hpBar, tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
-    public GameObject playerStats, glow, mapCanvas;
-    public GameObject pauseMenu, functionMenu;
-    private InputAction pauseGameAction, openFunctionAction;
+    public GameObject playerStats, glow, mapCanvas, pauseText, functionText;
+    public GameObject pauseMenu, functionMenu, skillMenu, inventory, map, database;
+    private InputAction pauseGameAction, openFunctionAction, qBtnAction, eBtnAction;
     int currentUiId;
     int totalCounter;
 
@@ -18,6 +18,8 @@ public class UIManager : GenericSingleton<UIManager>
         currentUiId = 0;
         pauseGameAction = new(null, type: InputActionType.Button, binding: "<Keyboard>/escape");
         openFunctionAction = new(null, type: InputActionType.Button, binding: "<Keyboard>/tab");
+        qBtnAction = new(null, InputActionType.Button, "<Keyboard>/q");
+        eBtnAction = new(null, InputActionType.Button, "<Keyboard>/e");
         pauseGameAction.Enable();
         openFunctionAction.Enable();
         totalCounter = 0;
@@ -33,6 +35,7 @@ public class UIManager : GenericSingleton<UIManager>
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
         }
+
         if (openFunctionAction.WasPerformedThisFrame())
         {
             if (currentUiId == 0)
@@ -41,14 +44,38 @@ public class UIManager : GenericSingleton<UIManager>
                 playerStats.SetActive(false);
                 mapCanvas.SetActive(false);
                 functionMenu.SetActive(true);
+                pauseText.SetActive(false);
+                functionText.SetActive(true);
+                qBtnAction.Enable();
+                eBtnAction.Enable();
             }
-            else if (currentUiId == 2)
+            else if (currentUiId > 0)
             {
+                if (currentUiId > 1)
+                {
+                    if (currentUiId == 2) inventory.SetActive(false);
+                    else if (currentUiId == 3) map.SetActive(false);
+                    else if (currentUiId == 4) database.SetActive(false);
+                    skillMenu.SetActive(true);
+                }
                 currentUiId = 0;
                 playerStats.SetActive(true);
                 mapCanvas.SetActive(true);
                 functionMenu.SetActive(false);
+                pauseText.SetActive(true);
+                functionText.SetActive(false);
+                qBtnAction.Disable();
+                eBtnAction.Disable();
             }
+        }
+
+        if(qBtnAction.WasPressedThisFrame())
+        {
+            DisplayPreviousTab();
+        }
+        if (eBtnAction.WasPressedThisFrame())
+        {
+            DisplayNextTab();
         }
     }
 
@@ -65,6 +92,8 @@ public class UIManager : GenericSingleton<UIManager>
         base.OnDestroy();
         pauseGameAction.Dispose();
         openFunctionAction.Dispose();
+        qBtnAction.Dispose();
+        eBtnAction.Dispose();
     }
 
 
@@ -138,6 +167,63 @@ public class UIManager : GenericSingleton<UIManager>
                 else if (i == 1) counterBar1.color = new Color32(255, 255, 255, 255);
                 else counterBar2.color = new Color32(255, 255, 255, 255);
             }
+        }
+    }
+
+
+    public void DisplayNextTab()
+    {
+        HideFunctionMenuSpecifically();
+        currentUiId += 1;
+        if (currentUiId > 5) currentUiId = 2;
+        DisplayFunctionMenuSpecifically();
+    }
+
+    public void DisplayPreviousTab()
+    {
+        HideFunctionMenuSpecifically();
+        currentUiId -= 1;
+        if (currentUiId < 2) currentUiId = 5;
+        DisplayFunctionMenuSpecifically();
+    }
+
+    public void DisplayFunctionMenuSpecifically()
+    {
+        if (currentUiId == 2)
+        {
+            skillMenu.SetActive(true);
+        }
+        else if (currentUiId == 3)
+        {
+            inventory.SetActive(true);
+        }
+        else if (currentUiId == 4)
+        {
+            map.SetActive(true);
+        }
+        else if (currentUiId == 5)
+        {
+            database.SetActive(true);
+        }
+    }
+
+    public void HideFunctionMenuSpecifically()
+    {
+        if (currentUiId == 2)
+        {
+            skillMenu.SetActive(false);
+        }
+        else if (currentUiId == 3)
+        {
+            inventory.SetActive(false);
+        }
+        else if (currentUiId == 4)
+        {
+            map.SetActive(false);
+        }
+        else if (currentUiId == 5)
+        {
+            database.SetActive(false);
         }
     }
 }
