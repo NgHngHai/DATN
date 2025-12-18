@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Stomp.cs" />
     <Compile Include="Assets\Scripts\UI\OscillateAnim.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\EnemyShield.cs" />
+    <Compile Include="Assets\Scripts\UI\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Save System\TestSaveableBox.cs" />
     <Compile Include="Assets\Scripts\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPoisonHandler.cs" />
@@ -80,12 +81,15 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BossState.cs" />
     <Compile Include="Assets\Scripts\Player\SkillDefinition.cs" />
     <Compile Include="Assets\Scripts\Room\BootstrapObject.cs" />
+    <Compile Include="Assets\Scripts\UI\InventoryController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyRoak.cs" />
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundNormal.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyTargetHandler.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\ISkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\MI12State.cs" />
     <Compile Include="Assets\Scripts\Save System\ISaveable.cs" />
+    <Compile Include="Assets\Scripts\UI\ItemFollowingMouse.cs" />
+    <Compile Include="Assets\Scripts\UI\AnchoredSkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
     <Compile Include="Assets\Scripts\Universal\MoneyOnDeath.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyRangedAttack.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Environment\Interactables.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectEvents.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuOverlay.cs" />
     <Compile Include="Assets\Scripts\Utils\PhysicsUtils.cs" />
     <Compile Include="Assets\Scripts\UI\MenuButtonController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyJanitorRS.cs" />

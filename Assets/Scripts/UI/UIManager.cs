@@ -34,6 +34,7 @@ public class UIManager : GenericSingleton<UIManager>
             mapCanvas.SetActive(false);
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
+            openFunctionAction.Disable();
         }
 
         if (openFunctionAction.WasPerformedThisFrame())
@@ -48,14 +49,15 @@ public class UIManager : GenericSingleton<UIManager>
                 functionText.SetActive(true);
                 qBtnAction.Enable();
                 eBtnAction.Enable();
+                pauseGameAction.Disable();
             }
             else if (currentUiId > 0)
             {
-                if (currentUiId > 1)
+                if (currentUiId > 2)
                 {
-                    if (currentUiId == 2) inventory.SetActive(false);
-                    else if (currentUiId == 3) map.SetActive(false);
-                    else if (currentUiId == 4) database.SetActive(false);
+                    if (currentUiId == 3) inventory.SetActive(false);
+                    else if (currentUiId == 4) map.SetActive(false);
+                    else if (currentUiId == 5) database.SetActive(false);
                     skillMenu.SetActive(true);
                 }
                 currentUiId = 0;
@@ -66,6 +68,7 @@ public class UIManager : GenericSingleton<UIManager>
                 functionText.SetActive(false);
                 qBtnAction.Disable();
                 eBtnAction.Disable();
+                pauseGameAction.Enable();
             }
         }
 
@@ -85,6 +88,7 @@ public class UIManager : GenericSingleton<UIManager>
         Time.timeScale = 1;
         playerStats.SetActive(true);
         mapCanvas.SetActive(true);
+        openFunctionAction.Enable();
     }
 
     protected override void OnDestroy()
