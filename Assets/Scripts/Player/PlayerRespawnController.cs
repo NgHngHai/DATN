@@ -79,7 +79,7 @@ public class PlayerRespawnController : MonoBehaviour
         } 
         else
         {
-            spawnPos = roomData.FirstSpawnPosition;
+            spawnPos = new Vector3(0, 0, 0);
         }
 
             // Move player and restore
