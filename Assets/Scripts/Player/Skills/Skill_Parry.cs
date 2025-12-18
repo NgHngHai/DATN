@@ -125,6 +125,25 @@ public class Skill_Parry: MonoBehaviour, ISkill
     {
         if (_col != null && _col.enabled && other.GetComponent<HurtBox>())
         {
+            // Rotating counter flash effect
+            // Compute per-particle rotation to face the HurtBox (2D Z-axis), in radians
+            if (parryEffect != null)
+            {
+                Vector3 sourcePos = transform.position;
+                Vector3 targetPos = other.bounds.ClosestPoint(sourcePos);
+                Vector3 dir = (targetPos - sourcePos).normalized;
+
+                float angleZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg * -1; // radians
+
+                // Emit one particle with explicit rotation (per-particle)
+                var emitParams = new ParticleSystem.EmitParams
+                {
+                    rotation = angleZ
+                };
+
+                parryEffect.Emit(emitParams, 1);
+            }
+
             if (counterAmount < maxCounterAmount && !_counterGranted)
             {
                 counterAmount++;

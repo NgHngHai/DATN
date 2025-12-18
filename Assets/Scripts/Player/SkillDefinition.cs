@@ -29,7 +29,8 @@ public class SkillDefinition
             if (isPassive)
             {
                 var player = _player != null ? _player : GameObject.FindWithTag("Player");
-                EnablePassive(player, _isUnlocked);
+                if (_isUnlocked)
+                    EnablePassive(player);
             }
         }
     }
@@ -48,7 +49,7 @@ public class SkillDefinition
         _player = player;
         if (isPassive && isUnlocked)
         {
-            EnablePassive(_player, true);
+            EnablePassive(_player);
         }
     }
 
@@ -80,7 +81,7 @@ public class SkillDefinition
     }
 
     // Toggle passive effect on/off for the player
-    public void EnablePassive(GameObject owner, bool active)
+    public void EnablePassive(GameObject owner)
     {
         if (!isPassive || skillPrefab == null || owner == null) return;
 
@@ -89,7 +90,7 @@ public class SkillDefinition
             .OfType<ISkillPassive>()
             .FirstOrDefault();
 
-        effect?.SetPassiveActive(active, owner);
+        effect?.SetPassiveActive(owner);
     }
 
     /// <summary>
