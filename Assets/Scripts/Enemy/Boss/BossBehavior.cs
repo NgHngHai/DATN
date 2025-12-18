@@ -34,20 +34,23 @@ public abstract class BossBehavior
 
 public class BossHandAttackBehavior : BossBehavior
 {
+    private Transform handSlamPoint;
     private float preferredAttackRadius;
 
     /// <param name="preferredAttackRadius">Score higher when the distance between target and boss is SMALLER than this distance</param>
-    public BossHandAttackBehavior(Boss boss, float cooldown, float preferredAttackRadius) : base(boss, cooldown)
+    public BossHandAttackBehavior(Boss boss, float cooldown, Transform handAttackPoint, float preferredAttackRadius)
+        : base(boss, cooldown)
     {
+        this.handSlamPoint = handAttackPoint;
         this.preferredAttackRadius = preferredAttackRadius;
     }
 
     protected override float Evaluate()
     {
-        if (boss.CurrentPhase != 1 || !targetHandler.IsTargetValid()) return 0f;
+        if (boss.CurrentPhase != 1 || handSlamPoint == null) return 0f;
 
         if (Vector2.Distance(targetHandler.GetTargetPosition(),
-            boss.frontHandImpactPoint.position) < preferredAttackRadius) return 80f;
+             handSlamPoint.position) < preferredAttackRadius) return 80f;
         else return 0f;
     }
 
@@ -78,8 +81,6 @@ public class BossDashAttackBehavior : BossBehavior
 
     protected override void Execute()
     {
-        if (!targetHandler.IsTargetValid()) return;
-
         boss.logicStateMachine.ChangeState(boss.dashAttackState);
     }
 }
@@ -173,7 +174,7 @@ public class BossAdjustBowstringAggressiveBehavior : BossBehavior
             SetAggressiveRate(1f);
         else if (dist > farDist)
             SetAggressiveRate(0.5f);
-        else 
+        else
             SetAggressiveRate(0.8f);
     }
 

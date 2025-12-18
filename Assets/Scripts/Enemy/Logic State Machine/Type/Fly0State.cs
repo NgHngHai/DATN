@@ -12,7 +12,7 @@ public class Fly0State : EnemyOffensiveState
 
 public class Fly0SleepState : Fly0State
 {
-    bool isSleeping = true;
+    bool isAwaken;
 
     public Fly0SleepState(Enemy enemy) : base(enemy)
     {
@@ -25,11 +25,11 @@ public class Fly0SleepState : Fly0State
 
     public override void Update()
     {
-        if (isSleeping)
+        if (!isAwaken)
         {
             if (IsTargetValid())
             {
-                isSleeping = false;
+                isAwaken = true;
                 animStateMachine.ChangeState(fly0.animAwakeState);
             }
             return;
@@ -55,19 +55,22 @@ public class Fly0ChaseState : Fly0State
     public override void Enter()
     {
         base.Enter();
+        animStateMachine.ChangeState(fly0.animFlyingState);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (targetHandler.GetDistanceToTarget() < fly0.hoverAroundDistance)
+        if (targetHandler.GetDistanceToTarget() > fly0.stopChaseDistance)
+            chaseVel = targetHandler.GetDirectionToTarget() * fly0.moveSpeed;
+        else chaseVel = Vector2.zero;
+
+        if (IsCurrentAttackReady())
         {
-            logicStateMachine.ChangeState(fly0.hoverAroundState);
-            return;
+            logicStateMachine.ChangeState(fly0.repositionToAttackState);
         }
 
-        chaseVel = targetHandler.GetDirectionToTarget() * fly0.moveSpeed;
     }
 
     public override void FixedUpdate()
@@ -76,68 +79,60 @@ public class Fly0ChaseState : Fly0State
     }
 }
 
-public class Fly0HoverAroundState : Fly0State
+public class Fly0RepositionToAttackState : Fly0State
 {
-    Vector2 nextHoverPosition;
-    Vector2 moveDir;
+    private Vector2 nextPos;
+    private float repositionRange = 7f;
+    private float restTime = 0.2f;
 
-    public Fly0HoverAroundState(Enemy enemy) : base(enemy) { }
+    public Fly0RepositionToAttackState(Enemy enemy) : base(enemy)
+    {
+    }
 
     public override void Enter()
     {
         base.Enter();
-        animStateMachine.ChangeState(fly0.animFlyingState);
-        stateTimer = fly0.hoverRestTime;
-        nextHoverPosition = fly0.transform.position;
-        moveDir = Vector2.zero;
+
+        AttackOrReposition();
     }
 
     public override void Update()
     {
-        if (targetHandler.GetDistanceToTarget() > fly0.hoverAroundDistance)
-        {
-            logicStateMachine.ChangeState(fly0.chaseState);
-            return;
-        }
+        base.Update();
 
-        if (Vector2.Distance(fly0.transform.position, nextHoverPosition) < 0.1f)
+        if (Vector2.Distance(fly0.transform.position, nextPos) < 0.1f)
         {
-            base.Update();
-
             fly0.StopVelocity();
-            moveDir = Vector2.zero;
 
-            if (stateTimer < 0)
-                HoverOrAttack();
+            AttackOrReposition();
         }
         else
         {
-            moveDir = (nextHoverPosition - (Vector2)fly0.transform.position).normalized;
+            Vector2 dir = (nextPos - (Vector2)fly0.transform.position).normalized;
+            fly0.SetVelocity(dir * fly0.moveSpeed);
         }
     }
 
-    public override void FixedUpdate()
+    private void AttackOrReposition()
     {
-        if (moveDir != Vector2.zero)
-            fly0.SetVelocity(moveDir * fly0.moveSpeed);
-    }
-
-    private void HoverOrAttack()
-    {
-        if (IsCurrentAttackReady() && IsTargetInCurrentAttackArea(targetHandler.CurrentTarget))
+        if (IsCurrentTargetInAttackArea())
             logicStateMachine.ChangeState(fly0.attackState);
         else
-            ChooseNextHoverPoint();
+            CaculateNextPos();
     }
 
-    void ChooseNextHoverPoint()
+    private void CaculateNextPos()
     {
-        stateTimer = fly0.hoverRestTime;
-        Vector2 randomLocalPos = (Random.insideUnitCircle * fly0.hoverAroundDistance);
-        nextHoverPosition = targetHandler.GetTargetPosition() + randomLocalPos;
+        if (!IsTargetValid()) return;
+
+        nextPos = targetHandler.GetTargetPosition();
+
+        Vector2 randomPosWithinTarget = Random.insideUnitCircle * repositionRange;
+        randomPosWithinTarget.y = Mathf.Abs(randomPosWithinTarget.y);
+
+        nextPos += randomPosWithinTarget;
     }
 }
-
 
 public class Fly0AttackState : Fly0State
 {
@@ -148,18 +143,19 @@ public class Fly0AttackState : Fly0State
     public override void Enter()
     {
         base.Enter();
+        fly0.StopVelocity();
+        FlipToTarget();
         animStateMachine.ChangeState(fly0.animAttackState);
+
+        if (IsTargetValid())
+        {
+            attackSet.CurrentAttack.AttackPointLookAt(targetHandler.CurrentTarget);
+        }
     }
 
     public override void Update()
     {
         base.Update();
-
-        if (IsTargetValid())
-        {
-            attackSet.CurrentAttack.AttackPointLookAt(targetHandler.CurrentTarget);
-            FlipToTarget();
-        }
 
         if (fly0.IsCurrentAnimStateTriggerCalled())
         {
@@ -185,7 +181,7 @@ public class Fly0RestState : Fly0State
     public override void Update()
     {
         base.Update();
-        if(stateTimer < 0)
+        if (stateTimer < 0)
         {
             logicStateMachine.ChangeState(fly0.chaseState);
         }

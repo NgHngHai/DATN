@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBrain : MonoBehaviour
+public class BossUtilityAI : MonoBehaviour
 {
+    [SerializeField] private Transform handSlamPoint;
     [SerializeField] private float firstDelay = 5f;
     [SerializeField] private float thinkInterval = 1f;
 
     private Boss boss;
     private List<BossBehavior> behaviors = new List<BossBehavior>();
     private float thinkTimer;
+
     public void Initialize(Boss boss)
     {
         this.boss = boss;
@@ -58,7 +60,7 @@ public class BossBrain : MonoBehaviour
     {
         behaviors.Clear();
 
-        behaviors.Add(new BossHandAttackBehavior(boss, 2f, 3f));
+        behaviors.Add(new BossHandAttackBehavior(boss, 2f, handSlamPoint, 3f));
         behaviors.Add(new BossDashAttackBehavior(boss, 3f, 4f));
         behaviors.Add(new BossMoveBackBehavior(boss, 2f, 6f));
         behaviors.Add(new BossNukeAttackBehavior(boss, 15f));

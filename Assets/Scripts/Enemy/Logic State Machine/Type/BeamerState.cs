@@ -48,7 +48,7 @@ public class BeamerObservationState : BeamerState
     private bool CanAttackTarget()
     {
         bool isTargetInAttackDistance = targetHandler.GetDistanceToTarget() <= beamer.startAttackDistance;
-        return isTargetInAttackDistance && IsTargetInCurrentAttackArea(targetHandler.CurrentTarget);
+        return isTargetInAttackDistance && IsCurrentTargetInAttackArea();
     }
 }
 
