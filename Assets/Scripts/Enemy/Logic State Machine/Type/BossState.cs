@@ -168,7 +168,7 @@ public class BossNukeAttackState : BossState
 
         if (boss.IsCurrentAnimStateTriggerCalled())
         {
-            logicStateMachine.ChangeState(boss.restState);
+            logicStateMachine.ChangeState(boss.stunnedState);
         }
     }
 
@@ -189,6 +189,30 @@ public class BossNukeAttackState : BossState
         foreach (GameObject platform in currentSafePlatformObjects)
         {
             platform.SetActive(toggle);
+        }
+    }
+}
+
+public class BossStunnedState : BossState
+{
+    public BossStunnedState(Enemy enemy) : base(enemy)
+    {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        animStateMachine.ChangeState(boss.animStunnedState);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if(boss.IsCurrentAnimStateTriggerCalled())
+        {
+            logicStateMachine.ChangeState(boss.restState);
         }
     }
 }

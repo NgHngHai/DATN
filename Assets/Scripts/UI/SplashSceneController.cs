@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SplashSceneController : MonoBehaviour
 {
     public GameObject presentsText;
+    public MainMenuOverlay overlayController;
     [Header("Materials")]
     public Material normalMaterial;
     public Material alternativeMaterial;
@@ -120,6 +121,7 @@ public class SplashSceneController : MonoBehaviour
         presentsText.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
+        overlayController.ActivateTransition();
         loadSceneOperation.allowSceneActivation = true;
     }
 }

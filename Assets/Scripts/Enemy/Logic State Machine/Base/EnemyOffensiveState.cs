@@ -21,10 +21,10 @@ public class EnemyOffensiveState : EnemyState
         return attackSet.CurrentAttack.IsReadyToAttack();
     }
 
-    protected bool IsTargetInCurrentAttackArea(Transform target)
+    protected bool IsCurrentTargetInAttackArea()
     {
-        if (!IsCurrentAttackValid()) return false;
-        return attackSet.CurrentAttack.IsTargetInAttackArea(target);
+        if (!IsCurrentAttackValid() || !IsTargetValid()) return false;
+        return attackSet.CurrentAttack.IsTargetInAttackArea(targetHandler.CurrentTarget);
     }
 
     private bool IsCurrentAttackValid() => attackSet != null && attackSet.CurrentAttack != null;
