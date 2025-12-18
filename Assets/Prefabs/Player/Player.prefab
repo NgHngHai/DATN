@@ -5309,6 +5309,9 @@ Transform:
   - {fileID: 629186654344546633}
   - {fileID: 1104463862397026203}
   - {fileID: 351905477672895748}
+  - {fileID: 2631311413850495126}
+  - {fileID: 8910407477466033775}
+  - {fileID: 4821434157457967478}
   m_Father: {fileID: 7563957037513625506}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1860312160219878219
@@ -5390,6 +5393,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skill_DJump
   extraJumpCount: 1
+--- !u!1 &2460705719322183849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4821434157457967478}
+  m_Layer: 0
+  m_Name: Skill Haste
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4821434157457967478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460705719322183849}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6439823911698809318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2779057000039258090
 GameObject:
   m_ObjectHideFlags: 0
@@ -6308,6 +6342,7 @@ GameObject:
   - component: {fileID: 1190804931672900395}
   - component: {fileID: 2753912382881145763}
   - component: {fileID: 1292387543960183970}
+  - component: {fileID: 9094652934787121573}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -6545,20 +6580,12 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 80591265-85af-4bee-863a-60a628fa7922
-    m_ActionName: 'Player/Heavy Attack[/Keyboard/j]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 47436949-25d9-4c9e-857b-a583ac94c48e
     m_ActionName: 'Player/Heal[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f1cef06b-4505-4e33-85db-014b3fee164f
     m_ActionName: 'Player/Skill[/Keyboard/k]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 22081353-356f-45ac-8456-6c62b494b288
-    m_ActionName: 'Player/Parry[/Keyboard/k]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 7ce735dd-09c7-481f-b382-631aefb5e7ff
@@ -6697,17 +6724,41 @@ MonoBehaviour:
   - skillId: 4
     skillName: Parry - Counter
     skillPrefab: {fileID: 2779057000039258090}
-    cooldown: 0
-    cost: 3
+    cooldown: 1
+    cost: 0
     isPassive: 0
     unlockCost: 50
-    _isUnlocked: 0
+    _isUnlocked: 1
   - skillId: 5
     skillName: Hookline
     skillPrefab: {fileID: 5422968561819204920}
     cooldown: 0
     cost: 3
     isPassive: 0
+    unlockCost: 50
+    _isUnlocked: 0
+  - skillId: 6
+    skillName: Vitality
+    skillPrefab: {fileID: 6728830987841308525}
+    cooldown: 0
+    cost: 0
+    isPassive: 1
+    unlockCost: 50
+    _isUnlocked: 0
+  - skillId: 7
+    skillName: Capacity
+    skillPrefab: {fileID: 8227030183525547547}
+    cooldown: 0
+    cost: 0
+    isPassive: 1
+    unlockCost: 50
+    _isUnlocked: 0
+  - skillId: 8
+    skillName: Haste
+    skillPrefab: {fileID: 2460705719322183849}
+    cooldown: 0
+    cost: 0
+    isPassive: 1
     unlockCost: 50
     _isUnlocked: 0
   activeSkillId: 1
@@ -6849,7 +6900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: ce45f27e-1396-4938-adfa-1f1a486cf420
+  uniqueID: 6b016775-175a-4b53-be8a-9f3a1cc2f5e9
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6863,6 +6914,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
   poisonColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &9094652934787121573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652666909265740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f6ced3d85c10e4e81a879cb068b878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationEvent
+--- !u!1 &6728830987841308525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2631311413850495126}
+  m_Layer: 0
+  m_Name: Skill Vitality
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2631311413850495126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728830987841308525}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6439823911698809318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6990694024330529415
 GameObject:
   m_ObjectHideFlags: 0
@@ -11932,6 +12026,37 @@ MonoBehaviour:
   - {x: 0.75, y: 2.5, z: 0}
   - {x: -0.75, y: 2.5, z: 0}
   - {x: -2, y: 2, z: 0}
+--- !u!1 &8227030183525547547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8910407477466033775}
+  m_Layer: 0
+  m_Name: Skill Capacity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8910407477466033775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227030183525547547}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6439823911698809318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8384421906874888614
 GameObject:
   m_ObjectHideFlags: 0
