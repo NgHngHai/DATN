@@ -77,16 +77,10 @@ public class PlayerSkillManager : MonoBehaviour
 
         if (activeSkillId == s.skillId) return true;
 
-        // Toggle off previous passive (if any)
-        TryEnablePassiveWithId(activeSkillId, false);
-
         // Switch active
         activeSkillId = s.skillId;
         PlayerPrefs.SetInt(activeSkillPref, skillId);
         PlayerPrefs.Save();
-
-        // Toggle on new passive (if any)
-        TryEnablePassiveWithId(activeSkillId, true);
 
         OnActiveSkillChanged?.Invoke(activeSkillId);
         return true;
@@ -114,7 +108,7 @@ public class PlayerSkillManager : MonoBehaviour
             {
                 activeSkillId = s.skillId;
                 // Enable passive for the loaded active skill
-                TryEnablePassiveWithId(activeSkillId, true);
+                TryEnablePassiveWithId(activeSkillId);
                 OnActiveSkillChanged?.Invoke(activeSkillId);
                 return;
             }
@@ -126,7 +120,7 @@ public class PlayerSkillManager : MonoBehaviour
             if (s != null && s.isUnlocked && s.skillId != 0)
             {
                 activeSkillId = s.skillId;
-                TryEnablePassiveWithId(activeSkillId, true);
+                TryEnablePassiveWithId(activeSkillId);
                 OnActiveSkillChanged?.Invoke(activeSkillId);
                 return;
             }
@@ -134,18 +128,18 @@ public class PlayerSkillManager : MonoBehaviour
         if (skills.Count > 1)
         {
             activeSkillId = 1;
-            TryEnablePassiveWithId(activeSkillId, true);
+            TryEnablePassiveWithId(activeSkillId);
             OnActiveSkillChanged?.Invoke(activeSkillId);
         }
     }
 
-    private void TryEnablePassiveWithId(int skillId, bool active)
+    private void TryEnablePassiveWithId(int skillId)
     {
         if (skillMap == null) return;
         if (!skillMap.TryGetValue(skillId, out var s) || s == null) return;
         if (!s.isPassive) return;
 
-        s.EnablePassive(gameObject, active);
+        s.EnablePassive(gameObject);
     }
 
     // Check if a given skill can be used (unlocked, enough energy, off cooldown)
