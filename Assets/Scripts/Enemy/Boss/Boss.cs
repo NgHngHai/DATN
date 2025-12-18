@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BossBrain))]
+[RequireComponent(typeof(BossUtilityAI))]
 public class Boss : Enemy
 {
     [Header("BOSS")]
+    [SerializeField] private List<BossHandBreakAnimation> handBreakAnimationList;
+
+    [Header("BOSS: Bowstring")]
     [SerializeField] private GameObject bowstringPrefab;
     [SerializeField] private Transform bowstringSpawnPos;
-    [SerializeField] private List<BossHandBreakAnimation> handBreakAnimationList;
 
     [Header("BOSS: Head Properties")]
     [SerializeField] private SpriteRenderer headSpriteRenderer;
     [SerializeField] private Sprite brokenHeadSprite;
     [SerializeField] private GameObject headPrefab;
-    [SerializeField] private GameObject headBrokenEffect;
-    public Transform frontHandImpactPoint;
 
     [Header("BOSS: Movement Curve")]
     public float moveDuration = 3f;
@@ -30,6 +30,7 @@ public class Boss : Enemy
     public AnimationState animHandNukeState;
     public AnimationState animBodyDashState;
     public AnimationState animBodyNukeState;
+    public AnimationState animStunnedState;
     public AnimationState animDeathState;
 
     public BossRestState restState;
@@ -37,8 +38,9 @@ public class Boss : Enemy
     public BossHandAttackState handAttackState;
     public BossDashAttackState dashAttackState;
     public BossNukeAttackState nukeAttackState;
+    public BossStunnedState stunnedState;
 
-    private BossBrain brain;
+    private BossUtilityAI utilityAI;
     private BossBowstring bowstring;
     private BossHead head;
 
@@ -48,7 +50,7 @@ public class Boss : Enemy
     {
         base.Awake();
 
-        brain = GetComponent<BossBrain>();
+        utilityAI = GetComponent<BossUtilityAI>();
 
         animIdleState = new AnimationState(this, "idle");
         animHandAttackState = new AnimationState(this, "handAttack");
@@ -56,12 +58,14 @@ public class Boss : Enemy
         animHandNukeState = new AnimationState(this, "handNuke");
         animBodyDashState = new AnimationState(this, "bodyDash");
         animBodyNukeState = new AnimationState(this, "bodyNuke");
+        animStunnedState = new AnimationState(this, "stunned");
         animDeathState = new AnimationState(this, "death");
 
         restState = new BossRestState(this);
         moveState = new BossMoveState(this);
         handAttackState = new BossHandAttackState(this);
         dashAttackState = new BossDashAttackState(this);
+        stunnedState = new BossStunnedState(this);
         nukeAttackState = new BossNukeAttackState(this);
     }
 
@@ -72,7 +76,7 @@ public class Boss : Enemy
         animStateMachine.Initialize(animIdleState);
         logicStateMachine.Initialize(restState);
 
-        brain.Initialize(this);
+        utilityAI.Initialize(this);
     }
 
 
@@ -96,7 +100,6 @@ public class Boss : Enemy
         currentPhase = 2;
 
         headSpriteRenderer.sprite = brokenHeadSprite;
-        Instantiate(headBrokenEffect, headSpriteRenderer.transform.position, Quaternion.identity);
 
         foreach (var handBreakAnimation in handBreakAnimationList)
         {
@@ -105,7 +108,7 @@ public class Boss : Enemy
 
         GameObject bowstringObject = Instantiate(bowstringPrefab, bowstringSpawnPos.position, Quaternion.identity);
         bowstring = bowstringObject.GetComponent<BossBowstring>();
-        brain.AcknowledgePhaseTwo();
+        utilityAI.AcknowledgePhaseTwo();
     }
 
     public void ToPhaseThree()
@@ -144,7 +147,8 @@ public class Boss : Enemy
     public override void OnDeath()
     {
         GetComponent<Collider2D>().enabled = false;
-        brain.enabled = false;
+        utilityAI.enabled = false;
+        logicStateMachine.currentState.Exit();
         animStateMachine.ChangeState(animDeathState);
     }
 

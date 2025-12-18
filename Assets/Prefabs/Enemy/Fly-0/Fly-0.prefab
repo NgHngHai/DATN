@@ -130,8 +130,8 @@ MonoBehaviour:
   animator: {fileID: 8574456163164794623}
   deathExplosion: {fileID: 2068416083874969521, guid: df8ebc5020aca904395af974c0d7a0a2, type: 3}
   flipOnVelX: 1
-  hoverAroundDistance: 5
-  hoverRestTime: 1
+  offsetFlyHeight: 2
+  stopChaseDistance: 7
   attackRestTime: 1
   moveSpeed: 10
 --- !u!114 &5606108111915571458
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_Bits: 64
   projectilePrefab: {fileID: 5763945138572097089, guid: 195dafb9404904b41ae49d99352637c6, type: 3}
   projectileSpeed: 15
-  canAttackDistance: 5
+  canAttackDistance: 8
   looksAtFireDirection: 1
 --- !u!114 &8793264266210997085
 MonoBehaviour:
@@ -209,7 +209,7 @@ MonoBehaviour:
   isInvincible: 0
   damageMultiplier: 1
   iframeTime: 0.3
-  damageTypesIgnoreIFrames: 4
+  damageTypesIgnoreIFrames: 0
   OnDamagedWithReaction:
     m_PersistentCalls:
       m_Calls: []
