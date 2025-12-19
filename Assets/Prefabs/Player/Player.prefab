@@ -5872,7 +5872,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   damageAmount: 7
-  damageType: 2
+  damageType: 10
   shouldTriggerHitReaction: 1
   applyKnockbackToTarget: 1
   lockMovementOnTarget: 1
@@ -6594,6 +6594,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8e2e11ef-dea8-46fc-aacb-f4be2ba062f0
     m_ActionName: 'UI/[DEBUG]ReloadScene[/Keyboard/leftCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae38c4a2-ddd1-4584-9f48-c98de2d975d6
+    m_ActionName: UI/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: 
@@ -6900,7 +6904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: d701b8f6-5dc1-40ee-9eb3-c791cb18ae1f
+  uniqueID: caa05bb5-53d7-42ca-9ae9-505f19bbb159
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Skill_Haste : MonoBehaviour
+public class Skill_Haste : MonoBehaviour, ISkillPassive
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int newMoveSpeed = 9;
 
-    // Update is called once per frame
-    void Update()
+    public void SetPassiveActive(GameObject player)
     {
-        
+        var playerController = player.GetComponent<PlayerController>();
+
+        //if (active)
+        //{
+        playerController.moveSpeed = newMoveSpeed;
+        //}
     }
 }
