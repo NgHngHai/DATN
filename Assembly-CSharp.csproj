@@ -194,6 +194,7 @@
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Parry.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
+    <Compile Include="Assets\Scripts\UI\MapController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -207,6 +208,7 @@
     <None Include="Assets\Shader\MenuLighting.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\Shader\Map.shader" />
     <None Include="Assets\Shader\MenuButton.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
