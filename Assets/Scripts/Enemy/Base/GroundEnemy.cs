@@ -15,15 +15,15 @@ public abstract class GroundEnemy : Enemy
 
     public bool IsGrounded()
     {
-        return PhysicsUtils.IsRaycastHit(GetGroundCheckPos(), Vector2.down, groundCheckDistance, groundMask);
+        return Utility.IsRaycastHit(GetGroundCheckPos(), Vector2.down, groundCheckDistance, groundMask);
     }
 
     public bool IsGroundEdgeOrWallDetected()
     {
         Vector2 raycastDir = isFacingRight ? Vector2.right : Vector2.left;
 
-        return PhysicsUtils.IsRaycastHit(transform.position, raycastDir, wallCheckDistance, groundMask) ||
-            !PhysicsUtils.IsRaycastHit(GetGroundEdgeCheckPos(), Vector2.down, groundCheckDistance, groundMask);
+        return Utility.IsRaycastHit(transform.position, raycastDir, wallCheckDistance, groundMask) ||
+            !Utility.IsRaycastHit(GetGroundEdgeCheckPos(), Vector2.down, groundCheckDistance, groundMask);
     }
 
     Vector2 GetGroundCheckPos()

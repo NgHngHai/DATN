@@ -9,7 +9,7 @@ public class SafePlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(PhysicsUtils.IsGameObjectInLayer(collision.gameObject, safeLayer))
+        if(Utility.IsGameObjectInLayer(collision.gameObject, safeLayer))
         {
             Health health = collision.GetComponent<Health>();
             if (health != null)
@@ -22,7 +22,7 @@ public class SafePlatform : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (PhysicsUtils.IsGameObjectInLayer(collision.gameObject, safeLayer))
+        if (Utility.IsGameObjectInLayer(collision.gameObject, safeLayer))
         {
             Health health = collision.GetComponent<Health>();
             if (health != null)

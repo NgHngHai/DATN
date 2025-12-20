@@ -10,7 +10,7 @@ public enum GameArea
 
 public class RoomData : MonoBehaviour
 {
-    [SerializeField] private GameArea roomInArea;
+    public GameArea roomInArea;
     public Collider2D CameraBoundary;
     [SerializeField] private List<Door> doorList = new List<Door>();
     public Vector2 FirstSpawnPosition { get; set; }
