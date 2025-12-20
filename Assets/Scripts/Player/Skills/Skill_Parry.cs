@@ -32,6 +32,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
 
     private void Start()
     {
+        OnCounterChanged.AddListener(UIManager.Instance.UpdateCounter);
         _playerController = GetComponentInParent<PlayerController>();
         _playerHealth = GetComponentInParent<Health>();
 

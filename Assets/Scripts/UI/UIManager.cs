@@ -10,6 +10,8 @@ public class UIManager : GenericSingleton<UIManager>
     public Image hpBar;
     public Image tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
     public GameObject playerStats, glow, mapCanvas;
+    public GameObject moneyContainer;
+    public TextMeshProUGUI txtMoney;
     [Header("Pause Menu")]
     public GameObject pauseMenu;
     public GameObject pauseText;
@@ -18,7 +20,11 @@ public class UIManager : GenericSingleton<UIManager>
     public GameObject functionText, skillMenu, inventory, map, database;
     public Image skillText, inventoryText, mapText, databaseText;
     public FunctionButton skillButton, inventoryButton, mapButton, databaseButton;
-    public ArrowButton prevButton, nextButton;
+    public ScaleBouncedObject prevButton, nextButton;
+    public SkillTreeController skillTreeController;
+    public InventoryController inventoryController;
+    [Header("Shop")]
+    public GameObject shop;
 
     InputAction pauseGameAction, openFunctionAction, qBtnAction, eBtnAction;
     int currentUiId;
@@ -44,6 +50,7 @@ public class UIManager : GenericSingleton<UIManager>
         {
             currentUiId = 1;
             playerStats.SetActive(false);
+            moneyContainer.SetActive(false);
             mapCanvas.SetActive(false);
             pauseMenu.SetActive(true);
             pauseText.SetActive(true);
@@ -57,6 +64,7 @@ public class UIManager : GenericSingleton<UIManager>
             {
                 currentUiId = 2;
                 playerStats.SetActive(false);
+                moneyContainer.SetActive(false);
                 mapCanvas.SetActive(false);
                 functionMenu.SetActive(true);
                 functionText.SetActive(true);
@@ -184,9 +192,21 @@ public class UIManager : GenericSingleton<UIManager>
             totalCounter = c;
             for (int i = 0; i < c; i++)
             {
-                if (i == 0) counterBar0.color = new Color32(115, 246, 241, 255);
-                else if (i == 1) counterBar1.color = new Color32(115, 246, 241, 255);
-                else counterBar2.color = new Color32(115, 246, 241, 255);
+                if (i == 0)
+                {
+                    counterBar0.color = new Color32(115, 246, 241, 255);
+                    // counterBar0.GetComponent<ScaleBouncedObject>().SetEffectFactor(0, Time.time);
+                }
+                else if (i == 1)
+                {
+                    counterBar1.color = new Color32(115, 246, 241, 255);
+                    // counterBar1.GetComponent<ScaleBouncedObject>().SetEffectFactor(0, Time.time);
+                }
+                else
+                {
+                    counterBar2.color = new Color32(115, 246, 241, 255);
+                    // counterBar2.GetComponent<ScaleBouncedObject>().SetEffectFactor(0, Time.time);
+                }
             }
         }
         else if (c < totalCounter)
@@ -199,6 +219,34 @@ public class UIManager : GenericSingleton<UIManager>
                 else counterBar2.color = new Color32(255, 255, 255, 255);
             }
         }
+    }
+
+
+    public void UpdateMoney(int currentMoney, int changedMoney)
+    {
+        StartCoroutine(DoUpdateMoney(currentMoney, changedMoney));
+    }
+
+    IEnumerator DoUpdateMoney(int currentMoney, int changedMoney)
+    {
+        float duration = 0.5f;
+        float delay = 0.05f;
+        WaitForSeconds wfs = new(delay);
+
+        int changeTimes = Mathf.CeilToInt(duration / delay);
+        txtMoney.text = (currentMoney - changedMoney).ToString();
+        moneyContainer.SetActive(true);
+        yield return wfs;
+        
+        for (int i = changeTimes - 1; i >= 0; i--)
+        {
+            yield return wfs;
+            txtMoney.text = Mathf.CeilToInt(currentMoney - changedMoney * (float)i / changeTimes).ToString();
+        }
+        txtMoney.text = currentMoney.ToString();
+
+        yield return wfs;
+        moneyContainer.SetActive(false);
     }
 
 
@@ -270,5 +318,38 @@ public class UIManager : GenericSingleton<UIManager>
             databaseText.color = new(0, 0, 0, 0);
             database.SetActive(false);
         }
+    }
+
+
+    public void OpenShop()
+    {
+        pauseGameAction.Disable();
+        openFunctionAction.Disable();
+        Time.timeScale = 0;
+        moneyContainer.SetActive(false);
+        shop.SetActive(true);
+    }
+
+    public void CloseShop()
+    {
+        pauseGameAction.Enable();
+        openFunctionAction.Enable();
+        Time.timeScale = 1;
+        shop.SetActive(false);
+    }
+
+
+    public void UpdateInventory(int itemId)
+    {
+        inventoryController.gameObject.SetActive(true);
+        functionMenu.SetActive(true);
+        inventoryController.AddItem(itemId);
+        inventoryController.gameObject.SetActive(false);
+        functionMenu.SetActive(false);
+    }
+
+    public void UpdateSkillTree(int skillId)
+    {
+        
     }
 }

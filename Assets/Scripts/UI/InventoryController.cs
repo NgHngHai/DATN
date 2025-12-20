@@ -13,6 +13,7 @@ public class InventoryController : MonoBehaviour
     public TextMeshProUGUI txtItemName;
     public TextMeshProUGUI txtItemDescription;
     public Image draggingItem, anchoredSkill;
+
     bool[] slotUsed;
     int[] itemIds;
     List<InventoryData> inventoryData;
@@ -34,14 +35,10 @@ public class InventoryController : MonoBehaviour
         slotUsed = new bool[20];
         slotUsed[0] = true;
         slotUsed[1] = true;
-        slotUsed[2] = true;
-        slotUsed[3] = true;
 
         itemIds = new int[21];
         itemIds[0] = 0;
         itemIds[1] = 1;
-        itemIds[2] = 2;
-        itemIds[3] = 3;
 
         selectingSlot = 0;
         hoveringSlot = -1;
@@ -181,6 +178,31 @@ public class InventoryController : MonoBehaviour
     }
 
 
+    public void AddItem(int itemId)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            if (!slotUsed[i])
+            {
+                slotUsed[i] = true;
+                itemIds[i] = itemId;
+
+                Image img = transform.GetChild(0).GetChild(i).GetChild(1).GetComponent<Image>();
+                img.color = new (1, 1, 1, 1);
+                img.sprite = inventoryData[itemId].itemSprite;
+                if (inventoryData[itemId].skillId > -1) UnlockSkill(inventoryData[itemId].skillId);
+                break;
+            }
+        }
+    }
+
+
+    public void UnlockSkill(int skillId)
+    {
+        UIManager.Instance.UpdateSkillTree(skillId);
+    }
+
+
     void LoadInventoryDataFromSO()
     {
         inventoryData = new List<InventoryData>
@@ -189,6 +211,13 @@ public class InventoryController : MonoBehaviour
             new("Item 2", "A nessessary item !!!", -1, item1),
             new("Skill 1", "A nessessary skill !!!", 0, item2),
             new("Skill 2", "A nessessary skill !!!", 1, item3),
+            new("Skill 3", "A nessessary skill !!!", 2, item3),
+            new("Skill 4", "A nessessary skill !!!", 3, item3),
+            new("Skill 5", "A nessessary skill !!!", 4, item3),
+            new("Skill 6", "A nessessary skill !!!", 5, item3),
+            new("Skill 7", "A nessessary skill !!!", 6, item3),
+            new("Skill 8", "A nessessary skill !!!", 7, item3),
+            new("Skill 9", "A nessessary skill !!!", 8, item3),
         };
     }
 }
