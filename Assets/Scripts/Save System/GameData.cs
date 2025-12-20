@@ -4,6 +4,8 @@ using System.Collections.Generic;
 [Serializable]
 public class GameData
 {
-    // In the future there will be more types of data to store.
+    public int saveSlotIndex;
+    public long savedAtTicks;
+
     public Dictionary<string, object> savedObjects = new();
 }
