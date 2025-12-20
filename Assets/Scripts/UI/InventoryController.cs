@@ -73,7 +73,6 @@ public class InventoryController : MonoBehaviour
 
                 draggingItem.color = new(1, 1, 1, 1);
                 draggingItem.sprite = selectingItemData.itemSprite;
-                // reset dragging item shader
             }
         }
     }
@@ -216,9 +215,10 @@ class InventoryData
 public class InputActionReader
 {
     public Vector2 draggingStartPos;
+    public float effectRotation;
 
     public bool IsEligibleToDragItem()
     {
-        return Vector2.Distance(draggingStartPos, Mouse.current.position.ReadValue()) > 0.1f;
+        return Vector2.Distance(draggingStartPos, Mouse.current.position.ReadValue()) > 5f;
     }
 }

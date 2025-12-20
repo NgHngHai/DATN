@@ -4,23 +4,22 @@ using UnityEngine;
 public class BossUtilityAI : MonoBehaviour
 {
     [SerializeField] private Transform handSlamPoint;
-    [SerializeField] private float firstDelay = 5f;
     [SerializeField] private float thinkInterval = 1f;
 
     private Boss boss;
     private List<BossBehavior> behaviors = new List<BossBehavior>();
+    private bool isAIStart;
     private float thinkTimer;
 
     public void Initialize(Boss boss)
     {
         this.boss = boss;
-        thinkTimer = firstDelay;
         BuildBehaviors();
     }
 
     private void Update()
     {
-        if (!IsBossRest()) return;
+        if (!IsBossRest() || !isAIStart) return;
 
         thinkTimer -= Time.deltaTime;
 
@@ -70,4 +69,9 @@ public class BossUtilityAI : MonoBehaviour
     {
         behaviors.Add(new BossAdjustBowstringAggressiveBehavior(boss, 1f, 3f, 8f));
     }
+
+    public void StartAI() => isAIStart = true;
+    public void StopAI() => isAIStart = false;
+
+
 }

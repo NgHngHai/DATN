@@ -12,6 +12,7 @@ public class RoomManager : MonoBehaviour
     private string currentRoomName;
     private string pendingNextRoomName;
     private string pendingDoorLinkID;
+    private bool firstTimeLoadInGame = true;
 
     private void Awake()
     {
@@ -90,6 +91,12 @@ public class RoomManager : MonoBehaviour
         roomTransitioner.UnfreezeAnim();
 
         ApplyCurrentRoomData();
+
+        if (firstTimeLoadInGame)
+        {
+            firstTimeLoadInGame = false;
+            GameManager.Instance.FinishFirstTimeLoadInGameTransition();
+        }
     }
 
     /// <summary>

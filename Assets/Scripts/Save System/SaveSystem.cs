@@ -5,19 +5,17 @@ public class SaveSystem : GenericSingleton<SaveSystem>
 {
     private FileDataHandler dataHandler;
     private GameData gameData;
-    private List<ISaveable> saveables = new List<ISaveable>();
+    private List<ISaveable> saveables = new();
 
-    [Header("File Settings")]
-    [SerializeField] private string fileName = "save.json";
+    private int activeSlotIndex;
 
     protected override void Awake()
     {
         base.Awake();
-
-        string path = Application.persistentDataPath;
-        dataHandler = new FileDataHandler(path, fileName);
+        dataHandler = new FileDataHandler();
     }
 
+    #region Saveable Registration
     public void Register(ISaveable saveable)
     {
         if (!saveables.Contains(saveable))
@@ -26,14 +24,17 @@ public class SaveSystem : GenericSingleton<SaveSystem>
 
     public void Unregister(ISaveable saveable)
     {
-        if (saveables.Contains(saveable))
-            saveables.Remove(saveable);
+        saveables.Remove(saveable);
     }
+    #endregion
 
-    #region Game Data Functions
+    #region Game Data
     public void CreateNewGameData()
     {
-        gameData = new GameData();
+        gameData = new GameData
+        {
+            saveSlotIndex = activeSlotIndex
+        };
     }
 
     public void SaveGame()
@@ -44,34 +45,33 @@ public class SaveSystem : GenericSingleton<SaveSystem>
         CaptureRegisteredStates();
         dataHandler.Save(gameData);
 
-        Debug.Log("Game saved!");
+        Debug.Log($"Saved slot {gameData.saveSlotIndex}");
     }
 
-    public void LoadGame()
+    public void LoadGame(int activeSlotIndex)
     {
-        gameData = dataHandler.Load();
+        this.activeSlotIndex = activeSlotIndex;
+        gameData = dataHandler.Load(activeSlotIndex);
 
         if (gameData == null)
         {
-            Debug.Log("No save found -> creating new");
+            Debug.Log("No save -> New game");
             CreateNewGameData();
             return;
         }
-
-        RestoreRegisteredStates();
-        Debug.Log("Game loaded!");
     }
 
     public void DeleteSave()
     {
-        dataHandler.Delete();
+        dataHandler.Delete(gameData.saveSlotIndex);
+        gameData = null;
     }
     #endregion
 
-    #region Capture & Restore States
+    #region Capture / Restore
     public void CaptureRegisteredStates()
     {
-        if(gameData == null)
+        if (gameData == null)
             CreateNewGameData();
 
         foreach (var saveable in saveables)
