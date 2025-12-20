@@ -364,7 +364,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &8073811115339358648
 MonoBehaviour:
@@ -1347,6 +1347,8 @@ MonoBehaviour:
   handBreakAnimationList:
   - {fileID: 1427937452831115422}
   - {fileID: 4411496464008952665}
+  healthBarPrefab: {fileID: 1050833721513592270, guid: 5095b0cd0de45bf4f8222c8727372785, type: 3}
+  startDelay: 3
   bowstringPrefab: {fileID: 4773892740739535897, guid: dcc7f1dde9c19c647bc509f38ebe9da3, type: 3}
   bowstringSpawnPos: {fileID: 7555284822918398664}
   headSpriteRenderer: {fileID: 1656057656799182339}
@@ -1445,7 +1447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBrain
   handSlamPoint: {fileID: 4979493908928398843}
-  firstDelay: 3
   thinkInterval: 0.5
 --- !u!114 &4908777052630696082
 MonoBehaviour:

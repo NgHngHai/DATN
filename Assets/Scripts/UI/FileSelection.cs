@@ -4,17 +4,42 @@ using UnityEngine.SceneManagement;
 
 public class FileSelection : MonoBehaviour
 {
+    [SerializeField] private FileButton[] fileButtons;
     int selectingFileIndex;
 
     void Awake()
     {
         selectingFileIndex = -1;
+        InitializeFileButtons();
+    }
+
+    private void InitializeFileButtons()
+    {
+        FileDataHandler dataHandler = new FileDataHandler();
+        List<GameData> fileDatas = dataHandler.LoadAllSaves();
+
+        for (int i = 0; i < fileButtons.Length; i++)
+        {
+            if (i >= fileDatas.Count || fileDatas[i] == null)
+            {
+                fileButtons[i].Display(null);
+            }
+            else
+            {
+                fileButtons[i].Display(new FileButtonDisplayData
+                {
+                    metaData = "Saved file",
+                    progress = fileDatas[i].savedAtTicks.ToString("HH:mm:ss dd/MM/yyyy")
+                });
+            }
+        }
     }
 
 
     public void StartPlayingGame()
     {
-        SceneManager.LoadScene(2);
+        if (selectingFileIndex != -1)
+            GameManager.Instance.StartGame(selectingFileIndex);
     }
 
 
@@ -22,10 +47,10 @@ public class FileSelection : MonoBehaviour
     {
         if (selectingFileIndex != -1)
         {
-            transform.GetChild(2).GetChild(selectingFileIndex).GetComponent<FileButton>().StopFocusing();
+            fileButtons[selectingFileIndex].StopFocusing();
         }
         selectingFileIndex = fileIndex;
-        transform.GetChild(2).GetChild(selectingFileIndex).GetComponent<FileButton>().StartFocusing();
+        fileButtons[selectingFileIndex].StartFocusing();
     }
 
 

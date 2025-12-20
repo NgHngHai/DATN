@@ -1,8 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameArea
+{
+    WastelandProcessor,
+    EuphoniousMelodia,
+    NoData
+}
+
 public class RoomData : MonoBehaviour
 {
+    [SerializeField] private GameArea roomInArea;
     public Collider2D CameraBoundary;
     [SerializeField] private List<Door> doorList = new List<Door>();
     public Vector2 FirstSpawnPosition { get; set; }

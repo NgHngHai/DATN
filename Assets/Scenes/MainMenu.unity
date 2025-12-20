@@ -281,6 +281,8 @@ MonoBehaviour:
   rect: {fileID: 68659135}
   img: {fileID: 68659137}
   txtFileIndex: {fileID: 1157143101}
+  txtMetaData: {fileID: 2032614911}
+  txtProgress: {fileID: 1510557659}
   rectFileIndex: {fileID: 1157143100}
   rectMetadata: {fileID: 2032614910}
   goDeleteBtn: {fileID: 419105424}
@@ -1588,6 +1590,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4cce63eebb61e04c8646bed0320affe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FileSelection
+  fileButtons:
+  - {fileID: 1823782734}
+  - {fileID: 528491046}
+  - {fileID: 1836555789}
+  - {fileID: 68659136}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1792,8 @@ MonoBehaviour:
   rect: {fileID: 528491045}
   img: {fileID: 528491047}
   txtFileIndex: {fileID: 952890146}
+  txtMetaData: {fileID: 253353385}
+  txtProgress: {fileID: 1590663093}
   rectFileIndex: {fileID: 952890145}
   rectMetadata: {fileID: 253353384}
   goDeleteBtn: {fileID: 1341981223}
@@ -5491,6 +5500,8 @@ MonoBehaviour:
   rect: {fileID: 1823782733}
   img: {fileID: 1823782735}
   txtFileIndex: {fileID: 978574174}
+  txtMetaData: {fileID: 98530437}
+  txtProgress: {fileID: 466674913}
   rectFileIndex: {fileID: 978574173}
   rectMetadata: {fileID: 98530436}
   goDeleteBtn: {fileID: 2095401616}
@@ -5698,6 +5709,8 @@ MonoBehaviour:
   rect: {fileID: 1836555788}
   img: {fileID: 1836555790}
   txtFileIndex: {fileID: 2044534742}
+  txtMetaData: {fileID: 1837241939}
+  txtProgress: {fileID: 1418817836}
   rectFileIndex: {fileID: 2044534741}
   rectMetadata: {fileID: 1837241938}
   goDeleteBtn: {fileID: 1421344964}

@@ -1,38 +1,15 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
-using Newtonsoft.Json; 
 
 public class FileDataHandler
 {
     private readonly string directoryPath;
-    private readonly string fileName;
 
-    public FileDataHandler(string directoryPath, string fileName)
+    public FileDataHandler()
     {
-        this.directoryPath = directoryPath;
-        this.fileName = fileName;
-    }
-
-    public GameData Load()
-    {
-        string fullPath = Path.Combine(directoryPath, fileName);
-        if (!File.Exists(fullPath))
-        {
-            Debug.LogWarning($"No save file found at {fullPath}");
-            return null;
-        }
-
-        try
-        {
-            string json = File.ReadAllText(fullPath);
-
-            return JsonConvert.DeserializeObject<GameData>(json);
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Failed to load file: {ex}");
-            return null;
-        }
+        directoryPath = Application.persistentDataPath;
     }
 
     public void Save(GameData data)
@@ -40,23 +17,68 @@ public class FileDataHandler
         if (!Directory.Exists(directoryPath))
             Directory.CreateDirectory(directoryPath);
 
-        string fullPath = Path.Combine(directoryPath, fileName);
+        data.savedAtTicks = System.DateTime.Now.Ticks;
 
         string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-
-        File.WriteAllText(fullPath, json);
+        File.WriteAllText(GetFullPath(data.saveSlotIndex), json);
     }
 
-    public void Delete()
+    public GameData Load(int slotIndex)
     {
-        string fullPath = Path.Combine(directoryPath, fileName);
-        if (File.Exists(fullPath))
-            File.Delete(fullPath);
+        string fullPath = GetFullPath(slotIndex);
+
+        if (!File.Exists(fullPath))
+            return null;
+
+        string json = File.ReadAllText(fullPath);
+        return JsonConvert.DeserializeObject<GameData>(json);
     }
 
-    public bool FileExists()
+    public void Delete(int slotIndex)
     {
-        string fullPath = Path.Combine(directoryPath, fileName);
-        return File.Exists(fullPath);
+        string path = GetFullPath(slotIndex);
+        if (File.Exists(path))
+            File.Delete(path);
+    }
+
+    public List<GameData> LoadAllSaves()
+    {
+        List<GameData> allSaves = new();
+
+        if (!Directory.Exists(directoryPath))
+            return allSaves;
+
+        string[] files = Directory.GetFiles(directoryPath, "save_file_*.json");
+
+        foreach (string filePath in files)
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                GameData data = JsonConvert.DeserializeObject<GameData>(json);
+                if (data != null)
+                    allSaves.Add(data);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Load lỗi {filePath}: {e.Message}");
+            }
+        }
+
+        return allSaves;
+    }
+
+    public int GetSaveFileCount()
+    {
+        if (!Directory.Exists(directoryPath))
+            return 0;
+
+        return Directory.GetFiles(directoryPath, "save_file_*.json").Length;
+    }
+
+
+    private string GetFullPath(int slotIndex)
+    {
+        return Path.Combine(directoryPath, $"save_file_{slotIndex}.json");
     }
 }
