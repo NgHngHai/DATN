@@ -19,7 +19,7 @@ public class Skill_Heal : MonoBehaviour, ISkill
     private PlayerController _playerController;
     private Health _healthComponent;
 
-    private void Awake()
+    private void Start()
     {
         _healthComponent = player.GetComponent<Health>();
         _playerController = player.GetComponent<PlayerController>();
