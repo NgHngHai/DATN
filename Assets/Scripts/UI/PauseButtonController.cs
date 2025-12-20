@@ -21,7 +21,6 @@ public class PauseButtonController : MonoBehaviour, IPointerClickHandler, IPoint
         {
             UIManager.Instance.ResumePlaying();
             animator.SetEffectFactor(0);
-            transform.parent.parent.gameObject.SetActive(false);
         }
     }
 
