@@ -25220,7 +25220,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.25
-  m_Color: {r: 1, g: 0.42745098, b: 0.42745098, a: 1}
+  m_Color: {r: 0.8867924, g: 0.7798565, b: 0.69855815, a: 1}
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
@@ -25635,6 +25635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c897099d8934b2d4c8802e078f6e948b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  roomInArea: 0
   CameraBoundary: {fileID: 1205828941}
   doorList:
   - {fileID: 1765049729}
@@ -30335,7 +30336,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.8207547, g: 0.34174833, b: 0.096787095, a: 1}
+  m_Color: {r: 0.7924528, g: 0.6437175, b: 0.47472408, a: 1}
   m_Intensity: 0.25
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
