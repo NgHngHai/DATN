@@ -9022,6 +9022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c897099d8934b2d4c8802e078f6e948b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  roomInArea: 0
   CameraBoundary: {fileID: 1205828941}
   doorList:
   - {fileID: 555234302}
@@ -10675,7 +10676,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.4627451, g: 0.18431373, b: 0.13725491, a: 1}
+  m_Color: {r: 0.5764706, g: 0.20784314, b: 0.14509805, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
