@@ -12,7 +12,6 @@ public class RoomManager : MonoBehaviour
     private string currentRoomName;
     private string pendingNextRoomName;
     private string pendingDoorLinkID;
-    private bool firstTimeLoadInGame = true;
 
     private void Awake()
     {
@@ -91,13 +90,32 @@ public class RoomManager : MonoBehaviour
         roomTransitioner.UnfreezeAnim();
 
         ApplyCurrentRoomData();
-
-        if (firstTimeLoadInGame)
-        {
-            firstTimeLoadInGame = false;
-            GameManager.Instance.FinishFirstTimeLoadInGameTransition();
-        }
     }
+
+    public void StartLoadRoomFirstTimeRoutine(string roomName)
+    {
+        StartCoroutine(LoadRoomInGameFirstTime(roomName));
+    }
+    public IEnumerator LoadRoomInGameFirstTime(string roomName)
+    {
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(roomName, LoadSceneMode.Additive);
+        loadOp.allowSceneActivation = true;
+        yield return loadOp;
+
+        yield return null;
+
+        SaveSystem.Instance.RestoreRegisteredStates();
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(roomName));
+
+        currentRoomName = roomName;
+
+        pendingDoorLinkID = SaveSystem.Instance.GetGameData().spawnDoorId;
+        ApplyCurrentRoomData();
+
+        GameManager.Instance.FinishLoadInGame();
+    }
+
 
     /// <summary>
     /// Sets the camera boundary and teleports the player to the linked door in the new room.

@@ -57,7 +57,8 @@ public class MapRoomManager : SaveableObject
 
     public override void RestoreState(object state)
     {
-        MapState mapState = (MapState)state;
+        var mapState = Utility.ConvertState<MapState>(state);
+
         string[] discoveredRooms = mapState.discoveredRoomsID.Split('-');
         foreach (var roomID in discoveredRooms)
         {

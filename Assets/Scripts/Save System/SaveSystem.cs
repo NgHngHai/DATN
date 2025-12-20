@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveSystem : GenericSingleton<SaveSystem>
@@ -15,20 +16,8 @@ public class SaveSystem : GenericSingleton<SaveSystem>
         dataHandler = new FileDataHandler();
     }
 
-    #region Saveable Registration
-    public void Register(ISaveable saveable)
-    {
-        if (!saveables.Contains(saveable))
-            saveables.Add(saveable);
-    }
 
-    public void Unregister(ISaveable saveable)
-    {
-        saveables.Remove(saveable);
-    }
-    #endregion
-
-    #region Game Data
+    #region Core Functions
     public void CreateNewGameData()
     {
         gameData = new GameData
@@ -42,7 +31,10 @@ public class SaveSystem : GenericSingleton<SaveSystem>
         if (gameData == null)
             CreateNewGameData();
 
+        gameData.playTimeSession = GameManager.Instance.GetPlaySessionTime();
         CaptureRegisteredStates();
+        SaveFileDisplayData();
+
         dataHandler.Save(gameData);
 
         Debug.Log($"Saved slot {gameData.saveSlotIndex}");
@@ -66,7 +58,35 @@ public class SaveSystem : GenericSingleton<SaveSystem>
         dataHandler.Delete(gameData.saveSlotIndex);
         gameData = null;
     }
+
+    private void SaveFileDisplayData()
+    {
+        FileDisplayData fileDisplayData = new FileDisplayData();
+
+        RoomData roomData = FindAnyObjectByType<RoomData>();
+        PlayerSaveables playerSaveable = FindAnyObjectByType<PlayerSaveables>();
+
+        if (roomData != null && playerSaveable != null)
+            fileDisplayData.Initialize(roomData, playerSaveable);
+
+        gameData.savedObjects[fileDisplayData.id] = fileDisplayData;
+    }
     #endregion
+
+
+    #region Saveable Registration
+    public void Register(ISaveable saveable)
+    {
+        if (!saveables.Contains(saveable))
+            saveables.Add(saveable);
+    }
+
+    public void Unregister(ISaveable saveable)
+    {
+        saveables.Remove(saveable);
+    }
+    #endregion
+
 
     #region Capture / Restore
     public void CaptureRegisteredStates()
@@ -96,5 +116,7 @@ public class SaveSystem : GenericSingleton<SaveSystem>
     }
 
     #endregion
-}
 
+    public GameData GetGameData() => gameData;
+
+}

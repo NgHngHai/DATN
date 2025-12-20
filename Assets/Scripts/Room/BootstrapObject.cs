@@ -5,7 +5,6 @@ using System.Collections;
 public class BootstrapObject : MonoBehaviour
 {
     [SerializeField] private string persistentSceneName = "Persistent Scene";
-    [SerializeField] private string firstRoomName = "Room 1";
 
     private void Start()
     {
@@ -20,7 +19,7 @@ public class BootstrapObject : MonoBehaviour
         Scene persistent = SceneManager.GetSceneByName(persistentSceneName);
 
         RoomManager roomManager = FindFirstObjectByType<RoomManager>();
-        roomManager.LoadRoomWithNoTransition(firstRoomName);
+        roomManager.StartLoadRoomFirstTimeRoutine(SaveSystem.Instance.GetGameData().saveRoomId);
 
         SceneManager.SetActiveScene(persistent);
         Scene bootScene = gameObject.scene;

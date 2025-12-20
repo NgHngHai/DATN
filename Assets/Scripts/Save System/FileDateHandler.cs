@@ -17,8 +17,6 @@ public class FileDataHandler
         if (!Directory.Exists(directoryPath))
             Directory.CreateDirectory(directoryPath);
 
-        data.savedAtTicks = System.DateTime.Now.Ticks;
-
         string json = JsonConvert.SerializeObject(data, Formatting.Indented);
         File.WriteAllText(GetFullPath(data.saveSlotIndex), json);
     }
