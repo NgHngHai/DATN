@@ -11,9 +11,11 @@ public class UIManager : GenericSingleton<UIManager>
     public Image tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
     public GameObject playerStats, glow, mapCanvas;
     [Header("Pause Menu")]
-    public GameObject pauseMenu, pauseText;
+    public GameObject pauseMenu;
+    public GameObject pauseText;
     [Header("Function Menu")]
-    public GameObject functionMenu, functionText, skillMenu, inventory, map, database;
+    public GameObject functionMenu;
+    public GameObject functionText, skillMenu, inventory, map, database;
     public Image skillText, inventoryText, mapText, databaseText;
     public FunctionButton skillButton, inventoryButton, mapButton, databaseButton;
     public ArrowButton prevButton, nextButton;
