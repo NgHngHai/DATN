@@ -281,8 +281,8 @@ MonoBehaviour:
   rect: {fileID: 68659135}
   img: {fileID: 68659137}
   txtFileIndex: {fileID: 1157143101}
-  txtMetaData: {fileID: 2032614911}
-  txtProgress: {fileID: 1510557659}
+  txtBigHeader: {fileID: 2032614911}
+  txtSmallHeader: {fileID: 1510557659}
   rectFileIndex: {fileID: 1157143100}
   rectMetadata: {fileID: 2032614910}
   goDeleteBtn: {fileID: 419105424}
@@ -1373,6 +1373,7 @@ GameObject:
   - component: {fileID: 466674912}
   - component: {fileID: 466674914}
   - component: {fileID: 466674913}
+  - component: {fileID: 466674915}
   m_Layer: 5
   m_Name: txt_progress
   m_TagString: Untagged
@@ -1397,7 +1398,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 176.94, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &466674913
 MonoBehaviour:
@@ -1498,6 +1499,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466674911}
   m_CullTransparentMesh: 1
+--- !u!114 &466674915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466674911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &491954131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,8 +1807,8 @@ MonoBehaviour:
   rect: {fileID: 528491045}
   img: {fileID: 528491047}
   txtFileIndex: {fileID: 952890146}
-  txtMetaData: {fileID: 253353385}
-  txtProgress: {fileID: 1590663093}
+  txtBigHeader: {fileID: 253353385}
+  txtSmallHeader: {fileID: 1590663093}
   rectFileIndex: {fileID: 952890145}
   rectMetadata: {fileID: 253353384}
   goDeleteBtn: {fileID: 1341981223}
@@ -4126,6 +4141,7 @@ GameObject:
   - component: {fileID: 1418817835}
   - component: {fileID: 1418817837}
   - component: {fileID: 1418817836}
+  - component: {fileID: 1418817838}
   m_Layer: 5
   m_Name: txt_progress
   m_TagString: Untagged
@@ -4150,7 +4166,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 176.94, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1418817836
 MonoBehaviour:
@@ -4251,6 +4267,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418817834}
   m_CullTransparentMesh: 1
+--- !u!114 &1418817838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418817834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &1421344964
 GameObject:
   m_ObjectHideFlags: 0
@@ -4354,6 +4384,7 @@ GameObject:
   - component: {fileID: 1510557658}
   - component: {fileID: 1510557660}
   - component: {fileID: 1510557659}
+  - component: {fileID: 1510557661}
   m_Layer: 5
   m_Name: txt_progress
   m_TagString: Untagged
@@ -4378,7 +4409,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 176.94, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1510557659
 MonoBehaviour:
@@ -4479,6 +4510,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510557657}
   m_CullTransparentMesh: 1
+--- !u!114 &1510557661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510557657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &1535907482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4756,6 +4801,7 @@ GameObject:
   - component: {fileID: 1590663092}
   - component: {fileID: 1590663094}
   - component: {fileID: 1590663093}
+  - component: {fileID: 1590663095}
   m_Layer: 5
   m_Name: txt_progress
   m_TagString: Untagged
@@ -4780,7 +4826,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 176.94, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1590663093
 MonoBehaviour:
@@ -4881,6 +4927,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590663091}
   m_CullTransparentMesh: 1
+--- !u!114 &1590663095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590663091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &1607937332
 GameObject:
   m_ObjectHideFlags: 0
@@ -5500,8 +5560,8 @@ MonoBehaviour:
   rect: {fileID: 1823782733}
   img: {fileID: 1823782735}
   txtFileIndex: {fileID: 978574174}
-  txtMetaData: {fileID: 98530437}
-  txtProgress: {fileID: 466674913}
+  txtBigHeader: {fileID: 98530437}
+  txtSmallHeader: {fileID: 466674913}
   rectFileIndex: {fileID: 978574173}
   rectMetadata: {fileID: 98530436}
   goDeleteBtn: {fileID: 2095401616}
@@ -5709,8 +5769,8 @@ MonoBehaviour:
   rect: {fileID: 1836555788}
   img: {fileID: 1836555790}
   txtFileIndex: {fileID: 2044534742}
-  txtMetaData: {fileID: 1837241939}
-  txtProgress: {fileID: 1418817836}
+  txtBigHeader: {fileID: 1837241939}
+  txtSmallHeader: {fileID: 1418817836}
   rectFileIndex: {fileID: 2044534741}
   rectMetadata: {fileID: 1837241938}
   goDeleteBtn: {fileID: 1421344964}

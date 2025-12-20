@@ -12,7 +12,7 @@ public class SnatcherSecondaryCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(hasJumpedOff && PhysicsUtils.IsGameObjectInLayer(collision.gameObject, landMask))
+        if(hasJumpedOff && Utility.IsGameObjectInLayer(collision.gameObject, landMask))
         {
             OnLandingSuccess?.Invoke();
             gameObject.SetActive(false);
@@ -21,7 +21,7 @@ public class SnatcherSecondaryCollider : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!hasJumpedOff && PhysicsUtils.IsGameObjectInLayer(collision.gameObject, landMask))
+        if (!hasJumpedOff && Utility.IsGameObjectInLayer(collision.gameObject, landMask))
         {
             hasJumpedOff = true;
         }

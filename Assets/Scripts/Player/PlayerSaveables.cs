@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSaveables : SaveableObject
 {
@@ -12,7 +12,6 @@ public class PlayerSaveables : SaveableObject
     private string _unlockedSkillsID;
 
     // Position params
-    public string playerRoomID;
     public string playerLinkDoorID;
 
     // Checkpoint
@@ -52,17 +51,13 @@ public class PlayerSaveables : SaveableObject
 
             money = playerMoney.CurrentMoney,
 
-            currentRoomID = playerRoomID,
             lastCheckpointRoomName = lastCheckpointRoomName,
-            linkDoorID = playerLinkDoorID,
-            x = transform.position.x,
-            y = transform.position.y
         };
     }
 
     public override void RestoreState(object state)
     {
-        var playerState = (PlayerState)state;
+        var playerState = Utility.ConvertState<PlayerState>(state);
 
         playerHealth.maxHealth = playerState.maxHealth;
         playerHealth.currentHealth = playerState.currentHealth;
@@ -72,10 +67,7 @@ public class PlayerSaveables : SaveableObject
 
         playerMoney.CurrentMoney = playerState.money;
 
-        playerRoomID = playerState.currentRoomID;
         lastCheckpointRoomName = playerState.lastCheckpointRoomName;
-        playerLinkDoorID = playerState.linkDoorID;
-        transform.position = new Vector2(playerState.x,playerState.y);
 
         // Restore skills
         var savedSkills = playerState.skills ?? string.Empty;
@@ -110,6 +102,11 @@ public class PlayerSaveables : SaveableObject
         }
     }
 
+    public string GetDisplayContentForFileData()
+    {
+        return $"Health: {playerHealth.currentHealth} / {playerHealth.maxHealth} - Money: {playerMoney.CurrentMoney}";
+    }
+
     [System.Serializable]
     public struct PlayerState
     {
@@ -128,10 +125,6 @@ public class PlayerSaveables : SaveableObject
         public int money;
 
         // Current room, position, checkpoint
-        public string currentRoomID;
         public string lastCheckpointRoomName;
-        public string linkDoorID;
-        public float x;
-        public float y;
     }
 }

@@ -7,6 +7,8 @@ public class GameManager : GenericSingleton<GameManager>
     private Animator firstTimeTransitionAnimator;
     private string bootstrapSceneName = "Bootstrap Scene";
     private string mainMenuSceneName = "MainMenu";
+    private float playSessionTime;
+    private bool isInGame;
 
     protected override void Awake()
     {
@@ -15,10 +17,29 @@ public class GameManager : GenericSingleton<GameManager>
         firstTimeTransitionAnimator = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if (isInGame)
+            playSessionTime += Time.deltaTime;
+    }
+
     public void StartGame(int saveSlotIndex)
     {
         firstTimeTransitionAnimator.SetTrigger("loadInGame");
         SaveSystem.Instance.LoadGame(saveSlotIndex);
+        playSessionTime = SaveSystem.Instance.GetGameData().playTimeSession;
+    }
+
+    public void ToMainMenu()
+    {
+        isInGame = false;
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    public void FinishLoadInGame()
+    {
+        isInGame = true;
+        firstTimeTransitionAnimator.speed = 1;
     }
 
     private void LoadBootstrapScene()
@@ -27,15 +48,6 @@ public class GameManager : GenericSingleton<GameManager>
         SceneManager.LoadScene(bootstrapSceneName);
     }
 
-    public void ToMainMenu()
-    {
-        SceneManager.LoadScene(mainMenuSceneName);
-    }
-
-    public void FinishFirstTimeLoadInGameTransition()
-    {
-        firstTimeTransitionAnimator.speed = 1;
-    }
-
+    public float GetPlaySessionTime() => playSessionTime;
 }
 

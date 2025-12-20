@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ public class FileSelection : MonoBehaviour
         InitializeFileButtons();
     }
 
+
     private void InitializeFileButtons()
     {
         FileDataHandler dataHandler = new FileDataHandler();
@@ -20,18 +22,30 @@ public class FileSelection : MonoBehaviour
 
         for (int i = 0; i < fileButtons.Length; i++)
         {
-            if (i >= fileDatas.Count || fileDatas[i] == null)
+            FileDisplayData displayData = null;
+
+            GameData fileData = null;
+            foreach(GameData data in fileDatas)
+            {
+                if(data.saveSlotIndex == i)
+                    fileData = data;
+            }
+
+            if (fileData == null)
             {
                 fileButtons[i].Display(null);
+                continue;
             }
-            else
+
+            if (fileData.savedObjects.TryGetValue("fileDisplayData", out object raw))
             {
-                fileButtons[i].Display(new FileButtonDisplayData
-                {
-                    metaData = "Saved file",
-                    progress = fileDatas[i].savedAtTicks.ToString("HH:mm:ss dd/MM/yyyy")
-                });
+                if (raw is JObject jObj)
+                    displayData = jObj.ToObject<FileDisplayData>();
+                else
+                    displayData = raw as FileDisplayData;
             }
+            fileButtons[i].Display(displayData);
+
         }
     }
 

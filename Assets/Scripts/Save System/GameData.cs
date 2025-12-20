@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class GameData
 {
     public int saveSlotIndex;
-    public long savedAtTicks;
+    public float playTimeSession;
+    public string saveRoomId = "Room1";
+    public string spawnDoorId = "";
 
     public Dictionary<string, object> savedObjects = new();
 }

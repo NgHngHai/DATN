@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!PhysicsUtils.IsGameObjectInLayer(collision.gameObject, hurtBox.targetLayers))
+        if (!Utility.IsGameObjectInLayer(collision.gameObject, hurtBox.targetLayers))
             return;
 
         alreadyHit = true;
