@@ -83,7 +83,7 @@ public class PlayerMoneyManager : MonoBehaviour
         if (currentMoney < amount) return false;
 
         currentMoney -= amount;
-        OnMoneyChanged?.Invoke(currentMoney, amount);
+        OnMoneyChanged?.Invoke(currentMoney, -amount);
         return true;
     }
 
@@ -93,6 +93,12 @@ public class PlayerMoneyManager : MonoBehaviour
         if (amount <= 0) return;
 
         currentMoney = Mathf.Max(0, currentMoney - amount);
-        OnMoneyChanged?.Invoke(currentMoney, amount);
+        OnMoneyChanged?.Invoke(currentMoney, -amount);
+    }
+
+
+    public int GetCurrentMoney()
+    {
+        return currentMoney;
     }
 }

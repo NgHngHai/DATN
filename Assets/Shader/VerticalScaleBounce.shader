@@ -25,6 +25,7 @@ Shader "Custom/VerticalScaleBounce"
             struct Attributes
             {
                 float4 positionOS : POSITION;
+                float color : COLOR;
                 float2 uv : TEXCOORD0;
                 float2 data : TEXCOORD1;
             };
@@ -32,6 +33,7 @@ Shader "Custom/VerticalScaleBounce"
             struct Varyings
             {
                 float4 positionHCS : SV_POSITION;
+                float color : COLOR;
                 float2 uv : TEXCOORD0;
                 float2 data : TEXCOORD1;
             };
@@ -47,6 +49,7 @@ Shader "Custom/VerticalScaleBounce"
             {
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.color = IN.color;
                 OUT.uv = IN.uv;
                 OUT.data = IN.data;
                 return OUT;
@@ -65,7 +68,7 @@ Shader "Custom/VerticalScaleBounce"
                 else factor = 1;
 
                 IN.uv = 0.5 + (IN.uv - 0.5) * factor;
-                half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
+                half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv) * IN.color;
                 return color;
             }
             ENDHLSL
