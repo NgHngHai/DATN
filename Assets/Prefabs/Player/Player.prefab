@@ -6826,10 +6826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8147090675ec83842b19a171fe96dde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawnController
-  respawnDelaySeconds: 1.5
-  OnRespawnOverlayRequested:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2287647269058867019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6904,7 +6900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 889c378b-af0e-4194-a2bc-6e531f3304e7
+  uniqueID: 914b300e-8214-41bf-9319-257a1c820a50
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
