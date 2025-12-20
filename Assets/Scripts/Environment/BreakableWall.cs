@@ -58,7 +58,7 @@ public class BreakableWall : SaveableObject, IDamageable
 
     public override void RestoreState(object state)
     {
-        var s = (WallState)state;
+        var s = Utility.ConvertState<WallState>(state);
         isDestroyed = s.destroyed;
 
         // Unload if destroyed

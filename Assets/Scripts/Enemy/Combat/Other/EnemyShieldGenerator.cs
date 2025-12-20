@@ -18,7 +18,7 @@ public class EnemyShieldGenerator : MonoBehaviour
     {
         GameObject colObject = collision.gameObject;
 
-        if (colObject != owner && PhysicsUtils.IsGameObjectInLayer(colObject, enemyMask))
+        if (colObject != owner && Utility.IsGameObjectInLayer(colObject, enemyMask))
         {
             if (!shieldedEnemiesBefore.TryGetValue(colObject, out EnemyShield shield))
             {
@@ -38,7 +38,7 @@ public class EnemyShieldGenerator : MonoBehaviour
     {
         GameObject colObject = collision.gameObject;
 
-        if (colObject != owner && PhysicsUtils.IsGameObjectInLayer(collision.gameObject, enemyMask))
+        if (colObject != owner && Utility.IsGameObjectInLayer(collision.gameObject, enemyMask))
         {
             if (shieldedEnemiesBefore.TryGetValue(colObject, out EnemyShield shield))
             {

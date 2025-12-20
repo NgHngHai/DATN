@@ -13,7 +13,7 @@ public class FileButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public float animationSpeed = 2f;
     public RectTransform rect;
     public Image img;
-    public TextMeshProUGUI txtFileIndex, txtMetaData, txtProgress;
+    public TextMeshProUGUI txtFileIndex, txtBigHeader, txtSmallHeader;
     public RectTransform rectFileIndex, rectMetadata;
     public GameObject goDeleteBtn;
 
@@ -28,11 +28,11 @@ public class FileButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         StopFocusing();
     }
 
-    public void Display(FileButtonDisplayData displayData)
+    public void Display(FileDisplayData displayData)
     {
         bool displayDataNull = displayData == null;
-        txtMetaData.text = displayDataNull ? "Start new game" : displayData.metaData;
-        txtProgress.text = displayDataNull ? string.Empty : displayData.progress;
+        txtBigHeader.text = displayDataNull ? "Start new game" : displayData.bigHeader;
+        txtSmallHeader.text = displayDataNull ? string.Empty : displayData.smallHeader;
     }
 
 
@@ -128,10 +128,4 @@ public class FileButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         rectMetadata.anchoredPosition = new Vector2(115, 24);
         goDeleteBtn.SetActive(true);
     }
-}
-
-public class FileButtonDisplayData
-{
-    public string metaData;
-    public string progress;
 }

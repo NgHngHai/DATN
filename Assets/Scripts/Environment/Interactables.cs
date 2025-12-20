@@ -198,7 +198,7 @@ public class Interactables : SaveableObject
 
     public override void RestoreState(object state)
     {
-        var saveData = (InteractableData)state;
+        var saveData = Utility.ConvertState<InteractableData>(state);
 
         Debug.Log(saveData.spawnOnLoad);
 
