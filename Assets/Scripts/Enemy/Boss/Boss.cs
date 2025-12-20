@@ -6,6 +6,8 @@ public class Boss : Enemy
 {
     [Header("BOSS")]
     [SerializeField] private List<BossHandBreakAnimation> handBreakAnimationList;
+    [SerializeField] private GameObject healthBarPrefab;
+    [SerializeField] private float startDelay = 3f;
 
     [Header("BOSS: Bowstring")]
     [SerializeField] private GameObject bowstringPrefab;
@@ -40,6 +42,7 @@ public class Boss : Enemy
     public BossNukeAttackState nukeAttackState;
     public BossStunnedState stunnedState;
 
+    private BossHeatlhBar healthBar;
     private BossUtilityAI utilityAI;
     private BossBowstring bowstring;
     private BossHead head;
@@ -51,6 +54,7 @@ public class Boss : Enemy
         base.Awake();
 
         utilityAI = GetComponent<BossUtilityAI>();
+        healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity).GetComponent<BossHeatlhBar>();
 
         animIdleState = new AnimationState(this, "idle");
         animHandAttackState = new AnimationState(this, "handAttack");
@@ -77,8 +81,14 @@ public class Boss : Enemy
         logicStateMachine.Initialize(restState);
 
         utilityAI.Initialize(this);
+        Invoke(nameof(StartBossFight), startDelay);
     }
 
+    private void StartBossFight()
+    {
+        utilityAI.StartAI();
+        healthBar.Initialize(this);
+    }
 
     protected override void OnDamageTaken(int appliedAmount, Vector2 hitDir, bool shouldTriggerHitReaction)
     {
@@ -126,6 +136,20 @@ public class Boss : Enemy
         GameObject headObject = Instantiate(headPrefab, headTransform.position, Quaternion.identity);
         head = headObject.GetComponent<BossHead>();
         bowstring.UnlockBurrowAttack();
+    }
+
+    public float GetCurrentHealth()
+    {
+        if (currentPhase != 3) return health.currentHealth;
+        else
+        {
+            return health.currentHealth + head.GetHealth().currentHealth;
+        }
+    }
+
+    public float GetMaxHealth()
+    {
+        return health.maxHealth;
     }
 
     public BossBowstring Bowstring => bowstring;

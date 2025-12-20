@@ -262,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7446662516470753707, guid: 8944d8ce08dc6ec429d288dfaa247e8e, type: 3}
       propertyPath: damageAmount
-      value: 400
+      value: 333
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1297,10 +1297,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 6043714919302117610, guid: e5d0dc60bf0b81647873dc7c2c2ed383, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7555284822918398664, guid: e5d0dc60bf0b81647873dc7c2c2ed383, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.62
@@ -1684,7 +1680,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2753912382881145763, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
       propertyPath: uniqueID
-      value: a462c264-aaef-4ae5-b550-ad7b5ef92942
+      value: 24620810-7710-4ab4-900e-a80a6118bbed
       objectReference: {fileID: 0}
     - target: {fileID: 5652666909265740743, guid: 4f82c176e8788554a8fe119dfe1b1988, type: 3}
       propertyPath: m_Name
