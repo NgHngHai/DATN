@@ -1,7 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
+using UnityEngine.Video;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+#endif
 
 /// Packages death -> overlay -> delayed respawn at last checkpoint -> revive.
 [DisallowMultipleComponent]
@@ -9,17 +13,14 @@ public class PlayerRespawnController : MonoBehaviour
 {
     [Header("Respawn Settings")]
     [Tooltip("Delay before respawning after death.")]
-    [SerializeField] private float respawnDelaySeconds = 1.5f;
-
-    [Header("Overlay/UI")]
-    [Tooltip("Invoked when death occurs so UI can show overlay.")]
-    public UnityEvent OnRespawnOverlayRequested;
 
     private RoomManager _roomManager;
     private PlayerController _player;
     private EffectEvents _effectEvents;
     private PlayerSaveables _save;
     private Health _health;
+
+    private bool _overlayFinished = false;
 
     private void Awake()
     {
@@ -30,32 +31,37 @@ public class PlayerRespawnController : MonoBehaviour
         _health = GetComponent<Health>();
     }
 
-    private void OnEnable()
-    {
-        if (_health != null)
-            _health.OnDeath.AddListener(HandleDeath);
-    }
+    //private void OnEnable()
+    //{
+    //    if (_health != null)
+    //        _health.OnDeath.AddListener(HandleDeath);
+    //}
 
-    private void OnDisable()
-    {
-        if (_health != null)
-            _health.OnDeath.RemoveListener(HandleDeath);
-    }
+    //private void OnDisable()
+    //{
+    //    if (_health != null)
+    //        _health.OnDeath.RemoveListener(HandleDeath);
+    //}
 
-    private void HandleDeath()
+    // Animation event, called at the end of the death animation
+    public void StartRespawn()
     {
+        Debug.Log("PlayerRespawnController: StartRespawn called.");
         StartCoroutine(RespawnRoutine());
     }
 
     private IEnumerator RespawnRoutine()
     {
-        // Show overlay
-        OnRespawnOverlayRequested?.Invoke();
+        if (_player != null)
+        {
+            _player.movementLocked = true;
+        }
 
-        // Delay
-        yield return new WaitForSeconds(respawnDelaySeconds);
+        // Enable Respawn Overlay
+        _overlayFinished = false;
+        StartCoroutine(PlayRespawnOverlayVideoOrSkip(() => _overlayFinished = true));
 
-        if (_roomManager == null || _player == null || _save == null) yield break;
+        if (_roomManager == null || _save == null) yield break;
 
         bool hasCheckpoit = !string.IsNullOrEmpty(_save.lastCheckpointRoomName);
         string targetRoom = hasCheckpoit ? _save.lastCheckpointRoomName : "Room1";
@@ -93,9 +99,95 @@ public class PlayerRespawnController : MonoBehaviour
         }
 
         _health.RestoreToFull();
+
+        while (!_overlayFinished)
+            yield return null;
+
         _player.PlayReviveState();
-        //_player.isAlive = true;
         _player.movementLocked = false;
         _effectEvents.OnRespawn?.Invoke();
+    }
+
+    private IEnumerator PlayRespawnOverlayVideoOrSkip(System.Action onFinished)
+    {
+        Debug.Log("PlayerRespawnController: PlayRespawnOverlayVideoOrSkip called.");
+        // Find overlay by tag
+        GameObject overlayGameObject = GameObject.FindWithTag("Respawn Overlay");
+
+        if (overlayGameObject == null)
+        {
+            onFinished?.Invoke();
+            yield break;
+        }
+
+        // Ensure overlay is visible
+        overlayGameObject.SetActive(true);
+
+        // Attempt to get a VideoPlayer
+        var videoPlayer = overlayGameObject.GetComponentInChildren<VideoPlayer>();
+
+        // If no VideoPlayer present, just show overlay briefly then continue
+        if (videoPlayer == null)
+        {
+            yield return null;
+            overlayGameObject.SetActive(false);
+            onFinished?.Invoke();
+            yield break;
+        }
+
+        // Prepare and play video
+        bool finished = false;
+        VideoPlayer.EventHandler onLoopPoint = (VideoPlayer _) => { finished = true; };
+        videoPlayer.loopPointReached += onLoopPoint;
+
+        if (!videoPlayer.isPrepared)
+        {
+            videoPlayer.Prepare();
+            while (!videoPlayer.isPrepared)
+                yield return null;
+        }
+
+        videoPlayer.Play();
+
+        // Wait until video completes OR any key is pressed (skip)
+        while (!finished && videoPlayer.isPlaying)
+        {
+            if (AnyInputPressedThisFrame())
+            {
+                videoPlayer.Stop();
+                break;
+            }
+            yield return null;
+        }
+
+        // Cleanup overlay
+        videoPlayer.loopPointReached -= onLoopPoint;
+        overlayGameObject.SetActive(false);
+
+        onFinished?.Invoke();
+    }
+
+    private static bool AnyInputPressedThisFrame()
+    {
+#if ENABLE_INPUT_SYSTEM
+        // Check all devices for any ButtonControl pressed this frame
+        var devices = InputSystem.devices;
+        for (int i = 0; i < devices.Count; i++)
+        {
+            var device = devices[i];
+            var controls = device.allControls;
+            for (int j = 0; j < controls.Count; j++)
+            {
+                var button = controls[j] as ButtonControl;
+                if (button != null && button.wasPressedThisFrame)
+                    return true;
+            }
+        }
+        return false;
+#elif ENABLE_LEGACY_INPUT_MANAGER
+        return Input.anyKeyDown;
+#else
+        return false;
+#endif
     }
 }
