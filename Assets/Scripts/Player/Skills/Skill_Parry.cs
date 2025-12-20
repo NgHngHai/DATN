@@ -33,7 +33,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
     private void Start()
     {
         _playerController = GetComponentInParent<PlayerController>();
-        _playerHealth = GetComponentInParent<Health>();
+        
 
         parryState = new AnimationState(_playerController, "parry", true);
 
@@ -42,6 +42,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
 
     private void OnEnable()
     {
+        _playerHealth = GetComponentInParent<Health>();
         _playerHealth.OnDeath.AddListener(ResetCounterCharge);
     }
 
