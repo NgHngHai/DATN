@@ -40,6 +40,16 @@ public class Skill_Parry: MonoBehaviour, ISkill
         if (_col) _col.enabled = false;
     }
 
+    private void OnEnable()
+    {
+        _playerHealth.OnDeath.AddListener(ResetCounterCharge);
+    }
+
+    private void OnDisable()
+    {
+        _playerHealth.OnDeath.RemoveListener(ResetCounterCharge);
+    }
+
     public void Activate()
     {
         StartParry();
@@ -112,6 +122,12 @@ public class Skill_Parry: MonoBehaviour, ISkill
             // Apply increased damage taken for a duration
             _playerHealth.StartCoroutine(IncreaseDamageTaken());
         }
+    }
+
+    private void ResetCounterCharge()
+    {
+        counterAmount = 0;
+        OnCounterChanged?.Invoke(counterAmount, maxCounterAmount);
     }
 
     private IEnumerator IncreaseDamageTaken()
