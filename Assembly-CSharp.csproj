@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\MI12State.cs" />
     <Compile Include="Assets\Scripts\Save System\ISaveable.cs" />
     <Compile Include="Assets\Scripts\UI\ItemFollowingMouse.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Boss\BossHeatlhBar.cs" />
     <Compile Include="Assets\Scripts\Universal\AutoDestroyOnAnimationEnd.cs" />
     <Compile Include="Assets\Scripts\UI\AnchoredSkill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
@@ -212,6 +213,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Shader\DigitalStaticChaos.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Shader\LogoGlitch.shader" />
     <None Include="Assets\Shader\NoEffectUnlit.shader" />
