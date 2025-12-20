@@ -2,15 +2,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
+using TMPro;
 
 public class UIManager : GenericSingleton<UIManager>
 {
-    public Image hpBar, tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
-    public GameObject playerStats, glow, mapCanvas, pauseText, functionText;
-    public GameObject pauseMenu, functionMenu, skillMenu, inventory, map, database;
-    private InputAction pauseGameAction, openFunctionAction, qBtnAction, eBtnAction;
+    [Header("Player UI")]
+    public Image hpBar;
+    public Image tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
+    public GameObject playerStats, glow, mapCanvas;
+    [Header("Pause Menu")]
+    public GameObject pauseMenu, pauseText;
+    [Header("Function Menu")]
+    public GameObject functionMenu, functionText, skillMenu, inventory, map, database;
+    public Image skillText, inventoryText, mapText, databaseText;
+    public FunctionButton skillButton, inventoryButton, mapButton, databaseButton;
+    public ArrowButton prevButton, nextButton;
+
+    InputAction pauseGameAction, openFunctionAction, qBtnAction, eBtnAction;
     int currentUiId;
     int totalCounter;
+
 
     protected override void Awake()
     {
@@ -33,6 +44,7 @@ public class UIManager : GenericSingleton<UIManager>
             playerStats.SetActive(false);
             mapCanvas.SetActive(false);
             pauseMenu.SetActive(true);
+            pauseText.SetActive(true);
             Time.timeScale = 0;
             openFunctionAction.Disable();
         }
@@ -45,7 +57,6 @@ public class UIManager : GenericSingleton<UIManager>
                 playerStats.SetActive(false);
                 mapCanvas.SetActive(false);
                 functionMenu.SetActive(true);
-                pauseText.SetActive(false);
                 functionText.SetActive(true);
                 qBtnAction.Enable();
                 eBtnAction.Enable();
@@ -55,19 +66,31 @@ public class UIManager : GenericSingleton<UIManager>
             {
                 if (currentUiId > 2)
                 {
-                    if (currentUiId == 3) inventory.SetActive(false);
-                    else if (currentUiId == 4) map.SetActive(false);
-                    else if (currentUiId == 5) database.SetActive(false);
+                    if (currentUiId == 3) 
+                    {
+                        inventoryText.color = new(0, 0, 0, 0);
+                        inventory.SetActive(false);
+                    }
+                    else if (currentUiId == 4)
+                    {
+                        mapText.color = new(0, 0, 0, 0);
+                        map.SetActive(false);
+                    }
+                    else if (currentUiId == 5)
+                    {
+                        databaseText.color = new(0, 0, 0, 0);
+                        database.SetActive(false);
+                    }
+                    skillText.color = new(1, 1, 1, 1);
                     skillMenu.SetActive(true);
                 }
                 currentUiId = 0;
-                playerStats.SetActive(true);
-                mapCanvas.SetActive(true);
                 functionMenu.SetActive(false);
-                pauseText.SetActive(true);
                 functionText.SetActive(false);
                 qBtnAction.Disable();
                 eBtnAction.Disable();
+                playerStats.SetActive(true);
+                mapCanvas.SetActive(true);
                 pauseGameAction.Enable();
             }
         }
@@ -86,6 +109,8 @@ public class UIManager : GenericSingleton<UIManager>
     {
         currentUiId = 0;
         Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        pauseText.SetActive(false);
         playerStats.SetActive(true);
         mapCanvas.SetActive(true);
         openFunctionAction.Enable();
@@ -177,36 +202,46 @@ public class UIManager : GenericSingleton<UIManager>
 
     public void DisplayNextTab()
     {
+        nextButton.SetEffectFactor(0, Time.time);
         HideFunctionMenuSpecifically();
         currentUiId += 1;
         if (currentUiId > 5) currentUiId = 2;
-        DisplayFunctionMenuSpecifically();
+        DisplayFunctionMenuSpecifically(0);
     }
 
     public void DisplayPreviousTab()
     {
+        prevButton.SetEffectFactor(0, Time.time);
         HideFunctionMenuSpecifically();
         currentUiId -= 1;
         if (currentUiId < 2) currentUiId = 5;
-        DisplayFunctionMenuSpecifically();
+        DisplayFunctionMenuSpecifically(Mathf.PI);
     }
 
-    public void DisplayFunctionMenuSpecifically()
+    public void DisplayFunctionMenuSpecifically(float rad)
     {
         if (currentUiId == 2)
         {
+            skillText.color = new(1, 1, 1, 1);
+            skillButton.SetEffectFactor(rad, Time.time);
             skillMenu.SetActive(true);
         }
         else if (currentUiId == 3)
         {
+            inventoryText.color = new(1, 1, 1, 1);
+            inventoryButton.SetEffectFactor(rad, Time.time);
             inventory.SetActive(true);
         }
         else if (currentUiId == 4)
         {
+            mapText.color = new(1, 1, 1, 1);
+            mapButton.SetEffectFactor(rad, Time.time);
             map.SetActive(true);
         }
         else if (currentUiId == 5)
         {
+            databaseText.color = new(1, 1, 1, 1);
+            databaseButton.SetEffectFactor(rad, Time.time);
             database.SetActive(true);
         }
     }
@@ -215,18 +250,22 @@ public class UIManager : GenericSingleton<UIManager>
     {
         if (currentUiId == 2)
         {
+            skillText.color = new(0, 0, 0, 0);
             skillMenu.SetActive(false);
         }
         else if (currentUiId == 3)
         {
+            inventoryText.color = new(0, 0, 0, 0);
             inventory.SetActive(false);
         }
         else if (currentUiId == 4)
         {
+            mapText.color = new(0, 0, 0, 0);
             map.SetActive(false);
         }
         else if (currentUiId == 5)
         {
+            databaseText.color = new(0, 0, 0, 0);
             database.SetActive(false);
         }
     }
