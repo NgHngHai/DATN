@@ -61,6 +61,19 @@ public class PlayerSkillManager : MonoBehaviour
         }
     }
 
+    public void UnlockSkill(int skillId)
+    {
+        if (skillMap == null) BuildLookup();
+        if (skillMap.TryGetValue(skillId, out var s))
+        {
+            s.isUnlocked = true;
+        }
+        else
+        {
+            Debug.LogWarning($"UnlockSkill: skill id {skillId} not found.", this);
+        }
+    }
+
     // UI calls this to change active skill by id (int)
     public bool ChangeActiveSkill(int skillId)
     {
