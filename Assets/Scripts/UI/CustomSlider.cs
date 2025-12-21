@@ -20,8 +20,11 @@ public class CustomSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     void Awake()
     {
         rect = GetComponent<RectTransform>();
+        f = PlayerPrefs.GetFloat("Master_Volume");
         imgVolumeBar = transform.parent.GetChild(1).GetComponent<Image>();
-        f = 1;
+        imgVolumeBar.fillAmount = f;
+        rect.anchoredPosition = new (Mathf.Lerp(leftLimit, rightLimit, f), rect.anchoredPosition.y);
+        txtVolume.text = Mathf.RoundToInt(maxValue * f).ToString();
     }
 
 
@@ -35,7 +38,7 @@ public class CustomSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             imgVolumeBar.fillAmount = f;
             
             rect.anchoredPosition = new (Mathf.Lerp(leftLimit, rightLimit, f), rect.anchoredPosition.y);
-            // AudioManager.Instance.SetMasterVolume(f);
+            AudioManager.Instance.SetMasterVolume(f);
         }
     }
 
