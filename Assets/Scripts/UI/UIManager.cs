@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class UIManager : GenericSingleton<UIManager>
 {
@@ -15,6 +17,7 @@ public class UIManager : GenericSingleton<UIManager>
     [Header("Pause Menu")]
     public GameObject pauseMenu;
     public GameObject pauseText;
+    public GameObject controlsPopup;
     [Header("Function Menu")]
     public GameObject functionMenu;
     public GameObject functionText, skillMenu, inventory, map, database;
@@ -113,6 +116,12 @@ public class UIManager : GenericSingleton<UIManager>
         {
             DisplayNextTab();
         }
+    }
+
+
+    public void OpenControlsPopup()
+    {
+        controlsPopup.SetActive(true);
     }
 
     public void ResumePlaying()
@@ -351,5 +360,13 @@ public class UIManager : GenericSingleton<UIManager>
     public void UpdateSkillTree(int skillId)
     {
         
+    }
+
+
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+        Destroy(gameObject);
     }
 }

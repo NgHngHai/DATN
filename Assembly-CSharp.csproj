@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\UI\ShopController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBeamer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\Explosion.cs" />
+    <Compile Include="Assets\Video\SplashVideoController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\DolREState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BoomState.cs" />
@@ -174,12 +175,15 @@
     <Compile Include="Assets\Scripts\Save System\JsonObjectBugTest.cs" />
     <Compile Include="Assets\Scripts\Projectile\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
+    <Compile Include="Assets\Scripts\UI\BackToPauseMenuButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\Boss.cs" />
     <Compile Include="Assets\Scripts\UI\TypewriterEffect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerRespawnController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
     <Compile Include="Assets\Scripts\Environment\Chest.cs" />
+    <Compile Include="Assets\Scripts\UI\ControlsButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyMeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\UI\ControlsController.cs" />
     <Compile Include="Assets\Scripts\Universal\GenericSingleton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBoom.cs" />
     <Compile Include="Assets\Scripts\Room\Door.cs" />

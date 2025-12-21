@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 
     void Awake()
     {
-        DisplayMenuButtons(false);
+        
     }
 
     public void OpenFileSelectionUI()
