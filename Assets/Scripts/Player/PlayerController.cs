@@ -161,7 +161,6 @@ public class PlayerController : Entity
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         base.Awake();
         animator = GetComponent<Animator>();

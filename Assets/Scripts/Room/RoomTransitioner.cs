@@ -1,10 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class RoomTransitioner : MonoBehaviour
 {
+    [SerializeField] private Animator areaNameAnimator;
+    [SerializeField] private TextMeshProUGUI areaTMP;
     private RoomManager roomManager;
     private Animator animator;
-    private bool isTransitioning;
 
     private void Awake()
     {
@@ -12,6 +14,14 @@ public class RoomTransitioner : MonoBehaviour
     }
 
     public void Initialize(RoomManager roomManager) => this.roomManager = roomManager;
+
+    public void PlayAreaNameAppearAnimation(GameArea gameArea)
+    {
+        areaTMP.text = System.Text.RegularExpressions.Regex
+            .Replace(gameArea.ToString(), "(\\B[A-Z])", "\n$1");
+
+        areaNameAnimator.Play("area-appear", -1, 0);
+    }
 
     public void PlayTransitionAnim(EnterDirection enterDirection)
     {

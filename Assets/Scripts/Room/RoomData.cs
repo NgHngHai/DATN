@@ -5,9 +5,9 @@ public enum GameArea
 {
     WastelandProcessor,
     EuphoniousMelodia,
-    NoData
+    None
 }
-
+  
 public class RoomData : MonoBehaviour
 {
     public GameArea roomInArea;

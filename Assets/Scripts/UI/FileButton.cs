@@ -17,6 +17,8 @@ public class FileButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public RectTransform rectFileIndex, rectMetadata;
     public GameObject goDeleteBtn;
 
+    private FileDisplayData displayData;
+
 
     void Awake()
     {
@@ -30,6 +32,7 @@ public class FileButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void Display(FileDisplayData displayData)
     {
+        this.displayData = displayData;
         bool displayDataNull = displayData == null;
         txtBigHeader.text = displayDataNull ? "Start new game" : displayData.bigHeader;
         txtSmallHeader.text = displayDataNull ? string.Empty : displayData.smallHeader;
@@ -126,6 +129,6 @@ public class FileButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         txtFileIndex.color = Color.black;
         rectFileIndex.anchoredPosition = new Vector2(-69, 3);
         rectMetadata.anchoredPosition = new Vector2(115, 24);
-        goDeleteBtn.SetActive(true);
+        goDeleteBtn.SetActive(displayData != null ? true : false);
     }
 }

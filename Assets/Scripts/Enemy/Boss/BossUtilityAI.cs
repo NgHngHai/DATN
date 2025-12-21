@@ -62,7 +62,7 @@ public class BossUtilityAI : MonoBehaviour
         behaviors.Add(new BossHandAttackBehavior(boss, 2f, handSlamPoint, 3f));
         behaviors.Add(new BossDashAttackBehavior(boss, 3f, 4f));
         behaviors.Add(new BossMoveBackBehavior(boss, 2f, 6f));
-        behaviors.Add(new BossNukeAttackBehavior(boss, 15f));
+        behaviors.Add(new BossNukeAttackBehavior(boss, 20f));
     }
 
     public void AcknowledgePhaseTwo()
