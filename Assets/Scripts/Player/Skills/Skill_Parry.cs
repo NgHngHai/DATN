@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Skill_Parry: MonoBehaviour, ISkill
 {
+    [System.Serializable]
     public class CounterChangedEvent : UnityEngine.Events.UnityEvent<int, int> { } // (currentCounter, maxCounter)
     public CounterChangedEvent OnCounterChanged = new();
 
