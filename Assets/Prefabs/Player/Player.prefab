@@ -5470,6 +5470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831e517787337ea48b4bc0653a79a50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Parry
+  OnCounterChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _missedParry: 0
   increaseDamageDuration: 2
   increasedDamageTaken: 1.5
@@ -6899,7 +6902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: c9d64c7e-c675-48aa-b6bf-181d00db020e
+  uniqueID: c272852e-7d13-4e7f-a61a-24856bd2fdad
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
