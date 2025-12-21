@@ -19,6 +19,7 @@ public class PlayerRespawnController : MonoBehaviour
     private EffectEvents _effectEvents;
     private PlayerSaveables _save;
     private Health _health;
+    private GameObject overlayGameObject;
 
     private bool _overlayFinished = false;
 
@@ -29,6 +30,9 @@ public class PlayerRespawnController : MonoBehaviour
         _effectEvents = GetComponent<EffectEvents>();
         _save = GetComponent<PlayerSaveables>();
         _health = GetComponent<Health>();
+
+        // Find overlay by tag
+        overlayGameObject = GameObject.FindWithTag("Respawn Overlay");
     }
 
     //private void OnEnable()
@@ -110,9 +114,7 @@ public class PlayerRespawnController : MonoBehaviour
 
     private IEnumerator PlayRespawnOverlayVideoOrSkip(System.Action onFinished)
     {
-        Debug.Log("PlayerRespawnController: PlayRespawnOverlayVideoOrSkip called.");
-        // Find overlay by tag
-        GameObject overlayGameObject = GameObject.FindWithTag("Respawn Overlay");
+
 
         if (overlayGameObject == null)
         {
