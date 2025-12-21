@@ -233,6 +233,7 @@ public class UIManager : GenericSingleton<UIManager>
 
     public void UpdateMoney(int currentMoney, int changedMoney)
     {
+        if (currentUiId == 6) return;
         StartCoroutine(DoUpdateMoney(currentMoney, changedMoney));
     }
 
@@ -254,6 +255,8 @@ public class UIManager : GenericSingleton<UIManager>
         }
         txtMoney.text = currentMoney.ToString();
 
+        yield return wfs;
+        yield return wfs;
         yield return wfs;
         moneyContainer.SetActive(false);
     }
@@ -332,19 +335,27 @@ public class UIManager : GenericSingleton<UIManager>
 
     public void OpenShop()
     {
+        currentUiId = 6;
+
         pauseGameAction.Disable();
         openFunctionAction.Disable();
         Time.timeScale = 0;
+
+        playerStats.SetActive(false);
         moneyContainer.SetActive(false);
         shop.SetActive(true);
     }
 
     public void CloseShop()
     {
+        currentUiId = 0;
+
         pauseGameAction.Enable();
         openFunctionAction.Enable();
         Time.timeScale = 1;
+
         shop.SetActive(false);
+        playerStats.SetActive(true);
     }
 
 
