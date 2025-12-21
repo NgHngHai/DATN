@@ -150,9 +150,15 @@ public class ShopController : MonoBehaviour
     {
         itemList.GetChild(selectingItemId).gameObject.SetActive(false);
         itemsSoldOut[selectingItemId] = false;
-        UIManager.Instance.UpdateInventory(shopItemList[selectingItemId].inventoryId);
-        StartCoroutine(SpendMoney());
-        selectingItemId = -1;
+        if (moneyManager.TrySpend(shopItemList[selectingItemId].price))
+        {
+            UIManager.Instance.UpdateInventory(shopItemList[selectingItemId].inventoryId);
+            StartCoroutine(SpendMoney());
+        }
+        else
+        {
+            selectingItemId = -1;
+        }
     }
 
     IEnumerator SpendMoney()
@@ -170,6 +176,7 @@ public class ShopController : MonoBehaviour
         }
         currentMoney = moneyManager.GetCurrentMoney();
         txtMoney.text = currentMoney.ToString();
+        selectingItemId = -1;
     }
 
 

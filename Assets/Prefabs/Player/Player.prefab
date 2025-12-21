@@ -6889,7 +6889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5cbe20e1c97a14e99869797580ee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveables
-  playerRoomID: 
   playerLinkDoorID: 
   lastCheckpointRoomName: 
 --- !u!114 &2753912382881145763
@@ -6904,7 +6903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 583aad89-6d03-48dd-ba61-2b83fdf3ce4c
+  uniqueID: a688ff65-4219-46ab-8043-bfe3d5f1cc87
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
