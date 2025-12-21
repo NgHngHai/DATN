@@ -142,6 +142,7 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: e2f217ab3f4e44340848e82e2c6b8924, type: 3}
   - {fileID: 8300000, guid: c2c9042a84ed21a44bfa7b1356222588, type: 3}
+  - {fileID: 8300000, guid: 0a9cd8bdc9536d0438394e58ebfd3eef, type: 3}
   volume: 1
   pitchMin: 0.9
   pitchMax: 1.1

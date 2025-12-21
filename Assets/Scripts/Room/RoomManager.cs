@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private RoomTransitioner roomTransitioner;
     [SerializeField] private Transform playerTranform;
 
+    private GameArea previousArea = GameArea.None;
     private string currentRoomName;
     private string pendingNextRoomName;
     private string pendingDoorLinkID;
@@ -92,6 +93,10 @@ public class RoomManager : MonoBehaviour
         ApplyCurrentRoomData();
     }
 
+
+    /// <summary>
+    /// Call when load in-game first time in Bootstrap Scene
+    /// </summary>
     public void StartLoadRoomFirstTimeRoutine(string roomName)
     {
         StartCoroutine(LoadRoomInGameFirstTime(roomName));
@@ -132,8 +137,13 @@ public class RoomManager : MonoBehaviour
             camConfiner.BoundingShape2D = roomData.CameraBoundary;
         }
 
-        if (string.IsNullOrEmpty(pendingDoorLinkID)) return;
+        if(previousArea != roomData.roomInArea)
+        {
+            roomTransitioner.PlayAreaNameAppearAnimation(roomData.roomInArea);
+            previousArea = roomData.roomInArea;
+        }
 
+        if (string.IsNullOrEmpty(pendingDoorLinkID)) return;
         Vector2 spawnPos = roomData.GetDoorLinkPosition(pendingDoorLinkID);
 
         playerTranform.position = spawnPos;
