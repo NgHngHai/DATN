@@ -5127,7 +5127,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -596000517
+  m_SortingLayerID: 1566338715
   m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!4 &361001227 stripped
@@ -71231,12 +71231,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560952708}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.3834089, w: 0.9235787}
-  m_LocalPosition: {x: 276.23, y: 29.57, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.3834089, w: 0.9235787}
+  m_LocalPosition: {x: 120.23001, y: 30.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 648789284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.09}
 --- !u!1 &570936890
 GameObject:
@@ -72382,6 +72382,8 @@ Transform:
   - {fileID: 378434245}
   - {fileID: 683825011}
   - {fileID: 1746678960}
+  - {fileID: 1088174936}
+  - {fileID: 560952710}
   m_Father: {fileID: 700258165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649550953
@@ -76634,12 +76636,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088174934}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 276.22952, y: 31.70842, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 120.22952, y: 32.70842, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 648789284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089386442
 GameObject:
@@ -87656,5 +87658,3 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 700258165}
-  - {fileID: 1088174936}
-  - {fileID: 560952710}
