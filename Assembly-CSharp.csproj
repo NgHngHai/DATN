@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\RoakState.cs" />
     <Compile Include="Assets\Scripts\Audio\SFXEmitter.cs" />
     <Compile Include="Assets\Scripts\Universal\MoneyOnDeath.cs" />
+    <Compile Include="Assets\Scripts\UI\ShopItem.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyRangedAttack.cs" />
     <Compile Include="Assets\Scripts\UI\GlitchController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossBowstring.cs" />
@@ -122,11 +123,11 @@
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BowstringState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkillManager.cs" />
     <Compile Include="Assets\Scripts\UI\SkillTreeController.cs" />
+    <Compile Include="Assets\Scripts\UI\ShopController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Type\EnemyBeamer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\Explosion.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\DolREState.cs" />
-    <Compile Include="Assets\Scripts\UI\ArrowButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BoomState.cs" />
     <Compile Include="Assets\Scripts\Projectile\HomingMissile.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Blast.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\JanitorRSState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\Fly0State.cs" />
+    <Compile Include="Assets\Scripts\UI\ShopButton.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Other\SnatcherSecondaryCollider.cs" />
     <Compile Include="Assets\Scripts\UI\SkillButton.cs" />
     <Compile Include="Assets\Scripts\Universal\EffectsDriver.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="Assets\Scripts\Save System\SaveableObject.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Hookline.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Capacity.cs" />
+    <Compile Include="Assets\Scripts\UI\ScaleBouncedObject.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyLineDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\SafePlatform.cs" />
@@ -172,6 +175,7 @@
     <Compile Include="Assets\Scripts\Projectile\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Universal\HurtBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\Boss.cs" />
+    <Compile Include="Assets\Scripts\UI\TypewriterEffect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerRespawnController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Combat\Attack Set\EnemyAttackSet.cs" />
     <Compile Include="Assets\Scripts\Environment\Chest.cs" />
@@ -190,6 +194,7 @@
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Parry.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
+    <Compile Include="Assets\Scripts\UI\MapController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -203,6 +208,7 @@
     <None Include="Assets\Shader\MenuLighting.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\Shader\Map.shader" />
     <None Include="Assets\Shader\MenuButton.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
