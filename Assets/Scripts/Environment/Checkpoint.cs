@@ -22,5 +22,7 @@ public class Checkpoint : Interactables
         saveable.lastCheckpointRoomName = _checkpointRoomName;
 
         health.RestoreToFull();
+
+        SaveSystem.Instance.SaveGame();
     }
 }
