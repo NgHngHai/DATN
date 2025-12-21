@@ -46,7 +46,8 @@ public class Fly0SleepState : Fly0State
 
 public class Fly0ChaseState : Fly0State
 {
-    Vector2 chaseVel;
+    private Health targetHealth;
+    private Vector2 chaseVel;
 
     public Fly0ChaseState(Enemy enemy) : base(enemy)
     {
@@ -56,11 +57,16 @@ public class Fly0ChaseState : Fly0State
     {
         base.Enter();
         animStateMachine.ChangeState(fly0.animFlyingState);
+
+        if(IsTargetValid())
+            targetHealth = targetHandler.CurrentTarget.GetComponent<Health>();
     }
 
     public override void Update()
     {
         base.Update();
+
+        if (targetHealth != null && targetHealth.IsDead()) fly0.StopVelocity();
 
         if (targetHandler.GetDistanceToTarget() > fly0.stopChaseDistance)
             chaseVel = targetHandler.GetDirectionToTarget() * fly0.moveSpeed;
@@ -70,7 +76,6 @@ public class Fly0ChaseState : Fly0State
         {
             logicStateMachine.ChangeState(fly0.repositionToAttackState);
         }
-
     }
 
     public override void FixedUpdate()
@@ -181,6 +186,7 @@ public class Fly0RestState : Fly0State
     public override void Update()
     {
         base.Update();
+
         if (stateTimer < 0)
         {
             logicStateMachine.ChangeState(fly0.chaseState);
