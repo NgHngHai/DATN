@@ -17,7 +17,7 @@ public class PlayerMoneyManager : MonoBehaviour
     [SerializeField] private int currentMoney = 0;
 
     [Header("Events")]
-    [Tooltip("Invoked whenever the player's money changes. Parameter: current money.")]
+    [Tooltip("Invoked whenever the player's money changes. Parameter: current money, amount changed")]
     public MoneyChangedEvent OnMoneyChanged = new();
 
     public int CurrentMoney
