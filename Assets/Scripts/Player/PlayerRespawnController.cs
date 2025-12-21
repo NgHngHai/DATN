@@ -98,7 +98,7 @@ public class PlayerRespawnController : MonoBehaviour
         }
 
             // Move player and restore
-            _player.transform.position = spawnPos;
+            _player.transform.position = spawnPos + new Vector2(0, 2, 0);
 
         if (_player.TryGetComponent<Rigidbody2D>(out var rb))
         {
