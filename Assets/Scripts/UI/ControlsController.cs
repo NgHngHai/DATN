@@ -160,18 +160,3 @@ public class ControlsController : MonoBehaviour
         keyname = "";
     }
 }
-
-// public void SwapJumpKeyToEnter()
-// {
-//     // Giả sử action lại là InputActionReference
-//     InputAction action = jumpActionRef.action;
-
-//     // Cách 1: Ghi đè bằng Path string (Phải đúng cú pháp <Device>/Key)
-//     // "<Keyboard>/enter"
-//     // "<Gamepad>/buttonSouth"
-//     action.ApplyBindingOverride("<Keyboard>/enter");
-
-//     // Cách 2: Ghi đè vào một index cụ thể (nếu Action có nhiều binding như Keyboard + Gamepad)
-//     // Index 0 thường là binding đầu tiên trong list
-//     action.ApplyBindingOverride(0, "<Keyboard>/enter");
-// }

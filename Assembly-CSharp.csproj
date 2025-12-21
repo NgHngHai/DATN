@@ -129,6 +129,7 @@
     <Compile Include="Assets\Video\SplashVideoController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Detect\EnemyCircleDetector.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\DolREState.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuControls.cs" />
     <Compile Include="Assets\Scripts\Enemy\Logic State Machine\Type\BoomState.cs" />
     <Compile Include="Assets\Scripts\Projectile\HomingMissile.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Blast.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Assets\Scripts\Enemy\Patrol\EnemyPatrolGroundEdgeWall.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\EnemyAnimationEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\CustomSlider.cs" />
     <Compile Include="Assets\Scripts\Player\Skills\Skill_Parry.cs" />
     <Compile Include="Assets\Scripts\Enemy\Base\Enemy.cs" />
     <Compile Include="Assets\Scripts\UI\MapController.cs" />
