@@ -9,12 +9,16 @@ public abstract class BossBehavior
     private float cooldown = 0f;
     private float nextAvailableTime = 0f;
 
-    public BossBehavior(Boss boss, float cooldown)
+    public BossBehavior(Boss boss, float cooldown, bool startOnCooldown = false)
     {
         this.boss = boss;
         targetHandler = boss.TargetHandler;
         this.cooldown = cooldown;
+
+        if (startOnCooldown)
+            nextAvailableTime = Time.time + cooldown;
     }
+
 
     public float BaseEvaluate()
     {
@@ -119,7 +123,7 @@ public class BossMoveBackBehavior : BossBehavior
 
 public class BossNukeAttackBehavior : BossBehavior
 {
-    public BossNukeAttackBehavior(Boss boss, float cooldown) : base(boss, cooldown)
+    public BossNukeAttackBehavior(Boss boss, float cooldown) : base(boss, cooldown, true)
     {
     }
 
