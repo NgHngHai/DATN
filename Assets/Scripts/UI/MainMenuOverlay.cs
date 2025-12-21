@@ -21,6 +21,8 @@ public class MainMenuOverlay : MonoBehaviour
     {
         WaitForSeconds wfsDelayTime = new(1);
         yield return wfsDelayTime;
+        MenuManager menuManager = FindFirstObjectByType<MenuManager>();
+        menuManager.DisplayMenuButtons(false);
         Color c = new(0, 0, 0, 1);
         float startTime = Time.realtimeSinceStartup;
         float duration = duration1;
@@ -32,7 +34,6 @@ public class MainMenuOverlay : MonoBehaviour
             yield return null;
         }
 
-        MenuManager menuManager = FindFirstObjectByType<MenuManager>();
         yield return null;
         duration = duration2;
         c.a = 1;

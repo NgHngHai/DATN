@@ -22,6 +22,14 @@ public class PauseButtonController : MonoBehaviour, IPointerClickHandler, IPoint
             UIManager.Instance.ResumePlaying();
             animator.SetEffectFactor(0);
         }
+        if (buttonIndex == 1)
+        {
+            UIManager.Instance.OpenControlsPopup();
+        }
+        if (buttonIndex == 5)
+        {
+            UIManager.Instance.BackToMainMenu();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
