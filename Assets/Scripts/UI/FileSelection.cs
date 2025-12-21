@@ -7,17 +7,18 @@ public class FileSelection : MonoBehaviour
 {
     [SerializeField] private FileButton[] fileButtons;
     int selectingFileIndex;
+    FileDataHandler dataHandler;
 
     void Awake()
     {
         selectingFileIndex = -1;
+        dataHandler = new FileDataHandler();
         InitializeFileButtons();
     }
 
 
     private void InitializeFileButtons()
     {
-        FileDataHandler dataHandler = new FileDataHandler();
         List<GameData> fileDatas = dataHandler.LoadAllSaves();
 
         for (int i = 0; i < fileButtons.Length; i++)
@@ -67,6 +68,14 @@ public class FileSelection : MonoBehaviour
         fileButtons[selectingFileIndex].StartFocusing();
     }
 
+    public void DeleteCurrentSelectSaveSlot()
+    {
+        if(selectingFileIndex != -1)
+        {
+            dataHandler.Delete(selectingFileIndex);
+            fileButtons[selectingFileIndex].Display(null);
+        }
+    }
 
     public bool IsSelectingFile(int i)
     {
