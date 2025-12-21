@@ -218,6 +218,7 @@ public class PlayerSkillManager : MonoBehaviour
         }
 
         currentEnergy = Mathf.Max(0, currentEnergy - s.cost);
+        OnEnergyChanged?.Invoke(currentEnergy, maxEnergy);
         lastUsedTime[skillId] = Time.time;
         return true;
     }
