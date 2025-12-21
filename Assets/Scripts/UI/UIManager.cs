@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
-using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
 public class UIManager : GenericSingleton<UIManager>
@@ -379,5 +378,16 @@ public class UIManager : GenericSingleton<UIManager>
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
         Destroy(gameObject);
+    }
+
+
+    public void ChangePauseGameActionBinding(string binding)
+    {
+        pauseGameAction.ApplyBindingOverride(binding);
+    }
+
+    public void ChangeOpenFunctionActionBinding(string binding)
+    {
+        openFunctionAction.ApplyBindingOverride(binding);
     }
 }
