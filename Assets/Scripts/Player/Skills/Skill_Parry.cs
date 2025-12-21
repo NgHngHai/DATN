@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Skill_Parry: MonoBehaviour, ISkill
 {
+    [System.Serializable]
     public class CounterChangedEvent : UnityEngine.Events.UnityEvent<int, int> { } // (currentCounter, maxCounter)
     public CounterChangedEvent OnCounterChanged = new();
 
@@ -32,9 +33,9 @@ public class Skill_Parry: MonoBehaviour, ISkill
 
     private void Start()
     {
-        OnCounterChanged.AddListener(UIManager.Instance.UpdateCounter);
+        //OnCounterChanged.AddListener(UIManager.Instance.UpdateCounter);
         _playerController = GetComponentInParent<PlayerController>();
-        _playerHealth = GetComponentInParent<Health>();
+        
 
         parryState = new AnimationState(_playerController, "parry", true);
 
@@ -43,6 +44,7 @@ public class Skill_Parry: MonoBehaviour, ISkill
 
     private void OnEnable()
     {
+        _playerHealth = GetComponentInParent<Health>();
         _playerHealth.OnDeath.AddListener(ResetCounterCharge);
     }
 

@@ -18,13 +18,15 @@ public class Chest : Interactables
     [SerializeField] private float fadeDuration = 0.35f;
 
     // References
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
+    private SFXEmitter sfxEmitter;
 
     protected override void Awake()
     {
         base.Awake();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        sfxEmitter = GetComponent<SFXEmitter>();
     }
 
     protected override void OnInteract(GameObject player)
@@ -38,8 +40,8 @@ public class Chest : Interactables
         playerInteracted = true;
 
         moneyParticle.Play();
-        //chestOpenSFX.Play();
-        
+        sfxEmitter.ChangeAndPlaySFXAtHere(0); // Chest open SFX
+
         StartCoroutine(DisableAfterDelay());
     }
 

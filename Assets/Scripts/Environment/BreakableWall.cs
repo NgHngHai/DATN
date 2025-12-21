@@ -8,6 +8,15 @@ public class BreakableWall : SaveableObject, IDamageable
     [SerializeField] private ParticleSystem destroyParticles;
     private bool isDestroyed = false;
 
+    // SFX References
+    private SFXEmitter sfxEmitter;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        sfxEmitter = GetComponent<SFXEmitter>();
+    }
+
     public bool TakeDamage (int amount, DamageType type, Vector2 hitDir, bool trigger = false)
     {
         if (isDestroyed) return false;
@@ -35,6 +44,9 @@ public class BreakableWall : SaveableObject, IDamageable
         _col.enabled = false;
         wallComponents.SetActive(false);
         destroyParticles.Play();
+
+        sfxEmitter.ChangeAndPlaySFXAtHere(0);
+        sfxEmitter.ChangeAndPlaySFXAtHere(1);
 
         while (destroyParticles.isPlaying)
         {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3327275979798720512}
   - component: {fileID: 5694862948310449443}
   - component: {fileID: 1056432819359617640}
+  - component: {fileID: 1916359294463384510}
   m_Layer: 10
   m_Name: Breakable Wall
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 55959f72-779d-43af-918e-f289e14db50a
+  uniqueID: 4f50c838-720c-47e3-bfe6-344c0127166d
 --- !u!114 &5694862948310449443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +111,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 5.135338}
   m_EdgeRadius: 0
+--- !u!114 &1916359294463384510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558941761639085708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: a2dedbfc942697147846d5f9b2a50906, type: 3}
+  - {fileID: 8300000, guid: c274fd740fa0c95499be7f57a6f54a64, type: 3}
+  volume: 1
+  pitchMin: 0.8
+  pitchMax: 1.15
 --- !u!1 &8443309834921565485
 GameObject:
   m_ObjectHideFlags: 0
