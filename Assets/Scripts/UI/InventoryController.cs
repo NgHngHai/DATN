@@ -35,10 +35,15 @@ public class InventoryController : MonoBehaviour
         slotUsed = new bool[20];
         slotUsed[0] = true;
         slotUsed[1] = true;
+        slotUsed[2] = true;
+        slotUsed[3] = true;
+
 
         itemIds = new int[21];
         itemIds[0] = 0;
         itemIds[1] = 1;
+        itemIds[2] = 2;
+        itemIds[3] = 3;
 
         selectingSlot = 0;
         hoveringSlot = -1;
