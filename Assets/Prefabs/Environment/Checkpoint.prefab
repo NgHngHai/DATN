@@ -50,8 +50,8 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  inRangePromptVN: "Nh\u1EA5n []"
-  inRangePromptEN: 'Press [Interact]'
+  inRangePromptVN: "H\u1ED3i m\xE1u"
+  inRangePromptEN: Heal
   promptOffset: {x: 0, y: 1.75}
   interactCooldown: 0
   isOneTimeUse: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: edae5c7b-07d3-4b05-a97a-435b6be31245
+  uniqueID: c2b2af69-4016-449a-a25c-1888947e2e54
 --- !u!212 &3489032828916223499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -162,8 +162,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1566338715
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5034115844673502929, guid: 0cefcd925c9c65e4aa6df7096f5e9cac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
