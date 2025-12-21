@@ -49633,6 +49633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c897099d8934b2d4c8802e078f6e948b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  roomInArea: 1
   CameraBoundary: {fileID: 1205828941}
   doorList:
   - {fileID: 1838108836}
