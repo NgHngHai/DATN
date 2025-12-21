@@ -18,7 +18,8 @@ public class Chest : Interactables
     [SerializeField] private float fadeDuration = 0.35f;
 
     // References
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
+    private SFXEmitter sfxEmitter;
 
     protected override void Awake()
     {
