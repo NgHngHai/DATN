@@ -19,7 +19,8 @@ public class Door : MonoBehaviour
         {
             // Change player's current room & linked door ID
             var playerSaveables = collision.GetComponent<PlayerSaveables>();
-            playerSaveables.playerRoomID = nextRoomName;
+            SaveSystem.Instance.GetGameData().saveRoomId = nextRoomName;
+            SaveSystem.Instance.GetGameData().spawnDoorId = linkID;
             playerSaveables.playerLinkDoorID = linkID;
 
             // Load next room

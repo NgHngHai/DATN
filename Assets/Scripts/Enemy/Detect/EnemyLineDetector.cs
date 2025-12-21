@@ -12,8 +12,8 @@ public class EnemyLineDetector : EnemyTargetDetector
         RaycastHit2D hit = Physics2D.Raycast(detectPoint.position, dir, detectDistance, targetMask | obstacleMask);
 
         if (!hit) return null;
-        if(PhysicsUtils.IsGameObjectInLayer(hit.collider.gameObject, obstacleMask)) return null;
-        if (PhysicsUtils.IsGameObjectInLayer(hit.collider.gameObject, targetMask)) return hit.collider.transform;
+        if(Utility.IsGameObjectInLayer(hit.collider.gameObject, obstacleMask)) return null;
+        if (Utility.IsGameObjectInLayer(hit.collider.gameObject, targetMask)) return hit.collider.transform;
 
         return null;
     }
