@@ -62,10 +62,15 @@ public class PlayerSaveables : SaveableObject
         playerHealth.maxHealth = playerState.maxHealth;
         playerHealth.currentHealth = playerState.currentHealth;
 
+        playerHealth.OnHealthChanged?.Invoke(playerState.currentHealth, playerState.maxHealth);
+
         playerSkill.maxEnergy = playerState.maxEnergy;
         playerSkill.currentEnergy = playerState.currentEnergy;
 
+        playerSkill.OnEnergyChanged?.Invoke(playerState.currentEnergy, playerState.maxEnergy);
+
         playerMoney.CurrentMoney = playerState.money;
+        playerMoney.OnMoneyChanged?.Invoke(playerState.money, 0);
 
         lastCheckpointRoomName = playerState.lastCheckpointRoomName;
 

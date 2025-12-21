@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 8086262300415397397}
   - component: {fileID: 387649820858502749}
   - component: {fileID: 8966515924101749511}
+  - component: {fileID: -5867104166022728367}
   m_Layer: 10
   m_Name: Breakable Floor
   m_TagString: Untagged
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 39ceaddf-c713-45e3-8aac-a2d315f58124
+  uniqueID: 1300954d-e2ab-4d20-ae7c-dbeaf957e5ed
 --- !u!114 &8086262300415397397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +211,24 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 2257043247204636170}
+--- !u!114 &-5867104166022728367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2257043247204636170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: a2dedbfc942697147846d5f9b2a50906, type: 3}
+  - {fileID: 8300000, guid: c274fd740fa0c95499be7f57a6f54a64, type: 3}
+  volume: 1
+  pitchMin: 0.8
+  pitchMax: 1.15
 --- !u!1 &3291411663548855028
 GameObject:
   m_ObjectHideFlags: 0

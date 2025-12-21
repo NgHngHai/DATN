@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 398383738007095569}
   - component: {fileID: 4051832438274404547}
   - component: {fileID: 3616227369456967503}
+  - component: {fileID: -2481661006057540721}
   m_Layer: 0
   m_Name: chest_1
   m_TagString: Untagged
@@ -234,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 0d6b0d94-87c4-4b0f-bdad-2a5e17b606b3
+  uniqueID: f59a31c1-1a0a-4c8d-8856-f2e977e84260
 --- !u!114 &3616227369456967503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +265,23 @@ MonoBehaviour:
   chestOpenSFX: {fileID: 0}
   postOpenDelaySeconds: 0.5
   fadeDuration: 0.35
+--- !u!114 &-2481661006057540721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033339222146554175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: 40e1e33a6882da540891a31a2041db31, type: 3}
+  volume: 1
+  pitchMin: 0.8
+  pitchMax: 1.15
 --- !u!1001 &771997756318663238
 PrefabInstance:
   m_ObjectHideFlags: 0

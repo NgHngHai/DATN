@@ -21,7 +21,6 @@ public class Skill_Heal : MonoBehaviour, ISkill
 
     private void Start()
     {
-        _healthComponent = player.GetComponent<Health>();
         _playerController = player.GetComponent<PlayerController>();
 
         healState = new AnimationState(_playerController, "heal", true);
@@ -29,6 +28,7 @@ public class Skill_Heal : MonoBehaviour, ISkill
 
     private void OnEnable()
     {
+        _healthComponent = player.GetComponent<Health>();
         _healthComponent.OnDamagedWithReaction.AddListener(CancelHealing);
     }
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1673837070394131634}
   - component: {fileID: 7757441260866950557}
   - component: {fileID: 2114865173888338214}
+  - component: {fileID: 8210839083158115162}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 0b3ebf01-d5f7-48bb-bc82-39444fb91a8a
+  uniqueID: 41d2b3a7-2210-4306-8a0b-78046f045e2f
 --- !u!114 &2114865173888338214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,11 +204,23 @@ MonoBehaviour:
   playerInteracted: 0
   _sharedCanvas: {fileID: 0}
   _sharedText: {fileID: 0}
-  dialogUI: {fileID: 0}
-  shopUIRoot: {fileID: 0}
-  dialogMessage: Welcome! Fancy anything?
-  openButtonText: Open Shop
-  quitButtonText: Quit
+--- !u!114 &8210839083158115162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212185210905632866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: 8bc8b4947fa65ca4b94e2e7f55ed36cf, type: 3}
+  volume: 1
+  pitchMin: 0.8
+  pitchMax: 1.2
 --- !u!1 &1865856367983647715
 GameObject:
   m_ObjectHideFlags: 0

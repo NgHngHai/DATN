@@ -41,7 +41,15 @@ public class TrapHurtBox : HurtBox
         // Teleport player to room spawn point
         if (other.CompareTag("Player"))
         {
-            TeleportPlayerToRoomSpawn(other.GetComponent<PlayerController>());
+            var player = other.GetComponent<PlayerController>();
+            var health = player != null ? (player.playerHealth ?? player.GetComponent<Health>()) : null;
+
+            // If lethal, let PlayerRespawnController handle overlay + full reset
+            if (health != null && health.IsDead())
+                return;
+
+            // Non-lethal: teleport only (no revive animation here)
+            TeleportPlayerToRoomSpawn(player);
         }
     }
 
@@ -52,7 +60,14 @@ public class TrapHurtBox : HurtBox
 
         if (other.CompareTag("Player") && ShouldTeleportOnStay())
         {
-            TeleportPlayerToRoomSpawn(other.GetComponent<PlayerController>());
+            var player = other.GetComponent<PlayerController>();
+            var health = player != null ? (player.playerHealth ?? player.GetComponent<Health>()) : null;
+
+            // If lethal, do nothing
+            if (health != null && health.IsDead())
+                return;
+
+            TeleportPlayerToRoomSpawn(player);
         }
     }
 
@@ -67,11 +82,12 @@ public class TrapHurtBox : HurtBox
         if (player == null || _roomData == null)
             return;
 
-        // Teleport to this room first spawn position
-        OnTrapOverlayRequested?.Invoke();
-
         player.transform.position = _roomData.FirstSpawnPosition;
-        player.PlayReviveState();
+        if (zeroVelocityOnTeleport && player.TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
     }
 
     private bool IsEnemyCollider(Collider2D other)
