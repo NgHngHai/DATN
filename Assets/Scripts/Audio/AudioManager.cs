@@ -73,9 +73,9 @@ public class AudioManager : GenericSingleton<AudioManager>
 
     private void InitializeStoredAudioVolume()
     {
-        SetMasterVolume(PlayerPrefs.GetFloat(MASTER_VOLUME_KEY, 1));
-        SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1));
-        SetSFXVolume(sfxVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, 1));
+        SetMasterVolume(PlayerPrefs.GetFloat(MASTER_VOLUME_KEY, masterVolume));
+        SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, musicVolume));
+        SetSFXVolume(sfxVolume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY, sfxVolume));
     }
 
 

@@ -48,12 +48,11 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: cd48cf3303cb4454492fb0e1b5ebcfeb, type: 2}
   musicGroup: {fileID: 3462741021837015721, guid: cd48cf3303cb4454492fb0e1b5ebcfeb, type: 2}
   sfxGroup: {fileID: 5450827316083862284, guid: cd48cf3303cb4454492fb0e1b5ebcfeb, type: 2}
-  musicVolumeParam: Music
-  sfxVolumeParam: SFX
   musicSource: {fileID: 4022286674442760195}
-  musicVolume: 1
   presetSfxPrefab: {fileID: 944025661527009343, guid: 545e4b78e68cbf24da0273852539edef, type: 3}
   sfxPoolSize: 12
+  masterVolume: 1
+  musicVolume: 0.3
   sfxVolume: 1
 --- !u!82 &4022286674442760195
 AudioSource:
@@ -66,11 +65,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3462741021837015721, guid: cd48cf3303cb4454492fb0e1b5ebcfeb, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 2a360cf73c4be994b88dc55251d9fc02, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
