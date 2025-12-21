@@ -42,6 +42,24 @@ public class UIManager : GenericSingleton<UIManager>
         pauseGameAction.Enable();
         openFunctionAction.Enable();
         totalCounter = 0;
+
+        var player = FindFirstObjectByType<PlayerController>();
+        if (player != null)
+        {
+            var skills = player.GetComponent<PlayerSkillManager>();
+            if (skills != null)
+            {
+                // Energy bar updates
+                skills.OnEnergyChanged.AddListener(UpdateMp);
+            }
+
+            var parry = player.GetComponentInChildren<Skill_Parry>();
+            if (parry != null)
+            {
+                // Counter charge updates (redundant if already subscribed in Skill_Parry, but safe)
+                parry.OnCounterChanged.AddListener(UpdateCounter);
+            }
+        }
     }
 
     void Update()
