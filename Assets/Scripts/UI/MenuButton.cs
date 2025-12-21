@@ -22,6 +22,15 @@ public class MenuButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             menuManager.OpenFileSelectionUI();
         }
+        else if (btnId == 1)
+        {
+            menuManager.OpenControlsUI();
+        }
+        else if (btnId == 2)
+        {
+            menuManager.OpenCreditsUI();
+        }
+        else menuManager.QuitGame();
     }
 
 

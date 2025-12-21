@@ -22,6 +22,9 @@ public class FileFunction : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (type == 0)
         {
+            rect.sizeDelta = new Vector2(rect.sizeDelta.x, 100);
+            img.sprite = buttonSprite;
+            tmp.color = Color.white;
             transform.parent.gameObject.SetActive(false);
         }
     }
