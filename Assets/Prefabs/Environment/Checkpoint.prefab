@@ -58,7 +58,7 @@ MonoBehaviour:
   playerInteracted: 0
   _sharedCanvas: {fileID: 0}
   _sharedText: {fileID: 0}
-  _checkpointRoomName: Room1
+  _checkpointRoomName: Room3
 --- !u!61 &6852737446978613409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 87205efa-4e38-4006-a1fc-bce109a266d2
+  uniqueID: edae5c7b-07d3-4b05-a97a-435b6be31245
 --- !u!212 &3489032828916223499
 SpriteRenderer:
   m_ObjectHideFlags: 0

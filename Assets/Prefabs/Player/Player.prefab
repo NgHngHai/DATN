@@ -6342,7 +6342,7 @@ GameObject:
   - component: {fileID: 1190804931672900395}
   - component: {fileID: 2753912382881145763}
   - component: {fileID: 1292387543960183970}
-  - component: {fileID: 9094652934787121573}
+  - component: {fileID: 5365903735431360302}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -6885,7 +6885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5cbe20e1c97a14e99869797580ee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSaveables
-  playerRoomID: 
   playerLinkDoorID: 
   lastCheckpointRoomName: 
 --- !u!114 &2753912382881145763
@@ -6900,7 +6899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 914b300e-8214-41bf-9319-257a1c820a50
+  uniqueID: c9d64c7e-c675-48aa-b6bf-181d00db020e
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6914,7 +6913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPoisonHandler
   poisonColor: {r: 0, g: 1, b: 0, a: 1}
---- !u!114 &9094652934787121573
+--- !u!114 &5365903735431360302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6923,9 +6922,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5652666909265740743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f6ced3d85c10e4e81a879cb068b878, type: 3}
+  m_Script: {fileID: 11500000, guid: a67f878d7c6fd43468183b727ba01ac4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationEvent
+  m_EditorClassIdentifier: Assembly-CSharp::SFXEmitter
+  sfxClips:
+  - {fileID: 8300000, guid: d91f5106abff5564fa784676a691e513, type: 3}
+  - {fileID: 8300000, guid: ddd2b93c472dec746b8d651a0fc0727c, type: 3}
+  - {fileID: 8300000, guid: b1babb994752b6948a601dc4ccd9ff50, type: 3}
+  - {fileID: 8300000, guid: 31e1bd604553be346b6f842975f27fd7, type: 3}
+  - {fileID: 8300000, guid: 8ce8dc2e43dbdc141a646bbe27572ee8, type: 3}
+  - {fileID: 8300000, guid: 1f010fcd830421f43821a15cd21c9cfc, type: 3}
+  - {fileID: 8300000, guid: f69f30e2e3dbc8f479375136d37da812, type: 3}
+  - {fileID: 8300000, guid: 34f5458231b93444296f5661ff5c5a70, type: 3}
+  - {fileID: 8300000, guid: a88d3d73bb8b54e408a9faed5b3b5158, type: 3}
+  - {fileID: 8300000, guid: 7d05438b845a6cf44b061cdaa5a02dbd, type: 3}
+  volume: 1
+  pitchMin: 0.8
+  pitchMax: 1.15
 --- !u!1 &6728830987841308525
 GameObject:
   m_ObjectHideFlags: 0
