@@ -1671,7 +1671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148833240440174197, guid: 8bee907a69925634599b931c4963ae83, type: 3}
       propertyPath: uniqueID
-      value: d7aaca19-481c-4183-b402-c5c7f3571aa3
+      value: 3be2ffbe-701a-4bfb-b64b-121600de1f87
       objectReference: {fileID: 0}
     - target: {fileID: 6053765104821343490, guid: 8bee907a69925634599b931c4963ae83, type: 3}
       propertyPath: m_Name
@@ -3008,7 +3008,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4051832438274404547, guid: 4d918eb460069174ea4351ae8c3dd141, type: 3}
       propertyPath: uniqueID
-      value: 196fba42-014d-4f48-98ac-04f62eb4c9af
+      value: b1d8012d-2798-407c-809d-8acbe48cbee5
       objectReference: {fileID: 0}
     - target: {fileID: 6422484083456771848, guid: 4d918eb460069174ea4351ae8c3dd141, type: 3}
       propertyPath: m_LocalPosition.x
@@ -94841,6 +94841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c897099d8934b2d4c8802e078f6e948b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  roomInArea: 0
   CameraBoundary: {fileID: 1205828941}
   doorList:
   - {fileID: 746439906}
@@ -104053,7 +104054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2474632925367273347, guid: 1fbb15bcd656296428df3f40f9d79a00, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.870113
+      value: 24.42
       objectReference: {fileID: 0}
     - target: {fileID: 2474632925367273347, guid: 1fbb15bcd656296428df3f40f9d79a00, type: 3}
       propertyPath: m_LocalPosition.z
@@ -109159,7 +109160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7757441260866950557, guid: 98b46b25cb2534d4f9ebb8f2e4e446a8, type: 3}
       propertyPath: uniqueID
-      value: 7712da95-d780-43ba-80d0-06c32929fede
+      value: 7fdba3b1-7227-4939-86b0-72f9e4112cfb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
