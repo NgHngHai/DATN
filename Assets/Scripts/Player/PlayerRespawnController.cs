@@ -22,6 +22,7 @@ public class PlayerRespawnController : MonoBehaviour
     private GameObject overlayGameObject;
 
     private bool _overlayFinished = false;
+    private bool _overlayStarted = false;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerRespawnController : MonoBehaviour
 
         // Find overlay by tag
         overlayGameObject = GameObject.FindWithTag("Respawn Overlay");
+        overlayGameObject?.SetActive(false);
     }
 
     //private void OnEnable()
@@ -65,6 +67,9 @@ public class PlayerRespawnController : MonoBehaviour
         _overlayFinished = false;
         StartCoroutine(PlayRespawnOverlayVideoOrSkip(() => _overlayFinished = true));
 
+        while (!_overlayStarted)
+            yield return null;
+
         if (_roomManager == null || _save == null) yield break;
 
         bool hasCheckpoit = !string.IsNullOrEmpty(_save.lastCheckpointRoomName);
@@ -89,7 +94,7 @@ public class PlayerRespawnController : MonoBehaviour
         } 
         else
         {
-            spawnPos = new Vector3(0, 0, 0);
+            spawnPos = new Vector3(0, 2, 0);
         }
 
             // Move player and restore
@@ -147,6 +152,7 @@ public class PlayerRespawnController : MonoBehaviour
             videoPlayer.Prepare();
             while (!videoPlayer.isPrepared)
                 yield return null;
+            _overlayStarted = true;
         }
 
         videoPlayer.Play();
