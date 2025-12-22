@@ -94,11 +94,11 @@ public class PlayerRespawnController : MonoBehaviour
         } 
         else
         {
-            spawnPos = new Vector3(0, 2, 0);
+            spawnPos = new Vector2(0, 2);
         }
 
             // Move player and restore
-            _player.transform.position = spawnPos + new Vector2(0, 2, 0);
+            _player.transform.position = spawnPos + new Vector2(0, 2);
 
         if (_player.TryGetComponent<Rigidbody2D>(out var rb))
         {
