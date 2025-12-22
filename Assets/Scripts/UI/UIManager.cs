@@ -366,7 +366,13 @@ public class UIManager : GenericSingleton<UIManager>
     {
         inventoryController.gameObject.SetActive(true);
         functionMenu.SetActive(true);
-        inventoryController.AddItem(itemId);
+
+        skillManager.UnlockSkill(itemId);
+        if (itemId > -1)
+        {
+            inventoryController.AddItem(itemId);
+        }
+
         inventoryController.gameObject.SetActive(false);
         functionMenu.SetActive(false);
     }

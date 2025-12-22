@@ -9,8 +9,8 @@ public class InventoryController : MonoBehaviour
     [Header("Data")]
     public Sprite item_0;
     public Sprite item_1;
-    public Sprite skill_1, skill_3, skill_4, skill_8;
-    public Sprite anchoredSkill_none, anchoredSkill_1, anchoredSkill_3, anchoredSkill_4, anchoredSkill_8;
+    public Sprite skill_3, skill_4, skill_8;
+    public Sprite anchoredSkill_none, anchoredSkill_3, anchoredSkill_4, anchoredSkill_8;
     [Header("Reference")]
     public TextMeshProUGUI txtItemName;
     public TextMeshProUGUI txtItemDescription;
@@ -37,15 +37,11 @@ public class InventoryController : MonoBehaviour
         slotUsed = new bool[20];
         slotUsed[0] = true;
         slotUsed[1] = true;
-        slotUsed[2] = true;
-        slotUsed[3] = true;
 
 
         itemIds = new int[21];
         itemIds[0] = 0;
         itemIds[1] = 1;
-        itemIds[2] = 2;
-        itemIds[3] = 3;
 
         selectingSlot = 0;
         hoveringSlot = -1;
@@ -218,7 +214,6 @@ public class InventoryController : MonoBehaviour
         {
             new("Item 1", "A nessessary item !!!", -1, item_0),
             new("Item 2", "A nessessary item !!!", -1, item_1),
-            new("[Double Jump] Guide", "Defy physics and you shall reach higher places.", 1, skill_1, anchoredSkill_1),
             new("[Counter] Guide", "The ability to defend yourself agaisnt dangerous enemies and give them a taste of their own medicine.", 3, skill_3, anchoredSkill_3),
             new("[Stomp] Guide", "Upon reaching a certain height threshold, you can slam back to the ground, dealing massive damage to enemies and immediately get out of danger's way.", 4, skill_4, anchoredSkill_4),
             new("[Dash Charge] Guide", "\"No one shall stop you and your little legs.\"", 8, skill_8, anchoredSkill_8),
