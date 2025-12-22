@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : GenericSingleton<UIManager>
 {
-    [Header("Player UI")]
+    [Header("HUD")]
     public Image hpBar;
     public Image tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
     public GameObject playerStats, glow, mapCanvas;
@@ -19,7 +19,7 @@ public class UIManager : GenericSingleton<UIManager>
     public GameObject controlsPopup;
     [Header("Function Menu")]
     public GameObject functionMenu;
-    public GameObject functionText, skillMenu, inventory, map, database;
+    public GameObject functionText, skillMenu, draggingItem, inventory, map, database;
     public Image skillText, inventoryText, mapText, databaseText;
     public FunctionButton skillButton, inventoryButton, mapButton, databaseButton;
     public ScaleBouncedObject prevButton, nextButton;
@@ -27,6 +27,8 @@ public class UIManager : GenericSingleton<UIManager>
     public InventoryController inventoryController;
     [Header("Shop")]
     public GameObject shop;
+    [Header("Player")]
+    public PlayerSkillManager skillManager;
 
     InputAction pauseGameAction, openFunctionAction, qBtnAction, eBtnAction;
     int currentUiId;
@@ -289,6 +291,7 @@ public class UIManager : GenericSingleton<UIManager>
         }
         else if (currentUiId == 3)
         {
+            draggingItem.SetActive(true);
             inventoryText.color = new(1, 1, 1, 1);
             inventoryButton.SetEffectFactor(rad, Time.time);
             inventory.SetActive(true);
@@ -316,6 +319,7 @@ public class UIManager : GenericSingleton<UIManager>
         }
         else if (currentUiId == 3)
         {
+            draggingItem.SetActive(false);
             inventoryText.color = new(0, 0, 0, 0);
             inventory.SetActive(false);
         }
@@ -389,5 +393,11 @@ public class UIManager : GenericSingleton<UIManager>
     public void ChangeOpenFunctionActionBinding(string binding)
     {
         openFunctionAction.ApplyBindingOverride(binding);
+    }
+
+
+    public void ActivateSkill(int skillId)
+    {
+        skillManager.ChangeActiveSkill(skillId);
     }
 }
