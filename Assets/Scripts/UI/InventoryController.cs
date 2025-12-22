@@ -7,10 +7,8 @@ using UnityEngine.UI;
 public class InventoryController : MonoBehaviour
 {
     [Header("Data")]
-    public Sprite item_0;
-    public Sprite item_1;
-    public Sprite skill_1, skill_3, skill_4, skill_8;
-    public Sprite anchoredSkill_none, anchoredSkill_1, anchoredSkill_3, anchoredSkill_4, anchoredSkill_8;
+    public Sprite item0;
+    public Sprite item1, item2, item3, skill0, skill1, skill2;
     [Header("Reference")]
     public TextMeshProUGUI txtItemName;
     public TextMeshProUGUI txtItemDescription;
@@ -61,16 +59,16 @@ public class InventoryController : MonoBehaviour
         {
             isDragging = true;
 
-            // if (isHoveringSkillAnchor)
-            // {
-            //     imgTmp = transform.GetChild(1).GetChild(0).GetComponent<Image>();
-            //     imgTmp.sprite = an;
+            if (isHoveringSkillAnchor)
+            {
+                imgTmp = transform.GetChild(1).GetChild(0).GetComponent<Image>();
+                imgTmp.sprite = skill0;
 
-            //     draggingItem.color = new(1, 1, 1, 1);
-            //     draggingItem.sprite = selectingItemData.itemSprite;
-            //     // reset dragging item shader...
-            // }
-            // else
+                draggingItem.color = new(1, 1, 1, 1);
+                draggingItem.sprite = selectingItemData.itemSprite;
+                // reset dragging item shader
+            }
+            else
             {
                 imgTmp = transform.GetChild(0).GetChild(selectingSlot).GetChild(1).GetComponent<Image>();
                 imgTmp.color = new (0, 0, 0, 0);
@@ -98,7 +96,7 @@ public class InventoryController : MonoBehaviour
         if (skillAnchored != -1)
         {
             selectingItemData = inventoryData[itemIds[20]];
-            txtItemName.text = selectingItemData.itemName + "\n<size=24><color=#00A99D>-- ACTIVATED --</color></size>";
+            txtItemName.text = selectingItemData.itemName;
             txtItemDescription.text = selectingItemData.itemDescription;
             if (selectingSlot != -1) transform.GetChild(0).GetChild(selectingSlot).GetChild(0).gameObject.SetActive(false);
         }
@@ -158,12 +156,10 @@ public class InventoryController : MonoBehaviour
             }
             else if (isHoveringSkillAnchor && inventoryData[itemIds[selectingSlot]].skillId > -1)
             {
-                imgTmp.transform.parent.GetChild(0).gameObject.SetActive(false); // deactive current selector
-                UIManager.Instance.ActivateSkill(inventoryData[itemIds[selectingSlot]].skillId);
-                txtItemName.text += "\n<size=24><color=#00A99D>-- ACTIVATED --</color></size>";
+                imgTmp.transform.parent.GetChild(0).gameObject.SetActive(false);
                 if (skillAnchored == -1)
                 {
-                    anchoredSkill.sprite = selectingItemData.anchoredSkillSprite;
+                    anchoredSkill.sprite = selectingItemData.skillId == 0 ? skill1 : skill2;
                     slotUsed[selectingSlot] = false;
                     itemIds[20] = itemIds[selectingSlot];
                     skillAnchored = selectingItemData.skillId;
@@ -172,7 +168,7 @@ public class InventoryController : MonoBehaviour
                 {
                     imgTmp.color = new(1, 1, 1, 1);
                     imgTmp.sprite = inventoryData[itemIds[20]].itemSprite;
-                    anchoredSkill.sprite = inventoryData[itemIds[selectingSlot]].anchoredSkillSprite;
+                    anchoredSkill.sprite = inventoryData[itemIds[selectingSlot]].skillId == 0 ? skill1 : skill2;
                     (itemIds[20], itemIds[selectingSlot]) = (itemIds[selectingSlot], itemIds[20]);
                     selectingSlot = -1;
                 }
@@ -216,12 +212,17 @@ public class InventoryController : MonoBehaviour
     {
         inventoryData = new List<InventoryData>
         {
-            new("Item 1", "A nessessary item !!!", -1, item_0),
-            new("Item 2", "A nessessary item !!!", -1, item_1),
-            new("[Double Jump] Guide", "Defy physics and you shall reach higher places.", 1, skill_1, anchoredSkill_1),
-            new("[Counter] Guide", "The ability to defend yourself agaisnt dangerous enemies and give them a taste of their own medicine.", 3, skill_3, anchoredSkill_3),
-            new("[Stomp] Guide", "Upon reaching a certain height threshold, you can slam back to the ground, dealing massive damage to enemies and immediately get out of danger's way.", 4, skill_4, anchoredSkill_4),
-            new("[Dash Charge] Guide", "\"No one shall stop you and your little legs.\"", 8, skill_8, anchoredSkill_8),
+            new("Item 1", "A nessessary item !!!", -1, item0),
+            new("Item 2", "A nessessary item !!!", -1, item1),
+            new("Skill 1", "A nessessary skill !!!", 0, item2),
+            new("Skill 2", "A nessessary skill !!!", 1, item3),
+            new("Skill 3", "A nessessary skill !!!", 2, item3),
+            new("Skill 4", "A nessessary skill !!!", 3, item3),
+            new("Skill 5", "A nessessary skill !!!", 4, item3),
+            new("Skill 6", "A nessessary skill !!!", 5, item3),
+            new("Skill 7", "A nessessary skill !!!", 6, item3),
+            new("Skill 8", "A nessessary skill !!!", 7, item3),
+            new("Skill 9", "A nessessary skill !!!", 8, item3),
         };
     }
 }
@@ -234,15 +235,13 @@ class InventoryData
     public string itemDescription;
     public int skillId;
     public Sprite itemSprite;
-    public Sprite anchoredSkillSprite;
 
-    public InventoryData(string name, string description, int skill, Sprite item, Sprite anchoredSkill = null)
+    public InventoryData(string name, string description, int skill, Sprite sprite)
     {
         itemName = name;
         itemDescription = description;
         skillId = skill;
-        itemSprite = item;
-        anchoredSkillSprite = anchoredSkill;
+        itemSprite = sprite;
     }
 }
 
