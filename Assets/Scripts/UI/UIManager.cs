@@ -5,8 +5,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class UIManager : GenericSingleton<UIManager>
+public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     [Header("Player UI")]
     public Image hpBar;
     public Image tmpHpBar, mpBar, counterBar0, counterBar1, counterBar2;
@@ -33,9 +35,16 @@ public class UIManager : GenericSingleton<UIManager>
     int totalCounter;
 
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        // Singleton pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         currentUiId = 0;
         pauseGameAction = new(null, type: InputActionType.Button, binding: "<Keyboard>/escape");
         openFunctionAction = new(null, type: InputActionType.Button, binding: "<Keyboard>/tab");
@@ -134,9 +143,8 @@ public class UIManager : GenericSingleton<UIManager>
         openFunctionAction.Enable();
     }
 
-    protected override void OnDestroy()
+    private void OnDestroy()
     {
-        base.OnDestroy();
         pauseGameAction.Dispose();
         openFunctionAction.Dispose();
         qBtnAction.Dispose();
