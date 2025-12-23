@@ -15,6 +15,7 @@ public class InventoryController : MonoBehaviour
     public TextMeshProUGUI txtItemName;
     public TextMeshProUGUI txtItemDescription;
     public Image draggingItem, anchoredSkill;
+    public ItemFollowingMouse itemFollowingMouse;
 
     bool[] slotUsed;
     int[] itemIds;
@@ -43,11 +44,20 @@ public class InventoryController : MonoBehaviour
         itemIds[0] = 0;
         itemIds[1] = 1;
 
-        selectingSlot = 0;
-        hoveringSlot = -1;
         skillAnchored = -1;
+    }
+
+    void OnEnable()
+    {
+        hoveringSlot = -1;
         selectingSlot = -1;
         selectingItemData = inventoryData[0];
+        itemFollowingMouse.Hide();
+    }
+
+    void OnDisable()
+    {
+        if (selectingSlot != -1) transform.GetChild(0).GetChild(selectingSlot).GetChild(0).gameObject.SetActive(false);
     }
 
 
@@ -73,6 +83,7 @@ public class InventoryController : MonoBehaviour
 
                 draggingItem.color = new(1, 1, 1, 1);
                 draggingItem.sprite = selectingItemData.itemSprite;
+                itemFollowingMouse.Display();
             }
         }
     }
@@ -125,6 +136,7 @@ public class InventoryController : MonoBehaviour
         {
             isDragging = false;
             draggingItem.color = new(0, 0, 0, 0);
+            itemFollowingMouse.Hide();
         
             if (hoveringSlot >= 0)
             {
