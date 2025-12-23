@@ -28,7 +28,7 @@ Shader "Custom/ItemGlitch"
                 float4 positionOS : POSITION;
                 float4 color : COLOR;
                 float2 uv : TEXCOORD0;
-                float2 data : TEXCOORD1; // data.x = rotation, data.y = realTime
+                float2 data : TEXCOORD1;
             };
 
             struct Varyings
@@ -63,19 +63,22 @@ Shader "Custom/ItemGlitch"
             {
                 float c = cos(IN.data.x);
                 float s = sin(IN.data.x);
-                float2 offset = float2(SAMPLE_TEXTURE2D(_GlitchMap, sampler_GlitchMap, IN.uv).a, 0);
-                offset = float2(offset.x * c, offset.x * s);
+                float2 offset = float2(SAMPLE_TEXTURE2D(_GlitchMap, sampler_GlitchMap, 0.5 + (IN.uv - 0.5) * 5).a, 0);
 
                 float elapsedTime = _Time.y - IN.data.y;
                 if (elapsedTime < _GlitchTime) {
-                    offset *= sin(elapsedTime * PI / _GlitchTime);
+                    offset *= sin((0.25 + elapsedTime / _GlitchTime) * TWO_PI) * 0.7;
                 }
                 else if (elapsedTime < _GlitchTime * 1.5) {
-                    offset *= -sin(elapsedTime * 2 * PI / _GlitchTime) * 0.5;
+                    offset *= sin(elapsedTime / _GlitchTime * TWO_PI) * 0.35;
                 }
                 else offset *= 0;
-                IN.uv -= offset;
+                
+                // offset -= IN.uv;
+                offset = float2(offset.x * c, offset.x * s);
+                // offset += IN.uv;
 
+                IN.uv -= offset;
                 half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv) * IN.color;
                 return color;
             }
