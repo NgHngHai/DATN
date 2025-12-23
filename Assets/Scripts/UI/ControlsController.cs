@@ -106,7 +106,23 @@ public class ControlsController : MonoBehaviour
             return;
         }
         if (ic.name == "middleButton" || ic.name == "rightButton") return;
-        if (step == 1)
+        
+        if (step == 0)
+        {
+            if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
+            {
+                step = 1;
+                txtRebindingKeys[selectingControlId].color = new(1, 1, 1, 1);
+            }
+            else
+            {
+                step = 0;
+                txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
+            }
+            keyname = ic.name;
+            txtRebindingKeys[selectingControlId].text = keyname;
+        }
+        else if (step == 1)
         {
             if (ic.name == "enter")
             {
@@ -125,19 +141,6 @@ public class ControlsController : MonoBehaviour
                 return;
             }
         }
-        if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
-        {
-            
-            step = 1;
-            txtRebindingKeys[selectingControlId].color = new(1, 1, 1, 1);
-        }
-        else
-        {
-            step = 0;
-            txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
-        }
-        keyname = ic.name;
-        txtRebindingKeys[selectingControlId].text = keyname;
     }
 
 
