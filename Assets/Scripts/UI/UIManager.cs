@@ -264,9 +264,7 @@ public class UIManager : MonoBehaviour
         }
         txtMoney.text = currentMoney.ToString();
 
-        yield return wfs;
-        yield return wfs;
-        yield return wfs;
+        yield return new WaitForSeconds(2);
         moneyContainer.SetActive(false);
     }
 
@@ -370,13 +368,13 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void UpdateInventory(int itemId)
+    public void UpdateInventory(int itemId, int skillId)
     {
         inventoryController.gameObject.SetActive(true);
         functionMenu.SetActive(true);
 
-        skillManager.UnlockSkill(itemId);
-        if (itemId > -1)
+        if (skillId > -1) skillManager.UnlockSkill(skillId);
+        if (itemId > 0)
         {
             inventoryController.AddItem(itemId);
         }

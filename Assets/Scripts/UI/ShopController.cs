@@ -153,7 +153,7 @@ public class ShopController : MonoBehaviour
         {
             itemList.GetChild(selectingItemId).gameObject.SetActive(false);
             itemsSoldOut[selectingItemId] = true;
-            UIManager.Instance.UpdateInventory(shopItemList[selectingItemId].inventoryId);
+            UIManager.Instance.UpdateInventory(shopItemList[selectingItemId].inventoryId, shopItemList[selectingItemId].skillId);
             StartCoroutine(SpendMoney());
         }
         else
@@ -286,15 +286,15 @@ public class ShopController : MonoBehaviour
     void LoadShopItemDataFromSO()
     {
         shopItemList = new ShopItemData[9] {
-            new ("Counter", 2, 50, "The ability to defend yourself agaisnt dangerous enemies and give them a taste of their own medicine.", "Was violent behavior necessary?\nNot always, but instead of being helpless agaisnt hostile beings, you can now choose to be violent too."),
-            new ("Speed I", -1, 50, "Increase your model's flexibility and speed by 15%.", "Your legs may be short, but it shall not affect your ability to be speedy."),
-            new ("Double jump", -1 , 50, "Defy physics and you shall reach higher places.", "Like the top shelf of the storage."),
-            new ("Stomp", 3, 50, "Upon reaching a certain height threshold, you can slam back to the ground, dealing massive damage to enemies and immediately get out of danger's way.", ""),
-            new ("Dash Charge", 4, 50, "You can now dash, but also dealing damage to anyone dare to stop you on your path.", "No one shall stop you and your little legs."),
-            new ("Health I", -1, 50, "Increase your health by 25.", "Allow you to withstand more damage."),
-            new ("Energy I", -1, 50, "Increase your energy pool by 3.", "The more, the merrier. Happy spamming skill!"),
-            new ("Dash charge chip", -1, 50, "I found it by the waste processor. It's not really useful for me, but who knows? Maybe you can use it.", "Install the chip in Inventory to learn the ability \"Dash charge\" - Dash forward to deal massive damage to any enemies within your path.", "Oooh~ Execellent choice, little cat. You got an eye for artifacts."),
-            new ("Stomp chip", -1, 50, "Yet another out dated chip. Do you ever wonder who made these chips in the first place?", "Install the chip in Inventory to learn the ability \"Stomp\" - Smash downward to destroy any enemies that stand in your path.", "You gotta be the only one that can use this rusty thing right now. For that, i'll give you a specical discount~"),
+            new ("Counter", 2, 3, 50, "The ability to defend yourself agaisnt dangerous enemies and give them a taste of their own medicine.", "Was violent behavior necessary?\nNot always, but instead of being helpless agaisnt hostile beings, you can now choose to be violent too."),
+            new ("Speed I", -1, 6, 50, "Increase your model's flexibility and speed by 15%.", "Your legs may be short, but it shall not affect your ability to be speedy."),
+            new ("Double jump", -1, 1 , 50, "Defy physics and you shall reach higher places.", "Like the top shelf of the storage."),
+            new ("Stomp", 3, 4, 50, "Upon reaching a certain height threshold, you can slam back to the ground, dealing massive damage to enemies and immediately get out of danger's way.", ""),
+            new ("Dash Charge", 4, 8, 50, "You can now dash, but also dealing damage to anyone dare to stop you on your path.", "No one shall stop you and your little legs."),
+            new ("Health I", -1, 2, 50, "Increase your health by 25.", "Allow you to withstand more damage."),
+            new ("Energy I", -1, 9, 50, "Increase your energy pool by 3.", "The more, the merrier. Happy spamming skill!"),
+            new ("Dash charge chip", 0, -1, 50, "I found it by the waste processor. It's not really useful for me, but who knows? Maybe you can use it.", "Install the chip in Inventory to learn the ability \"Dash charge\" - Dash forward to deal massive damage to any enemies within your path.", "Oooh~ Execellent choice, little cat. You got an eye for artifacts."),
+            new ("Stomp chip", 0, -1, 50, "Yet another out dated chip. Do you ever wonder who made these chips in the first place?", "Install the chip in Inventory to learn the ability \"Stomp\" - Smash downward to destroy any enemies that stand in your path.", "You gotta be the only one that can use this rusty thing right now. For that, i'll give you a specical discount~"),
         };
     }
 }
@@ -304,14 +304,16 @@ public class ShopItemData
 {
     public string name;
     public int inventoryId;
+    public int skillId;
     public int price;
     public string description1, description2;
     public string npcDialog;
 
-    public ShopItemData (string itemName, int id, int itemPrice, string description_1, string description_2, string dialog = "Do you even have enough money for that? No offense, buddy, but business is business.\nExcept you're willing to do a favour for me...?")
+    public ShopItemData (string itemName, int inventory, int skill, int itemPrice, string description_1, string description_2, string dialog = "Do you even have enough money for that? No offense, buddy, but business is business.\nExcept you're willing to do a favour for me...?")
     {
         name = itemName;
-        inventoryId = id;
+        inventoryId = inventory;
+        skillId = skill;
         price = itemPrice;
         description1 = description_1;
         description2 = description_2;

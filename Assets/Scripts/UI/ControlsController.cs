@@ -106,7 +106,23 @@ public class ControlsController : MonoBehaviour
             return;
         }
         if (ic.name == "middleButton" || ic.name == "rightButton") return;
-        if (step == 1)
+        
+        if (step == 0)
+        {
+            if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
+            {
+                step = 1;
+                txtRebindingKeys[selectingControlId].color = new(1, 1, 1, 1);
+            }
+            else
+            {
+                step = 0;
+                txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
+            }
+            keyname = ic.name;
+            txtRebindingKeys[selectingControlId].text = keyname;
+        }
+        else if (step == 1)
         {
             if (ic.name == "enter")
             {
@@ -125,18 +141,6 @@ public class ControlsController : MonoBehaviour
                 return;
             }
         }
-        if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
-        {
-            step = 1;
-            txtRebindingKeys[selectingControlId].color = new(1, 1, 1, 1);
-        }
-        else
-        {
-            step = 0;
-            txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
-        }
-        keyname = ic.name;
-        txtRebindingKeys[selectingControlId].text = keyname;
     }
 
 
@@ -228,17 +232,17 @@ public class ControlsController : MonoBehaviour
     public void LoadKeyUsedFromSaveFile()
     {
         usedKeys.Add("w");
-        usedKeys.Add("a");
         usedKeys.Add("s");
+        usedKeys.Add("a");
         usedKeys.Add("d");
         usedKeys.Add("space");
+        usedKeys.Add("tab");
+        usedKeys.Add("esc");
         usedKeys.Add("j");
         usedKeys.Add("k");
         usedKeys.Add("l");
         usedKeys.Add("f");
         usedKeys.Add("r");
         usedKeys.Add("e");
-        usedKeys.Add("esc");
-        usedKeys.Add("tab");
     }
 }
