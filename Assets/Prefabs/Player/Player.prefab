@@ -5472,7 +5472,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Parry
   OnCounterChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: UpdateCounter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _missedParry: 0
   increaseDamageDuration: 2
   increasedDamageTaken: 1.5
@@ -6704,7 +6716,7 @@ MonoBehaviour:
     isPassive: 0
     unlockCost: 50
     _isUnlocked: 1
-  - skillId: 1
+  - skillId: 8
     skillName: Charge Dash
     skillPrefab: {fileID: 7025280725610454495}
     cooldown: 1
@@ -6720,7 +6732,7 @@ MonoBehaviour:
     isPassive: 1
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 3
+  - skillId: 4
     skillName: Stomp
     skillPrefab: {fileID: 8792487345317456340}
     cooldown: 0
@@ -6728,7 +6740,7 @@ MonoBehaviour:
     isPassive: 0
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 4
+  - skillId: 3
     skillName: Parry - Counter
     skillPrefab: {fileID: 2779057000039258090}
     cooldown: 1
@@ -6760,7 +6772,7 @@ MonoBehaviour:
     isPassive: 1
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 8
+  - skillId: 1
     skillName: Haste
     skillPrefab: {fileID: 2460705719322183849}
     cooldown: 0
@@ -6902,7 +6914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 972e0dde-b293-402b-838d-0c0f62bcfcf9
+  uniqueID: 8291f964-139e-464d-9a52-7e9077d79f08
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6938,6 +6950,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f69f30e2e3dbc8f479375136d37da812, type: 3}
   - {fileID: 8300000, guid: 34f5458231b93444296f5661ff5c5a70, type: 3}
   - {fileID: 8300000, guid: a88d3d73bb8b54e408a9faed5b3b5158, type: 3}
+  - {fileID: 8300000, guid: c5e974a5344d2564b8b712a1e4922977, type: 3}
   - {fileID: 8300000, guid: 7d05438b845a6cf44b061cdaa5a02dbd, type: 3}
   volume: 1
   pitchMin: 0.8
