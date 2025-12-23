@@ -127,6 +127,7 @@ public class ControlsController : MonoBehaviour
         }
         if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
         {
+            
             step = 1;
             txtRebindingKeys[selectingControlId].color = new(1, 1, 1, 1);
         }
@@ -228,17 +229,17 @@ public class ControlsController : MonoBehaviour
     public void LoadKeyUsedFromSaveFile()
     {
         usedKeys.Add("w");
-        usedKeys.Add("a");
         usedKeys.Add("s");
+        usedKeys.Add("a");
         usedKeys.Add("d");
         usedKeys.Add("space");
+        usedKeys.Add("tab");
+        usedKeys.Add("esc");
         usedKeys.Add("j");
         usedKeys.Add("k");
         usedKeys.Add("l");
         usedKeys.Add("f");
         usedKeys.Add("r");
         usedKeys.Add("e");
-        usedKeys.Add("esc");
-        usedKeys.Add("tab");
     }
 }
