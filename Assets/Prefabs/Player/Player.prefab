@@ -6724,7 +6724,7 @@ MonoBehaviour:
     isPassive: 0
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 2
+  - skillId: 1
     skillName: Double Jump
     skillPrefab: {fileID: 2320717386118876908}
     cooldown: 0
@@ -6756,24 +6756,24 @@ MonoBehaviour:
     isPassive: 0
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 6
-    skillName: Vitality
+  - skillId: 2
+    skillName: Health I
     skillPrefab: {fileID: 6728830987841308525}
     cooldown: 0
     cost: 0
     isPassive: 1
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 7
-    skillName: Capacity
+  - skillId: 9
+    skillName: Energy I
     skillPrefab: {fileID: 8227030183525547547}
     cooldown: 0
     cost: 0
     isPassive: 1
     unlockCost: 50
     _isUnlocked: 0
-  - skillId: 1
-    skillName: Haste
+  - skillId: 6
+    skillName: Speed I
     skillPrefab: {fileID: 2460705719322183849}
     cooldown: 0
     cost: 0
@@ -6914,7 +6914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 8291f964-139e-464d-9a52-7e9077d79f08
+  uniqueID: 45a335b3-b3c3-4583-8bc6-ef21938b6717
 --- !u!114 &1292387543960183970
 MonoBehaviour:
   m_ObjectHideFlags: 0
