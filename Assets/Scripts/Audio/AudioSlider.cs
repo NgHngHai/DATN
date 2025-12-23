@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class AudioSlider : MonoBehaviour
+public class AudioSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    enum AudioGroupType
+    private enum AudioGroupType
     {
         Master,
         Music,
@@ -11,40 +13,58 @@ public class AudioSlider : MonoBehaviour
     }
 
     [SerializeField] private AudioGroupType audioControlType;
-    private Slider audioSlider;
-    private string audioKey;
+
+    [Header("Fill Area")]
+    [SerializeField] private Image fillImage;
+    [SerializeField] private Color selectedColor;
+
+    [Header("Volume Text")]
+    [SerializeField] private TextMeshProUGUI audioValueTMP;
+    [SerializeField] private int maxValue = 20;
+
+    private Color startColor;
+    private Slider slider;
 
     private void Awake()
     {
-        audioSlider = GetComponent<Slider>();
+        slider = GetComponent<Slider>();
+        startColor = fillImage.color;
+        InitSliderValue();
+    }
+
+    private void InitSliderValue()
+    {
+        float initValue = 1f;
 
         switch (audioControlType)
         {
             case AudioGroupType.Music:
-                audioKey = AudioManager.MUSIC_VOLUME_KEY;
+                initValue = AudioManager.Instance.GetMusicVolume();
                 break;
             case AudioGroupType.SFX:
-                audioKey = AudioManager.SFX_VOLUME_KEY;
+                initValue = AudioManager.Instance.GetSFXVolume();
                 break;
             default:
-                audioKey = AudioManager.MASTER_VOLUME_KEY;
+                initValue = AudioManager.Instance.GetMasterVolume();
                 break;
         }
 
-        audioSlider.value = PlayerPrefs.GetFloat(audioKey, 1);
+        slider.value = initValue;
+        audioValueTMP.text = Mathf.FloorToInt(initValue * maxValue).ToString();
     }
 
     private void OnEnable()
     {
-        audioSlider.onValueChanged.AddListener(OnSliderChange);
+        slider.onValueChanged.AddListener(OnSliderChanged);
     }
 
     private void OnDisable()
     {
-        audioSlider.onValueChanged.RemoveListener(OnSliderChange);
+        slider.onValueChanged.RemoveListener(OnSliderChanged);
+        AudioManager.Instance.SaveVolumes();
     }
 
-    private void OnSliderChange(float value)
+    private void OnSliderChanged(float value)
     {
         switch (audioControlType)
         {
@@ -58,5 +78,17 @@ public class AudioSlider : MonoBehaviour
                 AudioManager.Instance.SetMasterVolume(value);
                 break;
         }
+
+        audioValueTMP.text = Mathf.FloorToInt(value * maxValue).ToString();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        fillImage.color = selectedColor;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        fillImage.color = startColor;
     }
 }

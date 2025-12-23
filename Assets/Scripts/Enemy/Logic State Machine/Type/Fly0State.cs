@@ -88,7 +88,6 @@ public class Fly0RepositionToAttackState : Fly0State
 {
     private Vector2 nextPos;
     private float repositionRange = 7f;
-    private float restTime = 0.2f;
 
     public Fly0RepositionToAttackState(Enemy enemy) : base(enemy)
     {
