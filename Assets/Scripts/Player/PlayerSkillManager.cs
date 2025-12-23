@@ -176,7 +176,7 @@ public class PlayerSkillManager : MonoBehaviour
         if (!lastUsedTime.ContainsKey(skillId)) lastUsedTime[skillId] = -Mathf.Infinity;
 
         var timeSince = Time.time - lastUsedTime[skillId];
-        if (timeSince < skills[skillId].cooldown)
+        if (timeSince < skillMap[skillId].cooldown)
         {
             Debug.LogWarning($"CanUseSkill: skill '{skillMap[skillId].skillName}' is on cooldown. {skillMap[skillId].cooldown - timeSince:F2}s remaining.", this);
             return false;
