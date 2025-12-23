@@ -26,10 +26,14 @@ public class ControlsController : MonoBehaviour
     System.IDisposable _buttonListener;
     int step = 0;
     string keyname;
+    bool isHoveringMappingKeyButton;
+    List<string> usedKeys = new();
 
 
     void Awake()
     {
+        LoadKeyUsedFromSaveFile();
+
         imgMappings.Add(imgMapping0);
         imgMappings.Add(imgMapping1);
         imgMappings.Add(imgMapping2);
@@ -52,6 +56,7 @@ public class ControlsController : MonoBehaviour
         selectingControlId = -1;
         step = 0;
         keyname = "";
+        isHoveringMappingKeyButton = false;
     }
 
 
@@ -66,7 +71,8 @@ public class ControlsController : MonoBehaviour
         if (selectingControlId != -1)
         {
             imgMappings[selectingControlId].ChangeSprite(shortBtnUnselectedSprite, longBtnUnselectedSprite);
-            goRebindingBoxes[id].SetActive(false);
+            goRebindingBoxes[selectingControlId].SetActive(false);
+            txtRebindingKeys[selectingControlId].text = "";
         }
         selectingControlId = id;
     }
@@ -74,18 +80,42 @@ public class ControlsController : MonoBehaviour
 
     public bool IsSelectingControlId(int id) => selectingControlId == id;
 
+    public void SetHoverState(bool state) => isHoveringMappingKeyButton = state;
+
 
     public void OnAnyButtonPress(InputControl ic)
     {
+        if (ic.name == "leftButton")
+        {
+            if (!isHoveringMappingKeyButton)
+            {
+                _buttonListener?.Dispose();
+                _buttonListener = null;
+
+                step = 0;
+                keyname = "";
+
+                if (selectingControlId != -1)
+                {
+                    imgMappings[selectingControlId].ChangeSprite(shortBtnUnselectedSprite, longBtnUnselectedSprite);
+                    goRebindingBoxes[selectingControlId].SetActive(false);
+                    txtRebindingKeys[selectingControlId].text = "";
+                }
+                selectingControlId = -1;
+            }
+            return;
+        }
+        if (ic.name == "middleButton" || ic.name == "rightButton") return;
         if (step == 1)
         {
             if (ic.name == "enter")
             {
                 step = 0;
-                txtRebindingKeys[selectingControlId].text = "";
+                ModifyControlButtonUI();
+                RebindingAction();
                 _buttonListener?.Dispose();
                 _buttonListener = null;
-                RebindingAction();
+                selectingControlId = -1;
                 return;
             }
             else if (ic.name == "backspace")
@@ -95,7 +125,16 @@ public class ControlsController : MonoBehaviour
                 return;
             }
         }
-        step = 1;
+        if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
+        {
+            step = 1;
+            txtRebindingKeys[selectingControlId].color = new(1, 1, 1, 1);
+        }
+        else
+        {
+            step = 0;
+            txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
+        }
         keyname = ic.name;
         txtRebindingKeys[selectingControlId].text = keyname;
     }
@@ -116,7 +155,7 @@ public class ControlsController : MonoBehaviour
                 moveActionRef.action.ApplyBindingOverride(3, "<Keyboard>/" + keyname);
                 break;
             case 4:
-                moveActionRef.action.ApplyBindingOverride("<Keyboard>/" + keyname);
+                jumpActionRef.action.ApplyBindingOverride("<Keyboard>/" + keyname);
                 break;
             case 5:
                 UIManager.Instance.ChangeOpenFunctionActionBinding("<Keyboard>/" + keyname);
@@ -143,11 +182,27 @@ public class ControlsController : MonoBehaviour
                 interactActionRef.action.ApplyBindingOverride("<Keyboard>/" + keyname);
                 break;
         }
+    }
+
+
+    public void ModifyControlButtonUI()
+    {
+        usedKeys[selectingControlId] = keyname;
+
+        txtRebindingKeys[selectingControlId].text = "";
+        goRebindingBoxes[selectingControlId].SetActive(false);
         
         imgMappings[selectingControlId].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = keyname;
-        goRebindingBoxes[selectingControlId].SetActive(false);
+
+        if (keyname.Length > 1)
+        {
+            imgMappings[selectingControlId].type = 1;
+        }
+        else
+        {
+            imgMappings[selectingControlId].type = 0;
+        }
         imgMappings[selectingControlId].ChangeSprite(shortBtnUnselectedSprite, longBtnUnselectedSprite);
-        selectingControlId = -1;
     }
     
 
@@ -158,5 +213,32 @@ public class ControlsController : MonoBehaviour
 
         step = 0;
         keyname = "";
+
+        if (selectingControlId != -1)
+        {
+            imgMappings[selectingControlId].ChangeSprite(shortBtnUnselectedSprite, longBtnUnselectedSprite);
+            goRebindingBoxes[selectingControlId].SetActive(false);
+            txtRebindingKeys[selectingControlId].text = "";
+        }
+        selectingControlId = -1;
+        isHoveringMappingKeyButton = false;
+    }
+
+
+    public void LoadKeyUsedFromSaveFile()
+    {
+        usedKeys.Add("w");
+        usedKeys.Add("a");
+        usedKeys.Add("s");
+        usedKeys.Add("d");
+        usedKeys.Add("space");
+        usedKeys.Add("j");
+        usedKeys.Add("k");
+        usedKeys.Add("l");
+        usedKeys.Add("f");
+        usedKeys.Add("r");
+        usedKeys.Add("e");
+        usedKeys.Add("esc");
+        usedKeys.Add("tab");
     }
 }
