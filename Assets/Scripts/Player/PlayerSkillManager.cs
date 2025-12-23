@@ -37,7 +37,7 @@ public class PlayerSkillManager : MonoBehaviour
     }
 
     // Load skill map
-    private void BuildLookup()
+    public void BuildLookup()
     {
         skillMap = new Dictionary<int, SkillDefinition>(skills.Count);
         lastUsedTime = new Dictionary<int, float>(skills.Count);
@@ -158,17 +158,17 @@ public class PlayerSkillManager : MonoBehaviour
     // Check if a given skill can be used (unlocked, enough energy, off cooldown)
     public bool CanUseSkill(int skillId)
     {
-        if (skills[skillId] == null) return false;
+        if (skillMap[skillId] == null) return false;
 
-        if (!skills[skillId].isUnlocked)
+        if (!skillMap[skillId].isUnlocked)
         {
-            Debug.LogWarning($"CanUseSkill: skill '{skills[skillId].skillName}' (id={skillId}) is locked.", this);
+            Debug.LogWarning($"CanUseSkill: skill '{skillMap[skillId].skillName}' (id={skillId}) is locked.", this);
             return false;
         }
 
-        if (currentEnergy < skills[skillId].cost)
+        if (currentEnergy < skillMap[skillId].cost)
         {
-            Debug.LogWarning($"CanUseSkill: not enough energy for '{skills[skillId].skillName}' (cost={skills[skillId].cost}, current={currentEnergy}).", this);
+            Debug.LogWarning($"CanUseSkill: not enough energy for '{skillMap[skillId].skillName}' (cost={skillMap[skillId].cost}, current={currentEnergy}).", this);
             return false;
         }
 
@@ -178,7 +178,7 @@ public class PlayerSkillManager : MonoBehaviour
         var timeSince = Time.time - lastUsedTime[skillId];
         if (timeSince < skills[skillId].cooldown)
         {
-            Debug.LogWarning($"CanUseSkill: skill '{skills[skillId].skillName}' is on cooldown. {skills[skillId].cooldown - timeSince:F2}s remaining.", this);
+            Debug.LogWarning($"CanUseSkill: skill '{skillMap[skillId].skillName}' is on cooldown. {skillMap[skillId].cooldown - timeSince:F2}s remaining.", this);
             return false;
         }
 
@@ -193,15 +193,15 @@ public class PlayerSkillManager : MonoBehaviour
         // Call the SkillDefinition's Activate method
         try
         {
-            skills[activeSkillId].Activate();
+            skillMap[activeSkillId].Activate();
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Error activating skill '{skills[activeSkillId]?.skillName}': {ex}", this);
+            Debug.LogError($"Error activating skill '{skillMap[activeSkillId]?.skillName}': {ex}", this);
             return false;
         }
 
-        currentEnergy = Mathf.Max(0, currentEnergy - skills[activeSkillId].cost);
+        currentEnergy = Mathf.Max(0, currentEnergy - skillMap[activeSkillId].cost);
         OnEnergyChanged?.Invoke(currentEnergy, maxEnergy);
         lastUsedTime[activeSkillId] = Time.time;
         return true;

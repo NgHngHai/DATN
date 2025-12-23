@@ -46,6 +46,7 @@ public class PlayerSaveables : SaveableObject
 
             maxEnergy = playerSkill.maxEnergy,
             currentEnergy = playerSkill.currentEnergy,
+            currentSkillId = playerSkill.activeSkillId,
 
             skills = _unlockedSkillsID,
 
@@ -66,6 +67,7 @@ public class PlayerSaveables : SaveableObject
 
         playerSkill.maxEnergy = playerState.maxEnergy;
         playerSkill.currentEnergy = playerState.currentEnergy;
+        playerSkill.activeSkillId = playerState.currentSkillId;
 
         playerSkill.OnEnergyChanged?.Invoke(playerState.currentEnergy, playerState.maxEnergy);
 
@@ -78,6 +80,7 @@ public class PlayerSaveables : SaveableObject
         var savedSkills = playerState.skills ?? string.Empty;
         if (playerSkill.skills != null)
         {
+            playerSkill.BuildLookup();
             // First, lock all skills; then unlock those present in the saved list.
             for (int i = 0; i < playerSkill.skills.Count; i++)
             {
@@ -91,16 +94,7 @@ public class PlayerSaveables : SaveableObject
                 {
                     if (int.TryParse(part, out int skillId))
                     {
-                        // Find matching skill by id and unlock it.
-                        for (int i = 0; i < playerSkill.skills.Count; i++)
-                        {
-                            // Assumes SkillDefinition has an int skillId property.
-                            if (playerSkill.skills[i].skillId == skillId)
-                            {
-                                playerSkill.skills[i].isUnlocked = true;
-                                break;
-                            }
-                        }
+                        playerSkill.UnlockSkill(skillId);
                     }
                 }
             }
@@ -122,6 +116,7 @@ public class PlayerSaveables : SaveableObject
         // Energy
         public int maxEnergy;
         public int currentEnergy;
+        public int currentSkillId;
 
         // Skills
         public string skills;
