@@ -368,12 +368,12 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void UpdateInventory(int itemId)
+    public void UpdateInventory(int itemId, int skillId)
     {
         inventoryController.gameObject.SetActive(true);
         functionMenu.SetActive(true);
 
-        if (itemId != 0)skillManager.UnlockSkill(itemId);
+        if (skillId > -1) skillManager.UnlockSkill(skillId);
         if (itemId > 0)
         {
             inventoryController.AddItem(itemId);
