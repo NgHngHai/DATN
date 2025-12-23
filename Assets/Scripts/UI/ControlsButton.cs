@@ -28,6 +28,7 @@ public class ControlsButton : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (controller.IsSelectingControlId(id)) return;
+        controller.SetHoverState(true);
         txtControlName.color = new Color32(221, 255, 255, 255);
         txtMappingKey.color = new Color32(221, 255, 255, 255);
     }
@@ -35,6 +36,7 @@ public class ControlsButton : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public void OnPointerExit(PointerEventData eventData)
     {
         if (controller.IsSelectingControlId(id)) return;
+        controller.SetHoverState(false);
         txtControlName.color = new Color32(144, 169, 177, 255);
         txtMappingKey.color = new Color32(144, 169, 177, 255);
     }
