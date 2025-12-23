@@ -57,16 +57,16 @@ public class InventoryController : MonoBehaviour
         {
             isDragging = true;
 
-            if (isHoveringSkillAnchor)
-            {
-                imgTmp = transform.GetChild(1).GetChild(0).GetComponent<Image>();
-                imgTmp.sprite = skill0;
+            // if (isHoveringSkillAnchor)
+            // {
+            //     imgTmp = transform.GetChild(1).GetChild(0).GetComponent<Image>();
+            //     imgTmp.sprite = an;
 
-                draggingItem.color = new(1, 1, 1, 1);
-                draggingItem.sprite = selectingItemData.itemSprite;
-                // reset dragging item shader
-            }
-            else
+            //     draggingItem.color = new(1, 1, 1, 1);
+            //     draggingItem.sprite = selectingItemData.itemSprite;
+            //     // reset dragging item shader...
+            // }
+            // else
             {
                 imgTmp = transform.GetChild(0).GetChild(selectingSlot).GetChild(1).GetComponent<Image>();
                 imgTmp.color = new (0, 0, 0, 0);
@@ -94,7 +94,7 @@ public class InventoryController : MonoBehaviour
         if (skillAnchored != -1)
         {
             selectingItemData = inventoryData[itemIds[20]];
-            txtItemName.text = selectingItemData.itemName;
+            txtItemName.text = selectingItemData.itemName + "\n<size=24><color=#00A99D>-- ACTIVATED --</color></size>";
             txtItemDescription.text = selectingItemData.itemDescription;
             if (selectingSlot != -1) transform.GetChild(0).GetChild(selectingSlot).GetChild(0).gameObject.SetActive(false);
         }
@@ -154,10 +154,12 @@ public class InventoryController : MonoBehaviour
             }
             else if (isHoveringSkillAnchor && inventoryData[itemIds[selectingSlot]].skillId > -1)
             {
-                imgTmp.transform.parent.GetChild(0).gameObject.SetActive(false);
+                imgTmp.transform.parent.GetChild(0).gameObject.SetActive(false); // deactive current selector
+                UIManager.Instance.ActivateSkill(inventoryData[itemIds[selectingSlot]].skillId);
+                txtItemName.text += "\n<size=24><color=#00A99D>-- ACTIVATED --</color></size>";
                 if (skillAnchored == -1)
                 {
-                    anchoredSkill.sprite = selectingItemData.skillId == 0 ? skill1 : skill2;
+                    anchoredSkill.sprite = selectingItemData.anchoredSkillSprite;
                     slotUsed[selectingSlot] = false;
                     itemIds[20] = itemIds[selectingSlot];
                     skillAnchored = selectingItemData.skillId;
@@ -166,7 +168,7 @@ public class InventoryController : MonoBehaviour
                 {
                     imgTmp.color = new(1, 1, 1, 1);
                     imgTmp.sprite = inventoryData[itemIds[20]].itemSprite;
-                    anchoredSkill.sprite = inventoryData[itemIds[selectingSlot]].skillId == 0 ? skill1 : skill2;
+                    anchoredSkill.sprite = inventoryData[itemIds[selectingSlot]].anchoredSkillSprite;
                     (itemIds[20], itemIds[selectingSlot]) = (itemIds[selectingSlot], itemIds[20]);
                     selectingSlot = -1;
                 }
@@ -227,13 +229,15 @@ class InventoryData
     public string itemDescription;
     public int skillId;
     public Sprite itemSprite;
+    public Sprite anchoredSkillSprite;
 
-    public InventoryData(string name, string description, int skill, Sprite sprite)
+    public InventoryData(string name, string description, int skill, Sprite item, Sprite anchoredSkill = null)
     {
         itemName = name;
         itemDescription = description;
         skillId = skill;
-        itemSprite = sprite;
+        itemSprite = item;
+        anchoredSkillSprite = anchoredSkill;
     }
 }
 
