@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 2e6ae7b2f9bd0e846a5e0dfc2a049c6a
+guid: 4c3169ed32522fc46977ff546e61dfba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -967597769606226021
-    second: skill_select_0_0
+      213: -5980286929745392695
+    second: skill_box_3_0
   - first:
-      213: 3798671049945060455
-    second: skill_select_0_1
+      213: -6742609064406644526
+    second: skill_box_3_1
   - first:
-      213: 8130000306010482934
-    second: skill_select_0_2
+      213: 4948956323206179406
+    second: skill_box_3_2
   - first:
-      213: -1433425124788495690
-    second: skill_select_0_3
+      213: 1882814047511638640
+    second: skill_box_3_3
   - first:
-      213: -3060986663044256478
-    second: skill_select_0_4
+      213: 2713543262087983794
+    second: skill_box_3_4
+  - first:
+      213: -1134289978342709459
+    second: skill_box_3_5
+  - first:
+      213: -7416918421610764853
+    second: skill_box_3_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: skill_select_0_0
+      name: skill_box_3_0
       rect:
         serializedVersion: 2
-        x: 126
-        y: 162
-        width: 784
-        height: 690
+        x: 145
+        y: 328
+        width: 37
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9f192184f66292f0800000000000000
-      internalID: -967597769606226021
+      spriteID: 9cb4d99e8b0c10da0800000000000000
+      internalID: -5980286929745392695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_1
+      name: skill_box_3_1
       rect:
         serializedVersion: 2
-        x: 362
-        y: 840
-        width: 98
-        height: 134
+        x: 154
+        y: 143
+        width: 37
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7641986913797b430800000000000000
-      internalID: 3798671049945060455
+      spriteID: 2d886b0a7c07d62a0800000000000000
+      internalID: -6742609064406644526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_2
+      name: skill_box_3_2
       rect:
         serializedVersion: 2
-        x: 576
-        y: 840
-        width: 98
-        height: 134
+        x: 327
+        y: 143
+        width: 37
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f86297243093d070800000000000000
-      internalID: 8130000306010482934
+      spriteID: e4aa0a52e893ea440800000000000000
+      internalID: 4948956323206179406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_3
+      name: skill_box_3_3
       rect:
         serializedVersion: 2
-        x: 333
-        y: 53
-        width: 127
-        height: 159
+        x: 340
+        y: 333
+        width: 33
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +212,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ba9cd091737b1ce0800000000000000
-      internalID: -1433425124788495690
+      spriteID: 072fb009669112a10800000000000000
+      internalID: 1882814047511638640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_4
+      name: skill_box_3_4
       rect:
         serializedVersion: 2
-        x: 576
-        y: 53
-        width: 127
-        height: 159
+        x: 193
+        y: 168
+        width: 151
+        height: 161
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,8 +234,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 22de90709d03585d0800000000000000
-      internalID: -3060986663044256478
+      spriteID: 2b2b86b483178a520800000000000000
+      internalID: 2713543262087983794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_box_3_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 136
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27e89046413240f0800000000000000
+      internalID: -1134289978342709459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_box_3_6
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 136
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5e6d7fdffc11990800000000000000
+      internalID: -7416918421610764853
       vertices: []
       indices: 
       edges: []
@@ -248,11 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      skill_select_0_0: -967597769606226021
-      skill_select_0_1: 3798671049945060455
-      skill_select_0_2: 8130000306010482934
-      skill_select_0_3: -1433425124788495690
-      skill_select_0_4: -3060986663044256478
+      skill_box_3_0: -5980286929745392695
+      skill_box_3_1: -6742609064406644526
+      skill_box_3_2: 4948956323206179406
+      skill_box_3_3: 1882814047511638640
+      skill_box_3_4: 2713543262087983794
+      skill_box_3_5: -1134289978342709459
+      skill_box_3_6: -7416918421610764853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

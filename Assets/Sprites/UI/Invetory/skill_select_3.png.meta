@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 2e6ae7b2f9bd0e846a5e0dfc2a049c6a
+guid: 373e9a50bd601cd41a090240058b1010
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -967597769606226021
-    second: skill_select_0_0
+      213: 3692312374227806233
+    second: skill_select_3_0
   - first:
-      213: 3798671049945060455
-    second: skill_select_0_1
+      213: -7654524801823281518
+    second: skill_select_3_1
   - first:
-      213: 8130000306010482934
-    second: skill_select_0_2
+      213: 3650405306532077518
+    second: skill_select_3_2
   - first:
-      213: -1433425124788495690
-    second: skill_select_0_3
+      213: -1453464919616331455
+    second: skill_select_3_3
   - first:
-      213: -3060986663044256478
-    second: skill_select_0_4
+      213: -7779604063037754769
+    second: skill_select_3_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: skill_select_0_0
+      name: skill_select_3_0
       rect:
         serializedVersion: 2
         x: 126
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9f192184f66292f0800000000000000
-      internalID: -967597769606226021
+      spriteID: 918a0a9aa8abd3330800000000000000
+      internalID: 3692312374227806233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_1
+      name: skill_select_3_1
       rect:
         serializedVersion: 2
         x: 362
@@ -162,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7641986913797b430800000000000000
-      internalID: 3798671049945060455
+      spriteID: 29ee7e68f3aa5c590800000000000000
+      internalID: -7654524801823281518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_2
+      name: skill_select_3_2
       rect:
         serializedVersion: 2
         x: 576
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f86297243093d070800000000000000
-      internalID: 8130000306010482934
+      spriteID: ecf9b0e1948d8a230800000000000000
+      internalID: 3650405306532077518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_3
+      name: skill_select_3_3
       rect:
         serializedVersion: 2
         x: 333
@@ -206,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ba9cd091737b1ce0800000000000000
-      internalID: -1433425124788495690
+      spriteID: 141e6cc3b5144dbe0800000000000000
+      internalID: -1453464919616331455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skill_select_0_4
+      name: skill_select_3_4
       rect:
         serializedVersion: 2
         x: 576
@@ -228,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 22de90709d03585d0800000000000000
-      internalID: -3060986663044256478
+      spriteID: f62f271a25b490490800000000000000
+      internalID: -7779604063037754769
       vertices: []
       indices: 
       edges: []
@@ -248,11 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      skill_select_0_0: -967597769606226021
-      skill_select_0_1: 3798671049945060455
-      skill_select_0_2: 8130000306010482934
-      skill_select_0_3: -1433425124788495690
-      skill_select_0_4: -3060986663044256478
+      skill_select_3_0: 3692312374227806233
+      skill_select_3_1: -7654524801823281518
+      skill_select_3_2: 3650405306532077518
+      skill_select_3_3: -1453464919616331455
+      skill_select_3_4: -7779604063037754769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

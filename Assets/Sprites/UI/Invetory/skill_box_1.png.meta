@@ -96,7 +96,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -140,10 +140,10 @@ TextureImporter:
       name: skill_box_1_0
       rect:
         serializedVersion: 2
-        x: 271
-        y: 396
-        width: 33
-        height: 29
+        x: 145
+        y: 328
+        width: 37
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: skill_box_1_1
       rect:
         serializedVersion: 2
-        x: 280
-        y: 220
-        width: 34
-        height: 198
+        x: 154
+        y: 143
+        width: 37
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: skill_box_1_2
       rect:
         serializedVersion: 2
-        x: 337
-        y: 248
-        width: 80
-        height: 157
+        x: 216
+        y: 218
+        width: 85
+        height: 117
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: skill_box_1_3
       rect:
         serializedVersion: 2
-        x: 444
-        y: 220
-        width: 33
-        height: 200
+        x: 327
+        y: 143
+        width: 37
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: skill_box_1_4
       rect:
         serializedVersion: 2
-        x: 456
-        y: 400
-        width: 29
-        height: 25
+        x: 340
+        y: 333
+        width: 33
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +250,10 @@ TextureImporter:
       name: skill_box_1_5
       rect:
         serializedVersion: 2
-        x: 329
-        y: 325
-        width: 11
-        height: 47
+        x: 207
+        y: 158
+        width: 99
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: skill_box_1_6
       rect:
         serializedVersion: 2
-        x: 408
-        y: 301
-        width: 13
-        height: 47
+        x: 233
+        y: 191
+        width: 48
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: skill_box_1_7
       rect:
         serializedVersion: 2
-        x: 271
-        y: 214
-        width: 31
-        height: 25
+        x: 144
+        y: 136
+        width: 34
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,10 +316,10 @@ TextureImporter:
       name: skill_box_1_8
       rect:
         serializedVersion: 2
-        x: 459
-        y: 214
-        width: 25
-        height: 26
+        x: 344
+        y: 136
+        width: 27
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
