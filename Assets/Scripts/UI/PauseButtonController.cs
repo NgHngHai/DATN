@@ -26,6 +26,10 @@ public class PauseButtonController : MonoBehaviour, IPointerClickHandler, IPoint
         {
             UIManager.Instance.OpenControlsPopup();
         }
+        if (buttonIndex == 3)
+        {
+            UIManager.Instance.OpenAudioSettingsPopup();
+        }
         if (buttonIndex == 5)
         {
             UIManager.Instance.BackToMainMenu();
