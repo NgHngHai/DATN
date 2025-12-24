@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     [Header("Pause Menu")]
     public GameObject pauseMenu;
     public GameObject pauseText;
-    public GameObject controlsPopup;
+    public GameObject controlsPopup, audioPopup;
     [Header("Function Menu")]
     public GameObject functionMenu;
     public GameObject functionText, skillMenu, draggingItem, inventory, map, database;
@@ -132,6 +132,11 @@ public class UIManager : MonoBehaviour
     public void OpenControlsPopup()
     {
         controlsPopup.SetActive(true);
+    }
+
+    public void OpenAudioSettingsPopup()
+    {
+        audioPopup.SetActive(true);
     }
 
     public void ResumePlaying()
