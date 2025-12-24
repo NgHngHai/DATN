@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ScaleBouncedObject : BaseMeshEffect
 {
-    public float glitchDirection;
+    public float intensity;
     public float startDraggingTime;
 
 
@@ -17,7 +17,7 @@ public class ScaleBouncedObject : BaseMeshEffect
         for (int i = 0; i < verts.Count; i++)
         {
             UIVertex v = verts[i];
-            v.uv1 = new Vector2(glitchDirection, startDraggingTime);
+            v.uv1 = new Vector2(intensity, startDraggingTime);
             verts[i] = v;
         }
 
@@ -26,9 +26,9 @@ public class ScaleBouncedObject : BaseMeshEffect
     }
     
 
-    public void SetEffectFactor(float direction, float startTime)
+    public void SetEffectFactor(float intensity, float startTime)
     {
-        glitchDirection = direction;
+        this.intensity = intensity;
         startDraggingTime = startTime;
         if (graphic != null) graphic.SetVerticesDirty();
     }
