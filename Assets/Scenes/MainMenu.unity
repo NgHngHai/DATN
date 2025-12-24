@@ -3230,7 +3230,7 @@ GameObject:
   - component: {fileID: 261015603}
   - component: {fileID: 261015602}
   m_Layer: 5
-  m_Name: img_credits
+  m_Name: img_credits_popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3312,7 +3312,7 @@ GameObject:
   - component: {fileID: 261861088}
   - component: {fileID: 261861087}
   m_Layer: 5
-  m_Name: img_control_setting_popup
+  m_Name: img_options_popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10895,7 +10895,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: controls
+  m_text: 'options
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec521988d02832a4e9f4809a5553fc9f, type: 2}
   m_sharedMaterial: {fileID: -6260884401727134508, guid: ec521988d02832a4e9f4809a5553fc9f, type: 2}
