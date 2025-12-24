@@ -60,7 +60,7 @@ Shader "Custom/DigitalStaticChaos"
                 half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, float2(IN.uv.x + offset.x, IN.uv.y + elapsedTime / 2 - offset.x));
                 color.a *= offset.a;
 
-                color = lerp(half4(0, 0, 0, 1), color, step(0.5, fmod((floor(IN.positionHCS.y) + 5) / 5, 4)));
+                color = lerp(half4(0, 0, 0, 1), color, step(0.5, fmod(floor((floor(IN.positionHCS.y + frac(_Time.y) * 30) + 5) / 5), 4)));
 
                 return color;
             }

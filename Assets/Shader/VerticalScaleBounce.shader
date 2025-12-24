@@ -25,7 +25,7 @@ Shader "Custom/VerticalScaleBounce"
             struct Attributes
             {
                 float4 positionOS : POSITION;
-                float color : COLOR;
+                float4 color : COLOR;
                 float2 uv : TEXCOORD0;
                 float2 data : TEXCOORD1;
             };
@@ -33,7 +33,7 @@ Shader "Custom/VerticalScaleBounce"
             struct Varyings
             {
                 float4 positionHCS : SV_POSITION;
-                float color : COLOR;
+                float4 color : COLOR;
                 float2 uv : TEXCOORD0;
                 float2 data : TEXCOORD1;
             };
@@ -60,10 +60,10 @@ Shader "Custom/VerticalScaleBounce"
                 float elapsedTime = _Time.y - IN.data.y;
                 float factor;
                 if (elapsedTime < _EffectTime) {
-                    factor = sin(elapsedTime * PI / _EffectTime) * 0.3 + 1;
+                    factor = sin(elapsedTime * PI / _EffectTime) * IN.data.x + 1;
                 }
                 else if (elapsedTime < _EffectTime * 1.5) {
-                    factor = -sin(elapsedTime * 2 * PI / _EffectTime) * 0.15 + 1;
+                    factor = -sin(elapsedTime * 2 * PI / _EffectTime) * IN.data.x / 2 + 1;
                 }
                 else factor = 1;
 

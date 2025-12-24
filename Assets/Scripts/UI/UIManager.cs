@@ -218,17 +218,17 @@ public class UIManager : MonoBehaviour
                 if (i == 0)
                 {
                     counterBar0.color = new Color32(115, 246, 241, 255);
-                    // counterBar0.GetComponent<ScaleBouncedObject>().SetEffectFactor(0, Time.time);
+                    counterBar0.GetComponent<ScaleBouncedObject>().SetEffectFactor(0.7f, Time.time);
                 }
                 else if (i == 1)
                 {
                     counterBar1.color = new Color32(115, 246, 241, 255);
-                    // counterBar1.GetComponent<ScaleBouncedObject>().SetEffectFactor(0, Time.time);
+                    counterBar1.GetComponent<ScaleBouncedObject>().SetEffectFactor(0.7f, Time.time);
                 }
                 else
                 {
                     counterBar2.color = new Color32(115, 246, 241, 255);
-                    // counterBar2.GetComponent<ScaleBouncedObject>().SetEffectFactor(0, Time.time);
+                    counterBar2.GetComponent<ScaleBouncedObject>().SetEffectFactor(0.7f, Time.time);
                 }
             }
         }
@@ -237,9 +237,9 @@ public class UIManager : MonoBehaviour
             totalCounter = c;
             for (int i = 2; i >= c; i--)
             {
-                if (i == 0) counterBar0.color = new Color32(255, 255, 255, 255);
-                else if (i == 1) counterBar1.color = new Color32(255, 255, 255, 255);
-                else counterBar2.color = new Color32(255, 255, 255, 255);
+                if (i == 0) counterBar0.color = new Color32(255, 255, 255, 40);
+                else if (i == 1) counterBar1.color = new Color32(255, 255, 255, 40);
+                else counterBar2.color = new Color32(255, 255, 255, 40);
             }
         }
     }
@@ -276,7 +276,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayNextTab()
     {
-        nextButton.SetEffectFactor(0, Time.time);
+        nextButton.SetEffectFactor(0.4f, Time.time);
         HideFunctionMenuSpecifically();
         currentUiId += 1;
         if (currentUiId > 5) currentUiId = 2;
@@ -285,7 +285,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayPreviousTab()
     {
-        prevButton.SetEffectFactor(0, Time.time);
+        prevButton.SetEffectFactor(0.4f, Time.time);
         HideFunctionMenuSpecifically();
         currentUiId -= 1;
         if (currentUiId < 2) currentUiId = 5;
