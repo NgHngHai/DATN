@@ -1,16 +1,30 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class SkillTreeController : MonoBehaviour
 {
+    public Sprite skillActivatedSprite, skillDeactivatedSprite;
+    public GameObject skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, skill_9;
+    public Image imgSkill_3, imgSkill_4, imgSkill_8;
     public TextMeshProUGUI txtSkillName, txtSkillDescription;
+
     int selectingSkill;
     List<SkillData> skillData;
+    List<GameObject> skills;
+    bool[] lockStates;
+
 
     void Awake()
     {
         LoadSkillDataFromSO();
+        LoadLockStateFromSaveFile();
+
+        skills = new()
+        {
+            skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, skill_9
+        };
 
         selectingSkill = 0;
         DisplayData(0);
@@ -49,10 +63,46 @@ public class SkillTreeController : MonoBehaviour
         };
     }
 
+    void LoadLockStateFromSaveFile()
+    {
+        lockStates = new bool[15];
+        lockStates[0] = true;
 
+    }
+
+    
     public bool IsSelectingSkill(int id)
     {
         return selectingSkill == id;
+    }
+
+
+    public void UnlockSkill(int id)
+    {
+        skills[id].SetActive(true);
+    }
+
+
+    public void ChangeActiveSkill(int id)
+    {
+        if (id == 3)
+        {
+            imgSkill_3.sprite = skillActivatedSprite;
+            imgSkill_4.sprite = skillDeactivatedSprite;
+            imgSkill_8.sprite = skillDeactivatedSprite;
+        }
+        else if (id == 4)
+        {
+            imgSkill_3.sprite = skillDeactivatedSprite;
+            imgSkill_4.sprite = skillActivatedSprite;
+            imgSkill_8.sprite = skillDeactivatedSprite;
+        }
+        else
+        {
+            imgSkill_3.sprite = skillDeactivatedSprite;
+            imgSkill_4.sprite = skillDeactivatedSprite;
+            imgSkill_8.sprite = skillActivatedSprite;
+        }
     }
 }
 

@@ -207,16 +207,9 @@ public class InventoryController : MonoBehaviour
                 Image img = transform.GetChild(0).GetChild(i).GetChild(1).GetComponent<Image>();
                 img.color = new (1, 1, 1, 1);
                 img.sprite = inventoryData[itemId].itemSprite;
-                if (inventoryData[itemId].skillId > -1) UnlockSkill(inventoryData[itemId].skillId);
                 break;
             }
         }
-    }
-
-
-    public void UnlockSkill(int skillId)
-    {
-        UIManager.Instance.UpdateSkillTree(skillId);
     }
 
 

@@ -378,7 +378,11 @@ public class UIManager : MonoBehaviour
         inventoryController.gameObject.SetActive(true);
         functionMenu.SetActive(true);
 
-        if (skillId > -1) skillManager.UnlockSkill(skillId);
+        if (skillId > -1)
+        {
+            skillTreeController.UnlockSkill(skillId - 1);
+            skillManager.UnlockSkill(skillId);
+        }
         if (itemId > 0)
         {
             inventoryController.AddItem(itemId);
@@ -386,11 +390,6 @@ public class UIManager : MonoBehaviour
 
         inventoryController.gameObject.SetActive(false);
         functionMenu.SetActive(false);
-    }
-
-    public void UpdateSkillTree(int skillId)
-    {
-        
     }
 
 
@@ -416,5 +415,6 @@ public class UIManager : MonoBehaviour
     public void ActivateSkill(int skillId)
     {
         skillManager.ChangeActiveSkill(skillId);
+        skillTreeController.ChangeActiveSkill(skillId);
     }
 }
