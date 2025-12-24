@@ -116,7 +116,6 @@ public class ControlsController : MonoBehaviour
             }
             else
             {
-                step = 0;
                 txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
             }
             keyname = ic.name;
@@ -124,6 +123,20 @@ public class ControlsController : MonoBehaviour
         }
         else if (step == 1)
         {
+            if (ic.name != "enter")
+            {
+                if (ic.name == usedKeys[selectingControlId] || !usedKeys.Contains(ic.name))
+                {
+                    
+                }
+                else
+                {
+                    step = 0;
+                    txtRebindingKeys[selectingControlId].color = new Color32(255, 96, 96, 255);
+                }
+                keyname = ic.name;
+                txtRebindingKeys[selectingControlId].text = keyname;
+            }
             if (ic.name == "enter")
             {
                 step = 0;
