@@ -49,7 +49,7 @@ public class Interactables : SaveableObject
 
     protected override void Awake()
     {
-        // Ensure proximity collider is a trigger
+        base.Awake();
         var col = GetComponent<Collider2D>();
         col.isTrigger = true;
 
