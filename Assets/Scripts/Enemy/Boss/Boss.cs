@@ -138,6 +138,10 @@ public class Boss : Enemy
         bowstring.UnlockBurrowAttack();
     }
 
+    public override void ApplyKnockback(Vector2 direction, float force, bool lockMovement, float lockDuration = 0)
+    {
+    }
+
     public float GetCurrentHealth()
     {
         if (currentPhase != 3) return health.currentHealth;
