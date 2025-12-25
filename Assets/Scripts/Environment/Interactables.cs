@@ -200,8 +200,6 @@ public class Interactables : SaveableObject
     {
         var saveData = Utility.ConvertState<InteractableData>(state);
 
-        Debug.Log(saveData.spawnOnLoad);
-
         playerInteracted = saveData.playerInteracted;
 
         if (!saveData.spawnOnLoad)
