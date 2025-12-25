@@ -53,6 +53,7 @@ public class PlayerRespawnController : MonoBehaviour
     public void StartRespawn()
     {
         Debug.Log("PlayerRespawnController: StartRespawn called.");
+        UIManager.Instance.playerStats.SetActive(false);
         StartCoroutine(RespawnRoutine());
     }
 
@@ -84,7 +85,7 @@ public class PlayerRespawnController : MonoBehaviour
                 yield return null;
         }
 
-        // Resolve the room’s single checkpoint position (fallback to FirstSpawnPosition)
+        // Resolve the roomï¿½s single checkpoint position (fallback to FirstSpawnPosition)
         var roomData = FindAnyObjectByType<RoomData>();
         Vector2 spawnPos;
 
@@ -171,6 +172,7 @@ public class PlayerRespawnController : MonoBehaviour
         // Cleanup overlay
         videoPlayer.loopPointReached -= onLoopPoint;
         overlayGameObject.SetActive(false);
+        UIManager.Instance.playerStats.SetActive(true);
 
         onFinished?.Invoke();
     }
