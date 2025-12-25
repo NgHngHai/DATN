@@ -166,7 +166,7 @@ public class ShopController : MonoBehaviour
     {
         float duration = 0.5f;
         float delay = 0.05f;
-        WaitForSeconds wfs = new(delay);
+        WaitForSecondsRealtime wfs = new(delay);
         int spendMoney = Mathf.Min(currentMoney, shopItemList[selectingItemId].price);
         int changeTimes = Mathf.CeilToInt(duration / delay);
         for (int i = 1; i <= changeTimes; i++)
