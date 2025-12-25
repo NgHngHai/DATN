@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870117544cdf381439d8b3e79f0c427c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniqueID
-  uniqueID: 60ebf3be-a0d9-4b00-b9cb-a59487967b39
+  uniqueID: d22b53f2-32df-4f79-a549-d276b0da25fa
 --- !u!114 &2114865173888338214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   playerInteracted: 0
   _sharedCanvas: {fileID: 0}
   _sharedText: {fileID: 0}
+  tutotialPromptEN: {fileID: 0}
 --- !u!114 &8210839083158115162
 MonoBehaviour:
   m_ObjectHideFlags: 0
