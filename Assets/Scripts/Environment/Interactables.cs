@@ -19,7 +19,7 @@ public class Interactables : SaveableObject
 {
     [Header("Detection")]
     [Tooltip("Layers considered as player for proximity detection.")]
-    [SerializeField] private LayerMask playerLayerMask; // pick from LayerMask in inspector
+    [SerializeField] protected LayerMask playerLayerMask; // pick from LayerMask in inspector
 
     [Header("Prompt")]
     [Tooltip("Text to show when the player is in range.")]
@@ -85,7 +85,7 @@ public class Interactables : SaveableObject
             _cooldownUntil = Time.time + interactCooldown;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (!IsInPlayerMask(other.gameObject.layer))
             return;
@@ -101,7 +101,7 @@ public class Interactables : SaveableObject
         ShowSharedPromptAtThis();
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected void OnTriggerExit2D(Collider2D other)
     {
         if (!IsInPlayerMask(other.gameObject.layer))
             return;
